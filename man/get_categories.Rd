@@ -4,7 +4,10 @@
 \alias{get_categories}
 \title{Get list of category options metadata}
 \usage{
-get_categories()
+get_categories(d2_session = dynGet("d2_default_session", inherits = TRUE))
+}
+\arguments{
+\item{d2_session}{the khisSession object, default is "d2_default_session"}
 }
 \value{
 A tibble containing a list of category options

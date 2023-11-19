@@ -10,6 +10,8 @@
 #' @param categories The list of categories. The default action is download using \link{get_categories}
 #' @param facilities The list of facilities. The default action is download using \link{get_facilities}
 #' @param elements The list of data elements. The default action is download using \link{get_data_elements}
+#' @param d2_session the khisSession object, default is "d2_default_session",
+#' it will be made upon logining in to KHIS with \link{loginToKHIS}
 #' @return A tibble containing cervical screening and treatment data
 #' \describe{
 #'    \item{facility_id}{organisation identifier that uniquely identifies the health facility}
@@ -32,13 +34,19 @@
 #'
 #' @export
 
-get_cervical_data <- function(element_ids, start_date, end_date = NULL, categories = NULL, facilities = NULL, elements = NULL) {
+get_cervical_data <- function(element_ids,
+                              start_date,
+                              end_date = NULL,
+                              categories = NULL,
+                              facilities = NULL,
+                              elements = NULL,
+                              d2_session = dynGet("d2_default_session", inherits = TRUE)) {
 
   if(is.null(categories) || length(categories) == 0) {
     categories = get_categories()
   }
 
-  data <- get_analytics(element_ids, start_date, end_date, facilities, elements)
+  data <- get_analytics(element_ids, start_date, end_date, facilities, elements, d2_session = d2_session)
 
   data <- data %>%
     left_join(categories, by='category_id', relationship='many-to-many') %>%
@@ -71,6 +79,8 @@ get_cervical_data <- function(element_ids, start_date, end_date = NULL, categori
 #' @param categories The list of categories. The default action is download using \link{get_categories}
 #' @param facilities The list of facilities. The default action is download using \link{get_facilities}
 #' @param elements The list of data elements. The default action is download using \link{get_data_elements}
+#' @param d2_session the khisSession object, default is "d2_default_session",
+#' it will be made upon logining in to KHIS with \link{loginToKHIS}
 #' @return A tibble containing cervical cancer screening data
 #' \describe{
 #'    \item{facility_id}{organisation identifier that uniquely identifies the health facility}
@@ -93,7 +103,12 @@ get_cervical_data <- function(element_ids, start_date, end_date = NULL, categori
 #'
 #' @export
 
-get_cervical_screened <- function(start_date, end_date = NULL, categories = NULL, facilities = NULL, elements = NULL) {
+get_cervical_screened <- function(start_date,
+                                  end_date = NULL,
+                                  categories = NULL,
+                                  facilities = NULL,
+                                  elements = NULL,
+                                  d2_session = dynGet("d2_default_session", inherits = TRUE)) {
 
   ## Cervical Cancer Screening
   # VR7vdS7P0Gb = Number of clients who received HPV Test
@@ -107,7 +122,7 @@ get_cervical_screened <- function(start_date, end_date = NULL, categories = NULL
     'ommbnTANmGo', 'kl4RvWOGb7x', 'G9COyloYLYa'
   )
 
-  data <- get_cervical_data(cacx_screening_ids, start_date, end_date, categories, facilities, elements) %>%
+  data <- get_cervical_data(cacx_screening_ids, start_date, end_date, categories, facilities, elements, d2_session = d2_session) %>%
     mutate(
       element = case_when(
         str_detect(element, 'VIA') ~ 'VIA',
@@ -130,6 +145,8 @@ get_cervical_screened <- function(start_date, end_date = NULL, categories = NULL
 #' @param categories The list of categories. The default action is download using \link{get_categories}
 #' @param facilities The list of facilities. The default action is download using \link{get_facilities}
 #' @param elements The list of data elements. The default action is download using \link{get_data_elements}
+#' @param d2_session the khisSession object, default is "d2_default_session",
+#' it will be made upon logining in to KHIS with \link{loginToKHIS}
 #' @return A tibble containing cervical cancer screening data  on HIV positive women
 #' \describe{
 #'    \item{facility_id}{organisation identifier that uniquely identifies the health facility}
@@ -152,7 +169,12 @@ get_cervical_screened <- function(start_date, end_date = NULL, categories = NULL
 #'
 #' @export
 
-get_cervical_hiv_screened <- function(start_date, end_date = NULL, categories = NULL, facilities = NULL, elements = NULL) {
+get_cervical_hiv_screened <- function(start_date,
+                                      end_date = NULL,
+                                      categories = NULL,
+                                      facilities = NULL,
+                                      elements = NULL,
+                                      d2_session = dynGet("d2_default_session", inherits = TRUE)) {
 
   ## Cervical Cancer Screening to HIV positive women
   # htFuvGJRW1X = Number of HIV positive clients screened
@@ -160,7 +182,7 @@ get_cervical_hiv_screened <- function(start_date, end_date = NULL, categories = 
   # n8Z1XFaeS1t = MOH 711 HIV positive clients screened for cervical cancer
   cacx_hiv_screening_ids <- c('htFuvGJRW1X', 'joXHDIBe8I2', 'n8Z1XFaeS1t')
 
-  data <- get_cervical_data(cacx_hiv_screening_ids, start_date, end_date, categories, facilities, elements) %>%
+  data <- get_cervical_data(cacx_hiv_screening_ids, start_date, end_date, categories, facilities, elements, d2_session = d2_session) %>%
     mutate(
       element = factor(ifelse(str_detect(element, 'screened'), 'Screened', 'Positive'))
     )
@@ -178,6 +200,8 @@ get_cervical_hiv_screened <- function(start_date, end_date = NULL, categories = 
 #' @param categories The list of categories. The default action is download using \link{get_categories}
 #' @param facilities The list of facilities. The default action is download using \link{get_facilities}
 #' @param elements The list of data elements. The default action is download using \link{get_data_elements}
+#' @param d2_session the khisSession object, default is "d2_default_session",
+#' it will be made upon logining in to KHIS with \link{loginToKHIS}
 #' @return A tibble containing cervical cancer screening data with positive screening results
 #' \describe{
 #'    \item{facility_id}{organisation identifier that uniquely identifies the health facility}
@@ -200,7 +224,12 @@ get_cervical_hiv_screened <- function(start_date, end_date = NULL, categories = 
 #'
 #' @export
 
-get_cervical_positive <- function(start_date, end_date = NULL, categories = NULL, facilities = NULL, elements = NULL) {
+get_cervical_positive <- function(start_date,
+                                  end_date = NULL,
+                                  categories = NULL,
+                                  facilities = NULL,
+                                  elements = NULL,
+                                  d2_session = dynGet("d2_default_session", inherits = TRUE)) {
 
   # wYHt86csbhn = Number of clients with Positive Cytology result
   # KLQZDP0ycOY = Number of clients with Positive HPV result
@@ -215,7 +244,7 @@ get_cervical_positive <- function(start_date, end_date = NULL, categories = NULL
     'xbERCTpWTwi', 'LI2g0vO0xvx', 'dBdw7Inlq2C', 'FC5BbFDsdCa'
   )
 
-  data <- get_cervical_data(cacx_positive_ids, start_date, end_date, categories, facilities, elements) %>%
+  data <- get_cervical_data(cacx_positive_ids, start_date, end_date, categories, facilities, elements, d2_session = d2_session) %>%
     mutate(
       element = case_when(
         str_detect(element, 'VIA') ~ 'VIA',
@@ -239,6 +268,8 @@ get_cervical_positive <- function(start_date, end_date = NULL, categories = NULL
 #' @param categories The list of categories. The default action is download using \link{get_categories}
 #' @param facilities The list of facilities. The default action is download using \link{get_facilities}
 #' @param elements The list of data elements. The default action is download using \link{get_data_elements}
+#' @param d2_session the khisSession object, default is "d2_default_session",
+#' it will be made upon logining in to KHIS with \link{loginToKHIS}
 #' @return A tibble containing cervical cancer precancerous treatment data
 #' \describe{
 #'    \item{facility_id}{organisation identifier that uniquely identifies the health facility}
@@ -261,7 +292,12 @@ get_cervical_positive <- function(start_date, end_date = NULL, categories = NULL
 #'
 #' @export
 
-get_cervical_treated <- function(start_date, end_date = NULL, categories = NULL, facilities = NULL, elements = NULL) {
+get_cervical_treated <- function(start_date,
+                                 end_date = NULL,
+                                 categories = NULL,
+                                 facilities = NULL,
+                                 elements = NULL,
+                                 d2_session = dynGet("d2_default_session", inherits = TRUE)) {
 
   # Yv6LiN65lCJ = Number of clients treated using Cryotherapy
   # uXi8AjF8YR0 = Number of clients treated using LEEP
@@ -274,7 +310,7 @@ get_cervical_treated <- function(start_date, end_date = NULL, categories = NULL,
     'UAbmyzuI2UE', 'TSlyElHZw9d'
   )
 
-  data <- get_cervical_data(cacx_treatment_ids, start_date, end_date, categories, facilities, elements) %>%
+  data <- get_cervical_data(cacx_treatment_ids, start_date, end_date, categories, facilities, elements, d2_session = d2_session) %>%
     mutate(
       element = case_when(
         str_detect(element, 'LEEP') ~ 'LEEP',

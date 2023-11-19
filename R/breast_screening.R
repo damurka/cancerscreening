@@ -10,6 +10,8 @@
 #' @param categories The list of categories. The default action is download using \link{get_categories}
 #' @param facilities The list of facilities. The default action is download using \link{get_facilities}
 #' @param elements The list of data elements. The default action is download using \link{get_data_elements}
+#' @param d2_session the khisSession object, default is "d2_default_session",
+#' it will be made upon logining in to KHIS with \link{loginToKHIS}
 #' @return A tibble containing breast cancer screening data
 #' \describe{
 #'    \item{facility_id}{organisation identifier that uniquely identifies the health facility}
@@ -32,13 +34,25 @@
 #'
 #' @export
 
-get_breast_data <- function(element_ids, start_date, end_date = NULL, categories = NULL, facilities = NULL, elements = NULL) {
+get_breast_data <- function(element_ids,
+                            start_date,
+                            end_date = NULL,
+                            categories = NULL,
+                            facilities = NULL,
+                            elements = NULL,
+                            d2_session = dynGet("d2_default_session", inherits = TRUE)) {
 
   if(is.null(categories) || length(categories) == 0) {
     categories = get_categories()
   }
 
-  data <- get_analytics(element_ids, start_date, end_date, facilities, elements)
+  data <- get_analytics(
+    element_ids,
+    start_date,
+    end_date,
+    facilities,
+    elements,
+    d2_session = d2_session)
 
   data <- data %>%
     left_join(categories, by='category_id') %>%
@@ -58,6 +72,8 @@ get_breast_data <- function(element_ids, start_date, end_date = NULL, categories
 #' @param categories The list of categories. The default action is download using \link{get_categories}
 #' @param facilities The list of facilities. The default action is download using \link{get_facilities}
 #' @param elements The list of data elements. The default action is download using \link{get_data_elements}
+#' @param d2_session the khisSession object, default is "d2_default_session",
+#' it will be made upon logining in to KHIS with \link{loginToKHIS}
 #' @return A tibble containing a list of clinical breast examinations conducted
 #' \describe{
 #'    \item{facility_id}{organisation identifier that uniquely identifies the health facility}
@@ -80,14 +96,19 @@ get_breast_data <- function(element_ids, start_date, end_date = NULL, categories
 #'
 #' @export
 
-get_cbe_conducted <- function(start_date, end_date = NULL, categories = NULL, facilities = NULL, elements = NULL) {
+get_cbe_conducted <- function(start_date,
+                              end_date = NULL,
+                              categories = NULL,
+                              facilities = NULL,
+                              elements = NULL,
+                              d2_session = dynGet("d2_default_session", inherits = TRUE)) {
 
   # Clinical Breast Examination data elements
   # XEX93uLsAm2 = CBE Abnormal
   # cXe64Yk0QMY = CBE Normal
   cbe_element_ids <- c('cXe64Yk0QMY', 'XEX93uLsAm2')
 
-  data <- get_breast_data(cbe_element_ids, start_date, end_date, categories, facilities, elements)
+  data <- get_breast_data(cbe_element_ids, start_date, end_date, categories, facilities, elements, d2_session = d2_session)
 
   return(data)
 }
@@ -102,6 +123,8 @@ get_cbe_conducted <- function(start_date, end_date = NULL, categories = NULL, fa
 #' @param categories The list of categories. The default action is download using \link{get_categories}
 #' @param facilities The list of facilities. The default action is download using \link{get_facilities}
 #' @param elements The list of data elements. The default action is download using \link{get_data_elements}
+#' @param d2_session the khisSession object, default is "d2_default_session",
+#' it will be made upon logining in to KHIS with \link{loginToKHIS}
 #' @return A tibble containing a list of mammograms conducted
 #' \describe{
 #'    \item{facility_id}{organisation identifier that uniquely identifies the health facility}
@@ -124,7 +147,12 @@ get_cbe_conducted <- function(start_date, end_date = NULL, categories = NULL, fa
 #'
 #' @export
 
-get_mammogram_screened <- function(start_date, end_date = NULL, categories = NULL, facilities = NULL, elements = NULL) {
+get_mammogram_screened <- function(start_date,
+                                   end_date = NULL,
+                                   categories = NULL,
+                                   facilities = NULL,
+                                   elements = NULL,
+                                   d2_session = dynGet("d2_default_session", inherits = TRUE)) {
 
   # Mammogram screening element ids
   # T3crNg5D3Xa = Mammogram - BIRADS-0 to 3
@@ -133,7 +161,7 @@ get_mammogram_screened <- function(start_date, end_date = NULL, categories = NUL
   # APhWHU4KLWF = Mammogram - BIRADS-6
   mammogram_element_ids <- c('T3crNg5D3Xa', 'Sorvgq7NDug', 'bi1ipJR6zNJ', 'APhWHU4KLWF')
 
-  data <- get_breast_data(mammogram_element_ids, start_date, end_date, categories, facilities, elements)
+  data <- get_breast_data(mammogram_element_ids, start_date, end_date, categories, facilities, elements, d2_session = d2_session)
 
   return(data)
 }

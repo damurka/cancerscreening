@@ -4,7 +4,10 @@
 \alias{get_facilities}
 \title{Get list of health facilities in Kenya}
 \usage{
-get_facilities()
+get_facilities(d2_session = dynGet("d2_default_session", inherits = TRUE))
+}
+\arguments{
+\item{d2_session}{the khisSession object, default is "d2_default_session"}
 }
 \value{
 A tibble containing a list of health facilities in Kenya

@@ -13,7 +13,7 @@ ___Note: This package is not yet available on CRAN.___
 Data that can be downloaded includes cervical cancer screening and breast cancer screening. Each of the has several modules
 
 ### Cervical cancer screening functions
-- Get the target population for cevical cancer screening - `cervical_target_population` 
+- Get the target population for cervical cancer screening - `cervical_target_population` 
 - Cervical cancer screening data using HPV, VIA or Pap smear - `get_cervical_screened` function
 - Cervical cancer screening data for HIV positive - `get_cervical_hiv_screened` function
 - Cervical cancer screening positive using HPV, VIA or Pap smear - `get_cervical_positive` function
@@ -30,6 +30,9 @@ The following is a basic example to show how to download cervical cancer screeni
 ```{r}
 # Load the package
 library(cancerscreening)
+
+# Get credential to make API calls to KHIS
+loginToKHIS(username = 'KHIS Username')
 
 # Get cervical cancer screening target population
 target <- cervical_target_population(year = 2023)

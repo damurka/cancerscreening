@@ -4,16 +4,18 @@
 \alias{api_get}
 \title{Make an API call to the Kenya Health Information System (KHIS) server}
 \usage{
-api_get(url_path, ..., retry = NULL)
+api_get(url_path, d2_session, ..., retry = 1)
 }
 \arguments{
 \item{url_path}{The path to make an api call}
+
+\item{d2_session}{the d2Session object, default is "d2_default_session",}
 
 \item{...}{Name-value pairs that provide query parameters. Each value must be
 either a length-1 atomic vector (which is automatically escaped) or NULL (which
 is silently dropped).}
 
-\item{retry}{The maximum number of attempts retries. If not supplied (the default),it will not retry.}
+\item{retry}{number of times to try in case of failure,.}
 }
 \value{
 Parsed JSON

@@ -4,27 +4,35 @@
 #' \code{api_get} function makes an API call to the KHIS server
 #'
 #' @param url_path The path to make an api call
+#' @param d2_session the d2Session object, default is "d2_default_session",
 #' @param ... Name-value pairs that provide query parameters. Each value must be
 #'     either a length-1 atomic vector (which is automatically escaped) or NULL (which
 #'     is silently dropped).
-#' @param retry The maximum number of attempts retries. If not supplied (the default),it will not retry.
+#' @param retry number of times to try in case of failure,.
 #' @return Parsed JSON
 #'
 #' @export
 #'
-api_get <- function(url_path, ..., retry = NULL) {
+api_get <- function(url_path, d2_session, ..., retry = 1) {
+
+  username <- d2_session$username
+  if (is.null(username)) {
+    stop("You are not logged into DATIM")
+  }
 
   params <- list(
     ...,
     paging = FALSE
   )
 
+  credentials <- getCredentialsFromKeyring(username = username)
+
   resp <- request('https://hiskenya.org/api') %>%
     req_url_path_append(url_path) %>%
     req_url_query(!!!params) %>%
     req_retry(max_tries = retry) %>%
     req_user_agent('') %>%
-    req_auth_basic('damurka', '7rRLRrukx&Ei*BwZMUE') %>%
+    req_auth_basic(username, credentials['password']) %>%
     req_perform() %>%
     resp_body_json()
 
@@ -37,6 +45,7 @@ api_get <- function(url_path, ..., retry = NULL) {
 #' units using the \link{api_get} function. The organisation unit only filters for
 #' health facilities only
 #'
+#' @param d2_session the khisSession object, default is "d2_default_session"
 #' @return A tibble containing a list of health facilities in Kenya
 #' \describe{
 #'    \item{facility_id}{organisation identifier that uniquely identifies the health facility}
@@ -48,10 +57,10 @@ api_get <- function(url_path, ..., retry = NULL) {
 #'
 #' @export
 
-get_facilities <- function() {
+get_facilities <- function(d2_session = dynGet("d2_default_session", inherits = TRUE)) {
 
   orgs <- api_get('organisationUnits',
-                 fields='id,name,path')
+                 fields='id,name,path', d2_session = d2_session)
 
   orgs <- tibble(x = orgs$organisationUnits) %>%
     unnest_wider(x)
@@ -80,6 +89,7 @@ get_facilities <- function() {
 #' \code{get_categories} function retrieves a list of category options using the
 #' \link{api_get} function.
 #'
+#' @param d2_session the khisSession object, default is "d2_default_session"
 #' @return A tibble containing a list of category options
 #' \describe{
 #'    \item{category_id}{unique identifier for the category option}
@@ -88,9 +98,9 @@ get_facilities <- function() {
 #'
 #' @export
 
-get_categories <- function() {
+get_categories <- function(d2_session = dynGet("d2_default_session", inherits = TRUE)) {
 
-  cat_group <- api_get('categoryOptions', fields='id,name,categoryOptionCombos')
+  cat_group <- api_get('categoryOptions', d2_session = d2_session, fields='id,name,categoryOptionCombos')
 
   cat_group <- tibble(x = cat_group$categoryOptions) %>%
     unnest_wider(x) %>%
@@ -110,6 +120,7 @@ get_categories <- function() {
 #' \code{get_data_elements} function retrieves a list of data elements using the
 #' \link{api_get} function.
 #'
+#' @param d2_session the khisSession object, default is "d2_default_session",
 #' @return A tibble containing a list of data elements
 #' \describe{
 #'    \item{element_id}{unique identifier for the data element}
@@ -118,9 +129,9 @@ get_categories <- function() {
 #'
 #' @export
 
-get_data_elements <-function() {
+get_data_elements <-function(d2_session = dynGet("d2_default_session", inherits = TRUE)) {
 
-  data <- api_get('dataElements', fields='id,name')
+  data <- api_get('dataElements', d2_session = d2_session, fields='id,name')
   data <- tibble(x = data$dataElements) %>%
     unnest_wider(x) %>%
     rename(
@@ -142,6 +153,8 @@ get_data_elements <-function() {
 #' @param end_date The end date for the data retrieval in the format 'YYYY-MM-dd'. The default is to get the current date
 #' @param facilities The list of facilities. The default action is download using \link{get_facilities}
 #' @param elements The list of data elements. The default action is download using \link{get_data_elements}
+#' @param d2_session the khisSession object, default is "d2_default_session",
+#' it will be made upon logining in to KHIS with \link{loginToKHIS}
 #' @return A tibble containing a list of data elements
 #' \describe{
 #'    \item{facility_id}{organisation identifier that uniquely identifies the health facility}
@@ -164,7 +177,12 @@ get_data_elements <-function() {
 #'
 #' @export
 
-get_analytics <-function(element_ids, start_date, end_date = NULL, facilities = NULL, elements = NULL) {
+get_analytics <-function(element_ids,
+                         start_date,
+                         end_date = NULL,
+                         facilities = NULL,
+                         elements = NULL,
+                         d2_session = dynGet("d2_default_session", inherits = TRUE)) {
 
   if (!is.vector(element_ids) || length(element_ids) == 0) {
     stop('Element is required')
@@ -185,6 +203,7 @@ get_analytics <-function(element_ids, start_date, end_date = NULL, facilities = 
   dx <- str_c(element_ids, collapse = ';')
   dx <- str_c('dx', dx, sep = ':')
   data <- api_get(c('analytics', 'rawData.json'),
+                  d2_session = d2_session,
                  dimension=dx,
                  dimension='JlW9OiK1eR4', # Facility type dimension
                  dimension='sytI3XYbxwE', # KEPH level dimension

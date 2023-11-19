@@ -1,3 +1,3 @@
 exportPattern("^[[:alpha:]]+")
 
-import(dplyr,tidyr,stringr,httr2,lubridate,rKenyaCensus)
+import(dplyr,tidyr,stringr,httr2,lubridate,jsonlite,keyring,R6,tibble,rKenyaCensus)
