@@ -281,7 +281,7 @@ get_cervical_treated <- function(start_date, end_date = NULL, categories = NULL,
         str_detect(element, 'Cryotherapy') ~ 'Cryotherapy',
         str_detect(element, 'Thermocoagulation') ~ 'Thermoablation',
         .default = 'Other',
-        .ptype = factor(levels = c('Cryotherapy', 'Thermoablation', 'LEEP'))
+        .ptype = factor(levels = c('Cryotherapy', 'Thermoablation', 'LEEP', 'Other'))
       )
     )
 
