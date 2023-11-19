@@ -178,7 +178,7 @@ get_analytics <-function(element_ids, start_date, end_date = NULL, facilities = 
     elements = get_data_elements()
   }
 
-  if (is.null(endDate)) {
+  if (is.null(end_date)) {
     end_date = today()
   }
 
@@ -212,11 +212,10 @@ get_analytics <-function(element_ids, start_date, end_date = NULL, facilities = 
       period = ym(period),
       month = month(period, label=TRUE, abbr = FALSE),
       year = as.integer(year(period)),
-      fiscal_year_quarter = quarter(period, fiscal_start = 7, type='year.quarter'),
-      year_f = as.integer(fiscal_year_quarter),
+      year_f = as.integer(quarter(period, fiscal_start = 7, type='year.quarter')),
       fiscal_year = factor(str_c(ifelse(year_f == year, year-1, year), year_f, sep = '/'))
     ) %>%
-    select(-period_start, -period_end, -fiscal_year_quarter, -year_f, -type_id, -keph_id, -ownership_id, -element_id)
+    select(-period_start, -period_end, -year_f, -type_id, -keph_id, -ownership_id, -element_id)
 
   return(data)
 }
