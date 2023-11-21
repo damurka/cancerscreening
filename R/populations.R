@@ -1,41 +1,9 @@
 
-#' Get Kenya 2019 census population
-#'
-#' \code{total_population} retrieves the Kenyan population data by county, subcounty,
-#' sex, and age based on the 2019 population census.
-#'
-#' @return A list containing data frame for each population:
-#' \describe{
-#'    \item{county}{name of the county}
-#'    \item{subcounty}{name of the subcounty}
-#'    \item{age}{age of the population in years}
-#'    \item{sex}{sex (male or female)}
-#'    \item{population}{number of people}
-#' }
-#'
-#' @export
-
-total_population <- function() {
-  population <- rKenyaCensus::V3_T2.3 %>%
-    rename_with(tolower) %>%
-    filter(str_detect(age, '^[0-9]*$'), subcounty != 'ALL') %>%
-    select(-total) %>%
-    pivot_longer(cols=male:female, names_to = 'sex', values_to = 'population') %>%
-    mutate(
-      county = factor(str_to_title(str_replace_all(str_replace_all(county, '[\'/]', ''), "[-]", " "))),
-      subcounty = factor(str_to_title(subcounty)),
-      age = as.integer(str_remove(age, '[+]')),
-      sex = factor(sex),
-    )
-
-  return(population)
-}
-
 #' Get the target population for cervical cancer screening in Kenya
 #'
-#' \code{cervical_target_population} function subsets the total population produced
-#' by \link{total_population} function and creates a target population for cervical
-#' cancer screening: females aged between 25 years and 50 years
+#' \code{cervical_target_population} function subsets the Kenyan population and
+#' creates a target population for cervical cancer screening: females aged
+#' between 25 years and 50 years
 #'
 #' @param year Year for which to estimate population
 #' @param includeSubCounty Whether to include sub county data (default: false)
@@ -68,7 +36,7 @@ cervical_target_population <- function(year, includeSubCounty = FALSE) {
   }
 
   n <- year - 2020
-  population <- total_population() %>%
+  population <- population_data %>%
     filter(sex == 'female', age >= 25, age < 50) %>%
     group_by(across(all_of(grp))) %>%
     summarise(
@@ -80,13 +48,14 @@ cervical_target_population <- function(year, includeSubCounty = FALSE) {
 
 #' Get the target population for clinical breast examination in Kenya
 #'
-#' \code{cbe_target_population} function subsets the total population produced by
-#' \link{total_population} function and creates a target population eligible for
-#' clinical breast examination: females aged between 25 years and 74 years
+#' \code{cbe_target_population} function subsets the Kenyan population creates a
+#' target population eligible for clinical breast examination: females aged
+#' between 25 years and 74 years
 #'
 #' @param year Year for which to estimate population
 #' @param includeSubCounty Whether to include sub county data (default: false)
-#' @return A tibble containing the target population for clinical breast examination (CBE)
+#' @return A tibble containing the target population for clinical breast
+#' examination (CBE)
 #' \describe{
 #'    \item{county}{name of the county}
 #'    \item{target}{number to be screened}
@@ -106,14 +75,14 @@ cbe_target_population <- function(year, includeSubCounty = FALSE) {
 
 #' Get the target population for breast cancer screening through mammography
 #'
-#' \code{mammo_target_population} subsets the total population produced by \link{total_population}
-#' function and creates a target population eligible for breast cancer screening through
-#' mammography: females aged between 40 years to 74 years
+#' \code{mammo_target_population} subsets the Kenyan population and creates a
+#' target population eligible for breast cancer screening through mammography:
+#' females aged between 40 years to 74 years
 #'
 #' @param year Year for which to estimate population
 #' @param includeSubCounty Whether to include sub county data (default: false)
-#' @return A tibble containing the target population eligible for breast cancer screening
-#' through mammography
+#' @return A tibble containing the target population eligible for breast cancer
+#' screening through mammography
 #' \describe{
 #'    \item{county}{name of the county}
 #'    \item{target}{number to be screened}
@@ -133,9 +102,8 @@ mammogram_target_population <- function(year, includeSubCounty = FALSE) {
 
 #' Get the target population for breast cancer screening
 #'
-#' \code{breast_target_population} subsets the total population produced by
-#' \link{total_population} function and creates a target population eligible for
-#' breast cancer screening
+#' \code{breast_target_population} subsets the Kenyan population produced by  and
+#' creates a target population eligible for breast cancer screening
 #'
 #' @param year Year for which to estimate population
 #' @param min_age The minimum age to be in the population
@@ -151,9 +119,7 @@ mammogram_target_population <- function(year, includeSubCounty = FALSE) {
 #' @details
 #' Breast cancer screening target population based on Kenya National Cancer Screening
 #' guidelines 2018. Annual targets increase from 5% in 2021 to 42% in 2030 Population
-#' growth is calculated using: \link{population_growth}. The annual population growth
-#' rate, is set at 2.2% and the years calculated with the reference to the year 2020
-#' year after the last population census
+#' growth is calculated using: \link{population_growth}.
 #'
 #' @export
 
@@ -175,7 +141,7 @@ breast_target_population <- function(year, min_age, max_age = 75, includeSubCoun
     grp <- append(grp, 'subcounty')
   }
 
-  population <- total_population() %>%
+  population <- population_data %>%
     filter(sex == 'female', age >= min_age, age < max_age)%>%
     group_by(across(all_of(grp))) %>%
     summarise(

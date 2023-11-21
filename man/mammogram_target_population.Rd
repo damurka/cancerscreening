@@ -12,17 +12,17 @@ mammogram_target_population(year, includeSubCounty = FALSE)
 \item{includeSubCounty}{Whether to include sub county data (default: false)}
 }
 \value{
-A tibble containing the target population eligible for breast cancer screening
-through mammography
+A tibble containing the target population eligible for breast cancer
+screening through mammography
 \describe{
    \item{county}{name of the county}
    \item{target}{number to be screened}
 }
 }
 \description{
-\code{mammo_target_population} subsets the total population produced by \link{total_population}
-function and creates a target population eligible for breast cancer screening through
-mammography: females aged between 40 years to 74 years
+\code{mammo_target_population} subsets the Kenyan population and creates a
+target population eligible for breast cancer screening through mammography:
+females aged between 40 years to 74 years
 }
 \details{
 Implements the \link{breast_target_population} with the min_age set at 40 and

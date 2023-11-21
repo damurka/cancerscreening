@@ -23,16 +23,13 @@ A tibble containing the target population eligible for breast cancer screening
 }
 }
 \description{
-\code{breast_target_population} subsets the total population produced by
-\link{total_population} function and creates a target population eligible for
-breast cancer screening
+\code{breast_target_population} subsets the Kenyan population produced by  and
+creates a target population eligible for breast cancer screening
 }
 \details{
 Breast cancer screening target population based on Kenya National Cancer Screening
 guidelines 2018. Annual targets increase from 5% in 2021 to 42% in 2030 Population
-growth is calculated using: \link{population_growth}. The annual population growth
-rate, is set at 2.2% and the years calculated with the reference to the year 2020
-year after the last population census
+growth is calculated using: \link{population_growth}.
 }
 \author{
 David Kariuki

@@ -8,8 +8,7 @@ Maintainer: David Kariuki <hello@damurka.com>
 Description: Function for downloading screening data for cervical cancer, breast cancer and colorectal cancer.
 URL: https://github.com/damurka/cancerscreening
 BugReports: https://github.com/damurka/cancerscreening
-Imports: dplyr,tidyr,stringr,httr2,lubridate,jsonlite,keyring,R6,tibble,rKenyaCensus
+Imports: dplyr,tidyr,stringr,httr2,lubridate,jsonlite,keyring,R6,tibble
 License: GPL-3 + file LICENSE
 Encoding: UTF-8
-LazyData: true
 RoxygenNote: 7.2.3

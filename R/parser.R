@@ -9,11 +9,16 @@
 #'     either a length-1 atomic vector (which is automatically escaped) or NULL (which
 #'     is silently dropped).
 #' @param retry number of times to try in case of failure,.
+#' @param verbosity How much information to print?
+#'     - 0: no output
+#'     - 1: show headers
+#'     - 2: show headers and bodies
+#'     - 3: show headers, bodies and curl status message
 #' @return Parsed JSON
 #'
 #' @export
 #'
-api_get <- function(url_path, d2_session, ..., retry = 1) {
+api_get <- function(url_path, d2_session, ..., retry = 1, verbosity = 0) {
 
   username <- d2_session$username
   if (is.null(username)) {
@@ -22,7 +27,10 @@ api_get <- function(url_path, d2_session, ..., retry = 1) {
 
   params <- list(
     ...,
-    paging = FALSE
+    paging = FALSE,
+    skipData = FALSE,
+    skipMeta = TRUE,
+    ignoreLimit = TRUE
   )
 
   credentials <- getCredentialsFromKeyring(username = username)
@@ -33,7 +41,7 @@ api_get <- function(url_path, d2_session, ..., retry = 1) {
     req_retry(max_tries = retry) %>%
     req_user_agent('') %>%
     req_auth_basic(username, credentials['password']) %>%
-    req_perform() %>%
+    req_perform(verbosity = 3) %>%
     resp_body_json()
 
   return(resp)
@@ -153,6 +161,7 @@ get_data_elements <-function(d2_session = dynGet("d2_default_session", inherits 
 #' @param end_date The end date for the data retrieval in the format 'YYYY-MM-dd'. The default is to get the current date
 #' @param facilities The list of facilities. The default action is download using \link{get_facilities}
 #' @param elements The list of data elements. The default action is download using \link{get_data_elements}
+#' @param categories The list of categories. The default action is download using \link{get_categories}
 #' @param d2_session the khisSession object, default is "d2_default_session",
 #' it will be made upon logining in to KHIS with \link{loginToKHIS}
 #' @return A tibble containing a list of data elements
@@ -182,6 +191,7 @@ get_analytics <-function(element_ids,
                          end_date = NULL,
                          facilities = NULL,
                          elements = NULL,
+                         categories = NULL,
                          d2_session = dynGet("d2_default_session", inherits = TRUE)) {
 
   if (!is.vector(element_ids) || length(element_ids) == 0) {
@@ -194,6 +204,10 @@ get_analytics <-function(element_ids,
 
   if(is.null(elements) || length(elements) == 0) {
     elements = get_data_elements()
+  }
+
+  if(is.null(categories) || length(categories) == 0) {
+    categories = get_categories()
   }
 
   if (is.null(end_date)) {
@@ -212,6 +226,7 @@ get_analytics <-function(element_ids,
                  dimension = 'ou:USER_ORGUNIT',
                  startDate =start_date,
                  endDate = end_date,
+                 skipData = FALSE,
                  skipMeta = TRUE,
                  ignoreLimit = TRUE)
 
@@ -221,11 +236,12 @@ get_analytics <-function(element_ids,
   colnames(data) <- c('element_id', 'category_id', 'ownership_id', 'keph_id', 'type_id', 'facility_id', 'period', 'period_start', 'period_end', 'value')
 
   data <- data %>%
-    left_join(elements %>% filter(element_id %in% element_ids), by='element_id') %>%
+    left_join(elements, by='element_id') %>%
     left_join(get_facility_types(), by='type_id') %>%
     left_join(get_keph_levels(), by='keph_id') %>%
     left_join(get_facility_ownerships(), by='ownership_id') %>%
     left_join(facilities, by='facility_id') %>%
+    left_join(categories, by='category_id', relationship='many-to-many') %>%
     mutate(
       value = as.integer(value),
       period = ym(period),
@@ -234,7 +250,7 @@ get_analytics <-function(element_ids,
       year_f = as.integer(quarter(period, fiscal_start = 7, type='year.quarter')),
       fiscal_year = factor(str_c(ifelse(year_f == year, year-1, year), year_f, sep = '/'))
     ) %>%
-    select(-period_start, -period_end, -year_f, -type_id, -keph_id, -ownership_id, -element_id)
+    select(-period_start, -period_end, -year_f, -type_id, -keph_id, -ownership_id, -element_id, -category_id)
 
   return(data)
 }

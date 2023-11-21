@@ -12,16 +12,17 @@ cbe_target_population(year, includeSubCounty = FALSE)
 \item{includeSubCounty}{Whether to include sub county data (default: false)}
 }
 \value{
-A tibble containing the target population for clinical breast examination (CBE)
+A tibble containing the target population for clinical breast
+examination (CBE)
 \describe{
    \item{county}{name of the county}
    \item{target}{number to be screened}
 }
 }
 \description{
-\code{cbe_target_population} function subsets the total population produced by
-\link{total_population} function and creates a target population eligible for
-clinical breast examination: females aged between 25 years and 74 years
+\code{cbe_target_population} function subsets the Kenyan population creates a
+target population eligible for clinical breast examination: females aged
+between 25 years and 74 years
 }
 \details{
 Implements the \link{breast_target_population} with the min_age set at 25 and

@@ -42,20 +42,15 @@ get_breast_data <- function(element_ids,
                             elements = NULL,
                             d2_session = dynGet("d2_default_session", inherits = TRUE)) {
 
-  if(is.null(categories) || length(categories) == 0) {
-    categories = get_categories()
-  }
-
   data <- get_analytics(
     element_ids,
     start_date,
     end_date,
     facilities,
     elements,
-    d2_session = d2_session)
-
-  data <- data %>%
-    left_join(categories, by='category_id') %>%
+    categories,
+    d2_session = d2_session
+    ) %>%
     mutate(
       category = factor(category, levels = c('25-34 yrs', '35-39 yrs', '40-55 yrs', '56-74 yrs', '>75 yrs'))
     )

@@ -10,6 +10,7 @@ get_analytics(
   end_date = NULL,
   facilities = NULL,
   elements = NULL,
+  categories = NULL,
   d2_session = dynGet("d2_default_session", inherits = TRUE)
 )
 }
@@ -23,6 +24,8 @@ get_analytics(
 \item{facilities}{The list of facilities. The default action is download using \link{get_facilities}}
 
 \item{elements}{The list of data elements. The default action is download using \link{get_data_elements}}
+
+\item{categories}{The list of categories. The default action is download using \link{get_categories}}
 
 \item{d2_session}{the khisSession object, default is "d2_default_session",
 it will be made upon logining in to KHIS with \link{loginToKHIS}}

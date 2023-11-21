@@ -42,15 +42,15 @@ get_cervical_data <- function(element_ids,
                               elements = NULL,
                               d2_session = dynGet("d2_default_session", inherits = TRUE)) {
 
-  if(is.null(categories) || length(categories) == 0) {
-    categories = get_categories()
-  }
-
-  data <- get_analytics(element_ids, start_date, end_date, facilities, elements, d2_session = d2_session)
-
-  data <- data %>%
-    left_join(categories, by='category_id', relationship='many-to-many') %>%
-    filter(str_detect(category, '[1-9]'), !is.na(county)) %>%
+  data <- get_analytics(element_ids,
+                        start_date,
+                        end_date,
+                        facilities,
+                        elements,
+                        categories,
+                        d2_session = d2_session
+                        ) %>%
+    filter(str_detect(category, '[1-9]')) %>%
     mutate(
       category = case_when(
         str_detect(category, '<25') ~ '<25',
@@ -63,8 +63,7 @@ get_cervical_data <- function(element_ids,
         .default = 'MOH 745',
         .ptype = factor(levels = c('MOH 711', 'MOH 745'))
       )
-    ) %>%
-    select(-category_id)
+    )
 
   return(data)
 }

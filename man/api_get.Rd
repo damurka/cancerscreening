@@ -4,7 +4,7 @@
 \alias{api_get}
 \title{Make an API call to the Kenya Health Information System (KHIS) server}
 \usage{
-api_get(url_path, d2_session, ..., retry = 1)
+api_get(url_path, d2_session, ..., retry = 1, verbosity = 0)
 }
 \arguments{
 \item{url_path}{The path to make an api call}
@@ -16,6 +16,12 @@ either a length-1 atomic vector (which is automatically escaped) or NULL (which
 is silently dropped).}
 
 \item{retry}{number of times to try in case of failure,.}
+
+\item{verbosity}{How much information to print?
+- 0: no output
+- 1: show headers
+- 2: show headers and bodies
+- 3: show headers, bodies and curl status message}
 }
 \value{
 Parsed JSON

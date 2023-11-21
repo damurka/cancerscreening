@@ -19,9 +19,9 @@ A tibble containing the target population for cervical cancer screening
 }
 }
 \description{
-\code{cervical_target_population} function subsets the total population produced
-by \link{total_population} function and creates a target population for cervical
-cancer screening: females aged between 25 years and 50 years
+\code{cervical_target_population} function subsets the Kenyan population and
+creates a target population for cervical cancer screening: females aged
+between 25 years and 50 years
 }
 \details{
 The target population for cervical cancer screening is determined by the Kenya
