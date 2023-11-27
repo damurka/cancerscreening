@@ -125,7 +125,7 @@ mammogram_target_population <- function(year, includeSubCounty = FALSE) {
 
 breast_target_population <- function(year, min_age, max_age = 75, includeSubCounty = FALSE) {
   year <- case_when(
-    year < 2020 ~ 2021,
+    year < 2021 ~ 2021,
     year > 2030 ~ 2030,
     .default = year
   )
