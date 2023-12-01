@@ -50,8 +50,17 @@ get_cervical_data <- function(element_ids,
                         categories,
                         d2_session = d2_session
                         ) %>%
-    filter(str_detect(category, '[1-9]')) %>%
+    #filter(str_detect(category, '[1-9]')) %>%
+    group_by(category_id,facility_id,element_id,period,value) %>%
+    mutate(category_id = paste0(category_id, collapse = "")) %>%
+    distinct(category_id, .keep_all = TRUE) %>%
     mutate(
+      screening_type = case_when(
+        str_detect(category, 'Initial') ~ 'Initial Screening',
+        str_detect(category, 'Routine') ~ 'Routine Screening',
+        str_detect(category, 'Post') ~ 'Post-Treatment Screening',
+        .default = NA
+      ),
       category = case_when(
         str_detect(category, '<25') ~ '<25',
         str_detect(category, '25-49') ~ '25-49',

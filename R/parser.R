@@ -41,7 +41,7 @@ api_get <- function(url_path, d2_session, ..., retry = 1, verbosity = 0) {
     req_retry(max_tries = retry) %>%
     req_user_agent('') %>%
     req_auth_basic(username, credentials['password']) %>%
-    req_perform(verbosity = 3) %>%
+    req_perform(verbosity = verbosity) %>%
     resp_body_json()
 
   return(resp)
@@ -250,7 +250,7 @@ get_analytics <-function(element_ids,
       year_f = as.integer(quarter(period, fiscal_start = 7, type='year.quarter')),
       fiscal_year = factor(str_c(ifelse(year_f == year, year-1, year), year_f, sep = '/'))
     ) %>%
-    select(-period_start, -period_end, -year_f, -type_id, -keph_id, -ownership_id, -element_id, -category_id)
+    select(-period_start, -period_end, -year_f, -type_id, -keph_id, -ownership_id, -element_id)
 
   return(data)
 }
