@@ -51,7 +51,7 @@ get_cervical_data <- function(element_ids,
                         d2_session = d2_session
                         ) %>%
     #filter(str_detect(category, '[1-9]')) %>%
-    group_by(category_id,facility_id,element_id,period,value) %>%
+    group_by(category_id,facility_id,element,period,value) %>%
     mutate(category_id = paste0(category_id, collapse = "")) %>%
     distinct(category_id, .keep_all = TRUE) %>%
     mutate(
