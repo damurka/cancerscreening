@@ -226,10 +226,8 @@ get_analytics <-function(element_ids,
                  dimension = 'co',
                  dimension = 'ou:USER_ORGUNIT',
                  startDate =start_date,
-                 endDate = end_date,
-                 skipData = FALSE,
-                 skipMeta = TRUE,
-                 ignoreLimit = TRUE)
+                 endDate = end_date
+          )
 
   data <- tibble(x = data$rows) %>%
     unnest_wider(x, ',')
