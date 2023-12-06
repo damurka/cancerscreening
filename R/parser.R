@@ -22,11 +22,13 @@ api_get <- function(url_path, d2_session, ..., retry = 1, verbosity = 0) {
 
   username <- d2_session$username
   if (is.null(username)) {
-    stop("You are not logged into DATIM")
+    stop("You are not logged into KHIS")
   }
 
   params <- list(
     ...,
+    outputIdScheme='NAME',
+    showHierarchy = TRUE,
     paging = FALSE,
     skipData = FALSE,
     skipMeta = TRUE,
@@ -159,7 +161,6 @@ get_data_elements <-function(d2_session = dynGet("d2_default_session", inherits 
 #' @param element_ids A vector with the list of data element  to retrieve data
 #' @param start_date The start date for the data retrieval in the format 'YYYY-MM-dd'
 #' @param end_date The end date for the data retrieval in the format 'YYYY-MM-dd'. The default is to get the current date
-#' @param facilities The list of facilities. The default action is download using \link{get_facilities}
 #' @param elements The list of data elements. The default action is download using \link{get_data_elements}
 #' @param categories The list of categories. The default action is download using \link{get_categories}
 #' @param d2_session the khisSession object, default is "d2_default_session",
@@ -189,7 +190,7 @@ get_data_elements <-function(d2_session = dynGet("d2_default_session", inherits 
 get_analytics <-function(element_ids,
                          start_date,
                          end_date = NULL,
-                         facilities = NULL,
+                         #facilities = NULL,
                          elements = NULL,
                          categories = NULL,
                          d2_session = dynGet("d2_default_session", inherits = TRUE)) {
@@ -198,9 +199,9 @@ get_analytics <-function(element_ids,
     stop('Element is required')
   }
 
-  if(is.null(facilities) || length(facilities) == 0) {
-    facilities = get_facilities()
-  }
+  #if(is.null(facilities) || length(facilities) == 0) {
+  #  facilities = get_facilities()
+  #}
 
   if(is.null(elements) || length(elements) == 0) {
     elements = get_data_elements()
@@ -219,7 +220,7 @@ get_analytics <-function(element_ids,
   data <- api_get(c('analytics', 'rawData.json'),
                   d2_session = d2_session,
                  dimension=dx,
-                 dimension='JlW9OiK1eR4', # Facility type dimension
+                 dimension='JlW9OiK1eR4', # Facility ownership dimension
                  dimension='sytI3XYbxwE', # KEPH level dimension
                  dimension='FSoqQFDES0U', # Facility type dimension
                  dimension = 'co',
@@ -233,14 +234,14 @@ get_analytics <-function(element_ids,
   data <- tibble(x = data$rows) %>%
     unnest_wider(x, ',')
 
-  colnames(data) <- c('element_id', 'category_id', 'ownership_id', 'keph_id', 'type_id', 'facility_id', 'period', 'period_start', 'period_end', 'value')
+  colnames(data) <- c('element_id', 'category_id', 'ownership_id', 'keph_id', 'type_id', 'facility_id', 'period', 'country', 'county', 'subcounty', 'ward', 'facility', 'community_unit', 'period_start', 'period_end', 'value')
 
   data <- data %>%
     left_join(elements, by='element_id') %>%
     left_join(get_facility_types(), by='type_id') %>%
     left_join(get_keph_levels(), by='keph_id') %>%
     left_join(get_facility_ownerships(), by='ownership_id') %>%
-    left_join(facilities, by='facility_id') %>%
+    #left_join(facilities, by='facility_id') %>%
     left_join(categories, by='category_id', relationship='many-to-many') %>%
     mutate(
       value = as.integer(value),

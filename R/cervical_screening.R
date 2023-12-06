@@ -8,7 +8,6 @@
 #' @param start_date The start date for the data retrieval in the format 'YYYY-MM-dd'
 #' @param end_date The end date for the data retrieval in the format 'YYYY-MM-dd'. The default is to get the current date
 #' @param categories The list of categories. The default action is download using \link{get_categories}
-#' @param facilities The list of facilities. The default action is download using \link{get_facilities}
 #' @param elements The list of data elements. The default action is download using \link{get_data_elements}
 #' @param d2_session the khisSession object, default is "d2_default_session",
 #' it will be made upon logining in to KHIS with \link{loginToKHIS}
@@ -38,14 +37,12 @@ get_cervical_data <- function(element_ids,
                               start_date,
                               end_date = NULL,
                               categories = NULL,
-                              facilities = NULL,
                               elements = NULL,
                               d2_session = dynGet("d2_default_session", inherits = TRUE)) {
 
   data <- get_analytics(element_ids,
                         start_date,
                         end_date,
-                        facilities,
                         elements,
                         categories,
                         d2_session = d2_session
@@ -85,7 +82,6 @@ get_cervical_data <- function(element_ids,
 #' @param start_date The start date for the data retrieval in the format 'YYYY-MM-dd'
 #' @param end_date The end date for the data retrieval in the format 'YYYY-MM-dd'. The default is to get the current date
 #' @param categories The list of categories. The default action is download using \link{get_categories}
-#' @param facilities The list of facilities. The default action is download using \link{get_facilities}
 #' @param elements The list of data elements. The default action is download using \link{get_data_elements}
 #' @param d2_session the khisSession object, default is "d2_default_session",
 #' it will be made upon logining in to KHIS with \link{loginToKHIS}
@@ -114,7 +110,6 @@ get_cervical_data <- function(element_ids,
 get_cervical_screened <- function(start_date,
                                   end_date = NULL,
                                   categories = NULL,
-                                  facilities = NULL,
                                   elements = NULL,
                                   d2_session = dynGet("d2_default_session", inherits = TRUE)) {
 
@@ -130,7 +125,7 @@ get_cervical_screened <- function(start_date,
     'ommbnTANmGo', 'kl4RvWOGb7x', 'G9COyloYLYa'
   )
 
-  data <- get_cervical_data(cacx_screening_ids, start_date, end_date, categories, facilities, elements, d2_session = d2_session) %>%
+  data <- get_cervical_data(cacx_screening_ids, start_date, end_date, categories, elements, d2_session = d2_session) %>%
     mutate(
       element = case_when(
         str_detect(element, 'VIA') ~ 'VIA',
@@ -151,7 +146,6 @@ get_cervical_screened <- function(start_date,
 #' @param start_date The start date for the data retrieval in the format 'YYYY-MM-dd'
 #' @param end_date The end date for the data retrieval in the format 'YYYY-MM-dd'. The default is to get the current date
 #' @param categories The list of categories. The default action is download using \link{get_categories}
-#' @param facilities The list of facilities. The default action is download using \link{get_facilities}
 #' @param elements The list of data elements. The default action is download using \link{get_data_elements}
 #' @param d2_session the khisSession object, default is "d2_default_session",
 #' it will be made upon logining in to KHIS with \link{loginToKHIS}
@@ -180,7 +174,6 @@ get_cervical_screened <- function(start_date,
 get_cervical_hiv_screened <- function(start_date,
                                       end_date = NULL,
                                       categories = NULL,
-                                      facilities = NULL,
                                       elements = NULL,
                                       d2_session = dynGet("d2_default_session", inherits = TRUE)) {
 
@@ -190,7 +183,7 @@ get_cervical_hiv_screened <- function(start_date,
   # n8Z1XFaeS1t = MOH 711 HIV positive clients screened for cervical cancer
   cacx_hiv_screening_ids <- c('htFuvGJRW1X', 'joXHDIBe8I2', 'n8Z1XFaeS1t')
 
-  data <- get_cervical_data(cacx_hiv_screening_ids, start_date, end_date, categories, facilities, elements, d2_session = d2_session) %>%
+  data <- get_cervical_data(cacx_hiv_screening_ids, start_date, end_date, categories, elements, d2_session = d2_session) %>%
     mutate(
       element = factor(ifelse(str_detect(element, 'screened'), 'Screened', 'Positive'))
     )
@@ -206,7 +199,6 @@ get_cervical_hiv_screened <- function(start_date,
 #' @param start_date The start date for the data retrieval in the format 'YYYY-MM-dd'
 #' @param end_date The end date for the data retrieval in the format 'YYYY-MM-dd'. The default is to get the current date
 #' @param categories The list of categories. The default action is download using \link{get_categories}
-#' @param facilities The list of facilities. The default action is download using \link{get_facilities}
 #' @param elements The list of data elements. The default action is download using \link{get_data_elements}
 #' @param d2_session the khisSession object, default is "d2_default_session",
 #' it will be made upon logining in to KHIS with \link{loginToKHIS}
@@ -235,7 +227,6 @@ get_cervical_hiv_screened <- function(start_date,
 get_cervical_positive <- function(start_date,
                                   end_date = NULL,
                                   categories = NULL,
-                                  facilities = NULL,
                                   elements = NULL,
                                   d2_session = dynGet("d2_default_session", inherits = TRUE)) {
 
@@ -252,7 +243,7 @@ get_cervical_positive <- function(start_date,
     'xbERCTpWTwi', 'LI2g0vO0xvx', 'dBdw7Inlq2C', 'FC5BbFDsdCa'
   )
 
-  data <- get_cervical_data(cacx_positive_ids, start_date, end_date, categories, facilities, elements, d2_session = d2_session) %>%
+  data <- get_cervical_data(cacx_positive_ids, start_date, end_date, categories, elements, d2_session = d2_session) %>%
     mutate(
       element = case_when(
         str_detect(element, 'VIA') ~ 'VIA',
@@ -274,7 +265,6 @@ get_cervical_positive <- function(start_date,
 #' @param start_date The start date for the data retrieval in the format 'YYYY-MM-dd'
 #' @param end_date The end date for the data retrieval in the format 'YYYY-MM-dd'. The default is to get the current date
 #' @param categories The list of categories. The default action is download using \link{get_categories}
-#' @param facilities The list of facilities. The default action is download using \link{get_facilities}
 #' @param elements The list of data elements. The default action is download using \link{get_data_elements}
 #' @param d2_session the khisSession object, default is "d2_default_session",
 #' it will be made upon logining in to KHIS with \link{loginToKHIS}
@@ -303,7 +293,6 @@ get_cervical_positive <- function(start_date,
 get_cervical_treated <- function(start_date,
                                  end_date = NULL,
                                  categories = NULL,
-                                 facilities = NULL,
                                  elements = NULL,
                                  d2_session = dynGet("d2_default_session", inherits = TRUE)) {
 
@@ -318,7 +307,7 @@ get_cervical_treated <- function(start_date,
     'UAbmyzuI2UE', 'TSlyElHZw9d'
   )
 
-  data <- get_cervical_data(cacx_treatment_ids, start_date, end_date, categories, facilities, elements, d2_session = d2_session) %>%
+  data <- get_cervical_data(cacx_treatment_ids, start_date, end_date, categories, elements, d2_session = d2_session) %>%
     mutate(
       element = case_when(
         str_detect(element, 'LEEP') ~ 'LEEP',

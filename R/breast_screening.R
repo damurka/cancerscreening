@@ -8,7 +8,6 @@
 #' @param start_date The start date for the data retrieval in the format 'YYYY-MM-dd'
 #' @param end_date The end date for the data retrieval in the format 'YYYY-MM-dd'. The default is to get the current date
 #' @param categories The list of categories. The default action is download using \link{get_categories}
-#' @param facilities The list of facilities. The default action is download using \link{get_facilities}
 #' @param elements The list of data elements. The default action is download using \link{get_data_elements}
 #' @param d2_session the khisSession object, default is "d2_default_session",
 #' it will be made upon logining in to KHIS with \link{loginToKHIS}
@@ -38,7 +37,6 @@ get_breast_data <- function(element_ids,
                             start_date,
                             end_date = NULL,
                             categories = NULL,
-                            facilities = NULL,
                             elements = NULL,
                             d2_session = dynGet("d2_default_session", inherits = TRUE)) {
 
@@ -46,7 +44,6 @@ get_breast_data <- function(element_ids,
     element_ids,
     start_date,
     end_date,
-    facilities,
     elements,
     categories,
     d2_session = d2_session
@@ -65,7 +62,6 @@ get_breast_data <- function(element_ids,
 #' @param start_date The start date for the data retrieval in the format 'YYYY-MM-dd'
 #' @param end_date The end date for the data retrieval in the format 'YYYY-MM-dd'. The default is to get the current date
 #' @param categories The list of categories. The default action is download using \link{get_categories}
-#' @param facilities The list of facilities. The default action is download using \link{get_facilities}
 #' @param elements The list of data elements. The default action is download using \link{get_data_elements}
 #' @param d2_session the khisSession object, default is "d2_default_session",
 #' it will be made upon logining in to KHIS with \link{loginToKHIS}
@@ -94,7 +90,6 @@ get_breast_data <- function(element_ids,
 get_cbe_conducted <- function(start_date,
                               end_date = NULL,
                               categories = NULL,
-                              facilities = NULL,
                               elements = NULL,
                               d2_session = dynGet("d2_default_session", inherits = TRUE)) {
 
@@ -103,7 +98,7 @@ get_cbe_conducted <- function(start_date,
   # cXe64Yk0QMY = CBE Normal
   cbe_element_ids <- c('cXe64Yk0QMY', 'XEX93uLsAm2')
 
-  data <- get_breast_data(cbe_element_ids, start_date, end_date, categories, facilities, elements, d2_session = d2_session)
+  data <- get_breast_data(cbe_element_ids, start_date, end_date, categories, elements, d2_session = d2_session)
 
   return(data)
 }
@@ -116,7 +111,6 @@ get_cbe_conducted <- function(start_date,
 #' @param start_date The start date for the data retrieval in the format 'YYYY-MM-dd'
 #' @param end_date The end date for the data retrieval in the format 'YYYY-MM-dd'. The default is to get the current date
 #' @param categories The list of categories. The default action is download using \link{get_categories}
-#' @param facilities The list of facilities. The default action is download using \link{get_facilities}
 #' @param elements The list of data elements. The default action is download using \link{get_data_elements}
 #' @param d2_session the khisSession object, default is "d2_default_session",
 #' it will be made upon logining in to KHIS with \link{loginToKHIS}
@@ -145,7 +139,6 @@ get_cbe_conducted <- function(start_date,
 get_mammogram_screened <- function(start_date,
                                    end_date = NULL,
                                    categories = NULL,
-                                   facilities = NULL,
                                    elements = NULL,
                                    d2_session = dynGet("d2_default_session", inherits = TRUE)) {
 
@@ -156,7 +149,7 @@ get_mammogram_screened <- function(start_date,
   # APhWHU4KLWF = Mammogram - BIRADS-6
   mammogram_element_ids <- c('T3crNg5D3Xa', 'Sorvgq7NDug', 'bi1ipJR6zNJ', 'APhWHU4KLWF')
 
-  data <- get_breast_data(mammogram_element_ids, start_date, end_date, categories, facilities, elements, d2_session = d2_session)
+  data <- get_breast_data(mammogram_element_ids, start_date, end_date, categories, elements, d2_session = d2_session)
 
   return(data)
 }
