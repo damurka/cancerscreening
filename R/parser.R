@@ -167,7 +167,6 @@ get_data_elements <-function(d2_session = dynGet("d2_default_session", inherits 
 #' it will be made upon logining in to KHIS with \link{loginToKHIS}
 #' @return A tibble containing a list of data elements
 #' \describe{
-#'    \item{facility_id}{organisation identifier that uniquely identifies the health facility}
 #'    \item{facility}{name of the health facility}
 #'    \item{facility_type}{The type of the facility: Dispensary, health centre, medical clinic etc.}
 #'    \item{facility_ownership}{facility ownership: faith based, private or governement}
@@ -224,7 +223,7 @@ get_analytics <-function(element_ids,
                  dimension='sytI3XYbxwE', # KEPH level dimension
                  dimension='FSoqQFDES0U', # Facility type dimension
                  dimension = 'co',
-                 dimension = 'ou:USER_ORGUNIT',
+                 #dimension = 'ou:USER_ORGUNIT',
                  startDate =start_date,
                  endDate = end_date
           )
@@ -232,7 +231,7 @@ get_analytics <-function(element_ids,
   data <- tibble(x = data$rows) %>%
     unnest_wider(x, ',')
 
-  colnames(data) <- c('element_id', 'category_id', 'ownership_id', 'keph_id', 'type_id', 'facility_id', 'period', 'country', 'county', 'subcounty', 'ward', 'facility', 'community_unit', 'period_start', 'period_end', 'value')
+  colnames(data) <- c('element_id', 'category_id', 'ownership_id', 'keph_id', 'type_id', 'period', 'country', 'county', 'subcounty', 'ward', 'facility', 'community_unit', 'period_start', 'period_end', 'value')
 
   data <- data %>%
     left_join(elements, by='element_id') %>%
