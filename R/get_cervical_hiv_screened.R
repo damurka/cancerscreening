@@ -24,6 +24,8 @@ get_cervical_hiv_screened <- function(start_date,
                                       retry = 1,
                                       verbosity = 0) {
 
+  element = NULL # due to NSE notes in R CMD check
+
   ## Cervical Cancer Screening to HIV positive women
   # htFuvGJRW1X = Number of HIV positive clients screened
   # joXHDIBe8I2 = Number of HIV positive with positive screening results

@@ -29,7 +29,7 @@ get_data_elements <-function(element_ids = NULL,
                              retry = 1,
                              verbosity = 0) {
 
-  filter = NULL
+  x = name = filter = NULL # due to NSE notes in R CMD check
 
   if (!is.null(element_ids) && length(element_ids) > 0) {
     filter <- str_c(element_ids, collapse = ',')

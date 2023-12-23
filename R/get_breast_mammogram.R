@@ -27,7 +27,7 @@ get_breast_mammogram <- function(start_date,
   # APhWHU4KLWF = Mammogram - BIRADS-6
   mammogram_element_ids <- c('T3crNg5D3Xa', 'Sorvgq7NDug', 'bi1ipJR6zNJ', 'APhWHU4KLWF')
 
-  data <- .get_breast_data(cbe_element_ids,
+  data <- .get_breast_data(mammogram_element_ids,
                            start_date,
                            end_date = end_date,
                            level = level,

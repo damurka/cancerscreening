@@ -12,3 +12,4 @@ Imports: dplyr,tidyr,stringr,httr2,lubridate,jsonlite,keyring,R6,tibble
 License: GPL-3 + file LICENSE
 Encoding: UTF-8
 RoxygenNote: 7.2.3
+Depends: R (>= 2.10)

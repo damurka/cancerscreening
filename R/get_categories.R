@@ -27,6 +27,7 @@
 get_categories <- function(khis_session = dynGet("khis_default_session", inherits = TRUE),
                            retry = 1,
                            verbosity = 0) {
+x = categoryOptionCombos = name = category_id = category = NULL # due to NSE notes in R CMD check
 
   cat_group <- .api_get('categoryOptions',
                         fields='id,name,categoryOptionCombos',

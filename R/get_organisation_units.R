@@ -33,6 +33,8 @@
 get_organisation_units <- function(khis_session = dynGet("khis_default_session", inherits = TRUE),
                                    retry = 1,
                                    verbosity = 0) {
+  x = path = facility_id = name = county = subcounty = ward = no_data = community_id = NULL # due to NSE notes in R CMD check
+
   orgs <- .api_get('organisationUnits',
                    khis_session = khis_session,
                    fields='id,name,path',

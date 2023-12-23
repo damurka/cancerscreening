@@ -28,9 +28,5 @@ creates a target population eligible for breast cancer screening
 }
 \details{
 Breast cancer screening target population based on Kenya National Cancer Screening
-guidelines 2018. Annual targets increase from 5% in 2021 to 42% in 2030 Population
-growth is calculated using: \link{population_growth}.
-}
-\author{
-David Kariuki
+guidelines 2018. Annual targets increase from 5% in 2021 to 42% in 2030.
 }

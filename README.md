@@ -2,7 +2,7 @@
 The goal of `cancerscreening` is to provide a easy way to download cancer screening data from the Kenya Health Information System (KHIS).
 
 ## Installation
-You can install the development version of rKenyaCensus from GitHub with:
+You can install the development version of cancerscreening from Github with:
 ```{r}
 #install.package('devtools')
 devtools::install_github('damurka/cancerscreening')
@@ -22,8 +22,8 @@ Data that can be downloaded includes cervical cancer screening and breast cancer
 ### Breast cancer screening function
 - Get the target population for clinical breast examination - `cbe_target_population`
 - Get the target population for breast cancer screening with mammogram - `mammogram_target_population` 
-- Clinical breast examination performed - `get_cbe_conducted` function
-- Breast cancer screening using mammograms - `get_mammogram_screened` function
+- Clinical breast examination performed - `get_breast_cbe` function
+- Breast cancer screening using mammograms - `get_breast_mammogram` function
 
 The following is a basic example to show how to download cervical cancer screening data:
 
@@ -32,7 +32,7 @@ The following is a basic example to show how to download cervical cancer screeni
 library(cancerscreening)
 
 # Get credential to make API calls to KHIS
-loginToKHIS(username = 'KHIS Username')
+login_to_khis(username = 'KHIS Username')
 
 # Get cervical cancer screening target population
 target <- cervical_target_population(year = 2023)

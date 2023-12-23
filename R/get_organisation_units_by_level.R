@@ -17,6 +17,7 @@
 #' @noRd
 
 .get_organisation_units_by_level <- function(orgs, level =c('kenya', 'county', 'subcounty', 'ward', 'facility')) {
+  org_id = kenya = county = subcounty = ward = facility = NULL # due to NSE notes in R CMD check
   level <- match.arg(level)
 
   col <- sym(str_c(level, '_id'))

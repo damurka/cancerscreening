@@ -28,9 +28,5 @@ The target population for cervical cancer screening is determined by the Kenya
 National Cancer Screening guidelines 2018 and follows the guidance outlined in
 the WHO publication 'Planning and implementing cervical cancer prevention programs:
 A manual for managers.' The annual screening targets for counties and the national
-level are calculated based on population growth. The formula can be found in
-\link{population_growth}
-}
-\author{
-David Kariuki
+level are calculated based on population growth
 }

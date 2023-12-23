@@ -45,6 +45,8 @@ get_analytics <- function(element_ids,
                           retry = 1,
                           verbosity = 0) {
 
+  x = element_id = `x,1` = category_id = `x,2` = org_id = `x,3` = period = `x,4` = value = `x,5` = category = category2 = year_f = NULL # due to NSE notes in R CMD check
+
   if (!is.vector(element_ids) || length(element_ids) == 0) {
     stop('Element ids is required')
   }

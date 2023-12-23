@@ -13,18 +13,17 @@
 #'    \item{target}{number to be screened}
 #' }
 #'
-#' @author David Kariuki
 #' @details
 #' The target population for cervical cancer screening is determined by the Kenya
 #' National Cancer Screening guidelines 2018 and follows the guidance outlined in
 #' the WHO publication 'Planning and implementing cervical cancer prevention programs:
 #' A manual for managers.' The annual screening targets for counties and the national
-#' level are calculated based on population growth. The formula can be found in
-#' \link{population_growth}
+#' level are calculated based on population growth
 #'
 #' @export
 
 cervical_target_population <- function(year, includeSubCounty = FALSE) {
+  age = sex = NULL # due to NSE notes in R CMD check
   year <- case_when(
     year <= 2025 ~ 2025,
     year > 2025 ~ 2030,
@@ -40,7 +39,7 @@ cervical_target_population <- function(year, includeSubCounty = FALSE) {
     filter(sex == 'female', age >= 25, age < 50) %>%
     group_by(across(all_of(grp))) %>%
     summarise(
-      target = population_growth(sum(population, na.rm = TRUE), n) *0.7 /5
+      target = .population_growth(sum(population, na.rm = TRUE), n) *0.7 /5
     )
 
   return(population)
@@ -115,15 +114,14 @@ mammogram_target_population <- function(year, includeSubCounty = FALSE) {
 #'    \item{target}{number to be screened}
 #' }
 #'
-#' @author David Kariuki
 #' @details
 #' Breast cancer screening target population based on Kenya National Cancer Screening
-#' guidelines 2018. Annual targets increase from 5% in 2021 to 42% in 2030 Population
-#' growth is calculated using: \link{population_growth}.
+#' guidelines 2018. Annual targets increase from 5% in 2021 to 42% in 2030.
 #'
 #' @export
 
 breast_target_population <- function(year, min_age, max_age = 75, includeSubCounty = FALSE) {
+  age = sex = NULL # due to NSE notes in R CMD check
   year <- case_when(
     year < 2021 ~ 2021,
     year > 2030 ~ 2030,
@@ -145,7 +143,7 @@ breast_target_population <- function(year, min_age, max_age = 75, includeSubCoun
     filter(sex == 'female', age >= min_age, age < max_age)%>%
     group_by(across(all_of(grp))) %>%
     summarise(
-      target = population_growth(sum(population, na.rm = TRUE), n) * breast_target_percent[toString(year)]
+      target = .population_growth(sum(population, na.rm = TRUE), n) * breast_target_percent[toString(year)]
     )
 
   return(population)
@@ -153,7 +151,7 @@ breast_target_population <- function(year, min_age, max_age = 75, includeSubCoun
 
 #' Projects population growth
 #'
-#' \code{population_growth} function projects population growth based on the formula
+#' \code{.population_growth} function projects population growth based on the formula
 #' \code{Nt = P * e^(r * t)}. The annual population growth rate, r, is set at 2.2% and
 #' the years,t, calculated with the reference to the year 2020 year after the last
 #' population census
@@ -163,9 +161,9 @@ breast_target_population <- function(year, min_age, max_age = 75, includeSubCoun
 #' @param rate Annual growth rate
 #' @return Projected population size at the specified year
 #'
-#' @export
+#' @noRd
 
-population_growth <- function(P, year, rate = 0.022) {
+.population_growth <- function(P, year, rate = 0.022) {
   val <- P * floor(exp(rate * year) * 100) / 100
   return(val)
 }
