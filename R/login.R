@@ -31,20 +31,23 @@ khisSession <- R6::R6Class("khisSession",
 #' @param username KHIS username. If provided config_path must be NULL
 #' @param password KHIS password for the username. Optional If not provided you will be
 #' prompted to input password
-#' @param d2_session_name the variable name for the khisSession object.
+#' @param khis_session_name the variable name for the khisSession object.
 #' The default name is d2_default_session and will be used by other \code{cancerscreening}
 #' functions by default when connecting to KHIS Generally a custom name
 #' should only be needed if you need to log into two separate KHIS instances
 #' at the same time. If you create a khisSession object with a custom name then
 #' this object must be passed to other \code{cancerscreening} functions explicitly
-#' @param d2_session_envir the environment in which to place the R6 login
+#' @param khis_session_envir the environment in which to place the R6 login
 #' object, default is the immediate calling environment
-loginToKHIS <- function(config_path = NULL,
+#'
+#' @export
+
+login_to_khis <- function(config_path = NULL,
                         config_path_level = "khis",
                         username = NULL,
                         password = NULL,
-                        d2_session_name = "d2_default_session",
-                        d2_session_envir = parent.frame()) {
+                        khis_session_name = "khis_default_session",
+                        khis_session_envir = parent.frame()) {
   if (is.null(config_path) && is.null(username)) {
     stop("Pass credential through config path or username")
   }
@@ -55,7 +58,7 @@ loginToKHIS <- function(config_path = NULL,
 
   if (!is.null(config_path)) {
     # loads credentials from secret file
-    credentials <- loadConfigFile(config_path = config_path)
+    credentials <- .load_config_file(config_path = config_path)
     credentials <- credentials[[config_path_level]]
     password <- credentials[["password"]]
     username <- credentials[["username"]]
@@ -87,10 +90,10 @@ loginToKHIS <- function(config_path = NULL,
     )
   }
 
-  assign(d2_session_name,
+  assign(khis_session_name,
          khisSession$new(config_path = config_path,
                          username = username),
-         envir = d2_session_envir)
+         envir = khis_session_envir)
 }
 
 #' @title LoadConfig(config_path)
@@ -99,7 +102,9 @@ loginToKHIS <- function(config_path = NULL,
 #' @param config_path Path to the KHIS credentials file
 #' @return A parsed list of the configuration file.
 #'
-loadConfigFile <- function(config_path = NA) {
+#'@noRd
+
+.load_config_file <- function(config_path = NA) {
   # Load from a file
   if (!is.na(config_path)) {
     if (file.access(config_path, mode = 4) == -1) {
@@ -112,13 +117,15 @@ loadConfigFile <- function(config_path = NA) {
   }
 }
 
-#' @title getCredentialsFromKeyring(ring, service, username)
+#' @title .get_credentials_from_keyring(ring, service, username)
 #'
 #' @description retrieves username, service, and password from keyring
 #' @param username KHIS username
 #' @return a list containing entries called password and username
 #'
-getCredentialsFromKeyring <- function(username) {
+#' @noRd
+
+.get_credentials_from_keyring <- function(username) {
   credentials <- c("password" = keyring::key_get('khis-service', username))
   return(credentials)
 }
