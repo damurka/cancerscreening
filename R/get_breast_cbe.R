@@ -20,6 +20,8 @@ get_breast_cbe <- function(start_date,
                            retry = 1,
                            verbosity = 0) {
 
+  category2 = NULL # due to NSE notes in R CMD check
+
   # Clinical Breast Examination data elements
   # XEX93uLsAm2 = CBE Abnormal
   # cXe64Yk0QMY = CBE Normal
@@ -34,7 +36,15 @@ get_breast_cbe <- function(start_date,
                            elements = elements,
                            khis_session = khis_session,
                            retry = retry,
-                           verbosity = verbosity)
+                           verbosity = verbosity) %>%
+    mutate(
+      element = case_when(
+        str_detect(element, 'Normal') ~ 'Normal',
+        .default = 'Abnormal',
+        .ptype = factor(levels = c('Normal', 'Abnormal'))
+      )
+    ) %>%
+    select(-category2)
 
   return(data)
 }

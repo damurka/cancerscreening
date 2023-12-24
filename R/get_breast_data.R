@@ -56,17 +56,18 @@
                         level = level,
                         organisations = organisations,
                         categories = categories,
+                        elements = elements,
                         khis_session = khis_session,
                         retry = retry,
                         verbosity = verbosity) %>%
     mutate(
       category = case_when(
-        str_detect('25-34') ~ '25-34',
-        str_detect('35-39') ~ '35-39',
-        str_detect('40-55') ~ '40-55',
-        str_detect('56-74') ~ '56-74',
+        str_detect(category, '25-34') ~ '25-34',
+        str_detect(category, '35-39') ~ '35-39',
+        str_detect(category, '40-55') ~ '40-55',
+        str_detect(category, '56-74') ~ '56-74',
         .default = '75+',
-        .ptype = factor(levels = c('25-34', '35-39', '40-55', '75+'))
+        .ptype = factor(levels = c('25-34', '35-39', '40-55', '56-74', '75+'))
       )
     )
   return(data)

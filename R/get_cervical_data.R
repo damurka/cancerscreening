@@ -56,6 +56,7 @@
                         level = level,
                         organisations = organisations,
                         categories = categories,
+                        elements = elements,
                         khis_session = khis_session,
                         retry = retry,
                         verbosity = verbosity) %>%

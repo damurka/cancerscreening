@@ -28,6 +28,3 @@ females aged between 40 years to 74 years
 Implements the \link{breast_target_population} with the min_age set at 40 and
 max_age at 75 as guided by the Kenya National Cancer Screening Guideline 2018
 }
-\author{
-David Kariuki
-}

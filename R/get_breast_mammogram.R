@@ -36,7 +36,21 @@ get_breast_mammogram <- function(start_date,
                            elements = elements,
                            khis_session = khis_session,
                            retry = retry,
-                           verbosity = verbosity)
+                           verbosity = verbosity) %>%
+    mutate(
+      element = case_when(
+        str_detect(element, 'BIRADS-0 to 3') ~ 'BIRADS 0-3',
+        str_detect(element, 'BIRADS-4') ~ 'BIRADS 4',
+        str_detect(element, 'BIRADS-5') ~ 'BIRADS 5',
+        .default = 'BIRADS 6',
+        .ptype = factor(levels = c('BIRADS 0-3', 'BIRADS 4', 'BIRADS 5', 'BIRADS 6'))
+      ),
+      category2 = case_when(
+        str_detect(element, 'BIRADS 0-3') ~ 'Normal',
+        .default = 'Abnormal',
+        .ptype = factor(levels = c('Normal', 'Abnormal'))
+      )
+    )
 
   return(data)
 }

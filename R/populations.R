@@ -87,7 +87,6 @@ cbe_target_population <- function(year, includeSubCounty = FALSE) {
 #'    \item{target}{number to be screened}
 #' }
 #'
-#' @author David Kariuki
 #' @details
 #' Implements the \link{breast_target_population} with the min_age set at 40 and
 #' max_age at 75 as guided by the Kenya National Cancer Screening Guideline 2018
