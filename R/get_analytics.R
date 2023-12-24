@@ -47,13 +47,9 @@ get_analytics <- function(element_ids,
 
   x = element_id = `x,1` = category_id = `x,2` = org_id = `x,3` = period = `x,4` = value = `x,5` = category = category2 = year_f = NULL # due to NSE notes in R CMD check
 
-  if (!is.vector(element_ids) || length(element_ids) == 0) {
-    stop('Element ids is required')
-  }
-
-  if (is.null(start_date)) {
-    stop('start_date is required')
-  }
+  stopifnot(is.vector(element_ids) | length(element_ids) > 0, 'Element ids is required')
+  stopifnot(!is.na(start_date) | !is.character(start_date) | !is.na(as.Date(start_date, '%Y-%m-%d')), 'start date must be specified in the format YYYY-MM-dd')
+  stopifnot(!is.character(end_date) | !is.na(as.Date(end_date, '%Y-%m-%d')), 'end date must be in the format YYYY-MM-dd')
 
   level <- match.arg(level)
 
