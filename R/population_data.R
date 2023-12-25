@@ -20,8 +20,8 @@
 #' }
 #'
 #' @source
-#' Kenya National Bureau of Statistics (KNBS), Volume 3 of the Population Census
-#' \url{https://www.knbs.or.ke/?page_id=1546}
+#' Kenya National Bureau of Statistics (KNBS), 2019 Kenya Population and Housing Census Volume III
+#' \url{https://www.knbs.or.ke/download/2019-kenya-population-and-housing-census-volume-iii-distribution-of-population-by-age-sex-and-administrative-units/}
 #'
 #' @keywords internal
 "population_data"
