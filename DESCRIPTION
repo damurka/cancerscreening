@@ -1,16 +1,16 @@
 Package: cancerscreening
 Type: Package
-Title: Downloads Cancer Screening Data from the Kenya Health Information System (KHIS)
+Title: Streamline Cancer Screening Data Access from KHIS
 Version: 1.0.0
 Authors@R: 
   c(person(given = "David",
            family = "Kariuki",
-           role = c("aut", "cre", "ctr"),
+           role = c("aut", "cre", "cph"),
            email="hello@damurka.com",
            comment = c(ORCID = 0009-0003-6159-1107)))
-Description: Support the downloading cancer screening data that includes cervical 
-    cancer, breast cancer and colorectal cancer. This streamlines how the data is
-    retrieved from the Kenya Health Information System.
+Description: Effortlessly retrieve, harmonize, and analyze critical cancer 
+    screening data for cervical, breast, and colorectal cancers from the Kenya 
+    Health Information System (KHIS) with this user-friendly R package.
 License: GPL-3 + file LICENSE
 URL: https://github.com/damurka/cancerscreening
 BugReports: 
