@@ -29,15 +29,17 @@ get_breast_cbe(
 
 \item{elements}{A tibble of data elements, typically obtained from \code{get_data_elements()}. If NULL, elements will be downloaded automatically.}
 
-\item{khis_session}{The KHIS session object to use (defaults to "khis_default_session"). See `?login_to_khis()` for details.}
+\item{khis_session}{The KHIS session object to use (defaults to "khis_default_session"). See \code{?login_to_khis()} for details.}
 
 \item{retry}{Number of times to retry the API call in case of failure (defaults to 1).}
 
 \item{verbosity}{Level of information to print during the API call:
-- 0: No output
-- 1: Show headers
-- 2: Show headers and bodies
-- 3: Show headers, bodies, and curl status message}
+\itemize{
+\item 0: No output
+\item 1: Show headers
+\item 2: Show headers and bodies
+\item 3: Show headers, bodies, and curl status message
+}}
 }
 \value{
 A tibble containing data for CBE conducted with the following columns:

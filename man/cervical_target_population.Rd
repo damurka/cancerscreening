@@ -14,8 +14,8 @@ cervical_target_population(year, includeSubCounty = FALSE)
 \value{
 A tibble containing the target population for cervical cancer screening
 \describe{
-   \item{county}{name of the county}
-   \item{target}{number to be screened}
+\item{county}{name of the county}
+\item{target}{number to be screened}
 }
 }
 \description{

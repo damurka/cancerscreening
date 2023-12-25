@@ -1,15 +1,23 @@
 Package: cancerscreening
 Type: Package
-Title: Downloads cancer screening data from the Kenya Health Information System (KHIS)
+Title: Downloads Cancer Screening Data from the Kenya Health Information System (KHIS)
 Version: 1.0.0
-Date: 2023-11-19
-Author: David Kariuki
-Maintainer: David Kariuki <hello@damurka.com>
-Description: Function for downloading screening data for cervical cancer, breast cancer and colorectal cancer.
-URL: https://github.com/damurka/cancerscreening
-BugReports: https://github.com/damurka/cancerscreening
-Imports: dplyr,tidyr,stringr,httr2,lubridate,jsonlite,keyring,R6,tibble
+Authors@R: 
+  c(person(given = "David",
+           family = "Kariuki",
+           role = c("aut", "cre", "ctr"),
+           email="hello@damurka.com",
+           comment = c(ORCID = 0009-0003-6159-1107)))
+Description: Support the downloading cancer screening data that includes cervical 
+    cancer, breast cancer and colorectal cancer. This streamlines how the data is
+    retrieved from the Kenya Health Information System.
 License: GPL-3 + file LICENSE
+URL: https://github.com/damurka/cancerscreening
+BugReports: 
+    https://github.com/damurka/cancerscreening/issues
+Depends: 
+    R (>= 2.10)
+Imports: dplyr,tidyr,stringr,httr2,lubridate,jsonlite,keyring,R6,tibble
 Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
-Depends: R (>= 2.10)

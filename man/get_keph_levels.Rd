@@ -9,8 +9,8 @@ get_keph_levels()
 \value{
 A tibble containing a list of facility KEPH level metadata
 \describe{
-   \item{keph_id}{unique identifier for the data element}
-   \item{keph_level}{name of the data element}
+\item{keph_id}{unique identifier for the data element}
+\item{keph_level}{name of the data element}
 }
 }
 \description{

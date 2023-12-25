@@ -26,11 +26,11 @@ get_analytics(
 
 \item{level}{The desired data granularity: "kenya", "county", "subcounty", "ward", or "facility".}
 
-\item{organisations}{A list of organization units to filter the data. If NULL, downloaded using `get_organisation_units()`.}
+\item{organisations}{A list of organization units to filter the data. If NULL, downloaded using \code{get_organisation_units()}.}
 
-\item{categories}{A list of categories to include. If NULL, downloaded using `get_categories()`.}
+\item{categories}{A list of categories to include. If NULL, downloaded using \code{get_categories()}.}
 
-\item{elements}{A list of data elements to include. If NULL, downloaded using `get_data_elements()`.}
+\item{elements}{A list of data elements to include. If NULL, downloaded using \code{get_data_elements()}.}
 
 \item{khis_session}{A KHIS session object to use for the API call. Defaults to the default session.}
 
@@ -42,19 +42,23 @@ get_analytics(
 A tibble containing the retrieved data.
 }
 \description{
-`get_analytics` fetches raw data from the KHIS analytics data tables for a
-  given period and data element(s), without performing any aggregation.
+\code{get_analytics} fetches raw data from the KHIS analytics data tables for a
+given period and data element(s), without performing any aggregation.
 }
 \details{
-* Retrieves data directly from KHIS analytics tables.
-* Returns a tibble (data frame) with detailed information, including:
-  - Geographical identifiers (kenya, county, subcounty, ward, facility, depending on level)
-  - Reporting period (month, year, fiscal year)
-  - Data element names
-  - Category options
-  - Reported values
-* Supports optional arguments for providing organization lists, data elements, and categories.
-* Allows specifying KHIS session objects, retry attempts, and logging verbosity.
+\itemize{
+\item Retrieves data directly from KHIS analytics tables.
+\item Returns a tibble (data frame) with detailed information, including:
+\itemize{
+\item Geographical identifiers (kenya, county, subcounty, ward, facility, depending on level)
+\item Reporting period (month, year, fiscal year)
+\item Data element names
+\item Category options
+\item Reported values
+}
+\item Supports optional arguments for providing organization lists, data elements, and categories.
+\item Allows specifying KHIS session objects, retry attempts, and logging verbosity.
+}
 }
 \seealso{
 get_organisation_units(), get_data_elements(), get_categories()

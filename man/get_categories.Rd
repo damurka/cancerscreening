@@ -11,27 +11,29 @@ get_categories(
 )
 }
 \arguments{
-\item{khis_session}{The KHIS session object to use (defaults to "khis_default_session"). See `?login_to_khis()` for details.}
+\item{khis_session}{The KHIS session object to use (defaults to "khis_default_session"). See \code{?login_to_khis()} for details.}
 
 \item{retry}{Number of times to retry the API call in case of failure (defaults to 1).}
 
 \item{verbosity}{Level of information to print during the API call:
-- 0: No output
-- 1: Show headers
-- 2: Show headers and bodies
-- 3: Show headers, bodies, and curl status message}
+\itemize{
+\item 0: No output
+\item 1: Show headers
+\item 2: Show headers and bodies
+\item 3: Show headers, bodies, and curl status message
+}}
 }
 \value{
 A tibble containing the following columns:
 \describe{
- \item{category_id}{The unique identifier for the category option.}
- \item{category}{The name of the category option.}
+\item{category_id}{The unique identifier for the category option.}
+\item{category}{The name of the category option.}
 }
 }
 \description{
 \code{get_categories()} retrieves a list of category options from the KHIS API
-  server, including their IDs and names.
+server, including their IDs and names.
 }
 \seealso{
-[login_to_khis()]
+\code{\link[=login_to_khis]{login_to_khis()}}
 }

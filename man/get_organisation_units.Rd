@@ -12,33 +12,35 @@ get_organisation_units(
 }
 \arguments{
 \item{khis_session}{The KHIS session object to use (defaults to "khis_default_session").
-See `?login_to_khis()` for details.}
+See \code{?login_to_khis()} for details.}
 
 \item{retry}{Number of times to retry the API call in case of failure (defaults to 1).}
 
 \item{verbosity}{Level of information to print during the API call:
-- 0: No output
-- 1: Show headers
-- 2: Show headers and bodies
-- 3: Show headers, bodies, and curl status message}
+\itemize{
+\item 0: No output
+\item 1: Show headers
+\item 2: Show headers and bodies
+\item 3: Show headers, bodies, and curl status message
+}}
 }
 \value{
 A tibble containing the following columns:
 \describe{
- \item{facility_id}{Organisation identifier that uniquely identifies the health facility.}
- \item{ward_id}{Organisation identifier that uniquely identifies the ward.}
- \item{subcounty_id}{Organisation identifier that uniquely identifies the subcounty.}
- \item{county_id}{Organisation identifier that uniquely identifies the county.}
- \item{facility}{Name of the health facility.}
- \item{county}{Name of the county.}
- \item{subcounty}{Name of the subcounty.}
- \item{ward}{Name of the ward.}
+\item{facility_id}{Organisation identifier that uniquely identifies the health facility.}
+\item{ward_id}{Organisation identifier that uniquely identifies the ward.}
+\item{subcounty_id}{Organisation identifier that uniquely identifies the subcounty.}
+\item{county_id}{Organisation identifier that uniquely identifies the county.}
+\item{facility}{Name of the health facility.}
+\item{county}{Name of the county.}
+\item{subcounty}{Name of the subcounty.}
+\item{ward}{Name of the ward.}
 }
 }
 \description{
-[get_organisation_units()] retrieves a list of organisation units from the
-  KHIS API server, including their names, counties, subcounties, and wards.
+\code{\link[=get_organisation_units]{get_organisation_units()}} retrieves a list of organisation units from the
+KHIS API server, including their names, counties, subcounties, and wards.
 }
 \seealso{
-[login_to_khis()]
+\code{\link[=login_to_khis]{login_to_khis()}}
 }

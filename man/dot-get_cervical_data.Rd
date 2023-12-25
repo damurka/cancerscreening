@@ -32,32 +32,34 @@
 
 \item{elements}{A tibble of data elements, typically obtained from \code{get_data_elements()}. If NULL, elements will be downloaded automatically.}
 
-\item{khis_session}{The KHIS session object to use (defaults to "khis_default_session"). See `?login_to_khis()` for details.}
+\item{khis_session}{The KHIS session object to use (defaults to "khis_default_session"). See \code{?login_to_khis()} for details.}
 
 \item{retry}{Number of times to retry the API call in case of failure (defaults to 1).}
 
 \item{verbosity}{Level of information to print during the API call:
-- 0: No output
-- 1: Show headers
-- 2: Show headers and bodies
-- 3: Show headers, bodies, and curl status message}
+\itemize{
+\item 0: No output
+\item 1: Show headers
+\item 2: Show headers and bodies
+\item 3: Show headers, bodies, and curl status message
+}}
 }
 \value{
 A tibble containing cervical screening and treatment data with the following columns:
 \describe{
- \item{facility}{Name of the health facility.}
- \item{ward}{Name of the ward.}
- \item{subcounty}{Name of the subcounty.}
- \item{county}{Name of the county.}
- \item{period}{Date of the report.}
- \item{month}{Month of the report.}
- \item{year}{Year of the report.}
- \item{fiscal_year}{Financial year of the report (July-June cycle).}
- \item{category}{Age group category (<25, 25-49, 50+).}
- \item{category2}{Additional category option (if applicable).}
- \item{element}{Name of the data element.}
- \item{source}{Source document of the report (MOH 711 or MOH 745).}
- \item{value}{Numeric value for the number of cases reported.}
+\item{facility}{Name of the health facility.}
+\item{ward}{Name of the ward.}
+\item{subcounty}{Name of the subcounty.}
+\item{county}{Name of the county.}
+\item{period}{Date of the report.}
+\item{month}{Month of the report.}
+\item{year}{Year of the report.}
+\item{fiscal_year}{Financial year of the report (July-June cycle).}
+\item{category}{Age group category (<25, 25-49, 50+).}
+\item{category2}{Additional category option (if applicable).}
+\item{element}{Name of the data element.}
+\item{source}{Source document of the report (MOH 711 or MOH 745).}
+\item{value}{Numeric value for the number of cases reported.}
 }
 }
 \description{

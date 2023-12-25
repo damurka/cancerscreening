@@ -18,8 +18,8 @@ breast_target_population(year, min_age, max_age = 75, includeSubCounty = FALSE)
 \value{
 A tibble containing the target population eligible for breast cancer screening
 \describe{
-   \item{county}{name of the county}
-   \item{target}{number to be screened}
+\item{county}{name of the county}
+\item{target}{number to be screened}
 }
 }
 \description{
@@ -28,5 +28,5 @@ creates a target population eligible for breast cancer screening
 }
 \details{
 Breast cancer screening target population based on Kenya National Cancer Screening
-guidelines 2018. Annual targets increase from 5% in 2021 to 42% in 2030.
+guidelines 2018. Annual targets increase from 5\% in 2021 to 42\% in 2030.
 }

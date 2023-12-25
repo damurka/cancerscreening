@@ -9,8 +9,8 @@ get_facility_ownerships()
 \value{
 A tibble containing a list of facility ownership metadata
 \describe{
-   \item{ownership_id}{unique identifier for the data element}
-   \item{facility_ownership}{name of the data element}
+\item{ownership_id}{unique identifier for the data element}
+\item{facility_ownership}{name of the data element}
 }
 }
 \description{

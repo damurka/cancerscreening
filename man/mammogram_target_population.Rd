@@ -15,8 +15,8 @@ mammogram_target_population(year, includeSubCounty = FALSE)
 A tibble containing the target population eligible for breast cancer
 screening through mammography
 \describe{
-   \item{county}{name of the county}
-   \item{target}{number to be screened}
+\item{county}{name of the county}
+\item{target}{number to be screened}
 }
 }
 \description{

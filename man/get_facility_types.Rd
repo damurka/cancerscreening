@@ -9,8 +9,8 @@ get_facility_types()
 \value{
 A tibble containing a list of facility type metadata
 \describe{
-   \item{type_id}{unique identifier for the data element}
-   \item{facility_type}{name of the data element}
+\item{type_id}{unique identifier for the data element}
+\item{facility_type}{name of the data element}
 }
 }
 \description{

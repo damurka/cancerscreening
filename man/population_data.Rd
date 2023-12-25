@@ -7,10 +7,10 @@
 \format{
 A tibble with 54 rows and 4 variables:
 \describe{
-  \item{county}{Character vector of county names.}
-  \item{subcounty}{Character vector of subcounty names.}
-  \item{population}{Numeric vector of total population counts.}
-  \item{...}{(List other variables and their descriptions.)}
+\item{county}{Character vector of county names.}
+\item{subcounty}{Character vector of subcounty names.}
+\item{population}{Numeric vector of total population counts.}
+\item{...}{(List other variables and their descriptions.)}
 }
 }
 \source{
@@ -26,10 +26,10 @@ Provides population statistics for counties and subcounties in Kenya, as per Vol
 \details{
 This dataset includes:
 \itemize{
-  \item County names
-  \item Subcounty names
-  \item Total population counts
-  \item ... (List other relevant variables, e.g., age groups, gender, etc.)
+\item County names
+\item Subcounty names
+\item Total population counts
+\item ... (List other relevant variables, e.g., age groups, gender, etc.)
 }
 }
 \keyword{internal}
