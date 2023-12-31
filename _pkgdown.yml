@@ -1,0 +1,9 @@
+url: https://cancerscreening.damurka.com
+
+development:
+  mode: auto
+
+template:
+  package: tidytemplate
+  bootstrap: 5
+

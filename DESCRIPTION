@@ -11,7 +11,8 @@ Authors@R:
 Description: Retrieve cancer screening data for cervical, breast, and colorectal 
   cancers from the Kenya Health Information System (KHIS) with this R package.
 License: GPL-3 + file LICENSE
-URL: https://github.com/damurka/cancerscreening
+URL: https://cancerscreening.damurka.com,
+    https://github.com/damurka/cancerscreening
 BugReports: 
     https://github.com/damurka/cancerscreening/issues
 Depends: 

@@ -100,7 +100,7 @@ khis_cred <- function(config_path = NULL,
 #'
 #' @return A modified HTTP request with authorization header
 #'
-#' @export
+#' @keywords internal
 #'
 #' @examplesIf khis_has_cred()
 #' req <- request("http://example.com") |> req_auth_khis_basic("damurka", "PASSWORD")

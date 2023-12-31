@@ -24,3 +24,4 @@ req
 \seealso{
 \link{httr2}
 }
+\keyword{internal}
