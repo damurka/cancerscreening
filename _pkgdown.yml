@@ -14,7 +14,7 @@ reference:
   - title: "KHIS Metadata"
     desc: >
       Download metadata information related to the organisation units, categories and data elements
-    content:
+    contents:
       - get_organisation_units_metadata
       - get_category_options_metadata
       - get_data_elements_metadata
@@ -29,24 +29,24 @@ reference:
   - title: "Breast cancer screening data"
     desc: >
       Downloads data related to breast cancer screening
-    content:
+    contents:
       - get_breast_cbe
       - get_breast_mammogram
   - title: "Authorization Credentials"
     desc: >
       Take and securely store the KHIS authorization credentials
-    content:
+    contents:
       - khis_cred
       - khis_has_cred
   - title: "Target population"
     desc: >
       Fetches the target population for the different screening programs
-    content:
+    contents:
       - get_cervical_target_population
       - get_breast_cbe_target_population
       - get_breast_mammogram_target_population
   - title: "KHIS Analytics"
     desc: >
       Download data from KHIS analytics table
-    content:
+    contents:
       - get_analytics
