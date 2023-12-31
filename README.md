@@ -9,11 +9,12 @@ The goal of `cancerscreening` is to provide a easy way to download cancer screen
 
 ## Installation
 You can install the released version of cancerscreening from [CRAN](https://cran.r-project.org/) with:
-```{r}
+```r
 install.packages("cancerscreening")
 ```
+
 You can install the development version of from [Github](https://github.com) with:
-```{r}
+```r
 pak::pak('damurka/cancerscreening')
 ```
 ___Note: This package is not yet available on CRAN.___
