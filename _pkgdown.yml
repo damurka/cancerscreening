@@ -10,5 +10,37 @@ template:
     border-radius: 0.5rem
     btn-border-radius: 0.25rem
 
-home:
-  title: Getting Started
+reference:
+  - title: "KHIS Metadata"
+    desc: >
+      Download metadata information related to the organisation units, categories and data elements
+    content:
+      - get_organisation_units_metadata
+      - get_category_options_metadata
+      - get_data_elements_metadata
+  - title: "Cervical cancer screening data"
+    desc: >
+      Downloading data related to cervical cancer screening
+    contents:
+      - get_cervical_screened
+      - get_cervical_hiv_screened
+      - get_cervical_positive
+      - get_cervical_treated
+  - title: "Breast cancer screening data"
+    desc: >
+      Downloads data related to breast cancer screening
+    content:
+      - get_breast_cbe
+      - get_breast_mammogram
+  - title: "Target population"
+    desc: >
+      Fetches the target population for the different screening programs
+    content:
+      - get_cervical_target_population
+      - get_breast_cbe_target_population
+      - get_breast_mammogram_target_population
+  - title: "KHIS Analytics"
+    desc: >
+      Download data from KHIS analytics table
+    content:
+      - get_analytics
