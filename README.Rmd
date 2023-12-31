@@ -1,8 +1,20 @@
+---
+output: github_document
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  error = TRUE,
+  purl = cancerscreening::khis_has_cred(),
+  eval = cancerscreening::khis_has_cred()
+)
+```
 
 # cancerscreening <a href="https://cancerscreening.damurka.com"><img src="man/figures/logo.png" align="right" height="138" /></a>
 
 <!-- badges: start -->
-
 [![check-standard](https://github.com/damurka/cancerscreening/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/damurka/cancerscreening/actions/workflows/R-CMD-check.yaml)
 [![test-coverage](https://github.com/damurka/cancerscreening/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/damurka/cancerscreening/actions/workflows/test-coverage.yaml)
 [![pkgdown](https://github.com/damurka/cancerscreening/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/damurka/cancerscreening/actions/workflows/pkgdown.yaml)
@@ -10,28 +22,21 @@
 
 ## Overview
 
-The goal of `cancerscreening` is to provide a easy way to download
-cancer screening data from the Kenya Health Information System (KHIS)
-using R.
+The goal of `cancerscreening` is to provide a easy way to download cancer screening data from the Kenya Health Information System (KHIS) using R.
 
 ## Installation
 
-You can install the released version of cancerscreening from
-[CRAN](https://cran.r-project.org/) with:
-
-``` r
+You can install the released version of cancerscreening from [CRAN](https://cran.r-project.org/) with:
+```r
 install.packages("cancerscreening")
 ```
 
-You can install the development version of from
-[Github](https://github.com) with:
-
-``` r
+You can install the development version of from [Github](https://github.com) with:
+```r
 # install.packages("pak")
 pak::pak('damurka/cancerscreening')
 ```
-
-***Note: This package is not yet available on CRAN.***
+___Note: This package is not yet available on CRAN.___
 
 ## Usage
 
@@ -39,7 +44,7 @@ Please see the package website: <https://cancerscreening.damurka.com>
 
 This is a basic example which shows you how to solve a common problem:
 
-``` r
+```{r example}
 # Load the package
 library(cancerscreening)
 
@@ -58,7 +63,4 @@ data <- get_cervical_screened('2022-07-01', level = 'county')
 
 ## Code of Conduct
 
-Please note that the cancerscreening project is released with a
-[Contributor Code of
-Conduct](https://cancerscreening.damurka.com/CODE_OF_CONDUCT.html). By
-contributing to this project, you agree to abide by its terms.
+Please note that the cancerscreening project is released with a [Contributor Code of Conduct](https://cancerscreening.damurka.com/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
