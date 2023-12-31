@@ -1,17 +1,21 @@
-#' Retrieves cervical cancer precancerous treatment data
+#' Retrieves Cervical Cancer Precancerous Treatment Data
 #'
-#' \code{get_cervical_treated()} retrieves cervical cancer precancerous treatment
-#'   data for a specified period from the KHIS API server.
+#' `get_cervical_treated()` retrieves cervical cancer precancerous treatment
+#'   data for a specified period from the KHIS API server using [.get_cervical_data()].
 #'
 #' @inheritParams .get_cervical_data
 #'
 #' @return A tibble containing cervical cancer precancerous treatment data with the following columns:
-#' @inheritParams .get_cervical_data
-#'
-#' @seealso
-#' get_analytics(), get_categories(), get_data_elements(), login_to_khis()
 #'
 #' @export
+#'
+#' @seealso
+#'   [.get_cervical_data()] for retrieving and formatting cervical cancer screening data
+#'
+#' @examplesIf khis_has_cred()
+#' # Download data from February 2023 to current date
+#' data <- get_cervical_treated(start_date = '2023-02-01')
+#' data
 
 get_cervical_treated <- function(start_date,
                                  end_date = NULL,
@@ -19,9 +23,7 @@ get_cervical_treated <- function(start_date,
                                  organisations = NULL,
                                  categories = NULL,
                                  elements = NULL,
-                                 khis_session = dynGet("khis_default_session", inherits = TRUE),
-                                 retry = 1,
-                                 verbosity = 0) {
+                                 ...) {
 
   # Yv6LiN65lCJ = Number of clients treated using Cryotherapy
   # uXi8AjF8YR0 = Number of clients treated using LEEP
@@ -41,9 +43,7 @@ get_cervical_treated <- function(start_date,
                              organisations = organisations,
                              categories = categories,
                              elements = elements,
-                             khis_session = khis_session,
-                             retry = retry,
-                             verbosity = verbosity) %>%
+                             ...) %>%
     mutate(
       element = case_when(
         str_detect(element, 'LEEP') ~ 'LEEP',

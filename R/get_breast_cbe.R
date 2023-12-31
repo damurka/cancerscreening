@@ -1,14 +1,21 @@
-#' Retrieves data for clinical breast examinations (CBE) conducted
+#' Retrieves Data for Clinical Breast Examinations (CBE) Conducted
 #'
-#' \code{get_breast_cbe()} retrieves data for CBE conducted within a specified
-#' period from the KHIS API server.
+#' `get_breast_cbe()` retrieves data for CBE conducted within a specified
+#' period from the KHIS API server using [.get_breast_data()].
 #'
 #' @inheritParams .get_breast_data
 #'
 #' @return A tibble containing data for CBE conducted with the following columns:
-#' @inheritParams .get_breast_data
 #'
 #' @export
+#'
+#' @seealso
+#'   [.get_breast_data()] for retrieving and formatting breast data
+#'
+#' @examplesIf khis_has_cred()
+#' # Download data from February 2023 to current date
+#' data <- get_breast_cbe(start_date = '2023-02-01')
+#' data
 
 get_breast_cbe <- function(start_date,
                            end_date = NULL,
@@ -16,9 +23,7 @@ get_breast_cbe <- function(start_date,
                            organisations = NULL,
                            categories = NULL,
                            elements = NULL,
-                           khis_session = dynGet("khis_default_session", inherits = TRUE),
-                           retry = 1,
-                           verbosity = 0) {
+                           ...) {
 
   category2 = NULL # due to NSE notes in R CMD check
 
@@ -34,9 +39,7 @@ get_breast_cbe <- function(start_date,
                            organisations = organisations,
                            categories = categories,
                            elements = elements,
-                           khis_session = khis_session,
-                           retry = retry,
-                           verbosity = verbosity) %>%
+                           ...) %>%
     mutate(
       element = case_when(
         str_detect(element, 'Normal') ~ 'Normal',

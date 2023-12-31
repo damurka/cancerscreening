@@ -1,38 +1,48 @@
-#' Retrieves data for specified data elements from KHIS analytics tables
+#' Retrieves Analytics Table Data from KHIS
 #'
-#' @description
-#' `get_analytics` fetches raw data from the KHIS analytics data tables for a
+#' `get_analytics()` fetches data from the KHIS analytics data tables for a
 #'   given period and data element(s), without performing any aggregation.
+#'
+#' @param element_ids A vector of data element IDs for which to retrieve data. Required.
+#' @param start_date The start date to retrieve data. It is required and in the format 'YYYY-MM-dd'.
+#' @param end_date The ending date for data retrieval (default is the current date).
+#' @param level The desired data granularity: `"kenya"` (the default), `"county"`, `"subcounty"`, `"ward"`, or `"facility"`.
+#' @param organisations A list of organization units in the data. If NULL, downloaded using [get_organisation_units_metadata()].
+#' @param categories A list of categories to include. If NULL, downloaded using [get_category_options_metadata()].
+#' @param elements A list of data elements to include. If NULL, downloaded using [get_data_elements_metadata()].
+#' @param ... Other options that can be passed onto [.api_get].
 #'
 #' @details
 #' * Retrieves data directly from KHIS analytics tables.
-#' * Returns a tibble (data frame) with detailed information, including:
-#'   - Geographical identifiers (kenya, county, subcounty, ward, facility, depending on level)
-#'   - Reporting period (month, year, fiscal year)
-#'   - Data element names
-#'   - Category options
-#'   - Reported values
 #' * Supports optional arguments for providing organization lists, data elements, and categories.
 #' * Allows specifying KHIS session objects, retry attempts, and logging verbosity.
 #'
-#' @param element_ids A vector of data element IDs for which to retrieve data. Required.
-#' @param start_date The starting date for data retrieval in the format 'YYYY-MM-dd'. Required.
-#' @param end_date The ending date for data retrieval (default is the current date).
-#' @param level The desired data granularity: "kenya", "county", "subcounty", "ward", or "facility".
-#' @param organisations A list of organization units to filter the data. If NULL, downloaded using `get_organisation_units()`.
-#' @param categories A list of categories to include. If NULL, downloaded using `get_categories()`.
-#' @param elements A list of data elements to include. If NULL, downloaded using `get_data_elements()`.
-#' @param khis_session A KHIS session object to use for the API call. Defaults to the default session.
-#' @param retry The number of times to retry the API call if it fails. Defaults to 1.
-#' @param verbosity The level of detail to log for the API call. Defaults to 0 (no logging).
+#' @return A tibble with detailed information, including:
 #'
-#' @return A tibble containing the retrieved data.
-#'
-#' @seealso
-#' get_organisation_units(), get_data_elements(), get_categories()
+#' * Geographical identifiers (kenya, county, subcounty, ward, facility, depending on level)
+#' * Reporting period (month, year, fiscal year)
+#' * Data element names
+#' * Category options
+#' * Reported values
 #'
 #' @export
-
+#'
+#' @seealso
+#'   [get_organisation_units_metadata()] for getting the organisations units
+#'   [get_data_elements_metadata()] for retrieving the data elements
+#'   [get_category_options_metadata()] for retrieving category options
+#'   [.api_get()] for making API call to KHIS server
+#'
+#' @examplesIf khis_has_cred()
+#' # Clinical Breast Examination data elements
+#' # XEX93uLsAm2 = CBE Abnormal
+#' # cXe64Yk0QMY = CBE Normal
+#' element_id = c('cXe64Yk0QMY', 'XEX93uLsAm2')
+#'
+#' # Download data from February 2023 to current date
+#' data <- get_analytics(element_ids = element_id,
+#'                       start_date = '2023-02-01')
+#' data
 
 get_analytics <- function(element_ids,
                           start_date,
@@ -41,9 +51,7 @@ get_analytics <- function(element_ids,
                           organisations = NULL,
                           categories = NULL,
                           elements = NULL,
-                          khis_session = dynGet("khis_default_session", inherits = TRUE),
-                          retry = 1,
-                          verbosity = 0) {
+                          ...) {
 
   x = element_id = `x,1` = category_id = `x,2` = org_id = `x,3` = period = `x,4` = value = `x,5` = category = category2 = year_f = NULL # due to NSE notes in R CMD check
 
@@ -54,16 +62,16 @@ get_analytics <- function(element_ids,
   level <- match.arg(level)
 
   if (is.null(organisations)) {
-    organisations <- get_organisation_units()
+    organisations <- get_organisation_units_metadata()
   }
-  organisations <- .get_organisation_units_by_level(organisations, level)
+  organisations <- .filter_organisation_units(organisations, level)
 
   if (is.null(categories)) {
-    categories <- get_categories()
+    categories <- get_category_options_metadata()
   }
 
   if (is.null(elements)) {
-    elements <- get_data_elements(element_ids)
+    elements <- get_data_elements_metadata(element_ids)
   }
 
   level <- switch (level,
@@ -87,7 +95,9 @@ get_analytics <- function(element_ids,
                   dimension = 'pe',
                   startDate =start_date,
                   endDate = end_date,
-                  khis_session = khis_session
+                  skipData = FALSE,
+                  skipMeta = TRUE,
+                  ...
   )
 
   if (is.null(data$rows) || length(data$rows) == 0) {

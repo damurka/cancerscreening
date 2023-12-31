@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_cervical_data.R
 \name{.get_cervical_data}
 \alias{.get_cervical_data}
-\title{Retrieves cervical cancer screening and treatment data}
+\title{Retrieve and Format Cervical Cancer Screening and Treatment Data}
 \usage{
 .get_cervical_data(
   element_ids,
@@ -12,60 +12,64 @@
   organisations = NULL,
   categories = NULL,
   elements = NULL,
-  khis_session = dynGet("khis_default_session", inherits = TRUE),
-  retry = 1,
-  verbosity = 0
+  ...
 )
 }
 \arguments{
-\item{element_ids}{A vector of data element IDs to retrieve data for.}
+\item{element_ids}{A vector of data element IDs for which to retrieve data. Required.}
 
-\item{start_date}{The start date for the data retrieval in the format 'YYYY-MM-dd'.}
+\item{start_date}{The start date to retrieve data. It is required and in the format 'YYYY-MM-dd'.}
 
-\item{end_date}{The end date for the data retrieval in the format 'YYYY-MM-dd'. Defaults to the current date if not specified.}
+\item{end_date}{The ending date for data retrieval (default is the current date).}
 
-\item{level}{The desired level of the organization unit hierarchy to retrieve data for: "kenya", "county", "subcounty", "ward", or "facility".}
+\item{level}{The desired data granularity: \code{"kenya"} (the default), \code{"county"}, \code{"subcounty"}, \code{"ward"}, or \code{"facility"}.}
 
-\item{organisations}{A vector of specific organisation unit IDs to retrieve data for. If NULL, data for all organisation units at the specified level will be retrieved.}
+\item{organisations}{A list of organization units in the data. If NULL, downloaded using \code{\link[=get_organisation_units_metadata]{get_organisation_units_metadata()}}.}
 
-\item{categories}{A tibble of category options, typically obtained from \code{get_categories()}. If NULL, categories will be downloaded automatically.}
+\item{categories}{A list of categories to include. If NULL, downloaded using \code{\link[=get_category_options_metadata]{get_category_options_metadata()}}.}
 
-\item{elements}{A tibble of data elements, typically obtained from \code{get_data_elements()}. If NULL, elements will be downloaded automatically.}
+\item{elements}{A list of data elements to include. If NULL, downloaded using \code{\link[=get_data_elements_metadata]{get_data_elements_metadata()}}.}
 
-\item{khis_session}{The KHIS session object to use (defaults to "khis_default_session"). See \code{?login_to_khis()} for details.}
-
-\item{retry}{Number of times to retry the API call in case of failure (defaults to 1).}
-
-\item{verbosity}{Level of information to print during the API call:
-\itemize{
-\item 0: No output
-\item 1: Show headers
-\item 2: Show headers and bodies
-\item 3: Show headers, bodies, and curl status message
-}}
+\item{...}{Other options that can be passed onto \link{.api_get}.}
 }
 \value{
-A tibble containing cervical screening and treatment data with the following columns:
-\describe{
-\item{facility}{Name of the health facility.}
-\item{ward}{Name of the ward.}
-\item{subcounty}{Name of the subcounty.}
-\item{county}{Name of the county.}
-\item{period}{Date of the report.}
-\item{month}{Month of the report.}
-\item{year}{Year of the report.}
-\item{fiscal_year}{Financial year of the report (July-June cycle).}
-\item{category}{Age group category (<25, 25-49, 50+).}
-\item{category2}{Additional category option (if applicable).}
-\item{element}{Name of the data element.}
-\item{source}{Source document of the report (MOH 711 or MOH 745).}
-\item{value}{Numeric value for the number of cases reported.}
+A tibble containing cervical screening and treatment data with the
+following columns:
+\itemize{
+\item kenya      - Optional if the level is Kenya.
+\item county     - Name of the county. Optional if the level is \code{county}, \code{subcounty}, \code{ward} or \code{facility}.
+\item subcounty  - Name of the subcounty. Optional if the level is \code{subcounty}, \code{ward} or \code{facility}.
+\item ward       - Name of the ward. Optional if the level is \code{ward} or \code{facility}.
+\item facility   - Name of the health facility. Optional if the level \code{facility}.
+\item period     - The month and year of the data.
+\item fiscal_year- The financial year of the report(July-June Cycle).
+\item year       - The calendar year of the report.
+\item month      - The month name of the report.
+\item category   - The age group category of the report (<25, 25-49, 50+).
+\item category2  - Additional category if available.
+\item element    - The data element (HPV, VIA or Pap Smear).
+\item source     - The source report (MOH 711 or MOH 745).
+\item value      - The number reported.
 }
 }
 \description{
-\code{.get_cervical_data()} retrieves cervical cancer screening and treatment data for a specified period from the KHIS API server.
+\code{.get_cervical_data()} retrieves cervical cancer screening and treatment data
+for a specified period from the KHIS API server using the \code{\link[=get_analytics]{get_analytics()}}.
+}
+\examples{
+\dontshow{if (khis_has_cred()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+## Cervical Cancer Screening
+# VR7vdS7P0Gb = Number of clients who received HPV Test
+# gQro1y7Rsbq = Number of clients who received Pap smear
+# rFtB3keaVWm = Number of clients who received VIA or VIA/ VILI Screening
+cacx_screening_ids <- c('VR7vdS7P0Gb', 'gQro1y7Rsbq', 'rFtB3keaVWm')
+
+# Download data from February 2023 to current date
+data <- .get_cervical_data(element_ids = cacx_screening_ids, start_data = '2023-02-01')
+data
+\dontshow{\}) # examplesIf}
 }
 \seealso{
-get_analytics(), get_categories(), get_data_elements(), login_to_khis()
+\code{\link[=get_analytics]{get_analytics()}} for retrieving cervical cancer screening data
 }
 \keyword{internal}

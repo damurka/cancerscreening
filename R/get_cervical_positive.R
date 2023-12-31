@@ -1,18 +1,22 @@
-#' Retrieves cervical cancer screening data with positive results
+#' Retrieves Cervical Cancer Screening Data with Positive Results
 #'
-#' \code{get_cervical_positive()} retrieves cervical cancer screening data with positive results
-#'   for a specified period from the KHIS API server.
+#' `get_cervical_positive()` retrieves cervical cancer screening data with positive results
+#'   for a specified period from the KHIS API server using [.get_cervical_data()].
 #'
 #' @inheritParams .get_cervical_data
 #'
 #' @return A tibble containing cervical cancer screening data with positive results
 #'   with the following columns:
-#' @inheritParams .get_cervical_data
-#'
-#' @seealso
-#' get_analytics(), get_categories(), get_data_elements(), login_to_khis()
 #'
 #' @export
+#'
+#' @seealso
+#'   [.get_cervical_data()] for retrieving and formatting cervical cancer screening data
+#'
+#' @examplesIf khis_has_cred()
+#' # Download data from February 2023 to current date
+#' data <- get_cervical_positive(start_date = '2023-02-01')
+#' data
 
 get_cervical_positive <- function(start_date,
                                   end_date = NULL,
@@ -20,9 +24,7 @@ get_cervical_positive <- function(start_date,
                                   organisations = NULL,
                                   categories = NULL,
                                   elements = NULL,
-                                  khis_session = dynGet("khis_default_session", inherits = TRUE),
-                                  retry = 1,
-                                  verbosity = 0) {
+                                  ...) {
 
   # wYHt86csbhn = Number of clients with Positive Cytology result
   # KLQZDP0ycOY = Number of clients with Positive HPV result
@@ -44,9 +46,7 @@ get_cervical_positive <- function(start_date,
                              organisations = organisations,
                              categories = categories,
                              elements = elements,
-                             khis_session = khis_session,
-                             retry = retry,
-                             verbosity = verbosity) %>%
+                             ...) %>%
     mutate(
       element = case_when(
         str_detect(element, 'VIA') ~ 'VIA',

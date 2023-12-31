@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_analytics.R
 \name{get_analytics}
 \alias{get_analytics}
-\title{Retrieves data for specified data elements from KHIS analytics tables}
+\title{Retrieves Analytics Table Data from KHIS}
 \usage{
 get_analytics(
   element_ids,
@@ -12,43 +12,28 @@ get_analytics(
   organisations = NULL,
   categories = NULL,
   elements = NULL,
-  khis_session = dynGet("khis_default_session", inherits = TRUE),
-  retry = 1,
-  verbosity = 0
+  ...
 )
 }
 \arguments{
 \item{element_ids}{A vector of data element IDs for which to retrieve data. Required.}
 
-\item{start_date}{The starting date for data retrieval in the format 'YYYY-MM-dd'. Required.}
+\item{start_date}{The start date to retrieve data. It is required and in the format 'YYYY-MM-dd'.}
 
 \item{end_date}{The ending date for data retrieval (default is the current date).}
 
-\item{level}{The desired data granularity: "kenya", "county", "subcounty", "ward", or "facility".}
+\item{level}{The desired data granularity: \code{"kenya"} (the default), \code{"county"}, \code{"subcounty"}, \code{"ward"}, or \code{"facility"}.}
 
-\item{organisations}{A list of organization units to filter the data. If NULL, downloaded using \code{get_organisation_units()}.}
+\item{organisations}{A list of organization units in the data. If NULL, downloaded using \code{\link[=get_organisation_units_metadata]{get_organisation_units_metadata()}}.}
 
-\item{categories}{A list of categories to include. If NULL, downloaded using \code{get_categories()}.}
+\item{categories}{A list of categories to include. If NULL, downloaded using \code{\link[=get_category_options_metadata]{get_category_options_metadata()}}.}
 
-\item{elements}{A list of data elements to include. If NULL, downloaded using \code{get_data_elements()}.}
+\item{elements}{A list of data elements to include. If NULL, downloaded using \code{\link[=get_data_elements_metadata]{get_data_elements_metadata()}}.}
 
-\item{khis_session}{A KHIS session object to use for the API call. Defaults to the default session.}
-
-\item{retry}{The number of times to retry the API call if it fails. Defaults to 1.}
-
-\item{verbosity}{The level of detail to log for the API call. Defaults to 0 (no logging).}
+\item{...}{Other options that can be passed onto \link{.api_get}.}
 }
 \value{
-A tibble containing the retrieved data.
-}
-\description{
-\code{get_analytics} fetches raw data from the KHIS analytics data tables for a
-given period and data element(s), without performing any aggregation.
-}
-\details{
-\itemize{
-\item Retrieves data directly from KHIS analytics tables.
-\item Returns a tibble (data frame) with detailed information, including:
+A tibble with detailed information, including:
 \itemize{
 \item Geographical identifiers (kenya, county, subcounty, ward, facility, depending on level)
 \item Reporting period (month, year, fiscal year)
@@ -56,10 +41,34 @@ given period and data element(s), without performing any aggregation.
 \item Category options
 \item Reported values
 }
+}
+\description{
+\code{get_analytics()} fetches data from the KHIS analytics data tables for a
+given period and data element(s), without performing any aggregation.
+}
+\details{
+\itemize{
+\item Retrieves data directly from KHIS analytics tables.
 \item Supports optional arguments for providing organization lists, data elements, and categories.
 \item Allows specifying KHIS session objects, retry attempts, and logging verbosity.
 }
 }
+\examples{
+\dontshow{if (khis_has_cred()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+# Clinical Breast Examination data elements
+# XEX93uLsAm2 = CBE Abnormal
+# cXe64Yk0QMY = CBE Normal
+element_id = c('cXe64Yk0QMY', 'XEX93uLsAm2')
+
+# Download data from February 2023 to current date
+data <- get_analytics(element_ids = element_id,
+                      start_date = '2023-02-01')
+data
+\dontshow{\}) # examplesIf}
+}
 \seealso{
-get_organisation_units(), get_data_elements(), get_categories()
+\code{\link[=get_organisation_units_metadata]{get_organisation_units_metadata()}} for getting the organisations units
+\code{\link[=get_data_elements_metadata]{get_data_elements_metadata()}} for retrieving the data elements
+\code{\link[=get_category_options_metadata]{get_category_options_metadata()}} for retrieving category options
+\code{\link[=.api_get]{.api_get()}} for making API call to KHIS server
 }

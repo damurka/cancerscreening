@@ -7,17 +7,30 @@ Authors@R:
            family = "Kariuki",
            role = c("aut", "cre", "cph"),
            email="hello@damurka.com",
-           comment = c(ORCID = 0009-0003-6159-1107)))
-Description: Effortlessly retrieve, harmonize, and analyze critical cancer 
-    screening data for cervical, breast, and colorectal cancers from the Kenya 
-    Health Information System (KHIS) with this user-friendly R package.
+           comment = c(ORCID = "0009-0003-6159-1107")))
+Description: Retrieve cancer screening data for cervical, breast, and colorectal 
+  cancers from the Kenya Health Information System (KHIS) with this R package.
 License: GPL-3 + file LICENSE
 URL: https://github.com/damurka/cancerscreening
 BugReports: 
     https://github.com/damurka/cancerscreening/issues
 Depends: 
-    R (>= 2.10)
-Imports: dplyr,tidyr,stringr,httr2,lubridate,jsonlite,keyring,R6,tibble
+    R (>= 3.6)
+Imports: 
+    dplyr,
+    tidyr,
+    stringr,
+    httr2,
+    lubridate,
+    rlang,
+    jsonlite,
+    keyring,
+    R6,
+    tibble
+Suggests:
+    testthat,
+    rmarkdown
+Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3

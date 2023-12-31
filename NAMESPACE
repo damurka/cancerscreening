@@ -1,3 +1,5 @@
 exportPattern("^[[:alpha:]]+")
 
 import(dplyr,tidyr,stringr,httr2,lubridate,jsonlite,keyring,R6,tibble)
+importFrom(rlang, is_scalar_character)
+importFrom(rlang, is_string)

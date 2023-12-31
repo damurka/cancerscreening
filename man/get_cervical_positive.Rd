@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_cervical_positive.R
 \name{get_cervical_positive}
 \alias{get_cervical_positive}
-\title{Retrieves cervical cancer screening data with positive results}
+\title{Retrieves Cervical Cancer Screening Data with Positive Results}
 \usage{
 get_cervical_positive(
   start_date,
@@ -11,35 +11,23 @@ get_cervical_positive(
   organisations = NULL,
   categories = NULL,
   elements = NULL,
-  khis_session = dynGet("khis_default_session", inherits = TRUE),
-  retry = 1,
-  verbosity = 0
+  ...
 )
 }
 \arguments{
-\item{start_date}{The start date for the data retrieval in the format 'YYYY-MM-dd'.}
+\item{start_date}{The start date to retrieve data. It is required and in the format 'YYYY-MM-dd'.}
 
-\item{end_date}{The end date for the data retrieval in the format 'YYYY-MM-dd'. Defaults to the current date if not specified.}
+\item{end_date}{The ending date for data retrieval (default is the current date).}
 
-\item{level}{The desired level of the organization unit hierarchy to retrieve data for: "kenya", "county", "subcounty", "ward", or "facility".}
+\item{level}{The desired data granularity: \code{"kenya"} (the default), \code{"county"}, \code{"subcounty"}, \code{"ward"}, or \code{"facility"}.}
 
-\item{organisations}{A vector of specific organisation unit IDs to retrieve data for. If NULL, data for all organisation units at the specified level will be retrieved.}
+\item{organisations}{A list of organization units in the data. If NULL, downloaded using \code{\link[=get_organisation_units_metadata]{get_organisation_units_metadata()}}.}
 
-\item{categories}{A tibble of category options, typically obtained from \code{get_categories()}. If NULL, categories will be downloaded automatically.}
+\item{categories}{A list of categories to include. If NULL, downloaded using \code{\link[=get_category_options_metadata]{get_category_options_metadata()}}.}
 
-\item{elements}{A tibble of data elements, typically obtained from \code{get_data_elements()}. If NULL, elements will be downloaded automatically.}
+\item{elements}{A list of data elements to include. If NULL, downloaded using \code{\link[=get_data_elements_metadata]{get_data_elements_metadata()}}.}
 
-\item{khis_session}{The KHIS session object to use (defaults to "khis_default_session"). See \code{?login_to_khis()} for details.}
-
-\item{retry}{Number of times to retry the API call in case of failure (defaults to 1).}
-
-\item{verbosity}{Level of information to print during the API call:
-\itemize{
-\item 0: No output
-\item 1: Show headers
-\item 2: Show headers and bodies
-\item 3: Show headers, bodies, and curl status message
-}}
+\item{...}{Other options that can be passed onto \link{.api_get}.}
 }
 \value{
 A tibble containing cervical cancer screening data with positive results
@@ -47,8 +35,15 @@ with the following columns:
 }
 \description{
 \code{get_cervical_positive()} retrieves cervical cancer screening data with positive results
-for a specified period from the KHIS API server.
+for a specified period from the KHIS API server using \code{\link[=.get_cervical_data]{.get_cervical_data()}}.
+}
+\examples{
+\dontshow{if (khis_has_cred()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+# Download data from February 2023 to current date
+data <- get_cervical_positive(start_date = '2023-02-01')
+data
+\dontshow{\}) # examplesIf}
 }
 \seealso{
-get_analytics(), get_categories(), get_data_elements(), login_to_khis()
+\code{\link[=.get_cervical_data]{.get_cervical_data()}} for retrieving and formatting cervical cancer screening data
 }

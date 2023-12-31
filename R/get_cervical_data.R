@@ -1,43 +1,43 @@
-#' Retrieves cervical cancer screening and treatment data
+#' Retrieve and Format Cervical Cancer Screening and Treatment Data
 #'
-#' \code{.get_cervical_data()} retrieves cervical cancer screening and treatment data for a specified period from the KHIS API server.
+#' `.get_cervical_data()` retrieves cervical cancer screening and treatment data
+#'   for a specified period from the KHIS API server using the [get_analytics()].
 #'
-#' @param element_ids A vector of data element IDs to retrieve data for.
-#' @param start_date The start date for the data retrieval in the format 'YYYY-MM-dd'.
-#' @param end_date The end date for the data retrieval in the format 'YYYY-MM-dd'. Defaults to the current date if not specified.
-#' @param level The desired level of the organization unit hierarchy to retrieve data for: "kenya", "county", "subcounty", "ward", or "facility".
-#' @param organisations A vector of specific organisation unit IDs to retrieve data for. If NULL, data for all organisation units at the specified level will be retrieved.
-#' @param categories A tibble of category options, typically obtained from \code{get_categories()}. If NULL, categories will be downloaded automatically.
-#' @param elements A tibble of data elements, typically obtained from \code{get_data_elements()}. If NULL, elements will be downloaded automatically.
-#' @param khis_session The KHIS session object to use (defaults to "khis_default_session"). See `?login_to_khis()` for details.
-#' @param retry Number of times to retry the API call in case of failure (defaults to 1).
-#' @param verbosity Level of information to print during the API call:
-#'  - 0: No output
-#'  - 1: Show headers
-#'  - 2: Show headers and bodies
-#'  - 3: Show headers, bodies, and curl status message
+#' @inheritParams get_analytics
 #'
-#' @return A tibble containing cervical screening and treatment data with the following columns:
-#' \describe{
-#'  \item{facility}{Name of the health facility.}
-#'  \item{ward}{Name of the ward.}
-#'  \item{subcounty}{Name of the subcounty.}
-#'  \item{county}{Name of the county.}
-#'  \item{period}{Date of the report.}
-#'  \item{month}{Month of the report.}
-#'  \item{year}{Year of the report.}
-#'  \item{fiscal_year}{Financial year of the report (July-June cycle).}
-#'  \item{category}{Age group category (<25, 25-49, 50+).}
-#'  \item{category2}{Additional category option (if applicable).}
-#'  \item{element}{Name of the data element.}
-#'  \item{source}{Source document of the report (MOH 711 or MOH 745).}
-#'  \item{value}{Numeric value for the number of cases reported.}
-#' }
+#' @return A tibble containing cervical screening and treatment data with the
+#'   following columns:
 #'
-#' @seealso
-#' get_analytics(), get_categories(), get_data_elements(), login_to_khis()
+#' * kenya      - Optional if the level is Kenya.
+#' * county     - Name of the county. Optional if the level is `county`, `subcounty`, `ward` or `facility`.
+#' * subcounty  - Name of the subcounty. Optional if the level is `subcounty`, `ward` or `facility`.
+#' * ward       - Name of the ward. Optional if the level is `ward` or `facility`.
+#' * facility   - Name of the health facility. Optional if the level `facility`.
+#' * period     - The month and year of the data.
+#' * fiscal_year- The financial year of the report(July-June Cycle).
+#' * year       - The calendar year of the report.
+#' * month      - The month name of the report.
+#' * category   - The age group category of the report (<25, 25-49, 50+).
+#' * category2  - Additional category if available.
+#' * element    - The data element (HPV, VIA or Pap Smear).
+#' * source     - The source report (MOH 711 or MOH 745).
+#' * value      - The number reported.
 #'
 #' @keywords internal
+#'
+#' @seealso
+#'   [get_analytics()] for retrieving cervical cancer screening data
+#'
+#' @examplesIf khis_has_cred()
+#' ## Cervical Cancer Screening
+#' # VR7vdS7P0Gb = Number of clients who received HPV Test
+#' # gQro1y7Rsbq = Number of clients who received Pap smear
+#' # rFtB3keaVWm = Number of clients who received VIA or VIA/ VILI Screening
+#' cacx_screening_ids <- c('VR7vdS7P0Gb', 'gQro1y7Rsbq', 'rFtB3keaVWm')
+#'
+#' # Download data from February 2023 to current date
+#' data <- .get_cervical_data(element_ids = cacx_screening_ids, start_data = '2023-02-01')
+#' data
 
 .get_cervical_data <- function(element_ids,
                               start_date,
@@ -46,9 +46,7 @@
                               organisations = NULL,
                               categories = NULL,
                               elements = NULL,
-                              khis_session = dynGet("khis_default_session", inherits = TRUE),
-                              retry = 1,
-                              verbosity = 0) {
+                              ...) {
 
   data <- get_analytics(element_ids,
                         start_date = start_date,
@@ -57,9 +55,7 @@
                         organisations = organisations,
                         categories = categories,
                         elements = elements,
-                        khis_session = khis_session,
-                        retry = retry,
-                        verbosity = verbosity) %>%
+                        ...) %>%
     mutate(
       category = case_when(
         str_detect(category, '<25') ~ '<25',

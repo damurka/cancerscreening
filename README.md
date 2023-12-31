@@ -8,14 +8,17 @@
 The goal of `cancerscreening` is to provide a easy way to download cancer screening data from the Kenya Health Information System (KHIS).
 
 ## Installation
-You can install the development version of cancerscreening from Github with:
+You can install the released version of cancerscreening from [CRAN](https://cran.r-project.org/) with:
 ```{r}
-#install.package('devtools')
-devtools::install_github('damurka/cancerscreening')
+install.packages("cancerscreening")
+```
+You can install the development version of from [Github](https://github.com) with:
+```{r}
+pak::pak('damurka/cancerscreening')
 ```
 ___Note: This package is not yet available on CRAN.___
 
-## Example
+## Basic Usage
 Data that can be downloaded includes cervical cancer screening and breast cancer screening. Each of the has several modules
 
 ### Cervical cancer screening functions
@@ -26,10 +29,16 @@ Data that can be downloaded includes cervical cancer screening and breast cancer
 - Cervical cancer precancerous lesion treatment using cryotherapy, thermoablation or LEEP - `get_cervical_treated` function
 
 ### Breast cancer screening function
-- Get the target population for clinical breast examination - `get_cbe_target_population`
-- Get the target population for breast cancer screening with mammogram - `get_mammogram_target_population` 
+- Get the target population for clinical breast examination - `get_breast_cbe_target_population`
+- Get the target population for breast cancer screening with mammogram - `get_breast_mammogram_target_population` 
 - Clinical breast examination performed - `get_breast_cbe` function
 - Breast cancer screening using mammograms - `get_breast_mammogram` function
+
+### Metadata functions
+- Get the organisation units metadata - `get_organisation_units_metadata`
+- Get the category options metadata - `get_category_options_metadata`
+- Get the data elements metadata - `get_data_elements_metadata`
+- Get additional data from the analytics table - `get_analytics`
 
 The following is a basic example to show how to download cervical cancer screening data:
 
@@ -37,15 +46,56 @@ The following is a basic example to show how to download cervical cancer screeni
 # Load the package
 library(cancerscreening)
 
-# Get credential to make API calls to KHIS
-login_to_khis(username = 'KHIS Username')
+# Set credential to make API calls to KHIS
+khis_cred(username = 'KHIS Username')
 
-# Get cervical cancer screening target population
-target <- cervical_target_population(year = 2023)
+# Get cervical cancer screening target population by county
+target <- get_cervical_target_population(year = 2023, level = 'county')
 
-# Download the cervical cancer screening data
-data <- get_cervical_screened('2022-07-01')
+# Download the cervical cancer screening data by county
+data <- get_cervical_screened('2022-07-01', level = 'county')
 
 # To learn more about the function, run the following command
 ?get_cervical_screened
+```
+
+When you need data from more than one function it is efficient to download the
+metadata and share among the functions as shown below:
+
+```{r}
+khis_cred(username = 'KHIS username')
+
+organisations <- get_organisation_units_metadata()
+categories <- get_category_options_metadata()
+elements <- get_data_elements_metadata()
+
+cacx_screened <- get_cervical_screened('2021-07-01', 
+                                       level = 'county',
+                                       elements = elements,
+                                       categories = categories,
+                                       organisations = organisations)
+
+cacx_positive <- get_cervical_positive('2021-07-01', 
+                                       level = 'county',
+                                       elements = elements,
+                                       categories = categories,
+                                       organisations = organisations)
+
+cacx_treated <- get_cervical_treated('2021-07-01', 
+                                       level = 'county',
+                                       elements = elements,
+                                       categories = categories,
+                                       organisations = organisations)
+
+breast_cbe <- get_breast_cbe('2021-07-01', 
+                             level = 'county',
+                             elements = elements,
+                             categories = categories,
+                             organisations = organisations)
+
+breast_mammogram <- get_breast_mammogram('2021-07-01', 
+                             level = 'county',
+                             elements = elements,
+                             categories = categories,
+                             organisations = organisations)
 ```
