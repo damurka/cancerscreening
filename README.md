@@ -1,5 +1,5 @@
 <!-- badges: start -->
-[![check-standard](https://github.com/damurka/cancerscreening/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/damurka/cancerscreening/actions/workflows/check-standard.yaml)
+[![check-standard](https://github.com/damurka/cancerscreening/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/damurka/cancerscreening/actions/workflows/R-CMD-check.yaml)
 [![test-coverage](https://github.com/damurka/cancerscreening/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/damurka/cancerscreening/actions/workflows/test-coverage.yaml)
 [![pkgdown](https://github.com/damurka/cancerscreening/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/damurka/cancerscreening/actions/workflows/pkgdown.yaml)
 <!-- badges: end -->
