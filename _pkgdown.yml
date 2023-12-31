@@ -32,6 +32,12 @@ reference:
     content:
       - get_breast_cbe
       - get_breast_mammogram
+  - title: "Authorization Credentials"
+    desc: >
+      Take and securely store the KHIS authorization credentials
+    content:
+      - khis_cred
+      - khis_has_cred
   - title: "Target population"
     desc: >
       Fetches the target population for the different screening programs
