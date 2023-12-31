@@ -7,6 +7,9 @@
     <loc>/LICENSE-text.html</loc>
   </url>
   <url>
+    <loc>/LICENSE.html</loc>
+  </url>
+  <url>
     <loc>/authors.html</loc>
   </url>
   <url>
@@ -16,10 +19,22 @@
     <loc>/news/index.html</loc>
   </url>
   <url>
+    <loc>/reference/AuthCred-class.html</loc>
+  </url>
+  <url>
+    <loc>/reference/dot-api_get.html</loc>
+  </url>
+  <url>
     <loc>/reference/dot-get_breast_data.html</loc>
   </url>
   <url>
     <loc>/reference/dot-get_cervical_data.html</loc>
+  </url>
+  <url>
+    <loc>/reference/facility_ownership.html</loc>
+  </url>
+  <url>
+    <loc>/reference/facility_type.html</loc>
   </url>
   <url>
     <loc>/reference/get_analytics.html</loc>
@@ -28,13 +43,16 @@
     <loc>/reference/get_breast_cbe.html</loc>
   </url>
   <url>
+    <loc>/reference/get_breast_cbe_target_population.html</loc>
+  </url>
+  <url>
     <loc>/reference/get_breast_mammogram.html</loc>
   </url>
   <url>
-    <loc>/reference/get_categories.html</loc>
+    <loc>/reference/get_breast_mammogram_target_population.html</loc>
   </url>
   <url>
-    <loc>/reference/get_cbe_target_population.html</loc>
+    <loc>/reference/get_category_options_metadata.html</loc>
   </url>
   <url>
     <loc>/reference/get_cervical_hiv_screened.html</loc>
@@ -52,33 +70,30 @@
     <loc>/reference/get_cervical_treated.html</loc>
   </url>
   <url>
-    <loc>/reference/get_data_elements.html</loc>
+    <loc>/reference/get_data_elements_metadata.html</loc>
   </url>
   <url>
-    <loc>/reference/get_facility_ownerships.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_facility_types.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_keph_levels.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_mammogram_target_population.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_organisation_units.html</loc>
+    <loc>/reference/get_organisation_units_metadata.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/khisSession.html</loc>
+    <loc>/reference/init_AuthCred.html</loc>
   </url>
   <url>
-    <loc>/reference/login_to_khis.html</loc>
+    <loc>/reference/keph_level.html</loc>
+  </url>
+  <url>
+    <loc>/reference/khis_cred.html</loc>
+  </url>
+  <url>
+    <loc>/reference/khis_has_cred.html</loc>
   </url>
   <url>
     <loc>/reference/population_data.html</loc>
+  </url>
+  <url>
+    <loc>/reference/req_auth_khis_basic.html</loc>
   </url>
 </urlset>
