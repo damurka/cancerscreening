@@ -44,18 +44,19 @@ test_that("khis_cred woks correctly", {
 })
 
 test_that("req_auth_khis_basic works correctly", {
-  library(httr2)
 
-  req <- request('https://example.com')
+  library(httpuv)
+  library(httr2)
+  library(magrittr)
 
   expect_error(
-    req %>% req_auth_khis_basic() %>% req_dry_run(),
+    request('https://example.com') %>% req_auth_khis_basic() %>% req_dry_run(),
     'You have not set KHIS credential. Call khis_cred to set.',
     fixed = TRUE)
 
   expect_no_error(khis_cred(username = 'username2', password = 'password2'))
 
-  expect_no_error(req %>% req_auth_khis_basic() %>% req_dry_run())
+  expect_no_error(request('https://example.com') %>% req_auth_khis_basic() %>% req_dry_run())
 
   khis_cred_clear()
 })
