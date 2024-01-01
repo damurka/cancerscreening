@@ -102,7 +102,8 @@ khis_cred <- function(config_path = NULL,
 #' @keywords internal
 #'
 #' @examplesIf khis_has_cred()
-#' req <- request("http://example.com") |> req_auth_khis_basic("damurka", "PASSWORD")
+#' req <- request("http://example.com") %>%
+#'   req_auth_khis_basic("damurka", "PASSWORD")
 #' req
 #'
 #' @seealso [httr2]
@@ -110,7 +111,7 @@ khis_cred <- function(config_path = NULL,
 req_auth_khis_basic <- function(req) {
   if (!khis_has_cred()) {
     #khis_cred()
-    stop("You are not logged into KHIS")
+    stop("You have not set KHIS credential. Call khis_cred to set.")
   }
   httr2::req_auth_basic(req, .auth$username, .auth$password)
 }

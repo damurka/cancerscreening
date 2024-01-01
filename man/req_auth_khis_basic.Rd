@@ -17,7 +17,8 @@ This sets the Authorization header for basic authentication using the username a
 }
 \examples{
 \dontshow{if (khis_has_cred()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-req <- request("http://example.com") |> req_auth_khis_basic("damurka", "PASSWORD")
+req <- request("http://example.com") \%>\%
+  req_auth_khis_basic("damurka", "PASSWORD")
 req
 \dontshow{\}) # examplesIf}
 }
