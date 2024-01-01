@@ -100,6 +100,9 @@
     <loc>https://cancerscreening.damurka.com/reference/khis_cred.html</loc>
   </url>
   <url>
+    <loc>https://cancerscreening.damurka.com/reference/khis_cred_clear.html</loc>
+  </url>
+  <url>
     <loc>https://cancerscreening.damurka.com/reference/khis_cred_docs.html</loc>
   </url>
   <url>
@@ -110,6 +113,9 @@
   </url>
   <url>
     <loc>https://cancerscreening.damurka.com/reference/khis_has_cred.html</loc>
+  </url>
+  <url>
+    <loc>https://cancerscreening.damurka.com/reference/khis_username.html</loc>
   </url>
   <url>
     <loc>https://cancerscreening.damurka.com/reference/population_data.html</loc>
