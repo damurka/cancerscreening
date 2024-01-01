@@ -1,0 +1,19 @@
+test_that("get_analytics works correctly", {
+  skip_if_no_cred()
+  skip_if_offline()
+
+  expect_error(get_analytics(), "element_ids")
+
+  expect_error(get_analytics(element_ids = c('el_id')), "start_date")
+
+  expect_error(get_analytics(element_ids = c('el_id'),
+                             start_date = '1234'), "start_date")
+
+  expect_error(get_analytics(element_ids = c('el_id'),
+                             start_date = '2020-01-01',
+                             level = 'other'), "kenya")
+
+  #element_id = c('cXe64Yk0QMY', 'XEX93uLsAm2')
+  #expect_no_error(get_analytics(element_ids = c('cXe64Yk0QMY', 'XEX93uLsAm2'),
+  #                           start_date = '2020-01-01'))
+})
