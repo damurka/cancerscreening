@@ -10,6 +10,13 @@ template:
     border-radius: 0.5rem
     btn-border-radius: 0.25rem
 
+articles:
+  - title: Screening coverage
+    navbar: ~
+    contents:
+    - cancerscreening
+    - articles/cervical-screening-coverage
+
 reference:
   - title: "KHIS Metadata"
     desc: >
