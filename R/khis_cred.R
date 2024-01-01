@@ -34,12 +34,12 @@ khis_cred <- function(config_path = NULL,
 
   if (!is.null(config_path)) {
     # loads credentials from secret file
-    credentials <- .load_config_file(config_path = config_path)
+    credentials <- .load_config_file(config_path)
     password <- credentials[["password"]]
     username <- credentials[["username"]]
 
-    if (is.null(password) || is.null(username)) {
-      stop('Config file must contain username and password')
+    if (is.null(password) || nchar(password) == 0 || is.null(username) || nchar(password) == 0) {
+      stop('Configuration must contain username and password')
     }
   } else {
     password <- ifelse(is.null(password), "", password)
@@ -83,12 +83,15 @@ khis_cred <- function(config_path = NULL,
 
 .load_config_file <- function(config_path = NA) {
   # Load from a file
-  if (!is.na(config_path)) {
+  tryCatch({
     data <- jsonlite::fromJSON(config_path)
-    return(data[['credentials']])
-  } else {
-    stop("You must specify a credentials file!")
-  }
+    if (!is.null(data) && 'credentials' %in% names(data)) {
+      return(data[['credentials']])
+    }
+  }, error = function(e) {
+    stop('Invalid config_path.')
+  })
+  stop('config_path is not in the correct format')
 }
 
 #' Authenticate Request with HTTP Basic Authentication
@@ -127,6 +130,33 @@ req_auth_khis_basic <- function(req) {
 khis_has_cred <- function() {
   .auth$has_cred()
 }
+
+#' Clear the Password from Memory
+#'
+#' @family auth functions
+#'
+#' @export
+#'
+#' @examplesIf rlang::is_interactive()
+#' khis_cred_clear()
+
+khis_cred_clear <- function() {
+  .auth$clear_password()
+  invisible()
+}
+
+#' Produces the Configured Username
+#'
+#' @family low-level API functions
+#' @export
+#'
+#' @examples
+#' khis_username()
+
+khis_username <- function() {
+  .auth$get_username()
+}
+
 
 #' Internal Credentials
 #'
