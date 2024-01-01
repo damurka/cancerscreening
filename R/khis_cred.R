@@ -35,12 +35,11 @@ khis_cred <- function(config_path = NULL,
   if (!is.null(config_path)) {
     # loads credentials from secret file
     credentials <- .load_config_file(config_path = config_path)
-    message(credentials)
     password <- credentials[["password"]]
     username <- credentials[["username"]]
 
-    if (is.null(password)) {
-      stop('Config file does not specify a password')
+    if (is.null(password) || is.null(username)) {
+      stop('Config file must contain username and password')
     }
   } else {
     password <- ifelse(is.null(password), "", password)
