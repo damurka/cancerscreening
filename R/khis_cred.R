@@ -29,7 +29,7 @@ khis_cred <- function(config_path = NULL,
   }
 
   if (!(is.null(config_path)) && !(is.null(username))) {
-    stop("If using config_path then credentials can not be passed in directly")
+    stop("If using config_path then username can not be passed in directly")
   }
 
   if (!is.null(config_path)) {
