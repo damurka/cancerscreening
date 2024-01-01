@@ -12,3 +12,4 @@
 ^index\.md$
 ^vignettes/articles$
 ^CRAN-SUBMISSION$
+^codecov\.yml$
