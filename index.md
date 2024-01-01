@@ -20,8 +20,8 @@ You can install the development version of from
 [Github](https://github.com) with:
 
 ``` r
-# install.packages("pak")
-pak::pak('damurka/cancerscreening')
+# install.packages("devtools")
+devtools::install_github('damurka/cancerscreening')
 ```
 
 ***Note: This package is not yet available on CRAN.***
