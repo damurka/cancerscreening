@@ -8,3 +8,5 @@
 ^pkgdown$
 ^README\.Rmd$
 ^CODE_OF_CONDUCT\.md$
+^index\.Rmd$
+^index\.md$

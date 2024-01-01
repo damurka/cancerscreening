@@ -1,0 +1,16 @@
+---
+title: "cancerscreening"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{cancerscreening}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Please see the cancerscreening website for full documentation:
+
+  * <https://cancerscreening.damurka.com/index.html>
+  
+In addition to function-specific help, there are several articles which are indexed here:
+
+  * [Article index](cancerscreening.damurka.com/articles/index.html)
