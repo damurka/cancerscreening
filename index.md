@@ -60,8 +60,8 @@ After setting the credential you can invoke any function to download
 data from the API
 
 ``` r
-# Download the cervical cancer screening data by county
-data <- get_cervical_screened('2022-07-01', level = 'county')
+# Download the cervical cancer screening data for country
+data <- get_cervical_screened('2022-07-01')
 ```
 
 ### Metadata reuse
@@ -70,39 +70,42 @@ When you need data from more than one function it is efficient to
 download the metadata and share among the functions as shown below:
 
 ``` r
-khis_cred(username = 'KHIS username')
-
 organisations <- get_organisation_units_metadata()
 categories <- get_category_options_metadata()
 elements <- get_data_elements_metadata()
 
-cacx_screened <- get_cervical_screened('2021-07-01', 
+cacx_screened <- get_cervical_screened('2021-07-01',
+                                       end_date = '2021-12-31',
                                        level = 'county',
                                        elements = elements,
                                        categories = categories,
                                        organisations = organisations)
 
-cacx_positive <- get_cervical_positive('2021-07-01', 
+cacx_positive <- get_cervical_positive('2021-07-01',
+                                       end_date = '2021-12-31',
                                        level = 'county',
                                        elements = elements,
                                        categories = categories,
                                        organisations = organisations)
 
-cacx_treated <- get_cervical_treated('2021-07-01', 
+cacx_treated <- get_cervical_treated('2021-07-01',
+                                     end_date = '2021-12-31',
                                        level = 'county',
                                        elements = elements,
                                        categories = categories,
                                        organisations = organisations)
 
-breast_cbe <- get_breast_cbe('2021-07-01', 
+breast_cbe <- get_breast_cbe('2021-07-01',
+                             end_date = '2021-12-31',
                              level = 'county',
                              elements = elements,
                              categories = categories,
                              organisations = organisations)
 
 breast_mammogram <- get_breast_mammogram('2021-07-01', 
-                             level = 'county',
-                             elements = elements,
-                             categories = categories,
-                             organisations = organisations)
+                                         end_date = '2021-12-31',
+                                         level = 'county',
+                                         elements = elements,
+                                         categories = categories,
+                                         organisations = organisations)
 ```

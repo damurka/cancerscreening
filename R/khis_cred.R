@@ -35,34 +35,37 @@ khis_cred <- function(config_path = NULL,
   if (!is.null(config_path)) {
     # loads credentials from secret file
     credentials <- .load_config_file(config_path = config_path)
+    message(credentials)
     password <- credentials[["password"]]
     username <- credentials[["username"]]
-  }
 
-  if (is.null(password)) {
-    password <- ""
-  }
-
-  # checks if password in file and if not checks keyring, and if not there
-  # prompts to make one
-  if (nchar(password) == 0) {
-    password <- try(keyring::key_get(
-      service = 'khis-service',
-      username = username
-    ))
-    if ("try-error" %in% class(password)) {
-      keyring::key_set(service = 'khis-service', username = username)
-      password <- keyring::key_get(
-        service = 'khis-service',
-        username = credentials[["username"]]
-      )
+    if (is.null(password)) {
+      stop('Config file does not specify a password')
     }
   } else {
-    keyring::key_set_with_value(
-      service = 'khis-service',
-      username = username,
-      password = password
-    )
+    password <- ifelse(is.null(password), "", password)
+
+    # checks if password in file and if not checks keyring, and if not there
+    # prompts to make one
+    if (nchar(password) == 0) {
+      password <- try(keyring::key_get(
+        service = 'khis-service',
+        username = username
+      ))
+      if ("try-error" %in% class(password)) {
+        keyring::key_set(service = 'khis-service', username = username)
+        password <- keyring::key_get(
+          service = 'khis-service',
+          username = credentials[["username"]]
+        )
+      }
+    } else if (is.null(config_path)) {
+      keyring::key_set_with_value(
+        service = 'khis-service',
+        username = username,
+        password = password
+      )
+    }
   }
 
   .auth$set_username(username)
@@ -82,11 +85,8 @@ khis_cred <- function(config_path = NULL,
 .load_config_file <- function(config_path = NA) {
   # Load from a file
   if (!is.na(config_path)) {
-    if (file.access(config_path, mode = 4) == -1) {
-      stop(paste("Cannot read configuration located at", config_path))
-    }
-    dhis_config <- jsonlite::fromJSON(config_path)
-    return(dhis_config[['credentials']])
+    data <- jsonlite::fromJSON(config_path)
+    return(data[['credentials']])
   } else {
     stop("You must specify a credentials file!")
   }
@@ -127,3 +127,60 @@ req_auth_khis_basic <- function(req) {
 khis_has_cred <- function() {
   .auth$has_cred()
 }
+
+#' Internal Credentials
+#'
+#' Internal function used to provide credentials for the testing and documentation
+#'   environment
+#'
+#' @param account The environment to provide credentials. `"docs"` or `"testing"`
+#'
+#' @importFrom gargle secret_has_key
+#'
+#' @keywords internal
+
+khis_cred_internal <- function(account = c('docs', 'testing')) {
+  account <- match.arg(account)
+  can_decrypt <- secret_has_key('CANCERSCREENING_KEY')
+  online <- !is.null(curl::nslookup('hiskenya.org', error = FALSE))
+  if (!can_decrypt || !online) {
+    cli::cli_abort(message = c(
+      "Auth unsuccessful:",
+      if (!can_decrypt) {
+        c("x" = "Can't decrypt the {.field {account}} service account token.")
+      },
+      if (!online) {
+        c("x" = "We don't appear to be online. Or maybe the Drive API is down?")
+      }
+    ),
+    class = "cancerscreening_cred_internal_error",
+    can_decrypt = can_decrypt,
+    online = online,
+    .envir = parent.frame())
+  }
+
+  filename <- str_glue("cancerscreening-{account}.json")
+  khis_cred(
+    config_path = gargle::secret_decrypt_json(
+      system.file('secret', filename, package = 'cancerscreening'),
+      'CANCERSCREENING_KEY'
+    )
+  )
+  invisible(TRUE)
+}
+
+#' Set Credentials for Documentation
+#'
+#' @keywords internal
+
+khis_cred_docs <- function() {
+  khis_cred_internal('docs')
+}
+
+#' Set Credentials for Testing Environment
+#'
+#' @keywords internal
+khis_cred_testing <- function() {
+  khis_cred_internal('testing')
+}
+

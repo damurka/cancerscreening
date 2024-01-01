@@ -13,3 +13,4 @@
 ^vignettes/articles$
 ^CRAN-SUBMISSION$
 ^codecov\.yml$
+^secret\.json$

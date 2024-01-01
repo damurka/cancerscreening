@@ -46,13 +46,13 @@ This is a basic example which shows you how to solve a common problem:
 library(cancerscreening)
 
 # Set credential to make API calls to KHIS
-khis_cred(username = 'KHIS Username')
+# khis_cred(username = 'KHIS Username')
 
 # Get cervical cancer screening target population by county
 target <- get_cervical_target_population(year = 2023, level = 'county')
 
 # Download the cervical cancer screening data by county
-data <- get_cervical_screened('2022-07-01', level = 'county')
+data <- get_cervical_screened('2022-07-01', end_date = '2022-12-31', level = 'county')
 
 # To learn more about the function, run the following command
 ?get_cervical_screened
