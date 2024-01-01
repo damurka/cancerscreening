@@ -18,12 +18,12 @@
 #'
 #' @examplesIf khis_has_cred()
 #' # Fetch the data element metadata for particular element id
-#' data <- get_data_elements_metadata(element_ids = c('htFuvGJRW1X'))
-#' data
+#' elements <- get_data_elements_metadata(element_ids = c('htFuvGJRW1X'))
+#' elements
 #'
 #' # Fetch all the data elements
-#' data <- get_data_elements_metadata()
-#' data
+#' elements <- get_data_elements_metadata()
+#' elements
 
 get_data_elements_metadata <-function(element_ids = NULL, ...) {
 

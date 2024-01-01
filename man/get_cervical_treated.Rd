@@ -31,6 +31,22 @@ get_cervical_treated(
 }
 \value{
 A tibble containing cervical cancer precancerous treatment data with the following columns:
+\itemize{
+\item kenya      - Optional if the level is Kenya.
+\item county     - Name of the county. Optional if the level is \code{county}, \code{subcounty}, \code{ward} or \code{facility}.
+\item subcounty  - Name of the subcounty. Optional if the level is \code{subcounty}, \code{ward} or \code{facility}.
+\item ward       - Name of the ward. Optional if the level is \code{ward} or \code{facility}.
+\item facility   - Name of the health facility. Optional if the level \code{facility}.
+\item period     - The month and year of the data.
+\item fiscal_year- The financial year of the report(July-June Cycle).
+\item year       - The calendar year of the report.
+\item month      - The month name of the report.
+\item category   - The age group category of the report (<25, 25-49, 50+).
+\item category2  - Additional category if available.
+\item element    - The data element (HPV, VIA or Pap Smear).
+\item source     - The source report (MOH 711 or MOH 745).
+\item value      - The number reported.
+}
 }
 \description{
 \code{get_cervical_treated()} retrieves cervical cancer precancerous treatment
@@ -39,8 +55,8 @@ data for a specified period from the KHIS API server using \code{\link[=.get_cer
 \examples{
 \dontshow{if (khis_has_cred()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # Download data from February 2023 to current date
-data <- get_cervical_treated(start_date = '2023-02-01')
-data
+treated <- get_cervical_treated(start_date = '2023-02-01')
+treated
 \dontshow{\}) # examplesIf}
 }
 \seealso{

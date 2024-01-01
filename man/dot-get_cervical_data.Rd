@@ -66,7 +66,6 @@ cacx_screening_ids <- c('VR7vdS7P0Gb', 'gQro1y7Rsbq', 'rFtB3keaVWm')
 
 # Download data from February 2023 to current date
 data <- .get_cervical_data(element_ids = cacx_screening_ids, start_data = '2023-02-01')
-data
 \dontshow{\}) # examplesIf}
 }
 \seealso{

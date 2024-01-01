@@ -25,12 +25,12 @@ server, including their IDs and names.
 \examples{
 \dontshow{if (khis_has_cred()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # Fetch the data element metadata for particular element id
-data <- get_data_elements_metadata(element_ids = c('htFuvGJRW1X'))
-data
+elements <- get_data_elements_metadata(element_ids = c('htFuvGJRW1X'))
+elements
 
 # Fetch all the data elements
-data <- get_data_elements_metadata()
-data
+elements <- get_data_elements_metadata()
+elements
 \dontshow{\}) # examplesIf}
 }
 \seealso{

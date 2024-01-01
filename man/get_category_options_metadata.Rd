@@ -22,7 +22,8 @@ A tibble containing the following columns:
 \examples{
 \dontshow{if (khis_has_cred()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # Fetch the category option metadata
-data <- get_category_options_metadata()
+categories <- get_category_options_metadata()
+categories
 \dontshow{\}) # examplesIf}
 }
 \seealso{

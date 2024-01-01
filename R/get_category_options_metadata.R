@@ -16,7 +16,8 @@
 #'
 #' @examplesIf khis_has_cred()
 #' # Fetch the category option metadata
-#' data <- get_category_options_metadata()
+#' categories <- get_category_options_metadata()
+#' categories
 
 get_category_options_metadata <- function(...) {
 x = categoryOptionCombos = name = category_id = category = NULL # due to NSE notes in R CMD check

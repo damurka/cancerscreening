@@ -29,7 +29,8 @@ KHIS API server.
 \examples{
 \dontshow{if (khis_has_cred()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # Fetch all the organisation units metadata
-data <- get_organisation_units_metadata()
+organisations <- get_organisation_units_metadata()
+organisations
 \dontshow{\}) # examplesIf}
 }
 \seealso{

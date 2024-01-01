@@ -50,9 +50,35 @@ library(cancerscreening)
 
 # Get cervical cancer screening target population by county
 target <- get_cervical_target_population(year = 2023, level = 'county')
+head(target)
+#> # A tibble: 6 × 2
+#>   county          target
+#>   <fct>            <dbl>
+#> 1 Baringo         12705.
+#> 2 Bomet           18680.
+#> 3 Bungoma         33151.
+#> 4 Busia           18221.
+#> 5 Elgeyo Marakwet  9093.
+#> 6 Embu            15342.
 
 # Download the cervical cancer screening data by county
 data <- get_cervical_screened('2022-07-01', end_date = '2022-12-31', level = 'county')
+data
+#> # A tibble: 3,081 × 10
+#>    period     value county    category category2 element month  year fiscal_year
+#>    <date>     <int> <chr>     <fct>    <fct>     <fct>   <ord> <dbl> <fct>      
+#>  1 2022-12-01    24 Tharaka … 25-49    Routine … VIA     Dece…  2022 2022/2023  
+#>  2 2022-11-01     2 Tharaka … 25-49    Routine … VIA     Nove…  2022 2022/2023  
+#>  3 2022-12-01     6 Makueni   <25      Routine … VIA     Dece…  2022 2022/2023  
+#>  4 2022-10-01     6 Tharaka … 25-49    Routine … VIA     Octo…  2022 2022/2023  
+#>  5 2022-10-01    31 Makueni   <25      Routine … VIA     Octo…  2022 2022/2023  
+#>  6 2022-11-01    20 Makueni   <25      Routine … VIA     Nove…  2022 2022/2023  
+#>  7 2022-09-01    10 Makueni   25-49    Initial … HPV     Sept…  2022 2022/2023  
+#>  8 2022-09-01     1 Kwale     <25      Initial … Pap Sm… Sept…  2022 2022/2023  
+#>  9 2022-12-01     1 Bungoma   25-49    <NA>      HPV     Dece…  2022 2022/2023  
+#> 10 2022-11-01     1 Bungoma   25-49    <NA>      HPV     Nove…  2022 2022/2023  
+#> # ℹ 3,071 more rows
+#> # ℹ 1 more variable: source <fct>
 
 # To learn more about the function, run the following command
 ?get_cervical_screened

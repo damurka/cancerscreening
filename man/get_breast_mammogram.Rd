@@ -31,6 +31,21 @@ get_breast_mammogram(
 }
 \value{
 A tibble containing data for mammograms conducted with the following columns:
+\itemize{
+\item kenya      - Optional if the level is Kenya.
+\item county     - Name of the county. Optional if the level is \code{county}, \code{subcounty}, \code{ward} or \code{facility}.
+\item subcounty  - Name of the subcounty. Optional if the level is \code{subcounty}, \code{ward} or \code{facility}.
+\item ward       - Name of the ward. Optional if the level is \code{ward} or \code{facility}.
+\item facility   - Name of the health facility. Optional if the level \code{facility}.
+\item period     - The month and year of the data.
+\item fiscal_year- The financial year of the report(July-June Cycle).
+\item year       - The calendar year of the report.
+\item month      - The month name of the report.
+\item category   - The age group category of the report (25-34, 35-39, 40-55, 56-74, or 75+).
+\item category2  - Additional category if available.
+\item element    - The data element.
+\item value      - The number reported.
+}
 }
 \description{
 \code{get_breast_mammogram()} retrieves data for mammograms conducted within a
@@ -40,8 +55,8 @@ specified period from the KHIS API server using \code{\link[=.get_breast_data]{.
 \dontshow{if (khis_has_cred()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 
 # Download data from February 2023 to current date
-data <- get_breast_mammogram(start_date = '2023-02-01')
-data
+mammogram_data <- get_breast_mammogram(start_date = '2023-02-01')
+mammogram_data
 \dontshow{\}) # examplesIf}
 }
 \seealso{

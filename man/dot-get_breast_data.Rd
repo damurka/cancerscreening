@@ -63,7 +63,6 @@ element_id = c('cXe64Yk0QMY', 'XEX93uLsAm2')
 
 # Download data from February 2023 to current date
 data <- .get_breast_data(element_ids = element_id, start_date = '2023-02-01')
-data
 \dontshow{\}) # examplesIf}
 }
 \seealso{

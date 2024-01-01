@@ -59,9 +59,11 @@ library(cancerscreening)
 
 # Get cervical cancer screening target population by county
 target <- get_cervical_target_population(year = 2023, level = 'county')
+head(target)
 
 # Download the cervical cancer screening data by county
 data <- get_cervical_screened('2022-07-01', end_date = '2022-12-31', level = 'county')
+data
 
 # To learn more about the function, run the following command
 ?get_cervical_screened

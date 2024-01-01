@@ -37,7 +37,6 @@
 #'
 #' # Download data from February 2023 to current date
 #' data <- .get_cervical_data(element_ids = cacx_screening_ids, start_data = '2023-02-01')
-#' data
 
 .get_cervical_data <- function(element_ids,
                               start_date,

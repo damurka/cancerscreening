@@ -24,7 +24,8 @@
 #'
 #' @examplesIf khis_has_cred()
 #' # Fetch all the organisation units metadata
-#' data <- get_organisation_units_metadata()
+#' organisations <- get_organisation_units_metadata()
+#' organisations
 
 get_organisation_units_metadata <- function(...) {
   x = path = facility_id = name = county = subcounty = ward = no_data = community_id = NULL # due to NSE notes in R CMD check
