@@ -25,11 +25,24 @@ khis_cred <- function(config_path = NULL,
                       username = NULL,
                       password = NULL) {
   if (is.null(config_path) && is.null(username)) {
-    stop("Pass credential through config path or username")
+    cancerscreening_abort(
+      message = c(
+        "x" = "Missing credentials",
+        "i" = "Please provide either {.field config_path} or {.field username}."
+      ),
+      class = "cancerscreening_missing_credentials"
+    )
   }
 
   if (!(is.null(config_path)) && !(is.null(username))) {
-    stop("If using config_path then username can not be passed in directly")
+    cancerscreening_abort(
+      message = c(
+        "x" = "{.field config_path} and {.field username} cannot be provided together.",
+        "i" = "Remove one and try again!"
+      ),
+      class = "cancerscreening_multiple_credentials",
+      config_path = config_path
+    )
   }
 
   if (!is.null(config_path)) {
@@ -39,7 +52,13 @@ khis_cred <- function(config_path = NULL,
     username <- credentials[["username"]]
 
     if (is.null(password) || nchar(password) == 0 || is.null(username) || nchar(password) == 0) {
-      stop('Configuration must contain username and password')
+      cancerscreening_abort(
+        message = c(
+          "x" = "Missing credentials",
+          "i" = "Please provide username and password to continue"
+        ),
+        class = "cancerscreening_missing_credentials"
+      )
     }
   } else {
     password <- ifelse(is.null(password), "", password)
@@ -70,6 +89,8 @@ khis_cred <- function(config_path = NULL,
   .auth$set_username(username)
   .auth$set_password(password)
 
+  cancerscreening_bullets(c("i" = 'The credentials have been set.'))
+
   invisible()
 }
 
@@ -89,9 +110,24 @@ khis_cred <- function(config_path = NULL,
       return(data[['credentials']])
     }
   }, error = function(e) {
-    stop('Invalid config_path.')
+    cancerscreening_abort(
+      message = c(
+        "x" = "Invalid {.field config_path} was provided.",
+        "i" = "Check the {.field config_path} and try again!"
+      ),
+      class = "cancerscreening_invalid_config_path",
+      config_path = config_path
+    )
   })
-  stop('config_path is not in the correct format')
+
+  cancerscreening_abort(
+    message = c(
+      "x" = "Invalid {.field config_path} was provided.",
+      "i" = "Please check the {.field config_path} format and try again"
+    ),
+    class = "cancerscreening_invalid_config_path",
+    config_path = config_path
+  )
 }
 
 #' Authenticate Request with HTTP Basic Authentication
@@ -104,17 +140,21 @@ khis_cred <- function(config_path = NULL,
 #'
 #' @noRd
 #'
-#' @examplesIf khis_has_cred()
+#' @examples
 #' req <- request("http://example.com") %>%
 #'   req_auth_khis_basic("damurka", "PASSWORD")
-#' req
 #'
 #' @seealso [httr2]
 
 req_auth_khis_basic <- function(req) {
   if (!khis_has_cred()) {
-    #khis_cred()
-    stop("You have not set KHIS credential. Call khis_cred to set.")
+    cancerscreening_abort(
+      message = c(
+        "x" = "Missing credentials",
+        "i" = "Please set the credentials by calling {.field khis_cred()}"
+      ),
+      class = "cancerscreening_missing_credentials"
+    )
   }
   httr2::req_auth_basic(req, .auth$username, .auth$password)
 }
@@ -172,19 +212,19 @@ khis_cred_internal <- function(account = c('docs', 'testing')) {
   can_decrypt <- gargle::secret_has_key('CANCERSCREENING_KEY')
   online <- !is.null(curl::nslookup('hiskenya.org', error = FALSE))
   if (!can_decrypt || !online) {
-    cli::cli_abort(message = c(
-      "Auth unsuccessful:",
-      if (!can_decrypt) {
-        c("x" = "Can't decrypt the {.field {account}} service account token.")
-      },
-      if (!online) {
-        c("x" = "We don't appear to be online. Or maybe the Drive API is down?")
-      }
-    ),
-    class = "cancerscreening_cred_internal_error",
-    can_decrypt = can_decrypt,
-    online = online,
-    .envir = parent.frame())
+    cancerscreening_abort(
+      message = c(
+        "Set cred unsuccessful:",
+        if (!can_decrypt) {
+          c("x" = "Can't decrypt the {.field {account}} credentials.")
+        },
+        if (!online) {
+          c("x" = "We don't appear to be online. Or maybe the KHIS is down?")
+        }
+      ),
+      class = "cancerscreening_cred_internal_error",
+      can_decrypt = can_decrypt, online = online
+    )
   }
 
   filename <- str_glue("cancerscreening-{account}.json")
@@ -194,6 +234,7 @@ khis_cred_internal <- function(account = c('docs', 'testing')) {
       'CANCERSCREENING_KEY'
     )
   )
+  print(khis_username())
   invisible(TRUE)
 }
 

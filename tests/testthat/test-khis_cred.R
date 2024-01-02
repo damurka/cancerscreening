@@ -1,29 +1,34 @@
 test_that("khis_cred woks correctly", {
 
-  expect_error(khis_cred(), "Pass credential through config path or username", fixed = TRUE)
+  expect_error(khis_cred(), class = 'cancerscreening_missing_credentials')
 
-  expect_error(khis_cred(config_path = 'creds.json', username = 'username'), "If using config_path then username can not be passed in directly", fixed = TRUE)
+  expect_error(
+    khis_cred(config_path = 'creds.json', username = 'username'),
+    class = 'cancerscreening_multiple_credentials'
+  )
 
-  expect_error(khis_cred(config_path ='does-not-exist.json'), "Invalid config_path.", fixed = TRUE)
+  expect_error(
+    khis_cred(config_path ='does-not-exist.json'),
+    class = 'cancerscreening_invalid_config_path'
+  )
 
   expect_error(khis_cred(
     config_path = system.file("extdata", "empty_cred_conf.json", package = "cancerscreening")),
-    'config_path is not in the correct format',
-    fixed = TRUE)
+    class = 'cancerscreening_invalid_config_path'
+  )
 
-  expect_error(khis_cred(
-    config_path = system.file("extdata", "blank_cred_conf.json", package = "cancerscreening")),
-    "Configuration must contain username and password",
-    fixed = TRUE)
+  expect_error(
+    khis_cred(config_path = system.file("extdata", "blank_cred_conf.json", package = "cancerscreening")),
+    class = 'cancerscreening_missing_credentials'
+  )
 
   expect_error(
     khis_cred(config_path = '{ "credentials": {}}'),
-    "Configuration must contain username and password",
-    fixed = TRUE)
+    class = 'cancerscreening_missing_credentials'
+  )
 
   expect_no_error(
-    khis_cred(
-      config_path = system.file("extdata", "valid_cred_conf.json", package = "cancerscreening"))
+    khis_cred(config_path = system.file("extdata", "valid_cred_conf.json", package = "cancerscreening"))
   )
 
   expect_true(khis_has_cred())
@@ -47,13 +52,12 @@ test_that("req_auth_khis_basic works correctly", {
 
   expect_error(
     httr2::request('https://example.com') %>% req_auth_khis_basic(),
-    'You have not set KHIS credential. Call khis_cred to set.',
-    fixed = TRUE)
+    class = 'cancerscreening_missing_credentials'
+  )
 
   khis_cred(config_path = system.file("extdata", "valid_cred_conf.json", package = "cancerscreening"))
 
-  expect_no_error(
-    httr2::request('https://example.com') %>% req_auth_khis_basic())
+  expect_no_error(httr2::request('https://example.com') %>% req_auth_khis_basic())
 
   khis_cred_clear()
 })

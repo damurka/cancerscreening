@@ -17,6 +17,14 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{r eval = !googledrive::drive_has_token(), echo = FALSE, comment = NA}
+cancerscreening:::cancerscreening_bullets(c(
+  "Code chunks will not be evaluated, because:",
+  strsplit(auth_success$message, split = "\n")[[1]]
+))
+cancerscreening::khis_cred_clear()
+```
+
 # cancerscreening <a href="https://cancerscreening.damurka.com"><img src="man/figures/logo.png" align="right" height="139" alt="cancerscreening website" /></a>
 
 <!-- badges: start -->

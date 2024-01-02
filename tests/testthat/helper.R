@@ -1,6 +1,6 @@
 auth_sucess <- tryCatch(
   khis_cred_testing(),
-  cancerscreening_internal_error = function(e) NULL
+  cancerscreening_cred_internal_error = function(e) NULL
 )
 if(!isTRUE(auth_sucess)) {
   khis_cred_clear()
