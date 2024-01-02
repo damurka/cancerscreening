@@ -57,7 +57,9 @@ get_analytics <- function(element_ids,
 
   stopifnot(length(element_ids) > 0)
   stopifnot(!is.na(start_date), !is.na(as.Date(start_date, '%Y-%m-%d')))
-  stopifnot(!is.na(as.Date(end_date, '%Y-%m-%d')))
+  if (!is.null(end_date) && !is.na(as.Date(start_date, '%Y-%m-%d'))) {
+    stop('end_date is in an icorrect format')
+  }
 
   level <- match.arg(level)
 

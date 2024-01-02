@@ -5,12 +5,19 @@ on:
     branches: [main, master]
   pull_request:
     branches: [main, master]
+  schedule:
+    # * is a special character in YAML so we have to quote this string
+    # 2am Pacific = 10am UTC
+    # https://crontab.guru is your friend
+    - cron:  '0 0 * * *'
 
 name: test-coverage
 
 jobs:
   test-coverage:
     runs-on: ubuntu-latest
+    if: "github.event_name == 'schedule' || contains(github.event.head_commit.message, '[covr]')"
+
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       CANCERSCREENING_KEY: ${{ secrets.CANCERSCREENING_KEY }}

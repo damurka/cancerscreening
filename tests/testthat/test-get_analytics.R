@@ -10,6 +10,10 @@ test_that("get_analytics works correctly", {
                              start_date = '1234'), "start_date")
 
   expect_error(get_analytics(element_ids = c('el_id'),
+                             start_date = '2022-01-01',
+                             end_date = '1234'), "end_date")
+
+  expect_error(get_analytics(element_ids = c('el_id'),
                              start_date = '2020-01-01',
                              level = 'other'), "kenya")
 

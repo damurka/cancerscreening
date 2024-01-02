@@ -33,9 +33,11 @@
 
 get_cervical_target_population <- function(year, level = c('kenya', 'county', 'subcounty')) {
 
+  stopifnot(is.numeric(year))
+
   year <- case_when(
-    year <= 2025 ~ 2025,
-    year > 2025 ~ 2030,
+    year <= 2025 ~ 2025L,
+    year > 2025 ~ 2030L
   )
 
   population <- .get_filtered_population(year, 25, 50, 0.7/5, level)
@@ -136,6 +138,8 @@ get_breast_mammogram_target_population <- function(year, level = c('kenya', 'cou
 
 .get_breast_target_population <- function(year, min_age, max_age = 75, level = c('kenya', 'county', 'subcounty')) {
 
+  stopifnot(is.numeric(year))
+
   year <- case_when(
     year < 2021 ~ 2021,
     year > 2030 ~ 2030,
@@ -169,17 +173,23 @@ get_breast_mammogram_target_population <- function(year, level = c('kenya', 'cou
 #'
 #' @noRd
 
-.get_filtered_population <- function(year, min_age, max_age, modifier, level = c('kenya', 'county', 'subcounty')) {
+.get_filtered_population <- function(year, min_age, max_age, modifier, level = c('kenya', 'county', 'subcounty'), pop_sex = c('female', 'male', 'both')) {
   age = sex = NULL # due to NSE notes in R CMD check
   level <- match.arg(level)
-
   level <- switch (level,
                    kenya = c('kenya'),
                    county = c('county'),
                    subcounty = c('county', 'subcounty'))
 
+  pop_sex <- match.arg(pop_sex)
+  pop_sex <- switch (pop_sex,
+    female = c('female'),
+    male = c('male'),
+    both = c('female', 'male')
+  )
+
   population <- population_data %>%
-    filter(sex == 'female', age >= min_age, age < max_age)%>%
+    filter(sex %in% pop_sex, age >= min_age, age < max_age)%>%
     group_by(across(any_of(level))) %>%
     summarise(
       target = .population_growth(sum(population, na.rm = TRUE), year) * modifier
