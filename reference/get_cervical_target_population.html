@@ -104,29 +104,29 @@ counties and the national level are calculated based on population growth</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Get the country projection for cervical cancer screening for the year 2024</span></span></span>
-<span class="r-in"><span><span class="va">target_population</span> <span class="op">&lt;-</span> <span class="fu"><a href="get_breast_mammogram_target_population.html">get_breast_mammogram_target_population</a></span><span class="op">(</span><span class="fl">2024</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">target_population</span> <span class="op">&lt;-</span> <span class="fu">get_cervical_target_population</span><span class="op">(</span><span class="fl">2024</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">target_population</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 1</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    target</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> <span style="text-decoration: underline;">697</span>245.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     target</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 1<span style="text-decoration: underline;">112</span>735.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the projection for cervical cancer screening for 2022 by county</span></span></span>
-<span class="r-in"><span><span class="va">target_population</span> <span class="op">&lt;-</span> <span class="fu"><a href="get_breast_mammogram_target_population.html">get_breast_mammogram_target_population</a></span><span class="op">(</span><span class="fl">2022</span>, level <span class="op">=</span> <span class="st">'county'</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">target_population</span> <span class="op">&lt;-</span> <span class="fu">get_cervical_target_population</span><span class="op">(</span><span class="fl">2022</span>, level <span class="op">=</span> <span class="st">'county'</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">target_population</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 47 × 2</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    county          target</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Baringo          <span style="text-decoration: underline;">4</span>305.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Bomet            <span style="text-decoration: underline;">5</span>815.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Bungoma         <span style="text-decoration: underline;">11</span>814.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Busia            <span style="text-decoration: underline;">6</span>928.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Elgeyo Marakwet  <span style="text-decoration: underline;">3</span>140.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Embu             <span style="text-decoration: underline;">6</span>421.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Garissa          <span style="text-decoration: underline;">3</span>493.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Homa Bay         <span style="text-decoration: underline;">8</span>252.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Isiolo           <span style="text-decoration: underline;">1</span>399.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Kajiado          <span style="text-decoration: underline;">6</span>754.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Baringo         <span style="text-decoration: underline;">12</span>705.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Bomet           <span style="text-decoration: underline;">18</span>680.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Bungoma         <span style="text-decoration: underline;">33</span>151.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Busia           <span style="text-decoration: underline;">18</span>221.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Elgeyo Marakwet  <span style="text-decoration: underline;">9</span>093.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Embu            <span style="text-decoration: underline;">15</span>342.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Garissa         <span style="text-decoration: underline;">15</span>238.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Homa Bay        <span style="text-decoration: underline;">23</span>316.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Isiolo           <span style="text-decoration: underline;">5</span>062.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Kajiado         <span style="text-decoration: underline;">29</span>055.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 37 more rows</span></span>
 </code></pre></div>
     </div>
