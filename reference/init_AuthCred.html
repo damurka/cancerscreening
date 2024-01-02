@@ -28,6 +28,9 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/cervical-screening-coverage.html">Cervical Cancer Screening Coverage</a>
+    <div class="dropdown-divider"></div>
+    <h6 class="dropdown-header" data-toc-skip>Package configuration</h6>
+    <a class="dropdown-item" href="../articles/set-your-credentials.html">Set your credentials</a>
   </div>
 </li>
 <li class="nav-item">
@@ -85,23 +88,9 @@ populated indirectly if stored using the keyring</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">init_AuthCred</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  username <span class="op">=</span> <span class="st">'khis_username'</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;AuthCred&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Public:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     clear_password: function () </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     clone: function (deep = FALSE) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     config_path: NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     get_password: function () </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     get_username: function () </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     has_cred: function () </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     initialize: function (username = NA_character_, password = NULL) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     password: NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     set_password: function (value) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     set_username: function (value) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     username: khis_username</span>
-<span class="r-in"><span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu">init_AuthCred</span><span class="op">(</span>username <span class="op">=</span> <span class="st">'khis_username'</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

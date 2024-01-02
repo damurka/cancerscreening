@@ -30,6 +30,9 @@ for a specified period from the KHIS API server using the get_analytics()."><met
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/cervical-screening-coverage.html">Cervical Cancer Screening Coverage</a>
+    <div class="dropdown-divider"></div>
+    <h6 class="dropdown-header" data-toc-skip>Package configuration</h6>
+    <a class="dropdown-item" href="../articles/set-your-credentials.html">Set your credentials</a>
   </div>
 </li>
 <li class="nav-item">
@@ -136,15 +139,16 @@ following columns:</p><ul><li><p>kenya      - Optional if the level is Kenya.</p
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## Cervical Cancer Screening</span></span></span>
-<span class="r-in"><span><span class="co"># VR7vdS7P0Gb = Number of clients who received HPV Test</span></span></span>
-<span class="r-in"><span><span class="co"># gQro1y7Rsbq = Number of clients who received Pap smear</span></span></span>
-<span class="r-in"><span><span class="co"># rFtB3keaVWm = Number of clients who received VIA or VIA/ VILI Screening</span></span></span>
-<span class="r-in"><span><span class="va">cacx_screening_ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'VR7vdS7P0Gb'</span>, <span class="st">'gQro1y7Rsbq'</span>, <span class="st">'rFtB3keaVWm'</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="co">## Cervical Cancer Screening</span></span></span>
+<span class="r-in"><span>  <span class="co"># VR7vdS7P0Gb = Number of clients who received HPV Test</span></span></span>
+<span class="r-in"><span>  <span class="co"># gQro1y7Rsbq = Number of clients who received Pap smear</span></span></span>
+<span class="r-in"><span>  <span class="co"># rFtB3keaVWm = Number of clients who received VIA or VIA/ VILI Screening</span></span></span>
+<span class="r-in"><span>  <span class="va">cacx_screening_ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'VR7vdS7P0Gb'</span>, <span class="st">'gQro1y7Rsbq'</span>, <span class="st">'rFtB3keaVWm'</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Download data from February 2023 to current date</span></span></span>
-<span class="r-in"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">.get_cervical_data</span><span class="op">(</span>element_ids <span class="op">=</span> <span class="va">cacx_screening_ids</span>, start_data <span class="op">=</span> <span class="st">'2023-02-01'</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in .get_cervical_data(element_ids = cacx_screening_ids, start_data = "2023-02-01"):</span> could not find function ".get_cervical_data"</span>
+<span class="r-in"><span>  <span class="co"># Download data from February 2023 to current date</span></span></span>
+<span class="r-in"><span>  <span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">.get_cervical_data</span><span class="op">(</span>element_ids <span class="op">=</span> <span class="va">cacx_screening_ids</span>, start_data <span class="op">=</span> <span class="st">'2023-02-01'</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

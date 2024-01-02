@@ -22,6 +22,9 @@
     <loc>https://cancerscreening.damurka.com/articles/index.html</loc>
   </url>
   <url>
+    <loc>https://cancerscreening.damurka.com/articles/set-your-credentials.html</loc>
+  </url>
+  <url>
     <loc>https://cancerscreening.damurka.com/authors.html</loc>
   </url>
   <url>
@@ -34,6 +37,12 @@
     <loc>https://cancerscreening.damurka.com/reference/AuthCred-class.html</loc>
   </url>
   <url>
+    <loc>https://cancerscreening.damurka.com/reference/cancerscreening-configuration.html</loc>
+  </url>
+  <url>
+    <loc>https://cancerscreening.damurka.com/reference/cancerscreening-package.html</loc>
+  </url>
+  <url>
     <loc>https://cancerscreening.damurka.com/reference/dot-api_get.html</loc>
   </url>
   <url>
@@ -41,12 +50,6 @@
   </url>
   <url>
     <loc>https://cancerscreening.damurka.com/reference/dot-get_cervical_data.html</loc>
-  </url>
-  <url>
-    <loc>https://cancerscreening.damurka.com/reference/facility_ownership.html</loc>
-  </url>
-  <url>
-    <loc>https://cancerscreening.damurka.com/reference/facility_type.html</loc>
   </url>
   <url>
     <loc>https://cancerscreening.damurka.com/reference/get_analytics.html</loc>
@@ -94,9 +97,6 @@
     <loc>https://cancerscreening.damurka.com/reference/init_AuthCred.html</loc>
   </url>
   <url>
-    <loc>https://cancerscreening.damurka.com/reference/keph_level.html</loc>
-  </url>
-  <url>
     <loc>https://cancerscreening.damurka.com/reference/khis_cred.html</loc>
   </url>
   <url>
@@ -118,7 +118,7 @@
     <loc>https://cancerscreening.damurka.com/reference/khis_username.html</loc>
   </url>
   <url>
-    <loc>https://cancerscreening.damurka.com/reference/population_data.html</loc>
+    <loc>https://cancerscreening.damurka.com/reference/pipe.html</loc>
   </url>
   <url>
     <loc>https://cancerscreening.damurka.com/reference/release_bullets.html</loc>
