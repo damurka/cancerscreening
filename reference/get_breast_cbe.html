@@ -131,11 +131,21 @@ period from the KHIS API server using <code><a href="dot-get_breast_data.html">.
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Download data from February 2023 to current date</span></span></span>
 <span class="r-in"><span><span class="va">cbe_data</span> <span class="op">&lt;-</span> <span class="fu">get_breast_cbe</span><span class="op">(</span>start_date <span class="op">=</span> <span class="st">'2023-02-01'</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in req_perform(., verbosity = verbosity):</span> Failed to perform HTTP request.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Caused by error in `curl::curl_fetch_memory()`:</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Failed to connect to hiskenya.org port 443 after 96 ms: Connection refused</span>
 <span class="r-in"><span><span class="va">cbe_data</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'cbe_data' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 104 × 8</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    period     value kenya category element  month     year fiscal_year</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2023-11-01    27 Kenya 56-74    Abnormal November  <span style="text-decoration: underline;">2</span>023 2023/2024  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2023-10-01    52 Kenya 56-74    Abnormal October   <span style="text-decoration: underline;">2</span>023 2023/2024  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2023-10-01   307 Kenya 75+      Normal   October   <span style="text-decoration: underline;">2</span>023 2023/2024  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2023-11-01   162 Kenya 75+      Normal   November  <span style="text-decoration: underline;">2</span>023 2023/2024  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2023-05-01  <span style="text-decoration: underline;">1</span>320 Kenya 56-74    Normal   May       <span style="text-decoration: underline;">2</span>023 2022/2023  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2023-04-01  <span style="text-decoration: underline;">1</span>183 Kenya 56-74    Normal   April     <span style="text-decoration: underline;">2</span>023 2022/2023  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2023-07-01  <span style="text-decoration: underline;">1</span>344 Kenya 56-74    Normal   July      <span style="text-decoration: underline;">2</span>023 2023/2024  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2023-06-01  <span style="text-decoration: underline;">1</span>449 Kenya 56-74    Normal   June      <span style="text-decoration: underline;">2</span>023 2022/2023  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2023-03-01  <span style="text-decoration: underline;">1</span>466 Kenya 56-74    Normal   March     <span style="text-decoration: underline;">2</span>023 2022/2023  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2023-02-01  <span style="text-decoration: underline;">1</span>876 Kenya 56-74    Normal   February  <span style="text-decoration: underline;">2</span>023 2022/2023  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 94 more rows</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

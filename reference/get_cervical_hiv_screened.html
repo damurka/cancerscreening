@@ -133,11 +133,22 @@ with the following columns:</p><ul><li><p>kenya      - Optional if the level is 
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Download data from February 2023 to current date</span></span></span>
 <span class="r-in"><span><span class="va">screened</span> <span class="op">&lt;-</span> <span class="fu">get_cervical_hiv_screened</span><span class="op">(</span>start_date <span class="op">=</span> <span class="st">'2023-02-01'</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in req_perform(., verbosity = verbosity):</span> Failed to perform HTTP request.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Caused by error in `curl::curl_fetch_memory()`:</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Failed to connect to hiskenya.org port 443 after 98 ms: Connection refused</span>
 <span class="r-in"><span><span class="va">screened</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'screened' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 206 × 10</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    period     value kenya category category2     element month  year fiscal_year</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2023-03-01    26 Kenya &lt;25      Post-treatme… Screen… March  <span style="text-decoration: underline;">2</span>023 2022/2023  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2023-02-01    15 Kenya &lt;25      Post-treatme… Screen… Febr…  <span style="text-decoration: underline;">2</span>023 2022/2023  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2023-09-01     6 Kenya &lt;25      Post-treatme… Screen… Sept…  <span style="text-decoration: underline;">2</span>023 2023/2024  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2023-08-01    15 Kenya &lt;25      Post-treatme… Screen… Augu…  <span style="text-decoration: underline;">2</span>023 2023/2024  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2023-05-01    14 Kenya &lt;25      Post-treatme… Screen… May    <span style="text-decoration: underline;">2</span>023 2022/2023  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2023-09-01     1 Kenya &lt;25      Post-treatme… Positi… Sept…  <span style="text-decoration: underline;">2</span>023 2023/2024  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2023-04-01     7 Kenya &lt;25      Post-treatme… Screen… April  <span style="text-decoration: underline;">2</span>023 2022/2023  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2023-08-01     2 Kenya &lt;25      Post-treatme… Positi… Augu…  <span style="text-decoration: underline;">2</span>023 2023/2024  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2023-07-01    12 Kenya &lt;25      Post-treatme… Screen… July   <span style="text-decoration: underline;">2</span>023 2023/2024  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2023-07-01     1 Kenya &lt;25      Post-treatme… Positi… July   <span style="text-decoration: underline;">2</span>023 2023/2024  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 196 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: source &lt;fct&gt;</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

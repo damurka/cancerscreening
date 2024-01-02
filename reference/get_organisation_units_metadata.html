@@ -94,11 +94,22 @@ KHIS API server.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Fetch all the organisation units metadata</span></span></span>
 <span class="r-in"><span><span class="va">organisations</span> <span class="op">&lt;-</span> <span class="fu">get_organisation_units_metadata</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in req_perform(., verbosity = verbosity):</span> Failed to perform HTTP request.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Caused by error in `curl::curl_fetch_memory()`:</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Failed to connect to hiskenya.org port 443 after 98 ms: Connection refused</span>
 <span class="r-in"><span><span class="va">organisations</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'organisations' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 15,711 × 10</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    facility  kenya_id county_id subcounty_id ward_id facility_id ward  subcounty</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 10 Engin… HfVjCur… xuFdFy6t… pF6qPMIlHte  DpYpJ6… Vh676wb3d16 Nany… Laikipia…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 12 Engin… HfVjCur… qKzosKQP… YZAZ1a9MIvX  A7a1GZ… gPEGZGkfDWa Kame… Thika To…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 360 Heal… HfVjCur… wsBsC6gj… sr8WEz03EnP  FydnlJ… r96GaeVvrde Kadz… Nyali    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 3Keys Co… HfVjCur… wsBsC6gj… C1hO6wNOgrH  sHr1V6… lR6W5tK8hAq Junda Kisauni  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 3KR Heal… HfVjCur… ob6SxuRc… FBJ9Y11esHS  sJ50zp… CgMmkS9jWI6 Mene… Nakuru E…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 3rd Park… HfVjCur… jkG3zaih… f1T0Ltob8VQ  QhDd2L… a70eeTvT6tG Park… Westlands</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 48 Taqwa… HfVjCur… jkG3zaih… aDp1odOWYC1  Nt7PPe… Fc0JkHQA1og Imar… Embakasi…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 78 Tank … HfVjCur… bzOfj0iw… I2LYLqKU6AW  rIdiIp… MgMyK9aTJ2C Wabe… Isiolo   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 7KR Mrs … HfVjCur… jkG3zaih… aTGYlhEw2Xx  oFPmL4… kMvyfZaFoq8 Mugu… Langata  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 87 Commu… HfVjCur… jkG3zaih… sqNWYDHZZ6W  jaQjWq… MwFhJW2w7yH Uthi… Dagorett…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 15,701 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: county &lt;chr&gt;, kenya &lt;chr&gt;</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
