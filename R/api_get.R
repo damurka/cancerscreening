@@ -19,11 +19,11 @@
 #'   username. Uses HTTP Basic Authentication with credentials (consider using
 #'   environment variables or a configuration file for security).
 #'
-#' @examplesIf khis_has_cred()
-#' # Retrieve analytics data for a specific period:
-#' analytics_data <- .api_get("analytics", startDate = "2023-01-01", endDate = "2023-02-28")
-#' analytics_data
-#'
+#' @examples
+#' \dontrun{
+#'   # Retrieve analytics data for a specific period:
+#'   analytics_data <- .api_get("analytics", startDate = "2023-01-01", endDate = "2023-02-28")
+#' }
 #' @keywords internal
 
 .api_get <- function(url_path,

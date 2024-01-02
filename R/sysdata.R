@@ -17,8 +17,7 @@
 #' @source Kenya Health Information System <https://hiskenya.org>
 #'
 #' @keywords internal
-
-"facility_ownership"
+#' "facility_ownership"
 
 #' Kenya essential package for Health (KEPH) Level Metadata
 #'
@@ -42,7 +41,7 @@
 #' @source Kenya Health Information System <https://hiskenya.org>
 #'
 #' @keywords internal
-"keph_level"
+#' "keph_level"
 
 #' Facility Type Metadata
 #'
@@ -67,7 +66,7 @@
 #' @source Kenya Health Information System <https://hiskenya.org>
 #'
 #' @keywords internal
-"facility_type"
+#' "facility_type"
 
 #' Population Data from KNBS Census
 #'
@@ -86,4 +85,4 @@
 #' <https://www.knbs.or.ke/download/2019-kenya-population-and-housing-census-volume-iii-distribution-of-population-by-age-sex-and-administrative-units/>
 #'
 #' @keywords internal
-"population_data"
+#' "population_data"

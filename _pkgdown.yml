@@ -11,11 +11,16 @@ template:
     btn-border-radius: 0.25rem
 
 articles:
-  - title: Screening coverage
+  - title: Common Uses
     navbar: ~
     contents:
     - cancerscreening
     - articles/cervical-screening-coverage
+
+  - title: Set your credentials
+    navbar: Package configuration
+    contents:
+    - articles/set-your-credentials
 
 reference:
   - title: "KHIS Metadata"
@@ -59,3 +64,6 @@ reference:
       Download data from KHIS analytics table
     contents:
       - get_analytics
+  - title: "Package level configuration"
+    contents:
+      - cancerscreening-configuration

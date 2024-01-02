@@ -35,10 +35,9 @@ username. Uses HTTP Basic Authentication with credentials (consider using
 environment variables or a configuration file for security).
 }
 \examples{
-\dontshow{if (khis_has_cred()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-# Retrieve analytics data for a specific period:
-analytics_data <- .api_get("analytics", startDate = "2023-01-01", endDate = "2023-02-28")
-analytics_data
-\dontshow{\}) # examplesIf}
+\dontrun{
+  # Retrieve analytics data for a specific period:
+  analytics_data <- .api_get("analytics", startDate = "2023-01-01", endDate = "2023-02-28")
+}
 }
 \keyword{internal}

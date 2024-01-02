@@ -1,4 +1,3 @@
-
 #' Create an AuthCred
 #'
 #' Constructor function for objects of class [AuthCred].
@@ -9,11 +8,12 @@
 #'
 #' @return An object of class [AuthCred]
 #' @keywords internal
-#' @examples
-#' init_AuthCred(
-#'   username = 'khis_username'
-#' )
 #'
+#' @examples
+#' \dontrun{
+#'   init_AuthCred(username = 'khis_username')
+#' }
+
 init_AuthCred <- function(username = NA_character_,
                           password = NULL) {
   AuthCred$new(

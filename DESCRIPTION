@@ -21,23 +21,25 @@ Imports:
     cli,
     curl,
     dplyr,
-    tidyr,
-    stringr,
+    gargle,
     httr2,
-    lubridate,
-    rlang,
     jsonlite,
     keyring,
-    R6,
+    lubridate,
+    magrittr,
+    rlang,
+    stringr,
     tibble,
-    gargle
+    tidyr
 Suggests:
-    testthat (>= 3.0.0),
-    rmarkdown,
     knitr,
+    rmarkdown,
+    testthat (>= 3.1.7),
     spelling
+VignetteBuilder: 
+    knitr
 Config/testthat/edition: 3
 Encoding: UTF-8
+Language: en-GB
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
-VignetteBuilder: knitr

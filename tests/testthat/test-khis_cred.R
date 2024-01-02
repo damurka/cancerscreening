@@ -46,13 +46,14 @@ test_that("khis_cred woks correctly", {
 test_that("req_auth_khis_basic works correctly", {
 
   expect_error(
-     req_auth_khis_basic(httr2::request('https://example.com')),
+    httr2::request('https://example.com') %>% req_auth_khis_basic(),
     'You have not set KHIS credential. Call khis_cred to set.',
     fixed = TRUE)
 
   khis_cred(config_path = system.file("extdata", "valid_cred_conf.json", package = "cancerscreening"))
 
-  expect_no_error(req_auth_khis_basic(httr2::request('https://example.com')))
+  expect_no_error(
+    httr2::request('https://example.com') %>% req_auth_khis_basic())
 
   khis_cred_clear()
 })

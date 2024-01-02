@@ -57,16 +57,16 @@ following columns:
 for a specified period from the KHIS API server using the \code{\link[=get_analytics]{get_analytics()}}.
 }
 \examples{
-\dontshow{if (khis_has_cred()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-## Cervical Cancer Screening
-# VR7vdS7P0Gb = Number of clients who received HPV Test
-# gQro1y7Rsbq = Number of clients who received Pap smear
-# rFtB3keaVWm = Number of clients who received VIA or VIA/ VILI Screening
-cacx_screening_ids <- c('VR7vdS7P0Gb', 'gQro1y7Rsbq', 'rFtB3keaVWm')
+\dontrun{
+  ## Cervical Cancer Screening
+  # VR7vdS7P0Gb = Number of clients who received HPV Test
+  # gQro1y7Rsbq = Number of clients who received Pap smear
+  # rFtB3keaVWm = Number of clients who received VIA or VIA/ VILI Screening
+  cacx_screening_ids <- c('VR7vdS7P0Gb', 'gQro1y7Rsbq', 'rFtB3keaVWm')
 
-# Download data from February 2023 to current date
-data <- .get_cervical_data(element_ids = cacx_screening_ids, start_data = '2023-02-01')
-\dontshow{\}) # examplesIf}
+  # Download data from February 2023 to current date
+  data <- .get_cervical_data(element_ids = cacx_screening_ids, start_data = '2023-02-01')
+}
 }
 \seealso{
 \code{\link[=get_analytics]{get_analytics()}} for retrieving cervical cancer screening data

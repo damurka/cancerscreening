@@ -19,9 +19,8 @@ An object of class \link{AuthCred}
 Constructor function for objects of class \link{AuthCred}.
 }
 \examples{
-init_AuthCred(
-  username = 'khis_username'
-)
-
+\dontrun{
+  init_AuthCred(username = 'khis_username')
+}
 }
 \keyword{internal}

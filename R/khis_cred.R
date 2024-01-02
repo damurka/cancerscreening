@@ -165,13 +165,11 @@ khis_username <- function() {
 #'
 #' @param account The environment to provide credentials. `"docs"` or `"testing"`
 #'
-#' @importFrom gargle secret_has_key
-#'
 #' @keywords internal
 
 khis_cred_internal <- function(account = c('docs', 'testing')) {
   account <- match.arg(account)
-  can_decrypt <- secret_has_key('CANCERSCREENING_KEY')
+  can_decrypt <- gargle::secret_has_key('CANCERSCREENING_KEY')
   online <- !is.null(curl::nslookup('hiskenya.org', error = FALSE))
   if (!can_decrypt || !online) {
     cli::cli_abort(message = c(
