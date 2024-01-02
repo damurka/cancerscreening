@@ -208,6 +208,7 @@ khis_cred_docs <- function() {
 #' Set Credentials for Testing Environment
 #'
 #' @keywords internal
+
 khis_cred_testing <- function() {
   khis_cred_internal('testing')
 }

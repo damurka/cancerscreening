@@ -13,4 +13,4 @@ Please see the cancerscreening website for full documentation:
   
 In addition to function-specific help, there are several articles which are indexed here:
 
-  * [Article index](cancerscreening.damurka.com/articles/index.html)
+  * [Article index](https://cancerscreening.damurka.com/articles/index.html)
