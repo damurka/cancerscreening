@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      CANCERSCREENING_KEY: ${{ secrets.CANCERSCREENING_KEY }}
 
     steps:
       - uses: actions/checkout@v3
