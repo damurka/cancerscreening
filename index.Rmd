@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r eval = !googledrive::drive_has_token(), echo = FALSE, comment = NA}
+```{r eval = !cancerscreening::khis_has_cred(), echo = FALSE, comment = NA}
 cancerscreening:::cancerscreening_bullets(c(
   "Code chunks will not be evaluated, because:",
   strsplit(auth_success$message, split = "\n")[[1]]

@@ -55,6 +55,7 @@ A tibble containing breast cancer screening data with the following columns:
 from the KHIS API server using \code{\link[=get_analytics]{get_analytics()}}.
 }
 \examples{
+\dontshow{if (khis_has_cred()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
   # Clinical Breast Examination data elements
   # XEX93uLsAm2 = CBE Abnormal
@@ -64,6 +65,7 @@ from the KHIS API server using \code{\link[=get_analytics]{get_analytics()}}.
   # Download data from February 2023 to current date
   data <- .get_breast_data(element_ids = element_id, start_date = '2023-02-01')
 }
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[=get_analytics]{get_analytics()}} for retrieving breast cancer screening data

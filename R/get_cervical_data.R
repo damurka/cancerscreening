@@ -28,7 +28,7 @@
 #' @seealso
 #'   [get_analytics()] for retrieving cervical cancer screening data
 #'
-#' @examples
+#' @examplesIf khis_has_cred()
 #' \dontrun{
 #'   ## Cervical Cancer Screening
 #'   # VR7vdS7P0Gb = Number of clients who received HPV Test

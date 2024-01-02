@@ -103,7 +103,13 @@ get_analytics <- function(element_ids,
   )
 
   if (is.null(data$rows) || length(data$rows) == 0) {
-    stop('No data was retrieved')
+    cancerscreening_abort(
+      message = c(
+        "No data",
+        "x" = "There was no data returned by the sever"
+      ),
+
+    )
   }
 
   data <- tibble(x = data$rows) %>%

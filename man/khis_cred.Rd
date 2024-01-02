@@ -18,14 +18,8 @@ Sets the KHIS Credentials
 }
 \examples{
 \dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-# Load from a configuration file
-khis_cred(config_path = 'cred.json')
-
 # Load username and password
 khis_cred(username = 'damurka', password = 'PASSWORD')
-
-# Load if the password has been used before
-khis_cred(username = 'damurka')
 \dontshow{\}) # examplesIf}
 }
 \concept{cred functions}

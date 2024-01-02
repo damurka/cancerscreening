@@ -26,7 +26,7 @@
 #' @seealso
 #'   [get_analytics()] for retrieving breast cancer screening data
 #'
-#' @examples
+#' @examplesIf khis_has_cred()
 #' \dontrun{
 #'   # Clinical Breast Examination data elements
 #'   # XEX93uLsAm2 = CBE Abnormal

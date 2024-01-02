@@ -13,14 +13,9 @@
 #' @export
 #'
 #' @examplesIf rlang::is_interactive()
-#' # Load from a configuration file
-#' khis_cred(config_path = 'cred.json')
-#'
 #' # Load username and password
 #' khis_cred(username = 'damurka', password = 'PASSWORD')
 #'
-#' # Load if the password has been used before
-#' khis_cred(username = 'damurka')
 khis_cred <- function(config_path = NULL,
                       username = NULL,
                       password = NULL) {
