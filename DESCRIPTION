@@ -1,20 +1,16 @@
-Package: cancerscreening
 Type: Package
-Title: Streamline Cancer Screening Data Access from KHIS
+Package: cancerscreening
+Title: Streamline Access to Cancer Screening Data
 Version: 1.0.1
 Authors@R: 
-  c(person(given = "David",
-           family = "Kariuki",
-           role = c("aut", "cre", "cph"),
-           email="hello@damurka.com",
-           comment = c(ORCID = "0009-0003-6159-1107")))
-Description: Retrieve cancer screening data for cervical, breast, and colorectal 
-  cancers from the Kenya Health Information System (KHIS) with this R package.
+    person("David", "Kariuki", , "hello@damurka.com", role = c("aut", "cre", "cph"),
+           comment = c(ORCID = "0009-0003-6159-1107"))
+Description: Retrieve cancer screening data for cervical and breast
+    cancers from the Kenya Health Information System (KHIS).
 License: MIT + file LICENSE
 URL: https://cancerscreening.damurka.com,
     https://github.com/damurka/cancerscreening
-BugReports: 
-    https://github.com/damurka/cancerscreening/issues
+BugReports: https://github.com/damurka/cancerscreening/issues
 Depends: 
     R (>= 3.6)
 Imports:
@@ -29,12 +25,13 @@ Imports:
     magrittr,
     rlang,
     stringr,
+    testthat (>= 3.1.7),
     tibble,
-    tidyr
+    tidyr,
+    utils
 Suggests:
     knitr,
     rmarkdown,
-    testthat (>= 3.1.7),
     spelling
 VignetteBuilder: 
     knitr

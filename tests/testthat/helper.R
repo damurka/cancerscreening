@@ -1,8 +1,11 @@
 auth_sucess <- tryCatch(
-  khis_cred_testing(),
-  cancerscreening_internal_error = function(e) NULL
+  cancerscreening:::khis_cred_testing(),
+  cancerscreening_cred_internal_error = function(e) NULL
 )
 if(!isTRUE(auth_sucess)) {
+  cancerscreening:::cancerscreening_bullets(c(
+    "!" = "Internal auth failed; calling {.fun khis_cred_clear}."
+  ))
   khis_cred_clear()
 }
 

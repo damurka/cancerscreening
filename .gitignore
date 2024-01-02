@@ -5,3 +5,5 @@
 inst/doc
 docs
 secret.json
+/doc/
+/Meta/

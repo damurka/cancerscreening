@@ -42,7 +42,7 @@ AuthCred <- R6::R6Class('AuthCred', list(
   initialize = function(username = NA_character_,
                         password = NULL) {
     stopifnot(
-      is_scalar_character(username),
+      rlang::is_scalar_character(username),
       is.null(password)
     )
 

@@ -4,7 +4,7 @@
 \name{cancerscreening-package}
 \alias{cancerscreening}
 \alias{cancerscreening-package}
-\title{cancerscreening: Streamline Cancer Screening Data Access from KHIS}
+\title{cancerscreening: Streamline Access to Cancer Screening Data}
 \description{
 cancerscreening provide a easy way to download cancer screening data from the
 Kenya Health Information System (KHIS) using R.

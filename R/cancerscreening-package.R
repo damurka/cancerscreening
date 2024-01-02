@@ -38,6 +38,7 @@
 #' @importFrom lubridate today
 #' @importFrom lubridate year
 #' @importFrom lubridate ym
+#' @importFrom rlang %|%
 #' @importFrom rlang is_scalar_character
 #' @importFrom rlang is_string
 #' @importFrom stringr str_c
