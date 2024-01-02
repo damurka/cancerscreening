@@ -16,11 +16,3 @@
 
   invisible()
 }
-
-#' Build Index Documentation
-#' @keywords internal
-release_bullets <- function() {
-  c(
-    '`devtools::build_rmd("index.Rmd")`'
-  )
-}

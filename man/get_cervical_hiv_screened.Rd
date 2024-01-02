@@ -50,8 +50,9 @@ with the following columns:
 }
 }
 \description{
-\code{get_cervical_hiv_screened()} retrieves cervical cancer screening and treatment
-data for a specified period from the KHIS API server using \code{\link[=.get_cervical_data]{.get_cervical_data()}}.
+\code{get_cervical_hiv_screened()} retrieves cervical cancer screening and positivity
+data for HIV positive women for a specified period from the KHIS API server
+using \code{\link[=.get_cervical_data]{.get_cervical_data()}}.
 }
 \examples{
 \dontshow{if (khis_has_cred()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

@@ -1,7 +1,8 @@
 #' Retrieves Cervical Cancer Screening Data on HIV Positive Women
 #'
-#' `get_cervical_hiv_screened()` retrieves cervical cancer screening and treatment
-#'   data for a specified period from the KHIS API server using [.get_cervical_data()].
+#' `get_cervical_hiv_screened()` retrieves cervical cancer screening and positivity
+#'   data for HIV positive women for a specified period from the KHIS API server
+#'   using [.get_cervical_data()].
 #'
 #' @inheritParams .get_cervical_data
 #'

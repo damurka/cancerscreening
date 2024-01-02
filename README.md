@@ -4,8 +4,8 @@
 <!-- badges: start -->
 
 [![check-standard](https://github.com/damurka/cancerscreening/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/damurka/cancerscreening/actions/workflows/R-CMD-check.yaml)
-[![pkgdown](https://github.com/damurka/cancerscreening/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/damurka/cancerscreening/actions/workflows/pkgdown.yaml)
-[![Codecov test coverage](https://codecov.io/gh/damurka/cancerscreening/branch/main/graph/badge.svg)](https://app.codecov.io/gh/damurka/cancerscreening?branch=main)
+[![Codecov test
+coverage](https://codecov.io/gh/damurka/cancerscreening/branch/main/graph/badge.svg)](https://app.codecov.io/gh/damurka/cancerscreening?branch=main)
 <!-- badges: end -->
 
 ## Overview

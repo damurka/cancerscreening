@@ -4,7 +4,7 @@ output: github_document
 
 ```{r setup, include = FALSE}
 auth_success <- tryCatch(
-  cancerscreening::khis_cred_docs(),
+  cancerscreening:::khis_cred_docs(),
   cancerscreening_cred_internal_error = function(e) e
 )
 
@@ -21,7 +21,6 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![check-standard](https://github.com/damurka/cancerscreening/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/damurka/cancerscreening/actions/workflows/R-CMD-check.yaml)
-[![pkgdown](https://github.com/damurka/cancerscreening/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/damurka/cancerscreening/actions/workflows/pkgdown.yaml)
 [![Codecov test coverage](https://codecov.io/gh/damurka/cancerscreening/branch/main/graph/badge.svg)](https://app.codecov.io/gh/damurka/cancerscreening?branch=main)
 <!-- badges: end -->
 

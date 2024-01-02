@@ -7,12 +7,7 @@
 #'   populated indirectly if stored using the [keyring]
 #'
 #' @return An object of class [AuthCred]
-#' @keywords internal
-#'
-#' @examples
-#' \dontrun{
-#'   init_AuthCred(username = 'khis_username')
-#' }
+#' @noRd
 
 init_AuthCred <- function(username = NA_character_,
                           password = NULL) {
@@ -34,8 +29,7 @@ init_AuthCred <- function(username = NA_character_,
 #' @param username The KHIS username.
 #' @param password The KHIS password.
 #'
-#' @keywords internal
-#' @name AuthCred-class
+#' @noRd
 AuthCred <- R6::R6Class('AuthCred', list(
   #' @field  config_path Path to a JSON configuration file.
   config_path = NULL,

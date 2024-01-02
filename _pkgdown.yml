@@ -64,6 +64,3 @@ reference:
       Download data from KHIS analytics table
     contents:
       - get_analytics
-  - title: "Package level configuration"
-    contents:
-      - cancerscreening-configuration

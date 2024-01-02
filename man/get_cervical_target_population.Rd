@@ -35,10 +35,10 @@ counties and the national level are calculated based on population growth
 }
 \examples{
 # Get the country projection for cervical cancer screening for the year 2024
-target_population <- get_breast_mammogram_target_population(2024)
+target_population <- get_cervical_target_population(2024)
 target_population
 
 # Get the projection for cervical cancer screening for 2022 by county
-target_population <- get_breast_mammogram_target_population(2022, level = 'county')
+target_population <- get_cervical_target_population(2022, level = 'county')
 target_population
 }

@@ -48,16 +48,3 @@
 #' @importFrom tibble tibble
 ## usethis namespace: end
 NULL
-
-#' cancerscreening configuration
-#'
-#' @description
-#' Some aspects of cancerscreening behaviour can be controlled via an option.
-#'
-#' @section Auth:
-#'
-#' Read about cancerscreening's main auth function, [khis_cred()]. It is stores
-#' the KHIS credentials for authorization during API calls.
-#'
-#' @name cancerscreening-configuration
-NULL

@@ -7,9 +7,9 @@ on:
     branches: [main, master]
   schedule:
     # * is a special character in YAML so we have to quote this string
-    # 2am Pacific = 10am UTC
+    # 3pm EAT = 12pm UTC
     # https://crontab.guru is your friend
-    - cron:  '0 0 * * *'
+    - cron:  '0 12 * * *'
 
 name: test-coverage
 

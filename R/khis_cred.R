@@ -102,7 +102,7 @@ khis_cred <- function(config_path = NULL,
 #'
 #' @return A modified HTTP request with authorization header
 #'
-#' @keywords internal
+#' @noRd
 #'
 #' @examplesIf khis_has_cred()
 #' req <- request("http://example.com") %>%
@@ -165,7 +165,7 @@ khis_username <- function() {
 #'
 #' @param account The environment to provide credentials. `"docs"` or `"testing"`
 #'
-#' @keywords internal
+#' @noRd
 
 khis_cred_internal <- function(account = c('docs', 'testing')) {
   account <- match.arg(account)
@@ -199,7 +199,7 @@ khis_cred_internal <- function(account = c('docs', 'testing')) {
 
 #' Set Credentials for Documentation
 #'
-#' @keywords internal
+#' @noRd
 
 khis_cred_docs <- function() {
   khis_cred_internal('docs')
@@ -207,7 +207,7 @@ khis_cred_docs <- function() {
 
 #' Set Credentials for Testing Environment
 #'
-#' @keywords internal
+#' @noRd
 
 khis_cred_testing <- function() {
   khis_cred_internal('testing')

@@ -4,7 +4,7 @@ output: github_document
 
 ```{r setup, include = FALSE}
 auth_success <- tryCatch(
-  cancerscreening::khis_cred_docs(),
+  cancerscreening:::khis_cred_docs(),
   cancerscreening_cred_internal_error = function(e) e
 )
 
