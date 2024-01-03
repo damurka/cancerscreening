@@ -1,0 +1,57 @@
+---
+title: "Screening Coverage"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  error = TRUE
+)
+```
+
+Screening overage refers to the extent of participation of eligible (i.e., target age) women in the screening program in a given time period and is calculated by dividing the number of eligible women screened during a given time by the total number of eligible women. High coverage of the target population is one of the most important components of a successful cancer prevention program (Pretorius et al. 1991, Sasieni 1991, WHO 1992).
+
+### Cervical Cancer Screening Coverage
+
+The number of women screened can be obtained from `get_cervical_screened` and the eligible women can be obtained from the `get_cervical_target_population`.
+
+```{r eval=FALSE}
+# Target population by county
+target_population <- get_cervical_target_population(2023, level = 'county')
+
+# Population screened during the same period
+screened <- get_cervical_screened('2023-01-01', level = 'county')
+
+# aggregate the screened 
+screened <- screened %>%
+  summarise(screened = sum(value, na.rm = TRUE), .by = county)
+
+# merge with the target and calculate the coverage
+
+screened %>%
+  right_join(target_population, by = 'county') %>%
+  mutate(coverage = screened / target)
+```
+
+### CBE Coverage
+
+The number of women screened can be obtained from `get_breast_cbe` and the eligible women can be obtained from the `get_breast_cbe_target_population`.
+
+```{r eval=FALSE}
+# Target population by county
+target_population <- get_breast_cbe_target_population(2023, level = 'county')
+
+# Population screened during the same period
+screened <- get_breast_cbe('2023-01-01', level = 'county')
+
+# aggregate the screened 
+screened <- screened %>%
+  summarise(screened = sum(value, na.rm = TRUE), .by = county)
+
+# merge with the target and calculate the coverage
+
+screened %>%
+  right_join(target_population, by = 'county') %>%
+  mutate(coverage = screened / target)
+```

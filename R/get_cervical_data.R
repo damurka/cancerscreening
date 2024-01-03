@@ -23,22 +23,21 @@
 #' * source     - The source report (MOH 711 or MOH 745).
 #' * value      - The number reported.
 #'
-#' @keywords internal
-#'
 #' @seealso
-#'   [get_analytics()] for retrieving cervical cancer screening data
+#' * [get_analytics()] for retrieving data from KHIS
 #'
 #' @examplesIf khis_has_cred()
-#' \dontrun{
-#'   ## Cervical Cancer Screening
-#'   # VR7vdS7P0Gb = Number of clients who received HPV Test
-#'   # gQro1y7Rsbq = Number of clients who received Pap smear
-#'   # rFtB3keaVWm = Number of clients who received VIA or VIA/ VILI Screening
-#'   cacx_screening_ids <- c('VR7vdS7P0Gb', 'gQro1y7Rsbq', 'rFtB3keaVWm')
 #'
-#'   # Download data from February 2023 to current date
-#'   data <- .get_cervical_data(element_ids = cacx_screening_ids, start_data = '2023-02-01')
-#' }
+#' ## Cervical Cancer Screening
+#' # VR7vdS7P0Gb = Number of clients who received HPV Test
+#' # gQro1y7Rsbq = Number of clients who received Pap smear
+#' # rFtB3keaVWm = Number of clients who received VIA or VIA/ VILI Screening
+#' cacx_screening_ids <- c('VR7vdS7P0Gb', 'gQro1y7Rsbq', 'rFtB3keaVWm')
+#'
+#' # Download data from February 2023 to current date
+#' data <- .get_cervical_data(element_ids = cacx_screening_ids, start_data = '2023-02-01')
+#'
+#' @noRd
 
 .get_cervical_data <- function(element_ids,
                               start_date,

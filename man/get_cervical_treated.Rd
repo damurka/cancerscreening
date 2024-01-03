@@ -15,7 +15,7 @@ get_cervical_treated(
 )
 }
 \arguments{
-\item{start_date}{The start date to retrieve data. It is required and in the format 'YYYY-MM-dd'.}
+\item{start_date}{The start date to retrieve data. It is required and in the format \code{YYYY-MM-dd}.}
 
 \item{end_date}{The ending date for data retrieval (default is the current date).}
 
@@ -27,7 +27,7 @@ get_cervical_treated(
 
 \item{elements}{A list of data elements to include. If NULL, downloaded using \code{\link[=get_data_elements_metadata]{get_data_elements_metadata()}}.}
 
-\item{...}{Other options that can be passed onto \link{.api_get}.}
+\item{...}{Other options that can be passed onto KHIS API.}
 }
 \value{
 A tibble containing cervical cancer precancerous treatment data with the following columns:
@@ -50,7 +50,7 @@ A tibble containing cervical cancer precancerous treatment data with the followi
 }
 \description{
 \code{get_cervical_treated()} retrieves cervical cancer precancerous treatment
-data for a specified period from the KHIS API server using \code{\link[=.get_cervical_data]{.get_cervical_data()}}.
+data for a specified period from the KHIS API server using \code{\link[=get_analytics]{get_analytics()}}.
 }
 \examples{
 \dontshow{if (khis_has_cred()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
@@ -60,5 +60,7 @@ treated
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link[=.get_cervical_data]{.get_cervical_data()}} for retrieving and formatting cervical cancer screening data
+\itemize{
+\item \code{\link[=get_analytics]{get_analytics()}} for retrieving and formatting cervical cancer screening data
+}
 }

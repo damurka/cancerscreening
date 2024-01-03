@@ -62,6 +62,9 @@ data from the API
 ``` r
 # Download the cervical cancer screening data for country
 cacx_screened <- get_cervical_screened('2022-07-01')
+#> ℹ Downloading organisation units
+#> ℹ Downloading category options
+#> ℹ Downloading data elements
 head(cacx_screened)
 #> # A tibble: 6 × 10
 #>   period     value kenya category category2      element month  year fiscal_year

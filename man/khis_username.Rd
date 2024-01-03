@@ -13,17 +13,9 @@ the username of the user credentials
 Produces the Configured Username
 }
 \examples{
-rlang::is_interactive()
-\dontrun{
-  # Set the credentials
-  khis_cred(username = 'user', password = 'password')
 
-  # View the username
-  khis_username()
-
-  # Clear credentials
-  khis_clear_cred()
-}
+# View the username
+khis_username()
 }
 \seealso{
 Other low-level API functions: 

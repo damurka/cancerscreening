@@ -2,9 +2,9 @@
 #'
 #' `get_cervical_hiv_screened()` retrieves cervical cancer screening and positivity
 #'   data for HIV positive women for a specified period from the KHIS API server
-#'   using [.get_cervical_data()].
+#'   using [get_analytics()].
 #'
-#' @inheritParams .get_cervical_data
+#' @inheritParams get_analytics
 #'
 #' @return A tibble containing cervical cancer screening data on HIV positive women
 #'   with the following columns:
@@ -27,7 +27,7 @@
 #' @export
 #'
 #' @seealso
-#'   [.get_cervical_data()] for retrieving and formatting cervical cancer screening data
+#' * [get_analytics()] for retrieving data from KHIS
 #'
 #' @examplesIf khis_has_cred()
 #' # Download data from February 2023 to current date

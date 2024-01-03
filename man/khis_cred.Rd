@@ -13,13 +13,24 @@ khis_cred(config_path = NULL, username = NULL, password = NULL)
 
 \item{password}{The KHIS password. Can be optional if \code{config_path} is already provided or already stored using the \link{keyring} package}
 }
+\value{
+No return value
+}
 \description{
 Sets the KHIS Credentials
 }
+\details{
+When \code{username} and \code{password} are provided they are persisted to the operating
+system’s credential store using \link{keyring} package. Subsequent call will only
+require the \code{username}. If the password has not been store a prompt for the
+password will appear
+}
 \examples{
-\dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-# Load username and password
-khis_cred(username = 'damurka', password = 'PASSWORD')
-\dontshow{\}) # examplesIf}
+# These examples use the default keyring, and they are interactive,
+# so, we don't run them by default
+\dontrun{
+  # Load username and password
+  khis_cred(username = 'khis_username', password = 'PASSWORD')
+}
 }
 \concept{cred functions}

@@ -7,7 +7,7 @@
 get_category_options_metadata(...)
 }
 \arguments{
-\item{...}{Options that can be passed onto \link{.api_get}.}
+\item{...}{Options that can be passed onto KHIS API.}
 }
 \value{
 A tibble containing the following columns:
@@ -25,7 +25,4 @@ A tibble containing the following columns:
 categories <- get_category_options_metadata()
 categories
 \dontshow{\}) # examplesIf}
-}
-\seealso{
-\code{\link[=.api_get]{.api_get()}} for making API call to KHIS server
 }

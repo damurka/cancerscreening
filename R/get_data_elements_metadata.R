@@ -4,7 +4,7 @@
 #'   server, including their IDs and names.
 #'
 #' @param element_ids A vector of specific data element IDs to retrieve. If NULL, all data elements will be retrieved.
-#' @param ... Other options that can be passed onto [.api_get].
+#' @param ... Other options that can be passed onto KHIS API.
 #'
 #' @return A tibble containing the following columns:
 #'
@@ -12,9 +12,6 @@
 #' * element    - The name of the data element.
 #'
 #' @export
-#'
-#' @seealso
-#'   [.api_get()] for making API call to KHIS server
 #'
 #' @examplesIf khis_has_cred()
 #' # Fetch the data element metadata for particular element id

@@ -1,9 +1,9 @@
 #' Retrieves Data for Mammograms Conducted
 #'
 #' `get_breast_mammogram()` retrieves data for mammograms conducted within a
-#' specified period from the KHIS API server using [.get_breast_data()].
+#' specified period from the KHIS API server using [get_analytics()].
 #'
-#' @inheritParams .get_breast_data
+#' @inheritParams get_analytics
 #'
 #' @return A tibble containing data for mammograms conducted with the following columns:
 #'
@@ -24,7 +24,7 @@
 #' @export
 #'
 #' @seealso
-#'   [.get_breast_data()] for retrieving and formatting breast data
+#' * [get_analytics()] for retrieving data from KHIS
 #'
 #' @examplesIf khis_has_cred()
 #'

@@ -2,7 +2,7 @@
 #'
 #' `get_category_options_metadata()` fetches category options from the KHIS API
 #'
-#' @param ... Options that can be passed onto [.api_get].
+#' @param ... Options that can be passed onto KHIS API.
 #'
 #' @return A tibble containing the following columns:
 #'
@@ -10,9 +10,6 @@
 #' * category     - The name of the category option.
 #'
 #' @export
-#'
-#' @seealso
-#'   [.api_get()] for making API call to KHIS server
 #'
 #' @examplesIf khis_has_cred()
 #' # Fetch the category option metadata

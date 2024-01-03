@@ -6,12 +6,13 @@
 \usage{
 khis_cred_clear()
 }
+\value{
+No return value
+}
 \description{
 Clear the Credentials from Memory
 }
 \examples{
-\dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 khis_cred_clear()
-\dontshow{\}) # examplesIf}
 }
 \concept{auth functions}

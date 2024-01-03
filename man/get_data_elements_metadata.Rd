@@ -9,7 +9,7 @@ get_data_elements_metadata(element_ids = NULL, ...)
 \arguments{
 \item{element_ids}{A vector of specific data element IDs to retrieve. If NULL, all data elements will be retrieved.}
 
-\item{...}{Other options that can be passed onto \link{.api_get}.}
+\item{...}{Other options that can be passed onto KHIS API.}
 }
 \value{
 A tibble containing the following columns:
@@ -32,7 +32,4 @@ elements
 elements <- get_data_elements_metadata()
 elements
 \dontshow{\}) # examplesIf}
-}
-\seealso{
-\code{\link[=.api_get]{.api_get()}} for making API call to KHIS server
 }
