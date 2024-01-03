@@ -13,8 +13,17 @@ the username of the user credentials
 Produces the Configured Username
 }
 \examples{
-  
-# View the username
+
+# Set the credentials
+khis_cred(username = 'KHIS username', password = 'KHIS password')
+
+# View the username expect 'KHIS username'
+khis_username()
+
+# Clear credentials
+khis_cred_clear()
+
+# View the username expect 'NULL'
 khis_username()
 }
 \seealso{

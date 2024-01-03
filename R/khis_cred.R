@@ -5,9 +5,9 @@
 
 #' Sets the KHIS Credentials
 #'
-#' @param config_path An optional parameters that contains the path to configuration file with username and password
+#' @param config_path An optional parameters that contains the path to configuration file with username and password.
 #' @param username The KHIS username. Can be optional if `config_path` is already provided
-#' @param password The KHIS password. Can be optional if `config_path` is already provided or already stored using the [keyring] package
+#' @param password The KHIS password. Can be optional if `config_path` is already provided.
 #'
 #' @family cred functions
 #'
@@ -16,19 +16,14 @@
 #' @export
 #'
 #' @details
-#' When `username` and `password` are provided they are persisted to the operating
-#' system’s credential store using [keyring] package. Subsequent call will only
-#' require the `username`. If the password has not been store a prompt for the
-#' password will appear
-#'
+#' The credentials can be provided using a configuration file (more secure) or
+#' providing `username` and `password` arguments. The `conf_path` is considered
+#' more secure since credentials will not appear in the code.
 #'
 #' @examples
-#' # These examples use the default keyring, and they are interactive,
-#' # so, we don't run them by default
-#' \dontrun{
-#'   # Load username and password
-#'   khis_cred(username = 'khis_username', password = 'PASSWORD')
-#' }
+#'
+#' Load username and password
+#' khis_cred(username = 'khis_username', password = 'PASSWORD')
 
 khis_cred <- function(config_path = NULL,
                       username = NULL,
@@ -54,41 +49,25 @@ khis_cred <- function(config_path = NULL,
     )
   }
 
+  additional <- ''
+
   if (!is.null(config_path)) {
     # loads credentials from secret file
     credentials <- .load_config_file(config_path)
     password <- credentials[["password"]]
     username <- credentials[["username"]]
 
-    if (!rlang::is_scalar_character(password) || nchar(password) == 0 || !rlang::is_scalar_character(username) || nchar(username) == 0) {
-      cancerscreening_abort(
-        message = c(
-          "x" = "Missing credentials",
-          "i" = "Please provide username and password to continue"
-        ),
-        class = "cancerscreening_missing_credentials"
-      )
-    }
-  } else {
-    password <- ifelse(!rlang::is_scalar_character(password), "", password)
-    khis_service <- 'khis-service'
-    khis_package <- 'cancerscreening'
+    additional <- ' on the configuration file'
+  }
 
-    kb <- keyring::default_backend(khis_package)
-
-    # checks if keyring, and if not there prompts to make one
-    if (nchar(password) == 0) {
-      password <- tryCatch(
-        kb$get(khis_service, username, khis_package),
-        error = function(e) e
-      )
-      if ('error' %in% class(password)) {
-        kb$set(khis_service, username, khis_package)
-        password <- kb$get(khis_service, username, khis_package)
-      }
-    }
-
-    kb$set_with_value(khis_service, username, password, khis_package)
+  if (!rlang::is_scalar_character(password) || nchar(password) == 0 || !rlang::is_scalar_character(username) || nchar(username) == 0) {
+    cancerscreening_abort(
+      message = c(
+        "x" = "Missing credentials",
+        "i" = "Please provide {.field username} and {.field password} {additional}"
+      ),
+      class = "cancerscreening_missing_credentials"
+    )
   }
 
   .auth$set_username(username)
@@ -173,6 +152,17 @@ req_auth_khis_basic <- function(req) {
 #' @export
 #'
 #' @examples
+#'
+#' # Set the credentials
+#' khis_cred(username = 'KHIS username', password = 'KHIS password')
+#'
+#' # Check if credentials available. Expect TRUE
+#' khis_has_cred()
+#'
+#' # Clear credentials
+#' khis_cred_clear()
+#'
+#' # Check if credentials available. Expect FALSE
 #' khis_has_cred()
 
 khis_has_cred <- function() {
@@ -204,7 +194,16 @@ khis_cred_clear <- function() {
 #'
 #' @examples
 #'
-#' # View the username
+#' # Set the credentials
+#' khis_cred(username = 'KHIS username', password = 'KHIS password')
+#'
+#' # View the username expect 'KHIS username'
+#' khis_username()
+#'
+#' # Clear credentials
+#' khis_cred_clear()
+#'
+#' # View the username expect 'NULL'
 #' khis_username()
 
 khis_username <- function() {

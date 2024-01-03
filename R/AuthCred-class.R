@@ -3,8 +3,7 @@
 #' Constructor function for objects of class [AuthCred].
 #'
 #' @param username The KHIS username to be used in API calls
-#' @param password The KHIS password to be used in API calls. Typically
-#'   populated indirectly if stored using the [keyring]
+#' @param password The KHIS password to be used in API calls.
 #'
 #' @return An object of class [AuthCred]
 #' @noRd

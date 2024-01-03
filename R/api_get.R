@@ -15,9 +15,8 @@
 #'
 #' @return A parsed JSON object containing the API response data.
 #'
-#' @details Retrieves credentials from the [keyring] using the current user's
-#'   username. Uses HTTP Basic Authentication with credentials (consider using
-#'   environment variables or a configuration file for security).
+#' @details Uses HTTP Basic Authentication with credentials provided using
+#'   [khis_cred]
 #'
 #' @examplesIf khis_has_cred()
 #'

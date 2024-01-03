@@ -14,14 +14,5 @@
     )
   }
 
-  kb <- keyring::default_backend()
-  keyrings <- kb$keyring_list() %>% filter(keyring == 'cancerscreening')
-  if (nrow(keyrings) == 0) {
-    tryCatch(
-      kb$keyring_create('cancerscreening', 'cancerscreening'),
-      error = function(e) NULL
-    )
-  }
-
   invisible()
 }

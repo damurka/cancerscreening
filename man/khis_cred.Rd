@@ -7,11 +7,11 @@
 khis_cred(config_path = NULL, username = NULL, password = NULL)
 }
 \arguments{
-\item{config_path}{An optional parameters that contains the path to configuration file with username and password}
+\item{config_path}{An optional parameters that contains the path to configuration file with username and password.}
 
 \item{username}{The KHIS username. Can be optional if \code{config_path} is already provided}
 
-\item{password}{The KHIS password. Can be optional if \code{config_path} is already provided or already stored using the \link{keyring} package}
+\item{password}{The KHIS password. Can be optional if \code{config_path} is already provided.}
 }
 \value{
 No return value
@@ -20,17 +20,13 @@ No return value
 Sets the KHIS Credentials
 }
 \details{
-When \code{username} and \code{password} are provided they are persisted to the operating
-system’s credential store using \link{keyring} package. Subsequent call will only
-require the \code{username}. If the password has not been store a prompt for the
-password will appear
+The credentials can be provided using a configuration file (more secure) or
+providing \code{username} and \code{password} arguments. The \code{conf_path} is considered
+more secure since credentials will not appear in the code.
 }
 \examples{
-# These examples use the default keyring, and they are interactive,
-# so, we don't run them by default
-\dontrun{
-  # Load username and password
-  khis_cred(username = 'khis_username', password = 'PASSWORD')
-}
+
+Load username and password
+khis_cred(username = 'khis_username', password = 'PASSWORD')
 }
 \concept{cred functions}
