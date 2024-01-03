@@ -16,10 +16,10 @@
     <loc>https://cancerscreening.damurka.com/articles/cancerscreening.html</loc>
   </url>
   <url>
-    <loc>https://cancerscreening.damurka.com/articles/cervical-screening-coverage.html</loc>
+    <loc>https://cancerscreening.damurka.com/articles/index.html</loc>
   </url>
   <url>
-    <loc>https://cancerscreening.damurka.com/articles/index.html</loc>
+    <loc>https://cancerscreening.damurka.com/articles/screening-coverage.html</loc>
   </url>
   <url>
     <loc>https://cancerscreening.damurka.com/articles/set-your-credentials.html</loc>
@@ -37,28 +37,13 @@
     <loc>https://cancerscreening.damurka.com/reference/cancerscreening-package.html</loc>
   </url>
   <url>
-    <loc>https://cancerscreening.damurka.com/reference/dot-api_get.html</loc>
-  </url>
-  <url>
-    <loc>https://cancerscreening.damurka.com/reference/dot-get_breast_data.html</loc>
-  </url>
-  <url>
-    <loc>https://cancerscreening.damurka.com/reference/dot-get_cervical_data.html</loc>
-  </url>
-  <url>
     <loc>https://cancerscreening.damurka.com/reference/get_analytics.html</loc>
   </url>
   <url>
     <loc>https://cancerscreening.damurka.com/reference/get_breast_cbe.html</loc>
   </url>
   <url>
-    <loc>https://cancerscreening.damurka.com/reference/get_breast_cbe_target_population.html</loc>
-  </url>
-  <url>
     <loc>https://cancerscreening.damurka.com/reference/get_breast_mammogram.html</loc>
-  </url>
-  <url>
-    <loc>https://cancerscreening.damurka.com/reference/get_breast_mammogram_target_population.html</loc>
   </url>
   <url>
     <loc>https://cancerscreening.damurka.com/reference/get_category_options_metadata.html</loc>
@@ -73,13 +58,13 @@
     <loc>https://cancerscreening.damurka.com/reference/get_cervical_screened.html</loc>
   </url>
   <url>
-    <loc>https://cancerscreening.damurka.com/reference/get_cervical_target_population.html</loc>
-  </url>
-  <url>
     <loc>https://cancerscreening.damurka.com/reference/get_cervical_treated.html</loc>
   </url>
   <url>
     <loc>https://cancerscreening.damurka.com/reference/get_data_elements_metadata.html</loc>
+  </url>
+  <url>
+    <loc>https://cancerscreening.damurka.com/reference/get_filtered_population.html</loc>
   </url>
   <url>
     <loc>https://cancerscreening.damurka.com/reference/get_organisation_units_metadata.html</loc>
@@ -101,5 +86,8 @@
   </url>
   <url>
     <loc>https://cancerscreening.damurka.com/reference/pipe.html</loc>
+  </url>
+  <url>
+    <loc>https://cancerscreening.damurka.com/reference/target_population.html</loc>
   </url>
 </urlset>

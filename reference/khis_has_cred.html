@@ -27,7 +27,8 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/cervical-screening-coverage.html">Cervical Cancer Screening Coverage</a>
+    <h6 class="dropdown-header" data-toc-skip>Common Calculations</h6>
+    <a class="dropdown-item" href="../articles/screening-coverage.html">Screening Coverage</a>
     <div class="dropdown-divider"></div>
     <h6 class="dropdown-header" data-toc-skip>Package configuration</h6>
     <a class="dropdown-item" href="../articles/set-your-credentials.html">Set your credentials</a>
@@ -70,7 +71,7 @@
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>boolean value indicating if the credentials are available</p>
+<p>a boolean value indicating if the credentials are available</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -80,8 +81,21 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">khis_has_cred</span><span class="op">(</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Set the credentials</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="khis_cred.html">khis_cred</a></span><span class="op">(</span>username <span class="op">=</span> <span class="st">'KHIS username'</span>, password <span class="op">=</span> <span class="st">'KHIS password'</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> The credentials have been set.</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Check if credentials available. Expect TRUE</span></span></span>
+<span class="r-in"><span><span class="fu">khis_has_cred</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Clear credentials</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="khis_cred_clear.html">khis_cred_clear</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Check if credentials available. Expect FALSE</span></span></span>
+<span class="r-in"><span><span class="fu">khis_has_cred</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

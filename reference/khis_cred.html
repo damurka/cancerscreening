@@ -27,7 +27,8 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/cervical-screening-coverage.html">Cervical Cancer Screening Coverage</a>
+    <h6 class="dropdown-header" data-toc-skip>Common Calculations</h6>
+    <a class="dropdown-item" href="../articles/screening-coverage.html">Screening Coverage</a>
     <div class="dropdown-divider"></div>
     <h6 class="dropdown-header" data-toc-skip>Package configuration</h6>
     <a class="dropdown-item" href="../articles/set-your-credentials.html">Set your credentials</a>
@@ -69,7 +70,7 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>config_path</dt>
-<dd><p>An optional parameters that contains the path to configuration file with username and password</p></dd>
+<dd><p>An optional parameters that contains the path to configuration file with username and password.</p></dd>
 
 
 <dt>username</dt>
@@ -77,16 +78,28 @@
 
 
 <dt>password</dt>
-<dd><p>The KHIS password. Can be optional if <code>config_path</code> is already provided or already stored using the keyring package</p></dd>
+<dd><p>The KHIS password. Can be optional if <code>config_path</code> is already provided.</p></dd>
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
+
+<p>No return value</p>
+    </div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>The credentials can be provided using a configuration file (more secure) or
+providing <code>username</code> and <code>password</code> arguments. The <code>conf_path</code> is considered
+more secure since credentials will not appear in the code.</p>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># rlang::is_interactive()</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Load username and password</span></span></span>
-<span class="r-in"><span><span class="fu">khis_cred</span><span class="op">(</span>username <span class="op">=</span> <span class="st">'damurka'</span>, password <span class="op">=</span> <span class="st">'PASSWORD'</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span><span class="fu">khis_cred</span><span class="op">(</span>username <span class="op">=</span> <span class="st">'khis_username'</span>, password <span class="op">=</span> <span class="st">'PASSWORD'</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> The credentials have been set.</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

@@ -2,10 +2,10 @@ pandoc: 2.19.2
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
-  cervical-screening-coverage: cervical-screening-coverage.html
+  screening-coverage: screening-coverage.html
   set-your-credentials: set-your-credentials.html
   cancerscreening: cancerscreening.html
-last_built: 2024-01-03T10:00Z
+last_built: 2024-01-03T19:39Z
 urls:
   reference: https://cancerscreening.damurka.com/reference
   article: https://cancerscreening.damurka.com/articles

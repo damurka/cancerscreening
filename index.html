@@ -53,7 +53,8 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="articles/cervical-screening-coverage.html">Cervical Cancer Screening Coverage</a>
+    <h6 class="dropdown-header" data-toc-skip>Common Calculations</h6>
+    <a class="dropdown-item" href="articles/screening-coverage.html">Screening Coverage</a>
     <div class="dropdown-divider"></div>
     <h6 class="dropdown-header" data-toc-skip>Package configuration</h6>
     <a class="dropdown-item" href="articles/set-your-credentials.html">Set your credentials</a>
@@ -125,14 +126,20 @@
 <div class="section level3">
 <h3 id="quick-demo">Quick demo<a class="anchor" aria-label="anchor" href="#quick-demo"></a>
 </h3>
-<p>Before calling any function that makes an API call you need credentials to <a href="https://hiskenya.org" class="external-link">KHIS</a>. You will be expected to set this credential to download the data. The credentials are stored securely with the operating system using the package <code>keyring</code></p>
+<p>Before calling any function that makes an API call you need credentials to <a href="https://hiskenya.org" class="external-link">KHIS</a>. You will be expected to set this credential to download the data.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Set the credentials</span></span>
-<span><span class="fu"><a href="reference/khis_cred.html">khis_cred</a></span><span class="op">(</span>username <span class="op">=</span> <span class="st">'KHIS username'</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Set the credentials using username and password</span></span>
+<span><span class="fu"><a href="reference/khis_cred.html">khis_cred</a></span><span class="op">(</span>username <span class="op">=</span> <span class="st">'KHIS username'</span>, password <span class="op">=</span> <span class="st">'KHIS password'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Set credentials using configuration path</span></span>
+<span><span class="fu"><a href="reference/khis_cred.html">khis_cred</a></span><span class="op">(</span>config_path <span class="op">=</span> <span class="st">'path/to/secret.json'</span><span class="op">)</span></span></code></pre></div>
 <p>After setting the credential you can invoke any function to download data from the API</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Download the cervical cancer screening data for country</span></span>
 <span><span class="va">cacx_screened</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_cervical_screened.html">get_cervical_screened</a></span><span class="op">(</span><span class="st">'2022-07-01'</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ℹ Downloading organisation units</span></span>
+<span><span class="co">#&gt; ℹ Downloading category options</span></span>
+<span><span class="co">#&gt; ℹ Downloading data elements</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">cacx_screened</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 6 × 10</span></span>
 <span><span class="co">#&gt;   period     value kenya category category2      element month  year fiscal_year</span></span>
