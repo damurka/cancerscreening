@@ -14,5 +14,11 @@
     )
   }
 
+  kb <- keyring::default_backend('cancerscreening')
+  tryCatch(
+    kb$keyring_create('cancerscreening', 'cancerscreening'),
+    error = function(e) NULL
+  )
+
   invisible()
 }

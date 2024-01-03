@@ -72,20 +72,23 @@ khis_cred <- function(config_path = NULL,
   } else {
     password <- ifelse(!rlang::is_scalar_character(password), "", password)
     khis_service <- 'khis-service'
+    khis_package <- 'cancerscreening'
+
+    kb <- keyring::default_backend(khis_package)
 
     # checks if keyring, and if not there prompts to make one
     if (nchar(password) == 0) {
       password <- tryCatch(
-        keyring::key_get(service = khis_service, username = username),
+        kb$get(khis_service, username, khis_package),
         error = function(e) e
       )
       if ('error' %in% class(password)) {
-        keyring::key_set(service = khis_service, username = username)
-        password <- keyring::key_get(service = khis_service, username = username)
+        kb$set(khis_service, username, khis_package)
+        password <- kb$get(khis_service, username, khis_package)
       }
     }
 
-    keyring::key_set_with_value(service = 'khis-service', username = username, password = password)
+    kb$set_with_value(khis_service, username, password, khis_package)
   }
 
   .auth$set_username(username)
