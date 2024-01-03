@@ -22,7 +22,7 @@
 #'
 #' @examples
 #'
-#' Load username and password
+#' # Load username and password
 #' khis_cred(username = 'khis_username', password = 'PASSWORD')
 
 khis_cred <- function(config_path = NULL,

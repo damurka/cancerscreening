@@ -26,7 +26,7 @@ more secure since credentials will not appear in the code.
 }
 \examples{
 
-Load username and password
+# Load username and password
 khis_cred(username = 'khis_username', password = 'PASSWORD')
 }
 \concept{cred functions}
