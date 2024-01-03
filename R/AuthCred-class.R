@@ -41,6 +41,7 @@ AuthCred <- R6::R6Class('AuthCred', list(
   #' @details For more details on the parameters, see [init_AuthCred()]
   initialize = function(username = NA_character_,
                         password = NULL) {
+
     if (!rlang::is_scalar_character(username) || !is.null(password)) {
       cancerscreening_abort(
         c("x" = "Username has not been provided")

@@ -56,6 +56,7 @@ quote_if_no_color <- function(x, quote = "'") {
 #' Making cancerscreening quiet vs. loud ----
 #'
 #' @noRd
+
 cancerscreening_quiet <- function() {
   getOption("cancerscreening_quiet", default = NA)
 }
