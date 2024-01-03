@@ -41,10 +41,11 @@ AuthCred <- R6::R6Class('AuthCred', list(
   #' @details For more details on the parameters, see [init_AuthCred()]
   initialize = function(username = NA_character_,
                         password = NULL) {
-    stopifnot(
-      rlang::is_scalar_character(username),
-      is.null(password)
-    )
+    if (!rlang::is_scalar_character(username) || !is.null(password)) {
+      cancerscreening_abort(
+        c("x" = "Username has not been provided")
+      )
+    }
 
     self$username <- username
     self$password <- password
@@ -52,7 +53,6 @@ AuthCred <- R6::R6Class('AuthCred', list(
   #' @description Set the KHIS username
   #' @param value The KHIS username
   set_username = function(value) {
-    stopifnot(is.null(value) || is_string(value))
     self$username <- value
     invisible(self)
   },
