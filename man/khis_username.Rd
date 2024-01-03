@@ -13,7 +13,7 @@ the username of the user credentials
 Produces the Configured Username
 }
 \examples{
-
+  
 # View the username
 khis_username()
 }
