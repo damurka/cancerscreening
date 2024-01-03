@@ -1,9 +1,9 @@
 #' Retrieves Cervical Cancer Precancerous Treatment Data
 #'
 #' `get_cervical_treated()` retrieves cervical cancer precancerous treatment
-#'   data for a specified period from the KHIS API server using [.get_cervical_data()].
+#'   data for a specified period from the KHIS API server using [get_analytics()].
 #'
-#' @inheritParams .get_cervical_data
+#' @inheritParams get_analytics
 #'
 #' @return A tibble containing cervical cancer precancerous treatment data with the following columns:
 #'
@@ -25,7 +25,7 @@
 #' @export
 #'
 #' @seealso
-#'   [.get_cervical_data()] for retrieving and formatting cervical cancer screening data
+#' * [get_analytics()] for retrieving and formatting cervical cancer screening data
 #'
 #' @examplesIf khis_has_cred()
 #' # Download data from February 2023 to current date

@@ -39,7 +39,7 @@ library("cancerscreening")
 - Most function begin with the prefix `get_` followed by the screening
   area `cervical` or `breast`. Auto-completion is your friend
 - Goal is to allow the download of data associated with the data of
-  interest, e.g. `get_cervical_screened`, `get_cervical_positive`, or
+  interest, e.g. `get_cervical_screened`, `get_cervical_positive`, or
   `get_cervical_treated`
 - cancerscreening is “pipe-friendly” and, infact rexports `%>%` but does
   not require its use.
@@ -48,12 +48,14 @@ library("cancerscreening")
 
 Before calling any function that makes an API call you need credentials
 to [KHIS](https://hiskenya.org). You will be expected to set this
-credential to download the data. The credentials are stored securely
-with the operating system using the package `keyring`
+credential to download the data.
 
 ``` r
-# Set the credentials
-khis_cred(username = 'KHIS username')
+# Set the credentials using username and password
+khis_cred(username = 'KHIS username', password = 'KHIS password')
+
+# Set credentials using configuration path
+khis_cred(config_path = 'path/to/secret.json')
 ```
 
 After setting the credential you can invoke any function to download
@@ -62,6 +64,9 @@ data from the API
 ``` r
 # Download the cervical cancer screening data for country
 cacx_screened <- get_cervical_screened('2022-07-01')
+#> ℹ Downloading organisation units
+#> ℹ Downloading category options
+#> ℹ Downloading data elements
 head(cacx_screened)
 #> # A tibble: 6 × 10
 #>   period     value kenya category category2      element month  year fiscal_year

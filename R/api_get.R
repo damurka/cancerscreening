@@ -15,16 +15,14 @@
 #'
 #' @return A parsed JSON object containing the API response data.
 #'
-#' @details Retrieves credentials from the [keyring] using the current user's
-#'   username. Uses HTTP Basic Authentication with credentials (consider using
-#'   environment variables or a configuration file for security).
+#' @details Uses HTTP Basic Authentication with credentials provided using
+#'   [khis_cred]
 #'
 #' @examplesIf khis_has_cred()
-#' \dontrun{
-#'   # Retrieve analytics data for a specific period:
-#'   analytics_data <- .api_get("analytics", startDate = "2023-01-01", endDate = "2023-02-28")
-#' }
-#' @keywords internal
+#'
+#' analytics_data <- .api_get("analytics", startDate = "2023-01-01", endDate = "2023-02-28")
+#'
+#' @noRd
 
 .api_get <- function(url_path,
                      ...,

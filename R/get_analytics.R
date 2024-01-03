@@ -4,13 +4,13 @@
 #'   given period and data element(s), without performing any aggregation.
 #'
 #' @param element_ids A vector of data element IDs for which to retrieve data. Required.
-#' @param start_date The start date to retrieve data. It is required and in the format 'YYYY-MM-dd'.
+#' @param start_date The start date to retrieve data. It is required and in the format `YYYY-MM-dd`.
 #' @param end_date The ending date for data retrieval (default is the current date).
 #' @param level The desired data granularity: `"kenya"` (the default), `"county"`, `"subcounty"`, `"ward"`, or `"facility"`.
 #' @param organisations A list of organization units in the data. If NULL, downloaded using [get_organisation_units_metadata()].
 #' @param categories A list of categories to include. If NULL, downloaded using [get_category_options_metadata()].
 #' @param elements A list of data elements to include. If NULL, downloaded using [get_data_elements_metadata()].
-#' @param ... Other options that can be passed onto [.api_get].
+#' @param ... Other options that can be passed onto KHIS API.
 #'
 #' @details
 #' * Retrieves data directly from KHIS analytics tables.
@@ -28,10 +28,9 @@
 #' @export
 #'
 #' @seealso
-#'   [get_organisation_units_metadata()] for getting the organisations units
-#'   [get_data_elements_metadata()] for retrieving the data elements
-#'   [get_category_options_metadata()] for retrieving category options
-#'   [.api_get()] for making API call to KHIS server
+#' * [get_organisation_units_metadata()] for getting the organisations units
+#' * [get_data_elements_metadata()] for retrieving the data elements
+#' * [get_category_options_metadata()] for retrieving category options
 #'
 #' @examplesIf khis_has_cred()
 #' # Clinical Breast Examination data elements

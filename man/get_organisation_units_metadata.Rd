@@ -7,7 +7,7 @@
 get_organisation_units_metadata(...)
 }
 \arguments{
-\item{...}{Options that can be passed onto \link{.api_get}.}
+\item{...}{Options that can be passed onto KHIS API.}
 }
 \value{
 A tibble containing the following columns:
@@ -32,7 +32,4 @@ KHIS API server.
 organisations <- get_organisation_units_metadata()
 organisations
 \dontshow{\}) # examplesIf}
-}
-\seealso{
-\code{\link[=.api_get]{.api_get()}} for making API call to KHIS server
 }

@@ -15,7 +15,7 @@ get_breast_cbe(
 )
 }
 \arguments{
-\item{start_date}{The start date to retrieve data. It is required and in the format 'YYYY-MM-dd'.}
+\item{start_date}{The start date to retrieve data. It is required and in the format \code{YYYY-MM-dd}.}
 
 \item{end_date}{The ending date for data retrieval (default is the current date).}
 
@@ -27,7 +27,7 @@ get_breast_cbe(
 
 \item{elements}{A list of data elements to include. If NULL, downloaded using \code{\link[=get_data_elements_metadata]{get_data_elements_metadata()}}.}
 
-\item{...}{Other options that can be passed onto \link{.api_get}.}
+\item{...}{Other options that can be passed onto KHIS API.}
 }
 \value{
 A tibble containing data for CBE conducted with the following columns:
@@ -49,7 +49,7 @@ A tibble containing data for CBE conducted with the following columns:
 }
 \description{
 \code{get_breast_cbe()} retrieves data for CBE conducted within a specified
-period from the KHIS API server using \code{\link[=.get_breast_data]{.get_breast_data()}}.
+period from the KHIS API server using \code{\link[=get_analytics]{get_analytics()}}.
 }
 \examples{
 \dontshow{if (khis_has_cred()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
@@ -59,5 +59,7 @@ cbe_data
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link[=.get_breast_data]{.get_breast_data()}} for retrieving and formatting breast data
+\itemize{
+\item \code{\link[=get_analytics]{get_analytics()}} for retrieving data from KHIS
+}
 }

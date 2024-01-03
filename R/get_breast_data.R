@@ -21,21 +21,20 @@
 #' * element    - The data element.
 #' * value      - The number reported.
 #'
-#' @keywords internal
-#'
 #' @seealso
-#'   [get_analytics()] for retrieving breast cancer screening data
+#' * [get_analytics()] for retrieving data from KHIS
 #'
 #' @examplesIf khis_has_cred()
-#' \dontrun{
-#'   # Clinical Breast Examination data elements
-#'   # XEX93uLsAm2 = CBE Abnormal
-#'   # cXe64Yk0QMY = CBE Normal
-#'   element_id = c('cXe64Yk0QMY', 'XEX93uLsAm2')
 #'
-#'   # Download data from February 2023 to current date
-#'   data <- .get_breast_data(element_ids = element_id, start_date = '2023-02-01')
-#' }
+#' # Clinical Breast Examination data elements
+#' # XEX93uLsAm2 = CBE Abnormal
+#' # cXe64Yk0QMY = CBE Normal
+#' element_id = c('cXe64Yk0QMY', 'XEX93uLsAm2')
+#'
+#' # Download data from February 2023 to current date
+#' data <- .get_breast_data(element_ids = element_id, start_date = '2023-02-01')
+#'
+#' @noRd
 
 .get_breast_data <- function(element_ids,
                             start_date,

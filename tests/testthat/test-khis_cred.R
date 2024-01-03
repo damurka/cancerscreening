@@ -1,4 +1,4 @@
-test_that("khis_cred woks correctly", {
+test_that("khis_cred woks correctly using configuration file", {
 
   expect_error(khis_cred(), class = 'cancerscreening_missing_credentials')
 
@@ -39,13 +39,18 @@ test_that("khis_cred woks correctly", {
 
   expect_false(khis_has_cred())
 
-  #expect_no_error(khis_cred(username = 'username2', password = 'password2'))
+  expect_no_error(khis_cred(username = 'username2', password = 'password2'))
 
-  #expect_true(khis_has_cred())
+  expect_true(khis_has_cred())
 
-  #expect_equal(khis_username(), 'username2')
+  expect_equal(khis_username(), 'username2')
 
-  #khis_cred_clear()
+  khis_cred_clear()
+
+  expect_error(
+    khis_cred(username = 'username2'),
+    class = 'cancerscreening_missing_credentials'
+  )
 })
 
 test_that("req_auth_khis_basic works correctly", {

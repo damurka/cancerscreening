@@ -7,12 +7,23 @@
 khis_has_cred()
 }
 \value{
-boolean value indicating if the credentials are available
+a boolean value indicating if the credentials are available
 }
 \description{
 Are There Credentials on Hand?
 }
 \examples{
+
+# Set the credentials
+khis_cred(username = 'KHIS username', password = 'KHIS password')
+
+# Check if credentials available. Expect TRUE
+khis_has_cred()
+
+# Clear credentials
+khis_cred_clear()
+
+# Check if credentials available. Expect FALSE
 khis_has_cred()
 }
 \seealso{

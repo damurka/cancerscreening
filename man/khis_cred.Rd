@@ -7,19 +7,26 @@
 khis_cred(config_path = NULL, username = NULL, password = NULL)
 }
 \arguments{
-\item{config_path}{An optional parameters that contains the path to configuration file with username and password}
+\item{config_path}{An optional parameters that contains the path to configuration file with username and password.}
 
 \item{username}{The KHIS username. Can be optional if \code{config_path} is already provided}
 
-\item{password}{The KHIS password. Can be optional if \code{config_path} is already provided or already stored using the \link{keyring} package}
+\item{password}{The KHIS password. Can be optional if \code{config_path} is already provided.}
+}
+\value{
+No return value
 }
 \description{
 Sets the KHIS Credentials
 }
+\details{
+The credentials can be provided using a configuration file (more secure) or
+providing \code{username} and \code{password} arguments. The \code{conf_path} is considered
+more secure since credentials will not appear in the code.
+}
 \examples{
-\dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+
 # Load username and password
-khis_cred(username = 'damurka', password = 'PASSWORD')
-\dontshow{\}) # examplesIf}
+khis_cred(username = 'khis_username', password = 'PASSWORD')
 }
 \concept{cred functions}

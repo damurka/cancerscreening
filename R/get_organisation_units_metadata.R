@@ -4,7 +4,7 @@
 #' [get_organisation_units_metadata()] fetches organisation units metadata from the
 #'   KHIS API server.
 #'
-#' @param ... Options that can be passed onto [.api_get].
+#' @param ... Options that can be passed onto KHIS API.
 #'
 #' @return A tibble containing the following columns:
 #'
@@ -18,9 +18,6 @@
 #'  * ward          - Name of the ward.
 #'
 #' @export
-#'
-#' @seealso
-#'   [.api_get()] for making API call to KHIS server
 #'
 #' @examplesIf khis_has_cred()
 #' # Fetch all the organisation units metadata

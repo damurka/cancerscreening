@@ -18,7 +18,7 @@ get_analytics(
 \arguments{
 \item{element_ids}{A vector of data element IDs for which to retrieve data. Required.}
 
-\item{start_date}{The start date to retrieve data. It is required and in the format 'YYYY-MM-dd'.}
+\item{start_date}{The start date to retrieve data. It is required and in the format \code{YYYY-MM-dd}.}
 
 \item{end_date}{The ending date for data retrieval (default is the current date).}
 
@@ -30,7 +30,7 @@ get_analytics(
 
 \item{elements}{A list of data elements to include. If NULL, downloaded using \code{\link[=get_data_elements_metadata]{get_data_elements_metadata()}}.}
 
-\item{...}{Other options that can be passed onto \link{.api_get}.}
+\item{...}{Other options that can be passed onto KHIS API.}
 }
 \value{
 A tibble with detailed information, including:
@@ -67,8 +67,9 @@ data
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link[=get_organisation_units_metadata]{get_organisation_units_metadata()}} for getting the organisations units
-\code{\link[=get_data_elements_metadata]{get_data_elements_metadata()}} for retrieving the data elements
-\code{\link[=get_category_options_metadata]{get_category_options_metadata()}} for retrieving category options
-\code{\link[=.api_get]{.api_get()}} for making API call to KHIS server
+\itemize{
+\item \code{\link[=get_organisation_units_metadata]{get_organisation_units_metadata()}} for getting the organisations units
+\item \code{\link[=get_data_elements_metadata]{get_data_elements_metadata()}} for retrieving the data elements
+\item \code{\link[=get_category_options_metadata]{get_category_options_metadata()}} for retrieving category options
+}
 }

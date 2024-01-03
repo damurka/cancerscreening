@@ -12,10 +12,10 @@ template:
 
 articles:
   - title: Common Uses
-    navbar: ~
+    navbar: Common Calculations
     contents:
     - cancerscreening
-    - articles/cervical-screening-coverage
+    - articles/screening-coverage
 
   - title: Set your credentials
     navbar: Package configuration
@@ -59,6 +59,7 @@ reference:
       - get_cervical_target_population
       - get_breast_cbe_target_population
       - get_breast_mammogram_target_population
+      - get_filtered_population
   - title: "KHIS Analytics"
     desc: >
       Download data from KHIS analytics table
