@@ -4,13 +4,21 @@ test_that("get_cervical_treated works", {
 
   expect_error(get_cervical_treated(), "start_date")
 
-  expect_error(get_cervical_treated(start_date = '1234'), "start_date")
+  expect_error(
+    get_cervical_treated(start_date = '1234'),
+    class = 'cancerscreening_incorrect_date_format'
+  )
 
-  expect_error(get_cervical_treated(start_date = '2022-01-01',
-                                     end_date = '1234'), "end_date")
+  expect_error(
+    get_cervical_treated(start_date = '2022-01-01', end_date = '1234'),
+    class = 'cancerscreening_incorrect_date_format'
+  )
 
-  expect_error(get_cervical_treated(start_date = '2020-01-01',
-                                     level = 'other'), "kenya")
+  expect_error(
+    get_cervical_treated(start_date = '2020-01-01', level = 'other'),
+    "kenya"
+  )
 
   expect_no_error(get_cervical_treated(start_date = '2023-07-01'))
+
 })

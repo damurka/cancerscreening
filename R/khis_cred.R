@@ -146,7 +146,7 @@ req_auth_khis_basic <- function(req) {
     cancerscreening_abort(
       message = c(
         "x" = "Missing credentials",
-        "i" = "Please set the credentials by calling {.field khis_cred()}"
+        "i" = "Please set the credentials by calling {.fun khis_cred}"
       ),
       class = "cancerscreening_missing_credentials"
     )
@@ -157,6 +157,7 @@ req_auth_khis_basic <- function(req) {
 #' Are There Credentials on Hand?
 #'
 #' @family low-level API functions
+#' @returns boolean value indicating if the credentials are available
 #' @export
 #'
 #' @examples
@@ -166,7 +167,7 @@ khis_has_cred <- function() {
   .auth$has_cred()
 }
 
-#' Clear the Password from Memory
+#' Clear the Credentials from Memory
 #'
 #' @family auth functions
 #'
@@ -176,6 +177,7 @@ khis_has_cred <- function() {
 #' khis_cred_clear()
 
 khis_cred_clear <- function() {
+  .auth$set_username(NULL)
   .auth$clear_password()
   invisible()
 }
@@ -183,10 +185,21 @@ khis_cred_clear <- function() {
 #' Produces the Configured Username
 #'
 #' @family low-level API functions
+#'
+#' @return the username of the user credentials
 #' @export
 #'
-#' @examples
-#' khis_username()
+#' @examples rlang::is_interactive()
+#' \dontrun{
+#'   # Set the credentials
+#'   khis_cred(username = 'user', password = 'password')
+#'
+#'   # View the username
+#'   khis_username()
+#'
+#'   # Clear credentials
+#'   khis_clear_cred()
+#' }
 
 khis_username <- function() {
   .auth$get_username()
