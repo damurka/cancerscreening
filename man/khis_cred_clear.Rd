@@ -2,12 +2,12 @@
 % Please edit documentation in R/khis_cred.R
 \name{khis_cred_clear}
 \alias{khis_cred_clear}
-\title{Clear the Password from Memory}
+\title{Clear the Credentials from Memory}
 \usage{
 khis_cred_clear()
 }
 \description{
-Clear the Password from Memory
+Clear the Credentials from Memory
 }
 \examples{
 \dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

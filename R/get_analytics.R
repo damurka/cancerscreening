@@ -55,24 +55,51 @@ get_analytics <- function(element_ids,
 
   x = element_id = `x,1` = category_id = `x,2` = org_id = `x,3` = period = `x,4` = value = `x,5` = category = category2 = year_f = NULL # due to NSE notes in R CMD check
 
-  stopifnot(length(element_ids) > 0)
-  stopifnot(!is.na(start_date), !is.na(as.Date(start_date, '%Y-%m-%d')))
-  if (!is.null(end_date) && is.na(as.Date(end_date, '%Y-%m-%d'))) {
-    stop('end_date is in an incorrect format')
+  if (rlang::is_empty(element_ids) || !rlang::is_bare_character(element_ids)) {
+    cancerscreening_abort(
+      message = c(
+        "Missing argument",
+        "x" = "{.field element_id} has not been provided or incorrect format"
+      ),
+      class = "cancerscreening_missing_argument"
+    )
+  }
+
+  if (!rlang::is_scalar_character(start_date) || is.na(lubridate::ymd(start_date, quiet = TRUE))) {
+    cancerscreening_abort(
+      message = c(
+        "Incorrect Date Format",
+        "x" = "use the format {.code YYYY-mm-dd} for the {.field start_date}"
+      ),
+      class = "cancerscreening_incorrect_date_format"
+    )
+  }
+
+  if (!is.null(end_date) && is.na(lubridate::ymd(end_date, quiet = TRUE))) {
+    cancerscreening_abort(
+      message = c(
+        "Incorrect Date Format",
+        "x" = "use the format {.code YYYY-mm-dd} for the {.field end_date}"
+      ),
+      class = "cancerscreening_incorrect_date_format"
+    )
   }
 
   level <- match.arg(level)
 
   if (is.null(organisations)) {
+    cancerscreening_bullets(c("i" = "Downloading organisation units"))
     organisations <- get_organisation_units_metadata()
   }
   organisations <- .filter_organisation_units(organisations, level)
 
   if (is.null(categories)) {
+    cancerscreening_bullets(c("i" = "Downloading category options"))
     categories <- get_category_options_metadata()
   }
 
   if (is.null(elements)) {
+    cancerscreening_bullets(c("i" = "Downloading data elements"))
     elements <- get_data_elements_metadata(element_ids)
   }
 

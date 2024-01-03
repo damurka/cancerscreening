@@ -6,6 +6,9 @@
 \usage{
 khis_has_cred()
 }
+\value{
+boolean value indicating if the credentials are available
+}
 \description{
 Are There Credentials on Hand?
 }

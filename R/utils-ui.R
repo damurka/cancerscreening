@@ -1,11 +1,11 @@
+#' Create a Theme for Messages with Bullets
+#'
+#' @noRd
+
 cancerscreening_theme <- function() {
   list(
     span.field = list(transform = single_quote_if_no_color),
-    # I want to style the Drive file names similar to cli's,
-    span.drivepath = list(
-      color = "cyan",
-      fmt = utils::getFromNamespace("quote_weird_name", "cli")
-    ),
+    span.fun = list(color = "cyan"),
     # since we're using color so much elsewhere, I think
     # the standard bullet should be "normal" color
     ".bullets .bullet-*" = list(
@@ -15,6 +15,10 @@ cancerscreening_theme <- function() {
   )
 }
 
+#' Write Messages with Bullets
+#'
+#' @noRd
+
 cancerscreening_bullets <- function(text, .envir = parent.frame()) {
   quiet <- cancerscreening_quiet() %|% testthat::is_testing()
   if (quiet) {
@@ -23,6 +27,10 @@ cancerscreening_bullets <- function(text, .envir = parent.frame()) {
   cli::cli_div(theme = cancerscreening_theme())
   cli::cli_bullets(text = text, .envir = .envir)
 }
+
+#' Abort/Error Message with Bullets
+#'
+#' @noRd
 
 cancerscreening_abort <- function(message, ..., .envir = parent.frame()) {
   cli::cli_div(theme = cancerscreening_theme())
@@ -45,7 +53,9 @@ quote_if_no_color <- function(x, quote = "'") {
   }
 }
 
-# making cancerscreening quiet vs. loud ----
+#' Making cancerscreening quiet vs. loud ----
+#'
+#' @noRd
 cancerscreening_quiet <- function() {
   getOption("cancerscreening_quiet", default = NA)
 }

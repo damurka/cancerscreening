@@ -146,7 +146,7 @@ req_auth_khis_basic <- function(req) {
     cancerscreening_abort(
       message = c(
         "x" = "Missing credentials",
-        "i" = "Please set the credentials by calling {.field khis_cred()}"
+        "i" = "Please set the credentials by calling {.fun khis_cred}"
       ),
       class = "cancerscreening_missing_credentials"
     )
@@ -190,14 +190,16 @@ khis_cred_clear <- function() {
 #' @export
 #'
 #' @examples rlang::is_interactive()
-#' # Set the credentials
-#' khis_cred(username = 'user', password = 'password')
+#' \dontrun{
+#'   # Set the credentials
+#'   khis_cred(username = 'user', password = 'password')
 #'
-#' # View the username
-#' khis_username()
+#'   # View the username
+#'   khis_username()
 #'
-#' # Clear credentials
-#' khis_clear_cred()
+#'   # Clear credentials
+#'   khis_clear_cred()
+#' }
 
 khis_username <- function() {
   .auth$get_username()

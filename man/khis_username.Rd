@@ -6,11 +6,24 @@
 \usage{
 khis_username()
 }
+\value{
+the username of the user credentials
+}
 \description{
 Produces the Configured Username
 }
 \examples{
-khis_username()
+rlang::is_interactive()
+\dontrun{
+  # Set the credentials
+  khis_cred(username = 'user', password = 'password')
+
+  # View the username
+  khis_username()
+
+  # Clear credentials
+  khis_clear_cred()
+}
 }
 \seealso{
 Other low-level API functions: 
