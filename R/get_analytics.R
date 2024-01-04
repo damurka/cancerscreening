@@ -54,37 +54,11 @@ get_analytics <- function(element_ids,
 
   x = element_id = `x,1` = category_id = `x,2` = org_id = `x,3` = period = `x,4` = value = `x,5` = category = category2 = year_f = NULL # due to NSE notes in R CMD check
 
-  if (rlang::is_empty(element_ids) || !rlang::is_bare_character(element_ids)) {
-    cancerscreening_abort(
-      message = c(
-        "Missing argument",
-        "x" = "{.field element_id} has not been provided or incorrect format"
-      ),
-      class = "cancerscreening_missing_argument"
-    )
-  }
+  check_string_vector(element_ids)
+  check_date(start_date)
+  check_date(end_date, can_be_null = TRUE)
 
-  if (!rlang::is_scalar_character(start_date) || is.na(lubridate::ymd(start_date, quiet = TRUE))) {
-    cancerscreening_abort(
-      message = c(
-        "Incorrect Date Format",
-        "x" = "use the format {.code YYYY-mm-dd} for the {.field start_date}"
-      ),
-      class = "cancerscreening_incorrect_date_format"
-    )
-  }
-
-  if (!is.null(end_date) && is.na(lubridate::ymd(end_date, quiet = TRUE))) {
-    cancerscreening_abort(
-      message = c(
-        "Incorrect Date Format",
-        "x" = "use the format {.code YYYY-mm-dd} for the {.field end_date}"
-      ),
-      class = "cancerscreening_incorrect_date_format"
-    )
-  }
-
-  level <- match.arg(level)
+  level <- arg_match(level)
 
   if (is.null(organisations)) {
     cancerscreening_bullets(c("i" = "Downloading organisation units"))
@@ -129,13 +103,13 @@ get_analytics <- function(element_ids,
   )
 
   if (is.null(data$rows) || length(data$rows) == 0) {
-    cancerscreening_abort(
-      message = c(
-        "No data",
-        "x" = "There was no data returned by the sever"
-      ),
-
+    cancerscreening_bullets(
+      c(
+        "x" = "No data",
+        "!" = "There server did not return data returned."
+      )
     )
+    return(tibble())
   }
 
   data <- tibble(x = data$rows) %>%

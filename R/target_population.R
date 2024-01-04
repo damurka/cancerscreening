@@ -53,12 +53,7 @@
 
 get_cervical_target_population <- function(year, level = c('kenya', 'county', 'subcounty')) {
 
-  if (!rlang::is_scalar_double(year)) {
-    cancerscreening_abort(
-      c('x' = 'The {.field year} should be numeric'),
-      class = 'cancerscreening_invalid_numeric'
-    )
-  }
+  check_numeric(year)
 
   year <- case_when(
     year <= 2025 ~ 2025,
@@ -91,12 +86,7 @@ get_breast_mammogram_target_population <- function(year, level = c('kenya', 'cou
 #' @noRd
 .get_breast_target_population <- function(year, min_age, max_age = 75, level = c('kenya', 'county', 'subcounty')) {
 
-  if (!rlang::is_scalar_double(year)) {
-    cancerscreening_abort(
-      c('x' = 'The {.field year} should be numeric'),
-      class = 'cancerscreening_invalid_numeric'
-    )
-  }
+  check_numeric(year)
 
   year <- case_when(
     year < 2021 ~ 2021,
@@ -152,48 +142,19 @@ get_filtered_population <- function(year,
                                      rate = 0.022) {
   age = sex = NULL # due to NSE notes in R CMD check
 
-  if (!rlang::is_scalar_double(year)) {
-    cancerscreening_abort(
-      c('x' = 'The {.field year} should be numeric'),
-      class = 'cancerscreening_invalid_numeric'
-    )
-  }
+  check_numeric(year)
+  check_numeric(min_age)
+  check_numeric(max_age)
+  check_numeric(modifier)
+  check_numeric(rate)
 
-  if (!rlang::is_scalar_double(min_age)) {
-    cancerscreening_abort(
-      c('x' = 'The {.field min_age} should be numeric'),
-      class = 'cancerscreening_invalid_numeric'
-    )
-  }
-
-  if (!rlang::is_scalar_double(max_age)) {
-    cancerscreening_abort(
-      c('x' = 'The {.field max_age} should be numeric'),
-      class = 'cancerscreening_invalid_numeric'
-    )
-  }
-
-  if (!rlang::is_scalar_double(modifier)) {
-    cancerscreening_abort(
-      c('x' = 'The {.field modifier} should be numeric'),
-      class = 'cancerscreening_invalid_numeric'
-    )
-  }
-
-  if (!rlang::is_scalar_double(rate)) {
-    cancerscreening_abort(
-      c('x' = 'The {.field rate} should be numeric'),
-      class = 'cancerscreening_invalid_numeric'
-    )
-  }
-
-  level <- match.arg(level)
+  level <- arg_match(level)
   level <- switch (level,
                    kenya = c('kenya'),
                    county = c('county'),
                    subcounty = c('county', 'subcounty'))
 
-  pop_sex <- match.arg(pop_sex)
+  pop_sex <- arg_match(pop_sex)
   pop_sex <- switch (pop_sex,
     female = c('female'),
     male = c('male'),
