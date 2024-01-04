@@ -32,7 +32,7 @@ khis_cred <- function(config_path = NULL,
     cancerscreening_abort(
       message = c(
         "x" = "Missing credentials",
-        "i" = "Please provide either {.field config_path} or {.field username}."
+        "!" = "Please provide either {.field config_path} or {.field username} and {.field password}."
       ),
       class = "cancerscreening_missing_credentials"
     )
@@ -42,7 +42,7 @@ khis_cred <- function(config_path = NULL,
     cancerscreening_abort(
       message = c(
         "x" = "{.field config_path} and {.field username} cannot be provided together.",
-        "i" = "Remove one and try again!"
+        "!" = "Remove one and try again!"
       ),
       class = "cancerscreening_multiple_credentials",
       config_path = config_path
@@ -64,7 +64,7 @@ khis_cred <- function(config_path = NULL,
     cancerscreening_abort(
       message = c(
         "x" = "Missing credentials",
-        "i" = "Please provide {.field username} and {.field password} {additional}"
+        "!" = "Please provide {.field username} and {.field password} {additional}"
       ),
       class = "cancerscreening_missing_credentials"
     )
@@ -97,7 +97,7 @@ khis_cred <- function(config_path = NULL,
     cancerscreening_abort(
       message = c(
         "x" = "Invalid {.field config_path} was provided.",
-        "i" = "Check the {.field config_path} and try again!"
+        "!" = "Check the {.field config_path} and try again!"
       ),
       class = "cancerscreening_invalid_config_path",
       config_path = config_path
@@ -107,7 +107,7 @@ khis_cred <- function(config_path = NULL,
   cancerscreening_abort(
     message = c(
       "x" = "Invalid {.field config_path} was provided.",
-      "i" = "Please check the {.field config_path} format and try again"
+      "!" = "Please check the {.field config_path} format and try again"
     ),
     class = "cancerscreening_invalid_config_path",
     config_path = config_path
@@ -135,7 +135,7 @@ req_auth_khis_basic <- function(req) {
     cancerscreening_abort(
       message = c(
         "x" = "Missing credentials",
-        "i" = "Please set the credentials by calling {.fun khis_cred}"
+        "!" = "Please set the credentials by calling {.fun khis_cred}"
       ),
       class = "cancerscreening_missing_credentials"
     )
@@ -222,7 +222,7 @@ khis_username <- function() {
 #' @noRd
 
 khis_cred_internal <- function(account = c('docs', 'testing')) {
-  account <- match.arg(account)
+  account <- arg_match(account)
   can_decrypt <- gargle::secret_has_key('CANCERSCREENING_KEY')
   online <- !is.null(curl::nslookup('hiskenya.org', error = FALSE))
   if (!can_decrypt || !online) {

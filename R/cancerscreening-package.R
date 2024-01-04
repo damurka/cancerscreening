@@ -20,6 +20,7 @@
 #' @keywords internal
 #' @import dplyr
 #' @import tidyr
+#' @import rlang
 "_PACKAGE"
 
 ## usethis namespace: start
@@ -39,11 +40,6 @@
 #' @importFrom lubridate year
 #' @importFrom lubridate ym
 #' @importFrom lubridate ymd
-#' @importFrom rlang %|%
-#' @importFrom rlang is_bare_character
-#' @importFrom rlang is_empty
-#' @importFrom rlang is_scalar_character
-#' @importFrom rlang is_string
 #' @importFrom stringr str_c
 #' @importFrom stringr str_detect
 #' @importFrom stringr str_glue
