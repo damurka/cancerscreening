@@ -30,7 +30,7 @@ reference:
       - get_organisation_units_metadata
       - get_category_options_metadata
       - get_data_elements_metadata
-  - title: "Cervical cancer screening data"
+  - title: "Cervical cancer screening"
     desc: >
       Downloading data related to cervical cancer screening
     contents:
@@ -38,12 +38,19 @@ reference:
       - get_cervical_hiv_screened
       - get_cervical_positive
       - get_cervical_treated
-  - title: "Breast cancer screening data"
+  - title: "Breast cancer screening"
     desc: >
       Downloads data related to breast cancer screening
     contents:
       - get_breast_cbe
       - get_breast_mammogram
+      - get_breast_ultrasound
+  - title: "Colorectal cancer screening"
+    desc: >
+      Downloads data related to colorectal cancer screening
+    contents:
+      - get_colorectal_fobt
+      - get_colorectal_colonoscopy
   - title: "Authorization Credentials"
     desc: >
       Take and securely store the KHIS authorization credentials

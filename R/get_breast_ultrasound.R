@@ -1,11 +1,11 @@
-#' Retrieves Data for Mammograms Conducted
+#' Retrieves Data for Breast Ultrasound Conducted
 #'
-#' `get_breast_mammogram()` retrieves data for mammograms conducted within a
+#' `get_breast_ultrasound()` retrieves data for breast ultrasounds conducted within a
 #' specified period from the KHIS API server using [get_analytics()].
 #'
 #' @inheritParams get_analytics
 #'
-#' @return A tibble containing data for mammograms conducted with the following columns:
+#' @return A tibble containing data for breast ultrasound conducted with the following columns:
 #'
 #' * kenya      - Optional if the level is Kenya.
 #' * county     - Name of the county. Optional if the level is `county`, `subcounty`, `ward` or `facility`.
@@ -29,10 +29,10 @@
 #' @examplesIf khis_has_cred()
 #'
 #' # Download data from February 2023 to current date
-#' mammogram_data <- get_breast_mammogram(start_date = '2023-02-01')
-#' mammogram_data
+#' ultrasound_data <- get_breast_ultrasound(start_date = '2023-02-01')
+#' ultrasound_data
 
-get_breast_mammogram <- function(start_date,
+get_breast_ultrasound <- function(start_date,
                                  end_date = NULL,
                                  level =c('kenya', 'county', 'subcounty', 'ward', 'facility'),
                                  organisations = NULL,
@@ -40,14 +40,14 @@ get_breast_mammogram <- function(start_date,
                                  elements = NULL,
                                  ...) {
 
-  # Mammogram screening element ids
-  # T3crNg5D3Xa = Mammogram - BIRADS-0 to 3
-  # Sorvgq7NDug = Mammogram - BIRADS-4
-  # bi1ipJR6zNJ = Mammogram - BIRADS-5
-  # APhWHU4KLWF = Mammogram - BIRADS-6
-  mammogram_element_ids <- c('T3crNg5D3Xa', 'Sorvgq7NDug', 'bi1ipJR6zNJ', 'APhWHU4KLWF')
+  # Ultrasound screening element ids
+  # MmffJIuHxFm = Ultrasound - BIRADS -0- to 3
+  # cLlPY6DlvW7 = Ultrasound - BIRADS -4
+  # NPiyy6QSi7I = Ultrasound - BIRADS -5
+  # mJrNfjiiNDE = Ultrasound - BIRADS -6
+  ultrasound_element_ids <- c('MmffJIuHxFm', 'cLlPY6DlvW7', 'NPiyy6QSi7I', 'mJrNfjiiNDE')
 
-  data <- .get_breast_data(mammogram_element_ids,
+  data <- .get_breast_data(ultrasound_element_ids,
                            start_date,
                            end_date = end_date,
                            level = level,
@@ -57,11 +57,11 @@ get_breast_mammogram <- function(start_date,
                            ...) %>%
     mutate(
       element = case_when(
-        str_detect(element, 'BIRADS-0 to 3') ~ 'BIRADS 0-3',
-        str_detect(element, 'BIRADS-4') ~ 'BIRADS 4',
-        str_detect(element, 'BIRADS-5') ~ 'BIRADS 5',
-        str_detect(element, 'BIRADS-6') ~ 'BIRADS 6',
-        .default = 'BIRADS 6',
+        str_detect(element, 'BIRADS -0- to 3') ~ 'BIRADS 0-3',
+        str_detect(element, 'BIRADS -4') ~ 'BIRADS 4',
+        str_detect(element, 'BIRADS -5') ~ 'BIRADS 5',
+        str_detect(element, 'BIRADS -6') ~ 'BIRADS 6',
+        .default = NA,
         .ptype = factor(levels = c('BIRADS 0-3', 'BIRADS 4', 'BIRADS 5', 'BIRADS 6'))
       ),
       category2 = case_when(

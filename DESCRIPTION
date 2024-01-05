@@ -4,8 +4,8 @@ Version: 1.0.1
 Authors@R: 
     person("David", "Kariuki", , "hello@damurka.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0009-0003-6159-1107"))
-Description: Retrieve cancer screening data for cervical and breast
-    cancers from the Kenya Health Information System (KHIS).
+Description: Retrieve cancer screening data for cervical, breast and colorectal
+    cancers from the Kenya Health Information System in a consistent way.
 License: MIT + file LICENSE
 URL: https://cancerscreening.damurka.com,
     https://github.com/damurka/cancerscreening
