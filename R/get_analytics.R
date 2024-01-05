@@ -102,14 +102,26 @@ get_analytics <- function(element_ids,
                   ...
   )
 
-  if (is.null(data$rows) || length(data$rows) == 0) {
+  if (is_empty(data$rows)) {
     cancerscreening_bullets(
       c(
-        "x" = "No data",
-        "!" = "There server did not return data returned."
+        "!" = "No data",
+        "!" = "The KHIS server did not return any data."
       )
     )
-    return(tibble())
+    return(tibble(
+      kenya  = character(),
+      county = character(),
+      subcounty = character(),
+      facility = character(),
+      element = factor(),
+      category = factor(),
+      category2 = factor(),
+      month = factor(),
+      year = double(),
+      fiscal_year = factor(),
+      source = factor()
+    ))
   }
 
   data <- tibble(x = data$rows) %>%

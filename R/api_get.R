@@ -27,7 +27,8 @@
 .api_get <- function(url_path,
                      ...,
                      retry = 1,
-                     verbosity = 0) {
+                     verbosity = 0,
+                     error_call = caller_env()) {
 
   params <- list(
     ...,
@@ -41,6 +42,7 @@
     req_retry(max_tries = retry) %>%
     req_user_agent('Cancer Screening R') %>%
     req_auth_khis_basic() %>%
+    req_error(body = \(resp) cancerscreening_abort(c('x'='{resp_body_json(resp)}'), call = error_call)) %>%
     req_perform(verbosity = verbosity) %>%
     resp_body_json()
 
