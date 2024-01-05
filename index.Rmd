@@ -115,7 +115,7 @@ cacx_positive <- get_cervical_positive('2021-07-01',
                                        organisations = organisations)
 head(cacx_positive)
 
-# Download Breas mammogram screening
+# Download Breast mammogram screening
 breast_mammogram <- get_breast_mammogram('2021-07-01', 
                                          end_date = '2021-12-31',
                                          level = 'county',
