@@ -23,6 +23,20 @@ x = categoryOptionCombos = name = category_id = category = NULL # due to NSE not
                         fields='id,name,categoryOptionCombos',
                         ...)
 
+  if (is_empty(cat_group$categoryOptions)) {
+    cancerscreening_bullets(
+      c(
+        "!" = "Empty category options returned",
+        "!" = "The KHIS server did not return any category options."
+      )
+    )
+
+    return(tibble(
+      category_id = character(),
+      category = character()
+    ))
+  }
+
   cat_group <- tibble(x = cat_group$categoryOptions) %>%
     unnest_wider(x) %>%
     unnest_longer(categoryOptionCombos) %>%

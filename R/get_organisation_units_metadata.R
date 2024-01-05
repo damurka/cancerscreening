@@ -31,6 +31,26 @@ get_organisation_units_metadata <- function(...) {
                    fields='id,name,path',
                    ...)
 
+  if (is_empty(orgs$organisationUnits)) {
+    cancerscreening_bullets(
+      c(
+        "!" = "Empty organisation units returned",
+        "!" = "The KHIS server did not return any organisation units."
+      )
+    )
+
+    return(tibble(
+      county = character(),
+      subcounty = character(),
+      ward = character(),
+      facility = character(),
+      county_id = character(),
+      subcounty_id = character(),
+      ward_id = character(),
+      facility_id = character()
+    ))
+  }
+
   orgs <- tibble(x = orgs$organisationUnits) %>%
     unnest_wider(x)
 

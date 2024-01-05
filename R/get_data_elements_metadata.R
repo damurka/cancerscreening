@@ -36,6 +36,20 @@ get_data_elements_metadata <-function(element_ids = NULL, ...) {
                    filter=filter,
                    ...)
 
+  if (is_empty(data$dataElements)) {
+    cancerscreening_bullets(
+      c(
+        "!" = "Empty data elements returned",
+        "!" = "The KHIS server did not return any data elements."
+      )
+    )
+
+    return(tibble(
+      element_id = character(),
+      element = character()
+    ))
+  }
+
   data <- tibble(x = data$dataElements) %>%
     unnest_wider(x) %>%
     rename(

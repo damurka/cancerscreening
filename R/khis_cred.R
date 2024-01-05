@@ -64,7 +64,7 @@ khis_cred <- function(config_path = NULL,
     cancerscreening_abort(
       message = c(
         "x" = "Missing credentials",
-        "!" = "Please provide {.field username} and {.field password} {additional}"
+        "!" = "Please provide both {.field username} and {.field password}{additional}."
       ),
       class = "cancerscreening_missing_credentials"
     )
@@ -86,7 +86,7 @@ khis_cred <- function(config_path = NULL,
 #'
 #'@noRd
 
-.load_config_file <- function(config_path = NA) {
+.load_config_file <- function(config_path = NA, error_call = caller_env()) {
   # Load from a file
   tryCatch({
     data <- jsonlite::fromJSON(config_path)
@@ -100,17 +100,19 @@ khis_cred <- function(config_path = NULL,
         "!" = "Check the {.field config_path} and try again!"
       ),
       class = "cancerscreening_invalid_config_path",
-      config_path = config_path
+      config_path = config_path,
+      call = error_call
     )
   })
 
   cancerscreening_abort(
     message = c(
       "x" = "Invalid {.field config_path} was provided.",
-      "!" = "Please check the {.field config_path} format and try again"
+      "!" = "Please check the {.field config_path} file format and try again"
     ),
     class = "cancerscreening_invalid_config_path",
-    config_path = config_path
+    config_path = config_path,
+    call = error_call
   )
 }
 
@@ -130,14 +132,18 @@ khis_cred <- function(config_path = NULL,
 #'
 #' @seealso [httr2]
 
-req_auth_khis_basic <- function(req) {
+req_auth_khis_basic <- function(req, arg = caller_arg(req), error_call = caller_env()) {
+
+  check_required(req, arg, error_call)
+
   if (!khis_has_cred()) {
     cancerscreening_abort(
       message = c(
         "x" = "Missing credentials",
         "!" = "Please set the credentials by calling {.fun khis_cred}"
       ),
-      class = "cancerscreening_missing_credentials"
+      class = "cancerscreening_missing_credentials",
+      call = error_call
     )
   }
   httr2::req_auth_basic(req, .auth$username, .auth$password)
