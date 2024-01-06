@@ -34,6 +34,9 @@
     <loc>https://cancerscreening.damurka.com/news/index.html</loc>
   </url>
   <url>
+    <loc>https://cancerscreening.damurka.com/reference/cancerscreening-configuration.html</loc>
+  </url>
+  <url>
     <loc>https://cancerscreening.damurka.com/reference/cancerscreening-package.html</loc>
   </url>
   <url>
@@ -44,6 +47,9 @@
   </url>
   <url>
     <loc>https://cancerscreening.damurka.com/reference/get_breast_mammogram.html</loc>
+  </url>
+  <url>
+    <loc>https://cancerscreening.damurka.com/reference/get_breast_ultrasound.html</loc>
   </url>
   <url>
     <loc>https://cancerscreening.damurka.com/reference/get_category_options_metadata.html</loc>
@@ -59,6 +65,12 @@
   </url>
   <url>
     <loc>https://cancerscreening.damurka.com/reference/get_cervical_treated.html</loc>
+  </url>
+  <url>
+    <loc>https://cancerscreening.damurka.com/reference/get_colorectal_colonoscopy.html</loc>
+  </url>
+  <url>
+    <loc>https://cancerscreening.damurka.com/reference/get_colorectal_fobt.html</loc>
   </url>
   <url>
     <loc>https://cancerscreening.damurka.com/reference/get_data_elements_metadata.html</loc>

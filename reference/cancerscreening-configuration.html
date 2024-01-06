@@ -27,7 +27,8 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/cervical-screening-coverage.html">Cervical Cancer Screening Coverage</a>
+    <h6 class="dropdown-header" data-toc-skip>Common Calculations</h6>
+    <a class="dropdown-item" href="../articles/screening-coverage.html">Screening Coverage</a>
     <div class="dropdown-divider"></div>
     <h6 class="dropdown-header" data-toc-skip>Package configuration</h6>
     <a class="dropdown-item" href="../articles/set-your-credentials.html">Set your credentials</a>
@@ -53,7 +54,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>cancerscreening configuration</h1>
-      <small class="dont-index">Source: <a href="https://github.com/damurka/cancerscreening/blob/HEAD/R/cancerscreening-package.R" class="external-link"><code>R/cancerscreening-package.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/damurka/cancerscreening/blob/HEAD/R/cancerscreening-package.R" class="external-link"><code>R/cancerscreening-package.R</code></a>, <a href="https://github.com/damurka/cancerscreening/blob/HEAD/R/utils-ui.R" class="external-link"><code>R/utils-ui.R</code></a></small>
       <div class="d-none name"><code>cancerscreening-configuration.Rd</code></div>
     </div>
 
@@ -61,17 +62,60 @@
     <p>Some aspects of cancerscreening behaviour can be controlled via an option.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">with_cancerscreening_quiet</span><span class="op">(</span><span class="va">code</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">local_cancerscreening_quiet</span><span class="op">(</span>env <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">parent.frame</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+    </div>
 
     <div class="section level2">
-    <h2 id="auth">Auth<a class="anchor" aria-label="anchor" href="#auth"></a></h2>
+    <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
+    <dl><dt>code</dt>
+<dd><p>Code to execute quietly</p></dd>
+
+
+<dt>env</dt>
+<dd><p>The environment to use for scoping</p></dd>
+
+</dl></div>
+    <div class="section level2">
+    <h2 id="messages">Messages<a class="anchor" aria-label="anchor" href="#messages"></a></h2>
     
 
 
-<p>Read about cancerscreening's main auth function, <code><a href="khis_cred.html">khis_cred()</a></code>. It is stores
-the KHIS credentials for authorization during API calls.</p>
+<p>The <code>cancerscreening_quiet</code> option can be used to suppress messages form
+cancerscreening. By default, cancerscreening always messages, i.e. it is <em>not</em>
+quiet.</p>
+<p>set <code>cancerscreening_quiet</code> to <code>TRUE</code> to suppress message, by one of these
+means, inorder of decreasing scope:</p><ul><li><p>Put <code>options(cancerscreening_quiet = TRUE)</code> in the startup file, sucha as
+<code>.Rprofile</code>, or  in your R script</p></li>
+<li><p>Use <code>local_cancerscreening_quiet()</code> to silence cancerscreening in a specific
+scope</p></li>
+<li><p>Use <code>with_cancerscreening_quite</code> to run small bit of code silently</p></li>
+</ul><p><code>local_cancerscreening_quiet</code> and <code>with_cancerscreening</code> follow the conventions
+of the withr package (<a href="https://withr.r-lib.org" class="external-link">https://withr.r-lib.org</a>).</p>
     </div>
 
-  </main></div>
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># message: "Downloading cervical cancer"</span></span></span>
+<span class="r-in"><span><span class="fu">get_cervical_screening</span><span class="op">(</span><span class="st">'2022-01-01'</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in get_cervical_screening("2022-01-01"):</span> could not find function "get_cervical_screening"</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># suppress messages for a small amount of code</span></span></span>
+<span class="r-in"><span><span class="fu">with_cancerscreening_quiet</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu">get_breast_screening</span><span class="op">(</span><span class="st">'2022-01-01'</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in get_breast_screening("2022-01-01"):</span> could not find function "get_breast_screening"</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># message: "Writing ..., Appending ..."</span></span></span>
+<span class="r-in"><span><span class="fu">get_breast_cbe_screening</span><span class="op">(</span><span class="st">'2022-01-01'</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in get_breast_cbe_screening("2022-01-01"):</span> could not find function "get_breast_cbe_screening"</span>
+</code></pre></div>
+    </div>
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">

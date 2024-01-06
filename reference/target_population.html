@@ -74,6 +74,11 @@
 <span><span class="fu">get_breast_mammogram_target_population</span><span class="op">(</span></span>
 <span>  <span class="va">year</span>,</span>
 <span>  level <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"kenya"</span>, <span class="st">"county"</span>, <span class="st">"subcounty"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">get_colorectal_target_population</span><span class="op">(</span></span>
+<span>  <span class="va">year</span>,</span>
+<span>  level <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"kenya"</span>, <span class="st">"county"</span>, <span class="st">"subcounty"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -99,6 +104,9 @@ data for: <code>"kenya"</code> (default) , <code>"county"</code> or <code>"subco
 
 
 <p>A tibble containing the target screening population</p>
+
+
+<p>A tibble containing the target screening population</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -108,6 +116,8 @@ cancer screening: females aged between 25 years and 50 years</p>
 breast examination: females aged between 25 years and 74 years</p>
 <p><code>get_breast_mammogram_target_population()</code> subsets the target population for
 breast cancer screening through mammography: females aged between 40 years to 74 years</p>
+<p><code>get_colorectal_target_population()</code> subsets the target population for
+colorectal cancer screening: males and females aged between 45 years to 75 years</p>
 <p>These target populations are guided by the
 <a href="https://www.iccp-portal.org/system/files/plans/KENYA%20NATIONAL%20CANCER%20CONTROL%20STRATEGY%202017-2022_1.pdf" class="external-link">Kenya National Cancer Screening Guidelines 2018</a>.
 The population projection for counties and the national level are calculated
@@ -170,6 +180,14 @@ cervical cancer prevention programs: A manual for managers.'</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    target</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> <span style="text-decoration: underline;">697</span>245.</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Get the country projection colorectal cancer screening for the year 2024</span></span></span>
+<span class="r-in"><span><span class="va">target_population</span> <span class="op">&lt;-</span> <span class="fu">get_colorectal_target_population</span><span class="op">(</span><span class="fl">2024</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">target_population</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 1</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     target</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 1<span style="text-decoration: underline;">022</span>777.</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
