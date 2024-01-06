@@ -49,3 +49,28 @@
 #' @importFrom tibble tibble
 ## usethis namespace: end
 NULL
+
+#' cancerscreening configuration
+#'
+#' @description
+#' Some aspects of cancerscreening behaviour can be controlled via an option.
+#'
+#' @section Messages:
+#'
+#' The `cancerscreening_quiet` option can be used to suppress messages form
+#' cancerscreening. By default, cancerscreening always messages, i.e. it is *not*
+#' quiet.
+#'
+#' set `cancerscreening_quiet` to `TRUE` to suppress message, by one of these
+#' means, inorder of decreasing scope:
+#' * Put `options(cancerscreening_quiet = TRUE)` in the startup file, sucha as
+#'   `.Rprofile`, or  in your R script
+#' * Use `local_cancerscreening_quiet()` to silence cancerscreening in a specific
+#'   scope
+#' * Use `with_cancerscreening_quite` to run small bit of code silently
+#'
+#' `local_cancerscreening_quiet` and `with_cancerscreening` follow the conventions
+#' of the withr package (<https://withr.r-lib.org>).
+#'
+#' @name cancerscreening-configuration
+NULL

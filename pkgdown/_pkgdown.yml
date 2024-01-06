@@ -59,6 +59,7 @@ reference:
       - khis_has_cred
       - khis_cred_clear
       - khis_username
+      - cancerscreening-configuration
   - title: "Target population"
     desc: >
       Fetches the target population for the different screening programs
