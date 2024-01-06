@@ -13,9 +13,11 @@ coverage](https://codecov.io/gh/damurka/cancerscreening/branch/main/graph/badge.
 
 ## Overview
 
+cancerscreening provides an R interface to [Kenya Health Information
+System (KHIS)](https://hiskenya.org) via the [DHIS 2
+API](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/introduction.html).
 The goal of `cancerscreening` is to provide a easy way to download
-cancer screening data from the Kenya Health Information System (KHIS)
-using R.
+cancer screening data from the KHIS using R.
 
 ## Installation
 
@@ -26,40 +28,125 @@ You can install the released version of cancerscreening from
 install.packages("cancerscreening")
 ```
 
-You can install the development version of from
-[Github](https://github.com) with:
+And the development version of from [Github](https://github.com) with:
 
 ``` r
 # install.packages("pak")
 pak::pak('damurka/cancerscreening')
 ```
 
-***Note: This package is not yet available on CRAN.***
+***Note: This package has not yet been released on CRAN.***
 
 ## Usage
 
-Please see the package website: <https://cancerscreening.damurka.com>
+### Load cancerscreening package
+
+``` r
+library("cancerscreening")
+```
+
+### Auth
+
+cancerscreening will, by default, help you interact with KHIS as an
+authenticated user. Before calling any function that makes an API call
+you need credentials to [KHIS](https://hiskenya.org). You will be
+expected to set this credential to download the data. See the article
+[set you
+credentials](https://cancerscreening.damurka.com/articles/set-your-credentials.html)
+for more
+
+``` r
+# Set the credentials using username and password
+khis_cred(username = 'KHIS username', password = 'KHIS password')
+
+# Set credentials using configuration path
+khis_cred(config_path = 'path/to/secret.json')
+```
+
+After setting the credential you can invoke any function to download
+data from the API.
+
+For this overview, we’ve logged into KHIS as a specific user in a hidden
+chunk.
+
+### Package conventions
+
+- Most function begin with the prefix `get_` followed by the screening
+  area `cervical`, `breast`, or `colorectal`. Auto-completion is your
+  friend
+- Goal is to allow the download of data associated with the data of
+  interest, e.g. `get_cervical_screened`, `get_cervical_positive`, or
+  `get_cervical_treated`
+- cancerscreening is “pipe-friendly” and, infact re-xports `%>%` but
+  does not require its use.
 
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
-# Load the package
-library(cancerscreening)
-
-# Set credential to make API calls to KHIS
-# khis_cred(username = 'KHIS Username')
-
-# Get cervical cancer screening target population by county
-target <- get_cervical_target_population(year = 2023, level = 'county')
-head(target)
-
-# Download the cervical cancer screening data by county
-data <- get_cervical_screened('2022-07-01', end_date = '2022-12-31', level = 'county')
-data
-
-# To learn more about the function, run the following command
-?get_cervical_screened
+# Download the cervical cancer screening data for country
+cacx_screened <- get_cervical_screened('2022-07-01')
+head(cacx_screened)
 ```
+
+### Metadata reuse
+
+When you need data from more than one function it is efficient to
+download the metadata and share among the functions as shown below:
+
+``` r
+# Download the organisation units
+organisations <- get_organisation_units_metadata()
+head(organisations)
+
+# Download category options
+categories <- get_category_options_metadata()
+head(categories)
+
+# Download data elements 
+elements <- get_data_elements_metadata()
+head(elements)
+
+# Download cervical cancer screening data
+cacx_screened <- get_cervical_screened('2021-07-01',
+                                       end_date = '2021-12-31',
+                                       level = 'county',
+                                       elements = elements,
+                                       categories = categories,
+                                       organisations = organisations)
+head(cacx_screened)
+
+# Download cervical cancer screening positives
+cacx_positive <- get_cervical_positive('2021-07-01',
+                                       end_date = '2021-12-31',
+                                       level = 'county',
+                                       elements = elements,
+                                       categories = categories,
+                                       organisations = organisations)
+head(cacx_positive)
+
+# Download Breast mammogram screening
+breast_mammogram <- get_breast_mammogram('2021-07-01', 
+                                         end_date = '2021-12-31',
+                                         level = 'county',
+                                         elements = elements,
+                                         categories = categories,
+                                         organisations = organisations)
+head(breast_mammogram)
+```
+
+## Where to learn more
+
+[Get
+Started](https://cancerscreening.damurka.com/articles/cancerscreening.html)
+is a more extenive general introoduction to cancerscreening.
+
+Browse the [articles
+index](https://cancerscreening.damurka.com/articles/index.html) to find
+articles that cover various topics in more depth.
+
+See the [function
+index](https://cancerscreening.damurka.com/reference/index.html) for an
+organized, exhaustive listing.
 
 ## Code of Conduct
 
