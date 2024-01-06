@@ -25,7 +25,8 @@ Imports:
     stringr,
     tibble,
     tidyr,
-    utils
+    utils,
+    withr
 Suggests:
     knitr,
     rmarkdown,
