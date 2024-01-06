@@ -29,4 +29,4 @@ more secure since credentials will not appear in the code.
 # Load username and password
 khis_cred(username = 'khis_username', password = 'PASSWORD')
 }
-\concept{cred functions}
+\concept{credential functions}

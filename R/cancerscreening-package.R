@@ -7,7 +7,7 @@
 #' with the data of interest, e.g. `get_cervical_screened`, `get_cervical_positive`,
 #' or `get_cervical_treated`.
 #'
-#' cancerscreening is "pipe-friendly" and, infact rexports `%>%` but does not
+#' cancerscreening is "pipe-friendly" and, in fact re-exports `%>%` but does not
 #' require its use.
 #'
 #' Please see the cancerscreening website for full documentation:
@@ -63,8 +63,8 @@ NULL
 #' quiet.
 #'
 #' set `cancerscreening_quiet` to `TRUE` to suppress message, by one of these
-#' means, inorder of decreasing scope:
-#' * Put `options(cancerscreening_quiet = TRUE)` in the startup file, sucha as
+#' means, in order of decreasing scope:
+#' * Put `options(cancerscreening_quiet = TRUE)` in the start-up file, such as
 #'   `.Rprofile`, or  in your R script
 #' * Use `local_cancerscreening_quiet()` to silence cancerscreening in a specific
 #'   scope

@@ -9,7 +9,7 @@
 #' @param username The KHIS username. Can be optional if `config_path` is already provided
 #' @param password The KHIS password. Can be optional if `config_path` is already provided.
 #'
-#' @family cred functions
+#' @family credential functions
 #'
 #' @return No return value
 #'
@@ -234,7 +234,7 @@ khis_cred_internal <- function(account = c('docs', 'testing')) {
   if (!can_decrypt || !online) {
     cancerscreening_abort(
       message = c(
-        "Set cred unsuccessful:",
+        "Set credential unsuccessful.",
         if (!can_decrypt) {
           c("x" = "Can't decrypt the {.field {account}} credentials.")
         },
