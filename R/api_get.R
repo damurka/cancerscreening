@@ -12,6 +12,7 @@
 #'  - 1: Show headers
 #'  - 2: Show headers and bodies
 #'  - 3: Show headers, bodies, and curl status message
+#' @param timeout Maximum number of seconds to wait
 #'
 #' @return A parsed JSON object containing the API response data.
 #'
@@ -28,6 +29,7 @@
                      ...,
                      retry = 1,
                      verbosity = 0,
+                     timeout = 60,
                      arg = caller_arg(),
                      error_call = caller_env()) {
 
@@ -44,6 +46,7 @@
     req_url_query(!!!params) %>%
     req_retry(max_tries = retry) %>%
     req_user_agent('Cancer Screening R') %>%
+    req_timeout(timeout) %>%
     req_auth_khis_basic() %>%
     req_error(body = ~ cancerscreening_abort(c('x'='API Error','!' = '{resp_body_json(.x)}'), call = error_call)) %>%
     req_perform(verbosity = verbosity) %>%

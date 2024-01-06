@@ -11,6 +11,9 @@
 #' `get_breast_mammogram_target_population()` subsets the target population for
 #' breast cancer screening through mammography: females aged between 40 years to 74 years
 #'
+#' `get_colorectal_target_population()` subsets the target population for
+#' colorectal cancer screening: males and females aged between 45 years to 75 years
+#'
 #' @details
 #' These target populations are guided by the
 #' [Kenya National Cancer Screening Guidelines 2018](<https://www.iccp-portal.org/system/files/plans/KENYA%20NATIONAL%20CANCER%20CONTROL%20STRATEGY%202017-2022_1.pdf>).
@@ -49,6 +52,10 @@
 #' target_population <- get_breast_mammogram_target_population(2024)
 #' target_population
 #'
+#' # Get the country projection colorectal cancer screening for the year 2024
+#' target_population <- get_colorectal_target_population(2024)
+#' target_population
+#'
 #' @name target_population
 
 get_cervical_target_population <- function(year, level = c('kenya', 'county', 'subcounty')) {
@@ -78,6 +85,30 @@ get_breast_cbe_target_population <- function(year, level = c('kenya', 'county', 
 #' @export
 get_breast_mammogram_target_population <- function(year, level = c('kenya', 'county', 'subcounty')) {
   population <- .get_breast_target_population(year, min_age = 40, max_age = 75, level = level)
+  return(population)
+}
+
+#' @rdname target_population
+#' @return A tibble containing the target screening population
+#' @export
+get_colorectal_target_population <- function(year, level = c('kenya', 'county', 'subcounty')) {
+
+  check_numeric(year)
+
+  year <- case_when(
+    year < 2021 ~ 2021,
+    year > 2030 ~ 2030,
+    .default = year
+  )
+
+  colorectal_target_percent <- c(
+    '2021' = 0.05, '2022' = 0.08, '2023' = 0.10,
+    '2024' = 0.15, '2025' = 0.20, '2026' = 0.25,
+    '2027' = 0.30, '2028' = 0.33, '2029' = 0.37, '2030' = 0.42
+  )
+
+  population <- get_filtered_population(year, min_age = 45, max_age = 75, modifier = colorectal_target_percent[toString(year)], level = level, pop_sex = 'both')
+
   return(population)
 }
 

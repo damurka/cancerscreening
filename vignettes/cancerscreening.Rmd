@@ -60,7 +60,7 @@ colorectal cancer.
 ### Colorectal Cancer:
 
 * `get_colorectal_fobt()`: Retrieves data on individuals who receive FOBT for colorectal cancer screening tests.
-* `get_colorectal_mammogram()`: Retrieves data on individuals who receive mammogram for colorectal cancer screening tests.
+* `get_colorectal_colonoscopy()`: Retrieves data on individuals who receive colonoscopy for colorectal cancer screening tests.
 
 To get the data the following calls can be made
 
