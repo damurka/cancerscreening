@@ -1,5 +1,10 @@
 ---
 title: "Get started with cancerscreening"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{cancerscreening}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include = FALSE}
