@@ -2,7 +2,7 @@
 title: "Get started with cancerscreening"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{cancerscreening}
+  %\VignetteIndexEntry{Get started with cancerscreening}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -87,7 +87,7 @@ breast_screened
 ## Target Population Functions:
 
 These functions do *not* require to access the KHIS server the project and calculate the target population guided the 
-[Kenya housing and population census 2019](https://knbs.or.ke) and the 
+[Kenya housing and population census 2019](https://www.knbs.or.ke) and the 
 [Kenya National Cancer Screening guidelines 2019](https://www.iccp-portal.org/system/files/plans/KENYA%20NATIONAL%20CANCER%20CONTROL%20STRATEGY%202017-2022_1.pdf).
 
 The functions include: `get_cervical_target_population()`, `get_colorectal_target_population()`, `get_breast_cbe_target_population()`

@@ -85,7 +85,7 @@ For this overview, we've logged into KHIS as a specific user in a hidden chunk.
   `cervical`, `breast`, or `colorectal`. Auto-completion is your friend
 * Goal is to allow the download of data associated with the data of interest, 
   e.g. `get_cervical_screened`, `get_cervical_positive`, or `get_cervical_treated`
-* cancerscreening is "pipe-friendly" and, infact re-xports `%>%` but does not 
+* cancerscreening is "pipe-friendly" and, in-fact re-exports `%>%` but does not 
   require its use.
 
 
@@ -145,7 +145,7 @@ head(breast_mammogram)
 
 ## Where to learn more
 
-[Get Started](https://cancerscreening.damurka.com/articles/cancerscreening.html) is a more extenive general introoduction to cancerscreening.
+[Get Started](https://cancerscreening.damurka.com/articles/cancerscreening.html) is a more extensive general introduction to cancerscreening.
 
 Browse the [articles index](https://cancerscreening.damurka.com/articles/index.html) to find articles that cover various topics in more depth.
 

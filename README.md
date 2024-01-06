@@ -74,7 +74,7 @@ chunk.
 - Goal is to allow the download of data associated with the data of
   interest, e.g. `get_cervical_screened`, `get_cervical_positive`, or
   `get_cervical_treated`
-- cancerscreening is “pipe-friendly” and, infact re-xports `%>%` but
+- cancerscreening is “pipe-friendly” and, in-fact re-exports `%>%` but
   does not require its use.
 
 This is a basic example which shows you how to solve a common problem:
@@ -201,7 +201,7 @@ head(breast_mammogram)
 
 [Get
 Started](https://cancerscreening.damurka.com/articles/cancerscreening.html)
-is a more extenive general introoduction to cancerscreening.
+is a more extensive general introduction to cancerscreening.
 
 Browse the [articles
 index](https://cancerscreening.damurka.com/articles/index.html) to find

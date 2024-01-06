@@ -14,7 +14,7 @@ Most function begin with the prefix \code{get_} followed by the screening area
 with the data of interest, e.g. \code{get_cervical_screened}, \code{get_cervical_positive},
 or \code{get_cervical_treated}.
 
-cancerscreening is "pipe-friendly" and, infact rexports \verb{\%>\%} but does not
+cancerscreening is "pipe-friendly" and, in fact re-exports \verb{\%>\%} but does not
 require its use.
 
 Please see the cancerscreening website for full documentation:

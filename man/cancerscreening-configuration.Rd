@@ -26,9 +26,9 @@ cancerscreening. By default, cancerscreening always messages, i.e. it is \emph{n
 quiet.
 
 set \code{cancerscreening_quiet} to \code{TRUE} to suppress message, by one of these
-means, inorder of decreasing scope:
+means, in order of decreasing scope:
 \itemize{
-\item Put \code{options(cancerscreening_quiet = TRUE)} in the startup file, sucha as
+\item Put \code{options(cancerscreening_quiet = TRUE)} in the start-up file, such as
 \code{.Rprofile}, or  in your R script
 \item Use \code{local_cancerscreening_quiet()} to silence cancerscreening in a specific
 scope
