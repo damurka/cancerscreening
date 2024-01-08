@@ -1,3 +1,3 @@
-# cancerscreening 1.0.1
+# cancerscreening 1.0.2
 
 * Initial CRAN submission.

@@ -68,6 +68,15 @@ cancerscreening_quiet <- function() {
 #' @export
 #' @rdname cancerscreening-configuration
 #' @param code Code to execute quietly
+#' @return No return value, called for side effects
+#' @examples
+#' # message: "The credentials have been set."
+#' khis_cred(username = 'username', password = 'password')
+#'
+#' # suppress messages for a small amount of code
+#' with_cancerscreening_quiet(
+#'   khis_cred(username = 'username', password = 'password')
+#' )
 with_cancerscreening_quiet <- function(code) {
   withr::with_options(list(cancerscreening_quiet = TRUE), code = code)
 }
@@ -75,17 +84,19 @@ with_cancerscreening_quiet <- function(code) {
 #' @export
 #' @rdname cancerscreening-configuration
 #' @param env The environment to use for scoping
-#' @examplesIf khis_has_cred()
-#' # message: "Downloading cervical cancer"
-#' get_cervical_screening('2022-01-01')
+#' @return No return value, called for side effects
+#' @examples
+#' # message: "The credentials have been set."
+#' khis_cred(username = 'username', password = 'password')
 #'
-#' # suppress messages for a small amount of code
-#' with_cancerscreening_quiet(
-#'   get_breast_screening('2022-01-01')
-#' )
+#' # suppress messages for a in a specific scope
+#' local_cancerscreening_quiet()
 #'
-#' # message: "Writing ..., Appending ..."
-#' get_breast_cbe_screening('2022-01-01')
+#' # no message
+#' khis_cred(username = 'username', password = 'password')
+#'
+#' # clear credentials
+#' khis_cred_clear()
 
 local_cancerscreening_quiet <- function(env = parent.frame()) {
   withr::local_options(list(cancerscreening_quiet = TRUE), .local_envir = env)

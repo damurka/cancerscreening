@@ -6,6 +6,9 @@
 \usage{
 lhs \%>\% rhs
 }
+\value{
+Forwards objects on the left had side into a function or call expression.
+}
 \description{
 See \code{magrittr::\link[magrittr]{\%>\%}} for details.
 }
