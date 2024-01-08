@@ -7,7 +7,7 @@
 #' @param ... Additional query parameters for the API call.
 #' @param retry Number of times to retry the API call in case of failure
 #'   (defaults to 1).
-#' @param verbosity Level of information to print during the call:
+#' @param verbosity Level of http information to print during the call:
 #'  - 0: No output
 #'  - 1: Show headers
 #'  - 2: Show headers and bodies

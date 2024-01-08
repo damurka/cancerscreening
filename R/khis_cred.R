@@ -254,7 +254,7 @@ khis_cred_internal <- function(account = c('docs', 'testing')) {
       'CANCERSCREENING_KEY'
     )
   )
-  print(khis_username())
+
   invisible(TRUE)
 }
 

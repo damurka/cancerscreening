@@ -15,6 +15,13 @@ local_cancerscreening_quiet(env = parent.frame())
 
 \item{env}{The environment to use for scoping}
 }
+\value{
+No return value, called for side effects
+
+No return value, called for side effects
+
+No return value, called for side effects
+}
 \description{
 Some aspects of cancerscreening behaviour can be controlled via an option.
 }
@@ -40,16 +47,22 @@ of the withr package (\url{https://withr.r-lib.org}).
 }
 
 \examples{
-\dontshow{if (khis_has_cred()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-# message: "Downloading cervical cancer"
-get_cervical_screening('2022-01-01')
+# message: "The credentials have been set."
+khis_cred(username = 'username', password = 'password')
 
 # suppress messages for a small amount of code
 with_cancerscreening_quiet(
-  get_breast_screening('2022-01-01')
+  khis_cred(username = 'username', password = 'password')
 )
+# message: "The credentials have been set."
+khis_cred(username = 'username', password = 'password')
 
-# message: "Writing ..., Appending ..."
-get_breast_cbe_screening('2022-01-01')
-\dontshow{\}) # examplesIf}
+# suppress messages for a in a specific scope
+local_cancerscreening_quiet()
+
+# no message
+khis_cred(username = 'username', password = 'password')
+
+# clear credentials
+khis_cred_clear()
 }

@@ -73,5 +73,7 @@ NULL
 #' `local_cancerscreening_quiet` and `with_cancerscreening` follow the conventions
 #' of the withr package (<https://withr.r-lib.org>).
 #'
+#' @return No return value, called for side effects
+#'
 #' @name cancerscreening-configuration
 NULL
