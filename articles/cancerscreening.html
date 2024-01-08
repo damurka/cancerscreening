@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">cancerscreening</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.0.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -161,41 +161,32 @@ tests.</li>
 <code class="sourceCode R"><span><span class="co"># Get data for those screening for cervical cancer</span></span>
 <span><span class="va">cervical_screened</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_cervical_screened.html">get_cervical_screened</a></span><span class="op">(</span><span class="st">'2022-01-01'</span>, end_date <span class="op">=</span> <span class="st">'2022-06-30'</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Downloading organisation units</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Downloading category options</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Downloading data elements</span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> No data</span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> The KHIS server did not return any data.</span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `req_perform()`:</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> Failed to perform HTTP request.</span></span>
+<span><span class="co">#&gt; <span style="font-weight: bold;">Caused by error in `curl::curl_fetch_memory()`:</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> Failed to connect to hiskenya.org port 443 after 356 ms: Connection refused</span></span>
 <span><span class="va">cervical_screened</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 0 × 11</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 11 variables: kenya &lt;chr&gt;, county &lt;chr&gt;, subcounty &lt;chr&gt;, facility &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   element &lt;fct&gt;, category &lt;fct&gt;, category2 &lt;fct&gt;, month &lt;fct&gt;, year &lt;dbl&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   fiscal_year &lt;fct&gt;, source &lt;fct&gt;</span></span></span>
+<span><span class="co">#&gt; Error in eval(expr, envir, enclos): object 'cervical_screened' not found</span></span>
 <span></span>
 <span><span class="co"># Get data for those screening for colorectal cancer using FOBT</span></span>
 <span><span class="va">colorectal_screened</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_colorectal_fobt.html">get_colorectal_fobt</a></span><span class="op">(</span><span class="st">'2022-01-01'</span>, end_date <span class="op">=</span> <span class="st">'2022-06-30'</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Downloading organisation units</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Downloading category options</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Downloading data elements</span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> No data</span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> The KHIS server did not return any data.</span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `req_perform()`:</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> Failed to perform HTTP request.</span></span>
+<span><span class="co">#&gt; <span style="font-weight: bold;">Caused by error in `curl::curl_fetch_memory()`:</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> Failed to connect to hiskenya.org port 443 after 97 ms: Connection refused</span></span>
 <span><span class="va">colorectal_screened</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 0 × 11</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 11 variables: kenya &lt;chr&gt;, county &lt;chr&gt;, subcounty &lt;chr&gt;, facility &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   element &lt;chr&gt;, category &lt;fct&gt;, category2 &lt;fct&gt;, month &lt;fct&gt;, year &lt;dbl&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   fiscal_year &lt;fct&gt;, source &lt;fct&gt;</span></span></span>
+<span><span class="co">#&gt; Error in eval(expr, envir, enclos): object 'colorectal_screened' not found</span></span>
 <span></span>
 <span><span class="co"># Get data for those screening for breast cancer using mammogram</span></span>
 <span><span class="va">breast_screened</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_breast_mammogram.html">get_breast_mammogram</a></span><span class="op">(</span><span class="st">'2022-01-01'</span>, end_date <span class="op">=</span> <span class="st">'2022-06-30'</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Downloading organisation units</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Downloading category options</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Downloading data elements</span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> No data</span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> The KHIS server did not return any data.</span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `req_perform()`:</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> Failed to perform HTTP request.</span></span>
+<span><span class="co">#&gt; <span style="font-weight: bold;">Caused by error in `curl::curl_fetch_memory()`:</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> Failed to connect to hiskenya.org port 443 after 96 ms: Connection refused</span></span>
 <span><span class="va">breast_screened</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 0 × 11</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 11 variables: kenya &lt;chr&gt;, county &lt;chr&gt;, subcounty &lt;chr&gt;, facility &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   element &lt;fct&gt;, category &lt;fct&gt;, category2 &lt;fct&gt;, month &lt;fct&gt;, year &lt;dbl&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   fiscal_year &lt;fct&gt;, source &lt;fct&gt;</span></span></span></code></pre></div>
+<span><span class="co">#&gt; Error in eval(expr, envir, enclos): object 'breast_screened' not found</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
