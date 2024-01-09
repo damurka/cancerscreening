@@ -161,32 +161,74 @@ tests.</li>
 <code class="sourceCode R"><span><span class="co"># Get data for those screening for cervical cancer</span></span>
 <span><span class="va">cervical_screened</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_cervical_screened.html">get_cervical_screened</a></span><span class="op">(</span><span class="st">'2022-01-01'</span>, end_date <span class="op">=</span> <span class="st">'2022-06-30'</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Downloading organisation units</span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `req_perform()`:</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> Failed to perform HTTP request.</span></span>
-<span><span class="co">#&gt; <span style="font-weight: bold;">Caused by error in `curl::curl_fetch_memory()`:</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> Failed to connect to hiskenya.org port 443 after 356 ms: Connection refused</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Downloading category options</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Downloading data elements</span></span>
 <span><span class="va">cervical_screened</span></span>
-<span><span class="co">#&gt; Error in eval(expr, envir, enclos): object 'cervical_screened' not found</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 192 × 10</span></span></span>
+<span><span class="co">#&gt;    period     value kenya category category2     element month  year fiscal_year</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 2022-01-01   261 Kenya 50+      Initial Scre… HPV     Janu…  <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 2022-02-01    88 Kenya 50+      Initial Scre… HPV     Febr…  <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 2022-03-01    27 Kenya 50+      Initial Scre… HPV     March  <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 2022-06-01    21 Kenya &lt;25      Routine Scre… HPV     June   <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 2022-05-01     2 Kenya &lt;25      Post-treatme… VIA     May    <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 2022-06-01    19 Kenya &lt;25      Post-treatme… VIA     June   <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 2022-02-01     8 Kenya &lt;25      Routine Scre… HPV     Febr…  <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 2022-03-01     3 Kenya &lt;25      Post-treatme… VIA     March  <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 2022-06-01   274 Kenya 50+      Initial Scre… Pap Sm… June   <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 2022-04-01     9 Kenya &lt;25      Post-treatme… VIA     April  <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 182 more rows</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 1 more variable: source &lt;fct&gt;</span></span></span>
 <span></span>
 <span><span class="co"># Get data for those screening for colorectal cancer using FOBT</span></span>
 <span><span class="va">colorectal_screened</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_colorectal_fobt.html">get_colorectal_fobt</a></span><span class="op">(</span><span class="st">'2022-01-01'</span>, end_date <span class="op">=</span> <span class="st">'2022-06-30'</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Downloading organisation units</span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `req_perform()`:</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> Failed to perform HTTP request.</span></span>
-<span><span class="co">#&gt; <span style="font-weight: bold;">Caused by error in `curl::curl_fetch_memory()`:</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> Failed to connect to hiskenya.org port 443 after 97 ms: Connection refused</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Downloading category options</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Downloading data elements</span></span>
 <span><span class="va">colorectal_screened</span></span>
-<span><span class="co">#&gt; Error in eval(expr, envir, enclos): object 'colorectal_screened' not found</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 29 × 9</span></span></span>
+<span><span class="co">#&gt;    period     value kenya category category2 element  month     year fiscal_year</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 2022-02-01     8 Kenya 65-75    <span style="color: #BB0000;">NA</span>        Negative February  <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 2022-04-01     5 Kenya 65-75    <span style="color: #BB0000;">NA</span>        Positive April     <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 2022-03-01     9 Kenya 65-75    <span style="color: #BB0000;">NA</span>        Positive March     <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 2022-06-01    14 Kenya 65-75    <span style="color: #BB0000;">NA</span>        Positive June      <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 2022-05-01     4 Kenya 65-75    <span style="color: #BB0000;">NA</span>        Positive May       <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 2022-06-01     1 Kenya 65-75    <span style="color: #BB0000;">NA</span>        Negative June      <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 2022-05-01     4 Kenya 65-75    <span style="color: #BB0000;">NA</span>        Negative May       <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 2022-02-01     4 Kenya 65-75    <span style="color: #BB0000;">NA</span>        Positive February  <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 2022-03-01    18 Kenya 65-75    <span style="color: #BB0000;">NA</span>        Negative March     <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 2022-04-01     5 Kenya 55-64    <span style="color: #BB0000;">NA</span>        Negative April     <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 19 more rows</span></span></span>
 <span></span>
 <span><span class="co"># Get data for those screening for breast cancer using mammogram</span></span>
 <span><span class="va">breast_screened</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_breast_mammogram.html">get_breast_mammogram</a></span><span class="op">(</span><span class="st">'2022-01-01'</span>, end_date <span class="op">=</span> <span class="st">'2022-06-30'</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Downloading organisation units</span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `req_perform()`:</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> Failed to perform HTTP request.</span></span>
-<span><span class="co">#&gt; <span style="font-weight: bold;">Caused by error in `curl::curl_fetch_memory()`:</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> Failed to connect to hiskenya.org port 443 after 96 ms: Connection refused</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Downloading category options</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Downloading data elements</span></span>
 <span><span class="va">breast_screened</span></span>
-<span><span class="co">#&gt; Error in eval(expr, envir, enclos): object 'breast_screened' not found</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 19 × 9</span></span></span>
+<span><span class="co">#&gt;    period     value kenya category category2 element    month   year fiscal_year</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 2022-02-01    11 Kenya 40-55    Normal    BIRADS 0-3 Febru…  <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 2022-03-01    11 Kenya 40-55    Normal    BIRADS 0-3 March   <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 2022-04-01     1 Kenya 40-55    Normal    BIRADS 0-3 April   <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 2022-05-01     3 Kenya 40-55    Normal    BIRADS 0-3 May     <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 2022-03-01     2 Kenya 25-34    Normal    BIRADS 0-3 March   <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 2022-04-01    11 Kenya 35-39    Normal    BIRADS 0-3 April   <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 2022-06-01     2 Kenya 40-55    Normal    BIRADS 0-3 June    <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 2022-02-01     2 Kenya 35-39    Normal    BIRADS 0-3 Febru…  <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 2022-04-01     1 Kenya 56-74    Abnormal  BIRADS 5   April   <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 2022-03-01     3 Kenya 35-39    Normal    BIRADS 0-3 March   <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> 2022-06-01     6 Kenya 35-39    Abnormal  BIRADS 6   June    <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> 2022-04-01     1 Kenya 40-55    Abnormal  BIRADS 4   April   <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> 2022-05-01     1 Kenya 25-34    Normal    BIRADS 0-3 May     <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> 2022-03-01     1 Kenya 40-55    Abnormal  BIRADS 4   March   <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> 2022-06-01     6 Kenya 35-39    Abnormal  BIRADS 5   June    <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> 2022-06-01     1 Kenya 56-74    Normal    BIRADS 0-3 June    <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> 2022-05-01     2 Kenya 56-74    Normal    BIRADS 0-3 May     <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">18</span> 2022-03-01    16 Kenya 56-74    Normal    BIRADS 0-3 March   <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">19</span> 2022-02-01     7 Kenya 56-74    Normal    BIRADS 0-3 Febru…  <span style="text-decoration: underline;">2</span>022 2021/2022</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
