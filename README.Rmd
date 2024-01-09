@@ -3,6 +3,7 @@ output: github_document
 ---
 
 ```{r setup, include = FALSE}
+cancerscreening::local_cancerscreening_quiet()
 auth_success <- tryCatch(
   cancerscreening:::khis_cred_docs(),
   cancerscreening_cred_internal_error = function(e) e
@@ -50,7 +51,6 @@ And the development version of from [Github](https://github.com) with:
 # install.packages("pak")
 pak::pak('damurka/cancerscreening')
 ```
-___Note: This package has not yet been released on CRAN.___
 
 ## Usage
 
