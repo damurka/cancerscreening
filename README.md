@@ -32,8 +32,6 @@ And the development version of from [Github](https://github.com) with:
 pak::pak('damurka/cancerscreening')
 ```
 
-***Note: This package has not yet been released on CRAN.***
-
 ## Usage
 
 ### Load cancerscreening package
@@ -82,16 +80,17 @@ This is a basic example which shows you how to solve a common problem:
 ``` r
 # Download the cervical cancer screening data for country
 cacx_screened <- get_cervical_screened('2022-07-01')
-#> ℹ Downloading organisation units
-#> ℹ Downloading category options
-#> ℹ Downloading data elements
-#> ! No data
-#> ! The KHIS server did not return any data.
 head(cacx_screened)
-#> # A tibble: 0 × 11
-#> # ℹ 11 variables: kenya <chr>, county <chr>, subcounty <chr>, facility <chr>,
-#> #   element <fct>, category <fct>, category2 <fct>, month <fct>, year <dbl>,
-#> #   fiscal_year <fct>, source <fct>
+#> # A tibble: 6 × 10
+#>   period     value kenya category category2      element month  year fiscal_year
+#>   <date>     <int> <chr> <fct>    <fct>          <fct>   <ord> <dbl> <fct>      
+#> 1 2022-12-01    29 Kenya <25      Routine Scree… Pap Sm… Dece…  2022 2022/2023  
+#> 2 2022-11-01    32 Kenya <25      Routine Scree… Pap Sm… Nove…  2022 2022/2023  
+#> 3 2023-11-01     4 Kenya 25-49    Post-treatmen… Pap Sm… Nove…  2023 2023/2024  
+#> 4 2022-10-01    46 Kenya <25      Routine Scree… Pap Sm… Octo…  2022 2022/2023  
+#> 5 2023-10-01     2 Kenya 25-49    Post-treatmen… Pap Sm… Octo…  2023 2023/2024  
+#> 6 2023-08-01  3304 Kenya <25      <NA>           VIA     Augu…  2023 2023/2024  
+#> # ℹ 1 more variable: source <fct>
 ```
 
 ### Metadata reuse
