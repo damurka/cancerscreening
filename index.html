@@ -107,7 +107,6 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
 <span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">'damurka/cancerscreening'</span><span class="op">)</span></span></code></pre></div>
-<p><strong><em>Note: This package has not yet been released on CRAN.</em></strong></p>
 </div>
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
@@ -144,16 +143,17 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Download the cervical cancer screening data for country</span></span>
 <span><span class="va">cacx_screened</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_cervical_screened.html">get_cervical_screened</a></span><span class="op">(</span><span class="st">'2022-07-01'</span><span class="op">)</span></span>
-<span><span class="co">#&gt; ℹ Downloading organisation units</span></span>
-<span><span class="co">#&gt; ℹ Downloading category options</span></span>
-<span><span class="co">#&gt; ℹ Downloading data elements</span></span>
-<span><span class="co">#&gt; ! No data</span></span>
-<span><span class="co">#&gt; ! The KHIS server did not return any data.</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">cacx_screened</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 0 × 11</span></span>
-<span><span class="co">#&gt; # ℹ 11 variables: kenya &lt;chr&gt;, county &lt;chr&gt;, subcounty &lt;chr&gt;, facility &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   element &lt;fct&gt;, category &lt;fct&gt;, category2 &lt;fct&gt;, month &lt;fct&gt;, year &lt;dbl&gt;,</span></span>
-<span><span class="co">#&gt; #   fiscal_year &lt;fct&gt;, source &lt;fct&gt;</span></span></code></pre></div>
+<span><span class="co">#&gt; # A tibble: 6 × 10</span></span>
+<span><span class="co">#&gt;   period     value kenya category category2      element month  year fiscal_year</span></span>
+<span><span class="co">#&gt;   &lt;date&gt;     &lt;int&gt; &lt;chr&gt; &lt;fct&gt;    &lt;fct&gt;          &lt;fct&gt;   &lt;ord&gt; &lt;dbl&gt; &lt;fct&gt;      </span></span>
+<span><span class="co">#&gt; 1 2022-12-01    29 Kenya &lt;25      Routine Scree… Pap Sm… Dece…  2022 2022/2023  </span></span>
+<span><span class="co">#&gt; 2 2022-11-01    32 Kenya &lt;25      Routine Scree… Pap Sm… Nove…  2022 2022/2023  </span></span>
+<span><span class="co">#&gt; 3 2023-11-01     4 Kenya 25-49    Post-treatmen… Pap Sm… Nove…  2023 2023/2024  </span></span>
+<span><span class="co">#&gt; 4 2022-10-01    46 Kenya &lt;25      Routine Scree… Pap Sm… Octo…  2022 2022/2023  </span></span>
+<span><span class="co">#&gt; 5 2023-10-01     2 Kenya 25-49    Post-treatmen… Pap Sm… Octo…  2023 2023/2024  </span></span>
+<span><span class="co">#&gt; 6 2023-08-01  3304 Kenya &lt;25      &lt;NA&gt;           VIA     Augu…  2023 2023/2024  </span></span>
+<span><span class="co">#&gt; # ℹ 1 more variable: source &lt;fct&gt;</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="metadata-reuse">Metadata reuse<a class="anchor" aria-label="anchor" href="#metadata-reuse"></a>
