@@ -7,7 +7,21 @@
 get_category_options_metadata(...)
 }
 \arguments{
-\item{...}{Options that can be passed onto KHIS API.}
+\item{...}{
+  Arguments passed on to \code{\link[khisr:get_metadata]{khisr::get_metadata}}
+  \describe{
+    \item{\code{fields}}{The specific columns to be returned in the tibble.}
+    \item{\code{retry}}{Number of times to retry the API call in case of failure
+(defaults to 2).}
+    \item{\code{verbosity}}{Level of HTTP information to print during the call:
+\itemize{
+\item 0: No output
+\item 1: Show headers
+\item 2: Show headers and bodies
+\item 3: Show headers, bodies, and CURL status message.
+}}
+    \item{\code{timeout}}{Maximum number of seconds to wait for the API response.}
+  }}
 }
 \value{
 A tibble containing the following columns:

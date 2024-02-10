@@ -21,21 +21,10 @@
 #' @import dplyr
 #' @import tidyr
 #' @import rlang
+#' @import khisr
 "_PACKAGE"
 
 ## usethis namespace: start
-#' @importFrom gargle secret_decrypt_json
-#' @importFrom gargle secret_has_key
-#' @importFrom httr2 req_auth_basic
-#' @importFrom httr2 req_error
-#' @importFrom httr2 req_perform
-#' @importFrom httr2 req_retry
-#' @importFrom httr2 req_timeout
-#' @importFrom httr2 req_url_path_append
-#' @importFrom httr2 req_url_query
-#' @importFrom httr2 req_user_agent
-#' @importFrom httr2 request
-#' @importFrom httr2 resp_body_json
 #' @importFrom lubridate month
 #' @importFrom lubridate quarter
 #' @importFrom lubridate today
@@ -46,8 +35,6 @@
 #' @importFrom stringr str_detect
 #' @importFrom stringr str_glue
 #' @importFrom stringr str_remove
-#' @importFrom stringr str_trim
-#' @importFrom tibble tibble
 ## usethis namespace: end
 NULL
 

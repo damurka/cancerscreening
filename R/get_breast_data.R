@@ -1,13 +1,13 @@
 #' Retrieve and Format Breast Cancer Screening Data
 #'
 #' `.get_breast_data()` retrieves breast cancer screening data for a specified period
-#' from the KHIS API server using [get_analytics()].
+#' from the KHIS API server.
 #'
-#' @inheritParams get_analytics
+#' @inheritParams get_cervical_hiv_screened
 #'
 #' @return A tibble containing breast cancer screening data with the following columns:
 #'
-#' * kenya      - Optional if the level is Kenya.
+#' * country    - Name of the country.
 #' * county     - Name of the county. Optional if the level is `county`, `subcounty`, `ward` or `facility`.
 #' * subcounty  - Name of the subcounty. Optional if the level is `subcounty`, `ward` or `facility`.
 #' * ward       - Name of the ward. Optional if the level is `ward` or `facility`.
@@ -20,9 +20,6 @@
 #' * category2  - Additional category if available.
 #' * element    - The data element.
 #' * value      - The number reported.
-#'
-#' @seealso
-#' * [get_analytics()] for retrieving data from KHIS
 #'
 #' @examplesIf khis_has_cred()
 #'
@@ -39,19 +36,19 @@
 .get_breast_data <- function(element_ids,
                             start_date,
                             end_date = NULL,
-                            level =c('kenya', 'county', 'subcounty', 'ward', 'facility'),
+                            level =c('country', 'county', 'subcounty', 'ward', 'facility'),
                             organisations = NULL,
-                            categories = NULL,
                             elements = NULL,
                             ...) {
 
-  data <- get_analytics(element_ids,
-                        start_date = start_date,
-                        end_date = end_date,
-                        level = level,
-                        organisations = organisations,
-                        categories = categories,
-                        elements = elements,
+  category = NULL # due to NSE notes in R CMD check
+
+  data <- .get_analytics(element_ids,
+                         start_date = start_date,
+                         end_date = end_date,
+                         level = level,
+                         organisations = organisations,
+                         elements = elements,
                         ...) %>%
     mutate(
       category = case_when(
@@ -63,6 +60,7 @@
         .ptype = factor(levels = c('25-34', '35-39', '40-55', '56-74', '75+'))
       ),
       source = 'MOH 745'
-    )
+    ) %>%
+    rename(age_group = category)
   return(data)
 }

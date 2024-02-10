@@ -15,18 +15,13 @@ Depends:
     R (>= 3.6)
 Imports:
     cli,
-    curl,
     dplyr,
-    gargle,
-    httr2,
-    jsonlite,
+    khisr,
     lubridate,
     magrittr,
     rlang,
     stringr,
-    tibble,
     tidyr,
-    utils,
     withr
 Suggests:
     knitr,
@@ -39,4 +34,4 @@ Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-GB
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1

@@ -28,7 +28,6 @@ reference:
       Download metadata information related to the organisation units, categories and data elements
     contents:
       - get_organisation_units_metadata
-      - get_category_options_metadata
       - get_data_elements_metadata
   - title: "Cervical cancer screening"
     desc: >
@@ -68,8 +67,3 @@ reference:
       - get_breast_cbe_target_population
       - get_breast_mammogram_target_population
       - get_filtered_population
-  - title: "KHIS Analytics"
-    desc: >
-      Download data from KHIS analytics table
-    contents:
-      - get_analytics

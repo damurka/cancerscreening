@@ -2,19 +2,19 @@
 
 get_lab_fluid_cytology <- function(start_date,
                                    end_date = NULL,
-                                   level =c('kenya', 'county', 'subcounty', 'ward', 'facility'),
+                                   level =c('country', 'county', 'subcounty', 'ward', 'facility'),
                                    organisations = NULL,
-                                   categories = NULL,
                                    elements = NULL,
                                    ...) {
 
+  element = category = NULL # due to NSE notes in R CMD check
+
   fluid_cytology_ids <- c('XpRDEf5Qdsu', 'yHkftZnekcx', 'Lk9KZvx3xkW', 'ZIgUukxYsBF')
-  data <- get_analytics(fluid_cytology_ids,
+  data <- .get_analytics(fluid_cytology_ids,
                         start_date = start_date,
                         end_date = end_date,
                         level = level,
                         organisations = organisations,
-                        categories = categories,
                         elements = elements,
                         ...) %>%
     mutate(
@@ -28,19 +28,19 @@ get_lab_fluid_cytology <- function(start_date,
 
 get_lab_tissue_histology <- function(start_date,
                                      end_date = NULL,
-                                     level =c('kenya', 'county', 'subcounty', 'ward', 'facility'),
+                                     level =c('country', 'county', 'subcounty', 'ward', 'facility'),
                                      organisations = NULL,
-                                     categories = NULL,
                                      elements = NULL,
                                      ...) {
 
+  element = category = NULL # due to NSE notes in R CMD check
+
   tissue_histology_ids <- c('STKvckAzWBC', 'Ve4Bx1HlduP', 'fPm8y3kLwCm', 'jb3J98XNMf9', 'XCE6FTv74je', 'YF7IYOXMhhY', 'B0HcImlSutL', 'prBXOC9GUGL', 'YAV1XpqKYSC', 'MqrMxnv7Dcb', 'a9CTvvPxK9R', 'D0J3E66OsML', 'AE7qXQRbwDf')
-  data <- get_analytics(tissue_histology_ids,
+  data <- .get_analytics(tissue_histology_ids,
                         start_date = start_date,
                         end_date = end_date,
                         level = level,
                         organisations = organisations,
-                        categories = categories,
                         elements = elements,
                         ...) %>%
     mutate(
@@ -54,19 +54,19 @@ get_lab_tissue_histology <- function(start_date,
 
 get_lab_bone_marrow <- function(start_date,
                                 end_date = NULL,
-                                level =c('kenya', 'county', 'subcounty', 'ward', 'facility'),
+                                level =c('country', 'county', 'subcounty', 'ward', 'facility'),
                                 organisations = NULL,
-                                categories = NULL,
                                 elements = NULL,
                                 ...) {
 
+  element = category = NULL # due to NSE notes in R CMD check
+
   bone_marrow_ids <- c('v9ijehI8xrH', 'F667EB6ixiF')
-  data <- get_analytics(bone_marrow_ids,
+  data <- .get_analytics(bone_marrow_ids,
                         start_date = start_date,
                         end_date = end_date,
                         level = level,
                         organisations = organisations,
-                        categories = categories,
                         elements = elements,
                         ...) %>%
     mutate(
@@ -80,19 +80,19 @@ get_lab_bone_marrow <- function(start_date,
 
 get_lab_fna <- function(start_date,
                         end_date = NULL,
-                        level =c('kenya', 'county', 'subcounty', 'ward', 'facility'),
+                        level =c('country', 'county', 'subcounty', 'ward', 'facility'),
                         organisations = NULL,
-                        categories = NULL,
                         elements = NULL,
                         ...) {
 
+  element = category = NULL # due to NSE notes in R CMD check
+
   fna_ids <- c('X62FqsceLwy','a5Cl882MiWW','cxuDVZB2isV','WqDWu1qvPBy','EBgOiaKwudj')
-  data <- get_analytics(fna_ids,
+  data <- .get_analytics(fna_ids,
                         start_date = start_date,
                         end_date = end_date,
                         level = level,
                         organisations = organisations,
-                        categories = categories,
                         elements = elements,
                         ...) %>%
     mutate(
@@ -106,19 +106,19 @@ get_lab_fna <- function(start_date,
 
 get_lab_smears <- function(start_date,
                            end_date = NULL,
-                           level =c('kenya', 'county', 'subcounty', 'ward', 'facility'),
+                           level =c('country', 'county', 'subcounty', 'ward', 'facility'),
                            organisations = NULL,
-                           categories = NULL,
                            elements = NULL,
                            ...) {
 
+  element = category = NULL # due to NSE notes in R CMD check
+
   smears_ids <- c('OZXN2rx0yks','ENd9rOFnrFK','yovDbqQmVzR')
-  data <- get_analytics(smears_ids,
+  data <- .get_analytics(smears_ids,
                         start_date = start_date,
                         end_date = end_date,
                         level = level,
                         organisations = organisations,
-                        categories = categories,
                         elements = elements,
                         ...) %>%
     mutate(

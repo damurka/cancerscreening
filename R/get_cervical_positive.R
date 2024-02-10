@@ -1,14 +1,14 @@
 #' Retrieves Cervical Cancer Screening Data with Positive Results
 #'
 #' `get_cervical_positive()` retrieves cervical cancer screening data with positive results
-#'   for a specified period from the KHIS API server using [get_analytics()].
+#'   for a specified period from the KHIS API server.
 #'
-#' @inheritParams get_analytics
+#' @inheritParams get_cervical_hiv_screened
 #'
 #' @return A tibble containing cervical cancer screening data with positive results
 #'   with the following columns:
 #'
-#' * kenya      - Optional if the level is Kenya.
+#' * country    - Name of the country.
 #' * county     - Name of the county. Optional if the level is `county`, `subcounty`, `ward` or `facility`.
 #' * subcounty  - Name of the subcounty. Optional if the level is `subcounty`, `ward` or `facility`.
 #' * ward       - Name of the ward. Optional if the level is `ward` or `facility`.
@@ -25,9 +25,6 @@
 #'
 #' @export
 #'
-#' @seealso
-#' * [get_analytics()] for retrieving data from KHIS
-#'
 #' @examplesIf khis_has_cred()
 #' # Download data from February 2023 to current date
 #' positive <- get_cervical_positive(start_date = '2023-02-01')
@@ -35,9 +32,8 @@
 
 get_cervical_positive <- function(start_date,
                                   end_date = NULL,
-                                  level =c('kenya', 'county', 'subcounty', 'ward', 'facility'),
+                                  level =c('country', 'county', 'subcounty', 'ward', 'facility'),
                                   organisations = NULL,
-                                  categories = NULL,
                                   elements = NULL,
                                   ...) {
 
@@ -59,7 +55,6 @@ get_cervical_positive <- function(start_date,
                              end_date = end_date,
                              level = level,
                              organisations = organisations,
-                             categories = categories,
                              elements = elements,
                              ...) %>%
     mutate(

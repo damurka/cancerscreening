@@ -4,18 +4,18 @@
 \alias{get_data_elements_metadata}
 \title{Get Data Elements Metadata}
 \usage{
-get_data_elements_metadata(element_ids = NULL, ...)
+get_data_elements_metadata(element_ids)
 }
 \arguments{
-\item{element_ids}{A vector of specific data element IDs to retrieve. If NULL, all data elements will be retrieved.}
-
-\item{...}{Other options that can be passed onto KHIS API.}
+\item{element_ids}{The  data element identifiers whose details being retrieved}
 }
 \value{
 A tibble containing the following columns:
 \itemize{
 \item element_id - The unique identifier for the data element.
 \item element    - The name of the data element.
+\item category   - The category options for the elements
+\item category_id - The unique identifier for the category options
 }
 }
 \description{
@@ -24,12 +24,9 @@ server, including their IDs and names.
 }
 \examples{
 \dontshow{if (khis_has_cred()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-# Fetch the data element metadata for particular element id
-elements <- get_data_elements_metadata(element_ids = c('htFuvGJRW1X'))
-elements
 
-# Fetch all the data elements
-elements <- get_data_elements_metadata()
+# Fetch the data element metadata for particular element id
+elements <- get_data_elements_metadata('htFuvGJRW1X')
 elements
 \dontshow{\}) # examplesIf}
 }
