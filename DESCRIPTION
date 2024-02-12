@@ -19,9 +19,12 @@ Imports:
     khisr,
     lubridate,
     magrittr,
+    pillar,
+    purrr,
     rlang,
     stringr,
     tidyr,
+    vctrs,
     withr
 Suggests:
     knitr,

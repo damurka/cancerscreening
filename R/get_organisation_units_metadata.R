@@ -29,12 +29,6 @@ get_organisation_units_metadata <- function(org_ids = NULL,
   parent = county = subcounty = ward = NULL # due to NSE notes in R CMD check
 
   level <- arg_match(level)
-
-  filter <- splice(list2(filter = NULL))
-  if (!is.null(org_ids)) {
-    filter <- id %.in% org_ids
-  }
-
   lev <- switch (level,
     country = 1,
     county = 2,
@@ -43,9 +37,20 @@ get_organisation_units_metadata <- function(org_ids = NULL,
     facility = 5
   )
 
-  orgs <- get_organisation_units(filter,
-                                 level %.eq% lev,
-                                 fields = 'id,name,parent[name,parent[name, parent[name, parent[name]]]]')
+  if (!is.null(org_ids)) {
+    filters <- split(unique(org_ids), ceiling(seq_along(unique(org_ids))/500))
+    orgs <- map(filters,
+                ~ get_organisation_units(id %.in% .x,
+                                         level %.eq% lev,
+                                         fields = 'id,name,parent[name,parent[name, parent[name, parent[name]]]]'))
+    orgs <- bind_rows(orgs)
+
+  } else {
+    orgs <- get_organisation_units(level %.eq% lev,
+                                   fields = 'id,name,parent[name,parent[name, parent[name, parent[name]]]]')
+  }
+
+
 
   if (is_empty(orgs)) {
     return (NULL)
@@ -79,13 +84,13 @@ get_organisation_units_metadata <- function(org_ids = NULL,
     orgs <- orgs %>%
       mutate(
         county = str_remove(county, ' County'),
-        subcounty = str_remove(subcounty, ' Subcounty')
+        subcounty = str_remove(subcounty, ' Sub County')
       )
-  } else if (lev == 4) {
+  } else if (lev == 4 || lev == 5) {
     orgs <- orgs %>%
       mutate(
         county = str_remove(county, ' County'),
-        subcounty = str_remove(subcounty, ' Subcounty'),
+        subcounty = str_remove(subcounty, ' Sub County'),
         ward = str_remove(ward, ' Ward')
       )
   }
