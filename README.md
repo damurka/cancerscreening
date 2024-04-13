@@ -116,6 +116,7 @@ breast_mammogram
 fluid_cytology <- get_lab_fluid_cytology('2021-07-01', 
                                          end_date = '2021-12-31',
                                          level = 'facility')
+fluid_cytology
 ```
 
 ## Where to learn more
