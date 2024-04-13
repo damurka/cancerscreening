@@ -3,7 +3,7 @@
 #' `get_breast_cbe()` retrieves data for CBE conducted within a specified
 #' period from the KHIS API server.
 #'
-#' @inheritParams get_cervical_hiv_screened
+#' @inheritParams get_analytics_formatted
 #'
 #' @return A tibble containing data for CBE conducted with the following columns:
 #'
@@ -32,7 +32,6 @@ get_breast_cbe <- function(start_date,
                            end_date = NULL,
                            level =c('country', 'county', 'subcounty', 'ward', 'facility'),
                            organisations = NULL,
-                           elements = NULL,
                            ...) {
 
   category2 = NULL # due to NSE notes in R CMD check
@@ -47,7 +46,6 @@ get_breast_cbe <- function(start_date,
                            end_date = end_date,
                            level = level,
                            organisations = organisations,
-                           elements = elements,
                            ...) %>%
     mutate(
       element = case_when(

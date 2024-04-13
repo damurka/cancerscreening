@@ -1,14 +1,13 @@
 #' Retrieves Analytics Table Data from KHIS
 #'
-#' `.get_analytics()` fetches data from the KHIS analytics data tables for a
+#' `get_analytics_formatted()` fetches data from the KHIS analytics data tables for a
 #'   given period and data element(s), without performing any aggregation.
 #'
 #' @param element_ids A vector of data element IDs for which to retrieve data. Required.
 #' @param start_date The start date to retrieve data. It is required and in the format `YYYY-MM-dd`.
 #' @param end_date The ending date for data retrieval (default is the current date).
 #' @param level The desired data granularity: `"country"` (the default), `"county"`, `"subcounty"`, `"ward"`, or `"facility"`.
-#' @param organisations A list of organization units in the data. If NULL, downloaded using [get_organisation_units_metadata()].
-#' @param elements A list of data elements to include. If NULL, downloaded using [get_data_elements_metadata()].
+#' @param organisations A list of organization units ids to be filtered.
 #' @param ... Other options that can be passed onto KHIS API.
 #'
 #' @details
@@ -24,7 +23,7 @@
 #' * Category options
 #' * Reported values
 #'
-#' @noRd
+#' @export
 #'
 #' @seealso
 #' * [get_organisation_units_metadata()] for getting the organisations units
@@ -41,12 +40,11 @@
 #'                       start_date = '2023-02-01')
 #' data
 
-.get_analytics <- function(element_ids,
+get_analytics_formatted <- function(element_ids,
                           start_date,
                           end_date = NULL,
                           level = c('country', 'county', 'subcounty', 'ward', 'facility'),
                           organisations = NULL,
-                          elements = NULL,
                           ...) {
 
   dx = co = ou = pe = value = period = NULL # due to NSE notes in R CMD check
@@ -68,10 +66,16 @@
     end_date = today()
   }
 
+
+  ou <- 'HfVjCurKxh2' # Kenya
+  if (!is.null(organisations)) {
+    ou <- organisations
+  }
+
   data <- get_analytics(
     dx %.d% element_ids,
     pe %.d% 'all',
-    ou %.d% c(ou_level, 'HfVjCurKxh2'),
+    ou %.d% c(ou_level, ou),
     co %.d% 'all',
     startDate = start_date,
     endDate = end_date
@@ -81,15 +85,8 @@
     return(NULL)
   }
 
-  if (is.null(organisations)) {
-    cancerscreening_bullets(c("i" = "Downloading organisation units"))
-    organisations <- get_organisation_units_metadata(data$ou, level = level)
-  }
-
-  if (is.null(elements)) {
-    cancerscreening_bullets(c("i" = "Downloading data elements"))
-    elements <- get_data_elements_metadata(element_ids)
-  }
+  organisations <- get_organisation_units_metadata(data$ou, level = level)
+  elements <- get_data_elements_metadata(element_ids)
 
   data <- data %>%
     left_join(organisations, by=c('ou' = 'id')) %>%

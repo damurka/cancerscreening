@@ -3,12 +3,7 @@
 #' `get_cervical_hiv_screened()` retrieves cervical cancer screening and positivity
 #'   data for HIV positive women for a specified period from the KHIS API server.
 #'
-#' @param start_date The start date to retrieve data. It is required and in the format `YYYY-MM-dd`.
-#' @param end_date The ending date for data retrieval (default is the current date).
-#' @param level The desired data granularity: `"country"` (the default), `"county"`, `"subcounty"`, `"ward"`, or `"facility"`.
-#' @param organisations A list of organization units in the data. If NULL, downloaded using [get_organisation_units_metadata()].
-#' @param elements A list of data elements to include. If NULL, downloaded using [get_data_elements_metadata()].
-#' @param ... Other options that can be passed onto KHIS API.
+#' @inheritParams get_analytics_formatted
 #'
 #' @return A tibble containing cervical cancer screening data on HIV positive women
 #'   with the following columns:
@@ -39,7 +34,6 @@ get_cervical_hiv_screened <- function(start_date,
                                       end_date = NULL,
                                       level =c('country', 'county', 'subcounty', 'ward', 'facility'),
                                       organisations = NULL,
-                                      elements = NULL,
                                       ...) {
 
   element = NULL # due to NSE notes in R CMD check
@@ -55,7 +49,6 @@ get_cervical_hiv_screened <- function(start_date,
                              end_date = end_date,
                              level = level,
                              organisations = organisations,
-                             elements = elements,
                              ...) %>%
     mutate(
       element = factor(ifelse(str_detect(element, 'screened'), 'Screened', 'Positive'))

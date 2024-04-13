@@ -9,7 +9,6 @@ get_breast_ultrasound(
   end_date = NULL,
   level = c("country", "county", "subcounty", "ward", "facility"),
   organisations = NULL,
-  elements = NULL,
   ...
 )
 }
@@ -20,9 +19,7 @@ get_breast_ultrasound(
 
 \item{level}{The desired data granularity: \code{"country"} (the default), \code{"county"}, \code{"subcounty"}, \code{"ward"}, or \code{"facility"}.}
 
-\item{organisations}{A list of organization units in the data. If NULL, downloaded using \code{\link[=get_organisation_units_metadata]{get_organisation_units_metadata()}}.}
-
-\item{elements}{A list of data elements to include. If NULL, downloaded using \code{\link[=get_data_elements_metadata]{get_data_elements_metadata()}}.}
+\item{organisations}{A list of organization units ids to be filtered.}
 
 \item{...}{Other options that can be passed onto KHIS API.}
 }

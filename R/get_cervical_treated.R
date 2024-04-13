@@ -3,7 +3,7 @@
 #' `get_cervical_treated()` retrieves cervical cancer precancerous treatment
 #'   data for a specified period from the KHIS API server.
 #'
-#' @inheritParams get_cervical_hiv_screened
+#' @inheritParams get_analytics_formatted
 #'
 #' @return A tibble containing cervical cancer precancerous treatment data with the following columns:
 #'
@@ -33,7 +33,6 @@ get_cervical_treated <- function(start_date,
                                  end_date = NULL,
                                  level =c('country', 'county', 'subcounty', 'ward', 'facility'),
                                  organisations = NULL,
-                                 elements = NULL,
                                  ...) {
 
   # Yv6LiN65lCJ = Number of clients treated using Cryotherapy
@@ -52,7 +51,6 @@ get_cervical_treated <- function(start_date,
                              end_date = end_date,
                              level = level,
                              organisations = organisations,
-                             elements = elements,
                              ...) %>%
     mutate(
       element = case_when(
@@ -64,5 +62,12 @@ get_cervical_treated <- function(start_date,
       )
     )
 
-  return(data)
+  return(
+    structure(
+      data,
+      class = c("cacx_treated", "tbl_df", "tbl", "data.frame"),
+      data_level = level,
+      data_type = 'Cervical Cancer Precancerous Treatment Data'
+    )
+  )
 }

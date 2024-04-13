@@ -3,13 +3,7 @@
 #' `.get_cervical_data()` retrieves cervical cancer screening and treatment data
 #'   for a specified period from the KHIS API server.
 #'
-#' @param element_ids A vector of data element IDs for which to retrieve data. Required.
-#' @param start_date The start date to retrieve data. It is required and in the format `YYYY-MM-dd`.
-#' @param end_date The ending date for data retrieval (default is the current date).
-#' @param level The desired data granularity: `"country"` (the default), `"county"`, `"subcounty"`, `"ward"`, or `"facility"`.
-#' @param organisations A list of organization units in the data. If NULL, downloaded using [get_organisation_units_metadata()].
-#' @param elements A list of data elements to include. If NULL, downloaded using [get_data_elements_metadata()].
-#' @param ... Other options that can be passed onto KHIS API.
+#' @inheritParams get_analytics_formatted
 #'
 #' @return A tibble containing cervical screening and treatment data with the
 #'   following columns:
@@ -47,16 +41,14 @@
                               end_date = NULL,
                               level =c('country', 'county', 'subcounty', 'ward', 'facility'),
                               organisations = NULL,
-                              elements = NULL,
                               ...) {
 
-  data <- .get_analytics(element_ids,
-                         start_date = start_date,
-                         end_date = end_date,
-                         level = level,
-                         organisations = organisations,
-                         elements = elements,
-                         ...) %>%
+  data <- get_analytics_formatted(element_ids,
+                                  start_date = start_date,
+                                  end_date = end_date,
+                                  level = level,
+                                  organisations = organisations,
+                                  ...) %>%
     mutate(
       age_group = case_when(
         str_detect(category, '<25') ~ '<25',

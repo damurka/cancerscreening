@@ -3,7 +3,7 @@
 #' `get_cervical_positive()` retrieves cervical cancer screening data with positive results
 #'   for a specified period from the KHIS API server.
 #'
-#' @inheritParams get_cervical_hiv_screened
+#' @inheritParams get_analytics_formatted
 #'
 #' @return A tibble containing cervical cancer screening data with positive results
 #'   with the following columns:
@@ -34,7 +34,6 @@ get_cervical_positive <- function(start_date,
                                   end_date = NULL,
                                   level =c('country', 'county', 'subcounty', 'ward', 'facility'),
                                   organisations = NULL,
-                                  elements = NULL,
                                   ...) {
 
   # wYHt86csbhn = Number of clients with Positive Cytology result
@@ -55,7 +54,6 @@ get_cervical_positive <- function(start_date,
                              end_date = end_date,
                              level = level,
                              organisations = organisations,
-                             elements = elements,
                              ...) %>%
     mutate(
       element = case_when(
@@ -67,5 +65,12 @@ get_cervical_positive <- function(start_date,
       )
     )
 
-  return(data)
+  return(
+    structure(
+      data,
+      class = c("cacx_positive", "tbl_df", "tbl", "data.frame"),
+      data_level = level,
+      data_type = 'Cervical Cancer Screen Positive Data'
+    )
+  )
 }

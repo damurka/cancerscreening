@@ -3,7 +3,7 @@
 #' `get_colorectal_colonoscopy()` retrieves data for colorectal screening using
 #' colonoscopy within a specified period from the KHIS API server.
 #'
-#' @inheritParams get_cervical_hiv_screened
+#' @inheritParams get_analytics_formatted
 #'
 #' @return A tibble containing data for colorectal screening with the following columns:
 #'
@@ -33,7 +33,6 @@ get_colorectal_colonoscopy <- function(start_date,
                                  end_date = NULL,
                                  level =c('country', 'county', 'subcounty', 'ward', 'facility'),
                                  organisations = NULL,
-                                 elements = NULL,
                                  ...) {
 
   # Colonoscopy screening element ids
@@ -48,7 +47,6 @@ get_colorectal_colonoscopy <- function(start_date,
                                end_date = end_date,
                                level = level,
                                organisations = organisations,
-                               elements = elements,
                                ...) %>%
     mutate(
       element = case_when(

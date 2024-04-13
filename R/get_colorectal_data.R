@@ -3,7 +3,7 @@
 #' `.get_colorectal_data()` retrieves colorectal cancer screening data for a specified period
 #' from the KHIS API server.
 #'
-#' @inheritParams get_cervical_hiv_screened
+#' @inheritParams get_analytics_formatted
 #'
 #' @return A tibble containing colorectal cancer screening data with the following columns:
 #'
@@ -38,18 +38,16 @@
                             end_date = NULL,
                             level =c('country', 'county', 'subcounty', 'ward', 'facility'),
                             organisations = NULL,
-                            elements = NULL,
                             ...) {
 
   category = NULL # due to NSE notes in R CMD check
 
-  data <- .get_analytics(element_ids,
-                        start_date = start_date,
-                        end_date = end_date,
-                        level = level,
-                        organisations = organisations,
-                        elements = elements,
-                        ...) %>%
+  data <- get_analytics_formatted(element_ids,
+                                  start_date = start_date,
+                                  end_date = end_date,
+                                  level = level,
+                                  organisations = organisations,
+                                  ...) %>%
     mutate(
       category = case_when(
         str_detect(category, '45-54') ~ '45-54',
