@@ -36,7 +36,7 @@ khisr:::khis_cred_clear()
 
 ## Overview
 
-cancerscreening provides an R interface to [Kenya Health Information System (KHIS)](https://hiskenya.org) via the [DHIS 2 API](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/introduction.html). The goal of `cancerscreening` is to provide a easy way to download cancer screening data from the KHIS using R.
+cancerscreening provides an R interface to [Kenya Health Information System (KHIS)](https://hiskenya.org) via the [DHIS 2 API](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/introduction.html). The goal of `cancerscreening` is to provide a easy way to download cancer screening data from the KHIS using the (khisr package)[https://khisr.damurka.com].
 
 ## Installation
 
@@ -83,7 +83,7 @@ For this overview, we've logged into KHIS as a specific user in a hidden chunk.
 ### Package conventions
 
 * Most function begin with the prefix `get_` followed by the screening area 
-  `cervical`, `breast`, or `colorectal`. Auto-completion is your friend
+  `cervical`, `breast`, `colorectal`, or `lab`. Auto-completion is your friend
 * Goal is to allow the download of data associated with the data of interest, 
   e.g. `get_cervical_screened`, `get_cervical_positive`, or `get_cervical_treated`
 * cancerscreening is "pipe-friendly" and, in-fact re-exports `%>%` but does not 
@@ -98,36 +98,36 @@ cacx_screened <- get_cervical_screened('2022-07-01')
 cacx_screened
 ```
 
-### Metadata reuse
+### Aggregating Data
 
-When you need data from more than one function it is efficient to download the
-metadata and share among the functions as shown below:
+These functions are designed to efficiently download cancer screening data at various
+aggregation levels (e.g., country, county).  By specifying the desired level, you 
+can retrieve only the data you need, reducing download times and optimizing transfer
+efficiency.
 
 ```{r}
-# Download the organisation units
-organisations <- get_organisation_units_metadata(level = 'county')
-organisations
-
-# Download cervical cancer screening data
+# Download cervical cancer screening data aggregated to country
 cacx_screened <- get_cervical_screened('2021-07-01',
                                        end_date = '2021-12-31',
-                                       level = 'county',
-                                       organisations = organisations)
+                                       level = 'country')
 cacx_screened
 
-# Download cervical cancer screening positives
+# Download cervical cancer screening positives aggregated by county
 cacx_positive <- get_cervical_positive('2021-07-01',
                                        end_date = '2021-12-31',
-                                       level = 'county',
-                                       organisations = organisations)
+                                       level = 'county')
 cacx_positive
 
-# Download Breast mammogram screening
+# Download Breast mammogram screening aggregated by subcounty
 breast_mammogram <- get_breast_mammogram('2021-07-01', 
                                          end_date = '2021-12-31',
-                                         level = 'county',
-                                         organisations = organisations)
+                                         level = 'subcounty')
 breast_mammogram
+
+# Download Fluid cytology data aggregated by facility
+fluid_cytology <- get_lab_fluid_cytology('2021-07-01', 
+                                         end_date = '2021-12-31',
+                                         level = 'facility')
 ```
 
 ## Where to learn more
