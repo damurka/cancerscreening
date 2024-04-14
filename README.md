@@ -16,8 +16,8 @@ cancerscreening provides an R interface to [Kenya Health Information
 System (KHIS)](https://hiskenya.org) via the [DHIS 2
 API](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/introduction.html).
 The goal of `cancerscreening` is to provide a easy way to download
-cancer screening data from the KHIS using the (khisr
-package)\[<https://khisr.damurka.com>\].
+cancer screening data from the KHIS using the [khisr
+package](https://khisr.damurka.com).
 
 ## Installation
 
@@ -191,6 +191,28 @@ fluid_cytology
 #>  9     0 Bunyore… Nort… Emuhaya   Vihiga Asciti… Maligna… 2021-10-01 Octo…  2021
 #> 10     0 Derkale… Derk… Banissa   Mande… CSF     Maligna… 2021-12-01 Dece…  2021
 #> # ℹ 2,423 more rows
+#> # ℹ 2 more variables: fiscal_year <fct>, source <chr>
+
+# Download histology data for Embu county (id PFu8alU2KWG)
+histology <- get_lab_tissue_histology('2021-07-01',
+                                      end_date = '2021-12-31',
+                                      level = 'facility',
+                                      organisations = 'PFu8alU2KWG')
+histology
+#> # A tibble: 65 × 12
+#>    value facility ward  subcounty county element category period     month  year
+#>    <dbl> <chr>    <chr> <chr>     <chr>  <fct>   <fct>    <date>     <ord> <dbl>
+#>  1     1 Aga Kha… Kiri… Manyatta  Embu   Skin    Total E… 2021-12-01 Dece…  2021
+#>  2     1 Imara M… Kiri… Manyatta  Embu   Ovary   Total E… 2021-07-01 July   2021
+#>  3     1 Outspan… Kiri… Manyatta  Embu   Oral    Total E… 2021-07-01 July   2021
+#>  4     1 Aga Kha… Kiri… Manyatta  Embu   Skin    Maligna… 2021-12-01 Dece…  2021
+#>  5     2 Aga Kha… Kiri… Manyatta  Embu   Breast… Maligna… 2021-11-01 Nove…  2021
+#>  6     1 Focus C… Kiri… Manyatta  Embu   Ovary   Total E… 2021-07-01 July   2021
+#>  7     1 Aga Kha… Kiri… Manyatta  Embu   Breast… Maligna… 2021-12-01 Dece…  2021
+#>  8     1 Aga Kha… Kiri… Manyatta  Embu   Soft t… Total E… 2021-10-01 Octo…  2021
+#>  9     1 Outspan… Kiri… Manyatta  Embu   Breast… Total E… 2021-10-01 Octo…  2021
+#> 10    13 Outspan… Kiri… Manyatta  Embu   Colore… Total E… 2021-09-01 Sept…  2021
+#> # ℹ 55 more rows
 #> # ℹ 2 more variables: fiscal_year <fct>, source <chr>
 ```
 

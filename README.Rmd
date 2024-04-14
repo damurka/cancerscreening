@@ -36,7 +36,7 @@ khisr:::khis_cred_clear()
 
 ## Overview
 
-cancerscreening provides an R interface to [Kenya Health Information System (KHIS)](https://hiskenya.org) via the [DHIS 2 API](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/introduction.html). The goal of `cancerscreening` is to provide a easy way to download cancer screening data from the KHIS using the (khisr package)[https://khisr.damurka.com].
+cancerscreening provides an R interface to [Kenya Health Information System (KHIS)](https://hiskenya.org) via the [DHIS 2 API](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/introduction.html). The goal of `cancerscreening` is to provide a easy way to download cancer screening data from the KHIS using the [khisr package](https://khisr.damurka.com).
 
 ## Installation
 
@@ -129,6 +129,13 @@ fluid_cytology <- get_lab_fluid_cytology('2021-07-01',
                                          end_date = '2021-12-31',
                                          level = 'facility')
 fluid_cytology
+
+# Download histology data for Embu county (id PFu8alU2KWG)
+histology <- get_lab_tissue_histology('2021-07-01',
+                                      end_date = '2021-12-31',
+                                      level = 'facility',
+                                      organisations = 'PFu8alU2KWG')
+histology
 ```
 
 ## Where to learn more
