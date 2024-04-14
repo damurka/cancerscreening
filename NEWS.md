@@ -1,4 +1,4 @@
-# cancerscreening (development version)
+# cancerscreening 1.1.0
 
 ### Improved data retrieval efficiency
 
