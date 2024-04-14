@@ -1,14 +1,14 @@
 #' Retrieve and Format Cervical Cancer Screening and Treatment Data
 #'
 #' `.get_cervical_data()` retrieves cervical cancer screening and treatment data
-#'   for a specified period from the KHIS API server using the [get_analytics()].
+#'   for a specified period from the KHIS API server.
 #'
-#' @inheritParams get_analytics
+#' @inheritParams get_analytics_formatted
 #'
 #' @return A tibble containing cervical screening and treatment data with the
 #'   following columns:
 #'
-#' * kenya      - Optional if the level is Kenya.
+#' * country    - Name of the country.
 #' * county     - Name of the county. Optional if the level is `county`, `subcounty`, `ward` or `facility`.
 #' * subcounty  - Name of the subcounty. Optional if the level is `subcounty`, `ward` or `facility`.
 #' * ward       - Name of the ward. Optional if the level is `ward` or `facility`.
@@ -22,9 +22,6 @@
 #' * element    - The data element (HPV, VIA or Pap Smear).
 #' * source     - The source report (MOH 711 or MOH 745).
 #' * value      - The number reported.
-#'
-#' @seealso
-#' * [get_analytics()] for retrieving data from KHIS
 #'
 #' @examplesIf khis_has_cred()
 #'
@@ -42,26 +39,30 @@
 .get_cervical_data <- function(element_ids,
                               start_date,
                               end_date = NULL,
-                              level =c('kenya', 'county', 'subcounty', 'ward', 'facility'),
+                              level =c('country', 'county', 'subcounty', 'ward', 'facility'),
                               organisations = NULL,
-                              categories = NULL,
-                              elements = NULL,
                               ...) {
 
-  data <- get_analytics(element_ids,
-                        start_date = start_date,
-                        end_date = end_date,
-                        level = level,
-                        organisations = organisations,
-                        categories = categories,
-                        elements = elements,
-                        ...) %>%
+  data <- get_analytics_formatted(element_ids,
+                                  start_date = start_date,
+                                  end_date = end_date,
+                                  level = level,
+                                  organisations = organisations,
+                                  ...) %>%
     mutate(
-      category = case_when(
+      age_group = case_when(
         str_detect(category, '<25') ~ '<25',
         str_detect(category, '25-49') ~ '25-49',
-        .default = '50+',
+        str_detect(category, '50') ~ '50+',
+        .default = NA,
         .ptype = factor(levels = c('<25', '25-49', '50+'))
+      ),
+      category = case_when(
+        str_detect(category, 'Initial') ~ 'Initial Screening',
+        str_detect(category, 'Routine') ~ 'Routine Screening',
+        str_detect(category, 'treatment') ~ 'Post-treatment Screening',
+        .default = NA,
+        .ptype = factor(levels = c('Initial Screening', 'Routine Screening', 'Post-treatment Screening'))
       ),
       source = case_when(
         str_detect(element, 'MOH 711') ~ 'MOH 711',

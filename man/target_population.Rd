@@ -8,28 +8,31 @@
 \alias{get_colorectal_target_population}
 \title{Screening Target Populations}
 \usage{
-get_cervical_target_population(year, level = c("kenya", "county", "subcounty"))
+get_cervical_target_population(
+  year,
+  level = c("country", "county", "subcounty")
+)
 
 get_breast_cbe_target_population(
   year,
-  level = c("kenya", "county", "subcounty")
+  level = c("country", "county", "subcounty")
 )
 
 get_breast_mammogram_target_population(
   year,
-  level = c("kenya", "county", "subcounty")
+  level = c("country", "county", "subcounty")
 )
 
 get_colorectal_target_population(
   year,
-  level = c("kenya", "county", "subcounty")
+  level = c("country", "county", "subcounty")
 )
 }
 \arguments{
 \item{year}{Year for which to estimate population.}
 
 \item{level}{The desired level of the organization unit hierarchy to retrieve
-data for: \code{"kenya"} (default) , \code{"county"} or \code{"subcounty"}.}
+data for: \code{"country"} (default) , \code{"county"} or \code{"subcounty"}.}
 }
 \value{
 A tibble containing the target screening population

@@ -1,13 +1,13 @@
 #' Retrieves Data for Breast Ultrasound Conducted
 #'
 #' `get_breast_ultrasound()` retrieves data for breast ultrasounds conducted within a
-#' specified period from the KHIS API server using [get_analytics()].
+#' specified period from the KHIS API server.
 #'
-#' @inheritParams get_analytics
+#' @inheritParams get_analytics_formatted
 #'
 #' @return A tibble containing data for breast ultrasound conducted with the following columns:
 #'
-#' * kenya      - Optional if the level is Kenya.
+#' * country    - Name of the country.
 #' * county     - Name of the county. Optional if the level is `county`, `subcounty`, `ward` or `facility`.
 #' * subcounty  - Name of the subcounty. Optional if the level is `subcounty`, `ward` or `facility`.
 #' * ward       - Name of the ward. Optional if the level is `ward` or `facility`.
@@ -23,9 +23,6 @@
 #'
 #' @export
 #'
-#' @seealso
-#' * [get_analytics()] for retrieving data from KHIS
-#'
 #' @examplesIf khis_has_cred()
 #'
 #' # Download data from February 2023 to current date
@@ -34,10 +31,8 @@
 
 get_breast_ultrasound <- function(start_date,
                                  end_date = NULL,
-                                 level =c('kenya', 'county', 'subcounty', 'ward', 'facility'),
+                                 level =c('country', 'county', 'subcounty', 'ward', 'facility'),
                                  organisations = NULL,
-                                 categories = NULL,
-                                 elements = NULL,
                                  ...) {
 
   # Ultrasound screening element ids
@@ -52,8 +47,6 @@ get_breast_ultrasound <- function(start_date,
                            end_date = end_date,
                            level = level,
                            organisations = organisations,
-                           categories = categories,
-                           elements = elements,
                            ...) %>%
     mutate(
       element = case_when(
@@ -64,7 +57,7 @@ get_breast_ultrasound <- function(start_date,
         .default = NA,
         .ptype = factor(levels = c('BIRADS 0-3', 'BIRADS 4', 'BIRADS 5', 'BIRADS 6'))
       ),
-      category2 = case_when(
+      category = case_when(
         str_detect(element, 'BIRADS 0-3') ~ 'Normal',
         .default = 'Abnormal',
         .ptype = factor(levels = c('Normal', 'Abnormal'))

@@ -1,0 +1,113 @@
+---
+title: "Get started with cancerscreening"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Get started with cancerscreening}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+auth_success <- tryCatch(
+  cancerscreening:::khis_cred_docs(),
+  cancerscreening_cred_internal_error = function(e) e
+)
+
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  error = TRUE,
+  purl = cancerscreening::khis_has_cred(),
+  eval = cancerscreening::khis_has_cred()
+)
+```
+
+```{r eval = !cancerscreening::khis_has_cred(), echo = FALSE, comment = NA}
+cancerscreening:::cancerscreening_bullets(c(
+  "Code chunks will not be evaluated, because:",
+  strsplit(auth_success$message, split = "\n")[[1]]
+))
+cancerscreening::khis_cred_clear()
+```
+
+```{r, include = FALSE}
+library(cancerscreening)
+```
+
+This article takes a quick tour of the main features of cancerscreening.
+
+Remember to see [the articles](https://cancerscreening.damurka.com/articles/index.html) for more detailed treatment of all these topics and more.
+
+
+## Key Functions for Data Download:
+
+These functions directly call the KHIS server to download the data using the `get_analytics()`
+function and require the setting of KHIS credentials. See [setting the credentials](https://cancerscreening.damurka.com/articles/set-your-credentials.html) for more information.
+The get analytics call is supported by three metadata functions that help make the data complete and these 
+include the `get_organisation_units_metadata()` to show where the data is from, `get_category_options_metadata()`
+to group the data into various categories and `get_data_elements_metadata()` to show what the data is about.
+
+There are three cancer screening that are being tracked breast cancer, cervical cancer and
+colorectal cancer.
+
+### Cervical Cancer:
+
+* `get_cervical_screened()`: Downloads data on women screened for cervical cancer.
+* `get_cervical_positive()`: Retrieves data on women who tested positive for cervical pre-cancer or cancer.
+* `get_cervical_treated()`: Accesses data on women who received treatment for cervical pre-cancer or cancer.
+
+### Breast Cancer:
+
+* `get_breast_cbe()`: Downloads data on women who received CBE for breast cancer screening.
+* `get_breast_ultrasound()`: Downloads data on women who received ultrasound for breast cancer screening.
+* `get_breast_mammogram()`: Downloads data on women who received mammograms for breast cancer screening.
+
+### Colorectal Cancer:
+
+* `get_colorectal_fobt()`: Retrieves data on individuals who receive FOBT for colorectal cancer screening tests.
+* `get_colorectal_colonoscopy()`: Retrieves data on individuals who receive colonoscopy for colorectal cancer screening tests.
+
+To get the data the following calls can be made
+
+```{r}
+# Get data for those screening for cervical cancer
+cervical_screened <- get_cervical_screened('2022-01-01', end_date = '2022-06-30')
+cervical_screened
+
+# Get data for those screening for colorectal cancer using FOBT
+colorectal_screened <- get_colorectal_fobt('2022-01-01', end_date = '2022-06-30')
+colorectal_screened
+
+# Get data for those screening for breast cancer using mammogram
+breast_screened <- get_breast_mammogram('2022-01-01', end_date = '2022-06-30')
+breast_screened
+```
+
+
+## Target Population Functions:
+
+These functions do *not* require to access the KHIS server the project and calculate the target population guided the 
+[Kenya housing and population census 2019](https://www.knbs.or.ke) and the 
+[Kenya National Cancer Screening guidelines 2019](https://www.iccp-portal.org/system/files/plans/KENYA%20NATIONAL%20CANCER%20CONTROL%20STRATEGY%202017-2022_1.pdf).
+
+The functions include: `get_cervical_target_population()`, `get_colorectal_target_population()`, `get_breast_cbe_target_population()`
+and `get_breast_mammogram_target_population()`. 
+
+If these function do not meet your criteria you can make your target population using the `get_filtered_population()`.
+
+```{r}
+# Get the cervical screening target population for 2022
+cervical_target_population <- get_cervical_target_population(2022)
+cervical_target_population
+
+# Get the colorectal cancer screening target population for 20223 by county
+colorectal_target_population <- get_colorectal_target_population(2023, level = 'county')
+colorectal_target_population
+
+# Get the population of women 15-49 year for the year 2024
+wra_pop <- get_filtered_population(year = 2024, min_age = 15, max_age = 49, pop_sex = 'female')
+wra_pop
+```
+
+
+

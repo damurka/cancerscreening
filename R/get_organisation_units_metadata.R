@@ -1,21 +1,20 @@
 
 #' Get Organisation Units Metadata
 #'
-#' [get_organisation_units_metadata()] fetches organisation units metadata from the
+#' `get_organisation_units_metadata()` fetches organisation units metadata from the
 #'   KHIS API server.
 #'
-#' @param ... Options that can be passed onto KHIS API.
+#' @param org_ids The organisation identifiers whose details being retrieved
+#' @param level The desired data granularity: `"country"` (the default), `"county"`, `"subcounty"`, `"ward"`, or `"facility"`.
 #'
 #' @return A tibble containing the following columns:
 #'
-#'  * facility_id   - Organisation identifier that uniquely identifies the health facility.
-#'  * ward_id       - Organisation identifier that uniquely identifies the ward.
-#'  * subcounty_id  - Organisation identifier that uniquely identifies the subcounty.
-#'  * county_id     - Organisation identifier that uniquely identifies the county.
-#'  * facility      - Name of the health facility.
+#'  * id            - Organisation identifier that uniquely identifies the organisation by level
+#'  * country       - Name of the country
 #'  * county        - Name of the county.
 #'  * subcounty     - Name of the subcounty.
 #'  * ward          - Name of the ward.
+#'  * facility      - Name of the health facility.
 #'
 #' @export
 #'
@@ -24,53 +23,77 @@
 #' organisations <- get_organisation_units_metadata()
 #' organisations
 
-get_organisation_units_metadata <- function(...) {
-  x = path = facility_id = name = county = subcounty = ward = no_data = community_id = NULL # due to NSE notes in R CMD check
+get_organisation_units_metadata <- function(org_ids = NULL,
+                                            level =c('country', 'county', 'subcounty', 'ward', 'facility')) {
 
-  orgs <- .api_get('organisationUnits',
-                   fields='id,name,path',
-                   ...)
+  parent = county = subcounty = ward = NULL # due to NSE notes in R CMD check
 
-  if (is_empty(orgs$organisationUnits)) {
-    cancerscreening_bullets(
-      c(
-        "!" = "Empty organisation units returned",
-        "!" = "The KHIS server did not return any organisation units."
-      )
-    )
+  level <- arg_match(level)
+  lev <- switch (level,
+    country = 1,
+    county = 2,
+    subcounty = 3,
+    ward = 4,
+    facility = 5
+  )
 
-    return(tibble(
-      county = character(),
-      subcounty = character(),
-      ward = character(),
-      facility = character(),
-      county_id = character(),
-      subcounty_id = character(),
-      ward_id = character(),
-      facility_id = character()
-    ))
+  if (!is.null(org_ids)) {
+    filters <- split(unique(org_ids), ceiling(seq_along(unique(org_ids))/500))
+    orgs <- map(filters,
+                ~ get_organisation_units(id %.in% .x,
+                                         level %.eq% lev,
+                                         fields = 'id,name,parent[name,parent[name, parent[name, parent[name]]]]'))
+    orgs <- bind_rows(orgs)
+
+  } else {
+    orgs <- get_organisation_units(level %.eq% lev,
+                                   fields = 'id,name,parent[name,parent[name, parent[name, parent[name]]]]')
   }
 
-  orgs <- tibble(x = orgs$organisationUnits) %>%
-    unnest_wider(x)
 
-  headers <- c('no_data', 'kenya_id', 'county_id', 'subcounty_id', 'ward_id', 'facility_id', 'community_id')
+
+  if (is_empty(orgs)) {
+    return (NULL)
+  }
+
+  if (level != 'country') {
+    col <- switch(level,
+                  'facility' = list2(ward = 'name', subcounty = list('parent', 'name'),
+                                     county = list('parent', 'parent', 'name')),
+                  'ward' = list2(subcounty = 'name', county = list('parent', 'name'),
+                                 country = list('parent', 'parent', 'name')),
+                  'subcounty' = list2(county = 'name',country = list('parent', 'name')),
+                  'county' = list2(country = 'name'),
+                  stop("Invalid level"))
+
+    orgs <- orgs %>%
+      hoist(parent, splice(col)) %>%
+      select(-any_of('parent'))
+  }
 
   orgs <- orgs %>%
-    separate(path, headers, sep = '/', remove = TRUE, fill = 'right') %>%
-    filter(!is.na(facility_id)) %>%
-    distinct(facility_id, .keep_all = TRUE) %>%
-    rename(facility = name) %>%
-    left_join(orgs %>% select(id, name) %>% rename(ward = name), by=c('ward_id'='id')) %>%
-    left_join(orgs %>% select(id, name) %>% rename(subcounty = name), by=c('subcounty_id'='id')) %>%
-    left_join(orgs %>% select(id, name) %>% rename(county = name), by=c('county_id'='id')) %>%
-    left_join(orgs %>% select(id, name) %>% rename(kenya = name), by=c('kenya_id'='id')) %>%
-    mutate(
-      county = str_remove(county, ' County'),
-      subcounty = str_remove(subcounty, ' Sub County'),
-      ward = str_remove(ward, ' Ward')
-    ) %>%
-    select(-id, -no_data, -community_id)
+    rename_with(
+      ~ level,
+      starts_with('name')
+    )
+
+  if (lev == 2) {
+    orgs <- orgs %>%
+      mutate(county = str_remove(county, ' County'))
+  } else if (lev == 3) {
+    orgs <- orgs %>%
+      mutate(
+        county = str_remove(county, ' County'),
+        subcounty = str_remove(subcounty, ' Sub County')
+      )
+  } else if (lev == 4 || lev == 5) {
+    orgs <- orgs %>%
+      mutate(
+        county = str_remove(county, ' County'),
+        subcounty = str_remove(subcounty, ' Sub County'),
+        ward = str_remove(ward, ' Ward')
+      )
+  }
 
   return(orgs)
 }

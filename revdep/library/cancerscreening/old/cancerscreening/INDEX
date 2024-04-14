@@ -1,0 +1,33 @@
+cancerscreening-configuration
+                        cancerscreening configuration
+get_analytics           Retrieves Analytics Table Data from KHIS
+get_breast_cbe          Retrieves Data for Clinical Breast Examinations
+                        (CBE) Conducted
+get_breast_mammogram    Retrieves Data for Mammograms Conducted
+get_breast_ultrasound   Retrieves Data for Breast Ultrasound Conducted
+get_category_options_metadata
+                        Get Category Options Metadata
+get_cervical_hiv_screened
+                        Retrieves Cervical Cancer Screening Data on HIV
+                        Positive Women
+get_cervical_positive   Retrieves Cervical Cancer Screening Data with
+                        Positive Results
+get_cervical_screened   Retrieves Cervical Cancer Screening Data
+get_cervical_treated    Retrieves Cervical Cancer Precancerous
+                        Treatment Data
+get_colorectal_colonoscopy
+                        Retrieves Data for Colorectal Screening using
+                        Colonoscopy
+get_colorectal_fobt     Retrieves Data for Colorectal Screening Using
+                        FOBT
+get_data_elements_metadata
+                        Get Data Elements Metadata
+get_filtered_population
+                        Filters the Population
+get_organisation_units_metadata
+                        Get Organisation Units Metadata
+khis_cred               Sets the KHIS Credentials
+khis_cred_clear         Clear the Credentials from Memory
+khis_has_cred           Are There Credentials on Hand?
+khis_username           Produces the Configured Username
+target_population       Screening Target Populations

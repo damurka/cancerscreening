@@ -25,7 +25,7 @@
 #'
 #' @param year Year for which to estimate population.
 #' @param level The desired level of the organization unit hierarchy to retrieve
-#'   data for: `"kenya"` (default) , `"county"` or `"subcounty"`.
+#'   data for: `"country"` (default) , `"county"` or `"subcounty"`.
 #'
 #' @return A tibble containing the target screening population
 #'
@@ -58,7 +58,7 @@
 #'
 #' @name target_population
 
-get_cervical_target_population <- function(year, level = c('kenya', 'county', 'subcounty')) {
+get_cervical_target_population <- function(year, level = c('country', 'county', 'subcounty')) {
 
   check_numeric(year)
 
@@ -75,7 +75,7 @@ get_cervical_target_population <- function(year, level = c('kenya', 'county', 's
 #' @rdname target_population
 #' @return A tibble containing the target screening population
 #' @export
-get_breast_cbe_target_population <- function(year, level = c('kenya', 'county', 'subcounty')) {
+get_breast_cbe_target_population <- function(year, level = c('country', 'county', 'subcounty')) {
   population <- .get_breast_target_population(year, min_age = 25, max_age = 75, level = level)
   return(population)
 }
@@ -83,7 +83,7 @@ get_breast_cbe_target_population <- function(year, level = c('kenya', 'county', 
 #' @rdname target_population
 #' @return A tibble containing the target screening population
 #' @export
-get_breast_mammogram_target_population <- function(year, level = c('kenya', 'county', 'subcounty')) {
+get_breast_mammogram_target_population <- function(year, level = c('country', 'county', 'subcounty')) {
   population <- .get_breast_target_population(year, min_age = 40, max_age = 75, level = level)
   return(population)
 }
@@ -91,7 +91,7 @@ get_breast_mammogram_target_population <- function(year, level = c('kenya', 'cou
 #' @rdname target_population
 #' @return A tibble containing the target screening population
 #' @export
-get_colorectal_target_population <- function(year, level = c('kenya', 'county', 'subcounty')) {
+get_colorectal_target_population <- function(year, level = c('country', 'county', 'subcounty')) {
 
   check_numeric(year)
 
@@ -115,7 +115,7 @@ get_colorectal_target_population <- function(year, level = c('kenya', 'county', 
 
 #' @rdname target_population
 #' @noRd
-.get_breast_target_population <- function(year, min_age, max_age = 75, level = c('kenya', 'county', 'subcounty')) {
+.get_breast_target_population <- function(year, min_age, max_age = 75, level = c('country', 'county', 'subcounty')) {
 
   check_numeric(year)
 
@@ -146,7 +146,7 @@ get_colorectal_target_population <- function(year, level = c('kenya', 'county', 
 #' @param max_age  The maximum age to include in the filtered data
 #' @param modifier A multiplier that affect the population projection. Default 1
 #' @param level The desired level of the organization unit hierarchy to retrieve
-#'   data for: `"kenya"`, `"county"` or `"subcounty"`.
+#'   data for: `"country"`, `"county"` or `"subcounty"`.
 #' @param pop_sex The desired population sex: `"male"`, `"female"` (default), `"both"`
 #' @param rate The population growth
 #'
@@ -168,7 +168,7 @@ get_filtered_population <- function(year,
                                      min_age,
                                      max_age,
                                      modifier = 1,
-                                     level = c('kenya', 'county', 'subcounty'),
+                                     level = c('country', 'county', 'subcounty'),
                                      pop_sex = c('female', 'male', 'both'),
                                      rate = 0.022) {
   age = sex = NULL # due to NSE notes in R CMD check
@@ -181,9 +181,9 @@ get_filtered_population <- function(year,
 
   level <- arg_match(level)
   level <- switch (level,
-                   kenya = c('kenya'),
-                   county = c('county'),
-                   subcounty = c('county', 'subcounty'))
+                   country = c('country'),
+                   county = c('country', 'county'),
+                   subcounty = c('country', 'county', 'subcounty'))
 
   pop_sex <- arg_match(pop_sex)
   pop_sex <- switch (pop_sex,

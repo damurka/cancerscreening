@@ -1,0 +1,11 @@
+analytics-dimension     Analytics Data Dimensions
+get_analytics           Retrieves Analytics Table Data from KHIS
+get_metadata            Get Metadata from a KHIS
+khis-configuration      khisr Configuration
+khis_base_url           Produces the Configured KHIS API Base URI
+khis_cred               Sets the KHIS Credentials
+khis_cred_clear         Clear the Credentials from Memory
+khis_has_cred           Are There Credentials on Hand?
+khis_username           Produces the Configured Username
+metadata-filter         Metadata Filter
+metadata-helpers        Metadata Helper Functions
