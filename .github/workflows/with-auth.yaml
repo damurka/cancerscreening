@@ -33,4 +33,4 @@ jobs:
 
       - uses: r-lib/actions/check-r-package@v2
         env:
-          KHIS_KEY: ${{ secrets.CANCERSCREENING_KEY }}
+          KHIS_KEY: ${{ secrets.KHIS_KEY }}
