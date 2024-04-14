@@ -1,14 +1,15 @@
 #' Retrieves Cervical Cancer Screening Data on HIV Positive Women
 #'
 #' `get_cervical_hiv_screened()` retrieves cervical cancer screening and positivity
-#'   data for HIV positive women for a specified period from the KHIS API server.
+#'   data for HIV positive women for a specified period from the KHIS API server
+#'   using [get_analytics()].
 #'
-#' @inheritParams get_analytics_formatted
+#' @inheritParams get_analytics
 #'
 #' @return A tibble containing cervical cancer screening data on HIV positive women
 #'   with the following columns:
 #'
-#' * country    - Name of the country.
+#' * kenya      - Optional if the level is Kenya.
 #' * county     - Name of the county. Optional if the level is `county`, `subcounty`, `ward` or `facility`.
 #' * subcounty  - Name of the subcounty. Optional if the level is `subcounty`, `ward` or `facility`.
 #' * ward       - Name of the ward. Optional if the level is `ward` or `facility`.
@@ -25,6 +26,9 @@
 #'
 #' @export
 #'
+#' @seealso
+#' * [get_analytics()] for retrieving data from KHIS
+#'
 #' @examplesIf khis_has_cred()
 #' # Download data from February 2023 to current date
 #' screened <- get_cervical_hiv_screened(start_date = '2023-02-01')
@@ -32,8 +36,10 @@
 
 get_cervical_hiv_screened <- function(start_date,
                                       end_date = NULL,
-                                      level =c('country', 'county', 'subcounty', 'ward', 'facility'),
+                                      level =c('kenya', 'county', 'subcounty', 'ward', 'facility'),
                                       organisations = NULL,
+                                      categories = NULL,
+                                      elements = NULL,
                                       ...) {
 
   element = NULL # due to NSE notes in R CMD check
@@ -49,6 +55,8 @@ get_cervical_hiv_screened <- function(start_date,
                              end_date = end_date,
                              level = level,
                              organisations = organisations,
+                             categories = categories,
+                             elements = elements,
                              ...) %>%
     mutate(
       element = factor(ifelse(str_detect(element, 'screened'), 'Screened', 'Positive'))

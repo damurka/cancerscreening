@@ -1,6 +1,6 @@
 Package: cancerscreening
 Title: Streamline Access to Cancer Screening Data
-Version: 1.0.2.9000
+Version: 1.0.2
 Authors@R: 
     person("David", "Kariuki", , "hello@damurka.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0009-0003-6159-1107"))
@@ -15,16 +15,18 @@ Depends:
     R (>= 3.6)
 Imports:
     cli,
+    curl,
     dplyr,
-    khisr,
+    gargle,
+    httr2,
+    jsonlite,
     lubridate,
     magrittr,
-    pillar,
-    purrr,
     rlang,
     stringr,
+    tibble,
     tidyr,
-    vctrs,
+    utils,
     withr
 Suggests:
     knitr,
@@ -37,4 +39,4 @@ Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-GB
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.2.3

@@ -1,13 +1,13 @@
 #' Retrieves Data for Clinical Breast Examinations (CBE) Conducted
 #'
 #' `get_breast_cbe()` retrieves data for CBE conducted within a specified
-#' period from the KHIS API server.
+#' period from the KHIS API server using [get_analytics()].
 #'
-#' @inheritParams get_analytics_formatted
+#' @inheritParams get_analytics
 #'
 #' @return A tibble containing data for CBE conducted with the following columns:
 #'
-#' * country    - Name of the country country
+#' * kenya      - Optional if the level is Kenya.
 #' * county     - Name of the county. Optional if the level is `county`, `subcounty`, `ward` or `facility`.
 #' * subcounty  - Name of the subcounty. Optional if the level is `subcounty`, `ward` or `facility`.
 #' * ward       - Name of the ward. Optional if the level is `ward` or `facility`.
@@ -16,12 +16,15 @@
 #' * fiscal_year- The financial year of the report(July-June Cycle).
 #' * year       - The calendar year of the report.
 #' * month      - The month name of the report.
-#' * age_group  - The age group category of the report (25-34, 35-39, 40-55, 56-74, or 75+).
-#' * category   - Additional category if available.
+#' * category   - The age group category of the report (25-34, 35-39, 40-55, 56-74, or 75+).
+#' * category2  - Additional category if available.
 #' * element    - The data element.
 #' * value      - The number reported.
 #'
 #' @export
+#'
+#' @seealso
+#' * [get_analytics()] for retrieving data from KHIS
 #'
 #' @examplesIf khis_has_cred()
 #' # Download data from February 2023 to current date
@@ -30,8 +33,10 @@
 
 get_breast_cbe <- function(start_date,
                            end_date = NULL,
-                           level =c('country', 'county', 'subcounty', 'ward', 'facility'),
+                           level =c('kenya', 'county', 'subcounty', 'ward', 'facility'),
                            organisations = NULL,
+                           categories = NULL,
+                           elements = NULL,
                            ...) {
 
   category2 = NULL # due to NSE notes in R CMD check
@@ -46,6 +51,8 @@ get_breast_cbe <- function(start_date,
                            end_date = end_date,
                            level = level,
                            organisations = organisations,
+                           categories = categories,
+                           elements = elements,
                            ...) %>%
     mutate(
       element = case_when(
@@ -53,7 +60,8 @@ get_breast_cbe <- function(start_date,
         .default = 'Abnormal',
         .ptype = factor(levels = c('Normal', 'Abnormal'))
       )
-    )
+    ) %>%
+    select(-category2)
 
   return(data)
 }
