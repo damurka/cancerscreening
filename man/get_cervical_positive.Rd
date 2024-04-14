@@ -7,10 +7,8 @@
 get_cervical_positive(
   start_date,
   end_date = NULL,
-  level = c("kenya", "county", "subcounty", "ward", "facility"),
+  level = c("country", "county", "subcounty", "ward", "facility"),
   organisations = NULL,
-  categories = NULL,
-  elements = NULL,
   ...
 )
 }
@@ -19,13 +17,9 @@ get_cervical_positive(
 
 \item{end_date}{The ending date for data retrieval (default is the current date).}
 
-\item{level}{The desired data granularity: \code{"kenya"} (the default), \code{"county"}, \code{"subcounty"}, \code{"ward"}, or \code{"facility"}.}
+\item{level}{The desired data granularity: \code{"country"} (the default), \code{"county"}, \code{"subcounty"}, \code{"ward"}, or \code{"facility"}.}
 
-\item{organisations}{A list of organization units in the data. If NULL, downloaded using \code{\link[=get_organisation_units_metadata]{get_organisation_units_metadata()}}.}
-
-\item{categories}{A list of categories to include. If NULL, downloaded using \code{\link[=get_category_options_metadata]{get_category_options_metadata()}}.}
-
-\item{elements}{A list of data elements to include. If NULL, downloaded using \code{\link[=get_data_elements_metadata]{get_data_elements_metadata()}}.}
+\item{organisations}{A list of organization units ids to be filtered.}
 
 \item{...}{Other options that can be passed onto KHIS API.}
 }
@@ -33,7 +27,7 @@ get_cervical_positive(
 A tibble containing cervical cancer screening data with positive results
 with the following columns:
 \itemize{
-\item kenya      - Optional if the level is Kenya.
+\item country    - Name of the country.
 \item county     - Name of the county. Optional if the level is \code{county}, \code{subcounty}, \code{ward} or \code{facility}.
 \item subcounty  - Name of the subcounty. Optional if the level is \code{subcounty}, \code{ward} or \code{facility}.
 \item ward       - Name of the ward. Optional if the level is \code{ward} or \code{facility}.
@@ -51,7 +45,7 @@ with the following columns:
 }
 \description{
 \code{get_cervical_positive()} retrieves cervical cancer screening data with positive results
-for a specified period from the KHIS API server using \code{\link[=get_analytics]{get_analytics()}}.
+for a specified period from the KHIS API server.
 }
 \examples{
 \dontshow{if (khis_has_cred()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
@@ -59,9 +53,4 @@ for a specified period from the KHIS API server using \code{\link[=get_analytics
 positive <- get_cervical_positive(start_date = '2023-02-01')
 positive
 \dontshow{\}) # examplesIf}
-}
-\seealso{
-\itemize{
-\item \code{\link[=get_analytics]{get_analytics()}} for retrieving data from KHIS
-}
 }

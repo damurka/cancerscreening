@@ -10,9 +10,10 @@
 ^CODE_OF_CONDUCT\.md$
 ^index\.Rmd$
 ^index\.md$
-^vignettes/articles$
+^vignettes$
 ^CRAN-SUBMISSION$
 ^codecov\.yml$
 ^secret\.json$
+^revdep$
 ^doc$
 ^Meta$

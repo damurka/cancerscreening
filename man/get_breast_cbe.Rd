@@ -7,10 +7,8 @@
 get_breast_cbe(
   start_date,
   end_date = NULL,
-  level = c("kenya", "county", "subcounty", "ward", "facility"),
+  level = c("country", "county", "subcounty", "ward", "facility"),
   organisations = NULL,
-  categories = NULL,
-  elements = NULL,
   ...
 )
 }
@@ -19,20 +17,16 @@ get_breast_cbe(
 
 \item{end_date}{The ending date for data retrieval (default is the current date).}
 
-\item{level}{The desired data granularity: \code{"kenya"} (the default), \code{"county"}, \code{"subcounty"}, \code{"ward"}, or \code{"facility"}.}
+\item{level}{The desired data granularity: \code{"country"} (the default), \code{"county"}, \code{"subcounty"}, \code{"ward"}, or \code{"facility"}.}
 
-\item{organisations}{A list of organization units in the data. If NULL, downloaded using \code{\link[=get_organisation_units_metadata]{get_organisation_units_metadata()}}.}
-
-\item{categories}{A list of categories to include. If NULL, downloaded using \code{\link[=get_category_options_metadata]{get_category_options_metadata()}}.}
-
-\item{elements}{A list of data elements to include. If NULL, downloaded using \code{\link[=get_data_elements_metadata]{get_data_elements_metadata()}}.}
+\item{organisations}{A list of organization units ids to be filtered.}
 
 \item{...}{Other options that can be passed onto KHIS API.}
 }
 \value{
 A tibble containing data for CBE conducted with the following columns:
 \itemize{
-\item kenya      - Optional if the level is Kenya.
+\item country    - Name of the country country
 \item county     - Name of the county. Optional if the level is \code{county}, \code{subcounty}, \code{ward} or \code{facility}.
 \item subcounty  - Name of the subcounty. Optional if the level is \code{subcounty}, \code{ward} or \code{facility}.
 \item ward       - Name of the ward. Optional if the level is \code{ward} or \code{facility}.
@@ -41,15 +35,15 @@ A tibble containing data for CBE conducted with the following columns:
 \item fiscal_year- The financial year of the report(July-June Cycle).
 \item year       - The calendar year of the report.
 \item month      - The month name of the report.
-\item category   - The age group category of the report (25-34, 35-39, 40-55, 56-74, or 75+).
-\item category2  - Additional category if available.
+\item age_group  - The age group category of the report (25-34, 35-39, 40-55, 56-74, or 75+).
+\item category   - Additional category if available.
 \item element    - The data element.
 \item value      - The number reported.
 }
 }
 \description{
 \code{get_breast_cbe()} retrieves data for CBE conducted within a specified
-period from the KHIS API server using \code{\link[=get_analytics]{get_analytics()}}.
+period from the KHIS API server.
 }
 \examples{
 \dontshow{if (khis_has_cred()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
@@ -57,9 +51,4 @@ period from the KHIS API server using \code{\link[=get_analytics]{get_analytics(
 cbe_data <- get_breast_cbe(start_date = '2023-02-01')
 cbe_data
 \dontshow{\}) # examplesIf}
-}
-\seealso{
-\itemize{
-\item \code{\link[=get_analytics]{get_analytics()}} for retrieving data from KHIS
-}
 }

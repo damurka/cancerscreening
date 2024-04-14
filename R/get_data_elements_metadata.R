@@ -3,58 +3,50 @@
 #' `get_data_elements_metadata()` fetches data elements metadata from the KHIS API
 #'   server, including their IDs and names.
 #'
-#' @param element_ids A vector of specific data element IDs to retrieve. If NULL, all data elements will be retrieved.
-#' @param ... Other options that can be passed onto KHIS API.
+#' @param element_ids The  data element identifiers whose details being retrieved
 #'
 #' @return A tibble containing the following columns:
 #'
 #' * element_id - The unique identifier for the data element.
 #' * element    - The name of the data element.
+#' * category   - The category options for the elements
+#' * category_id - The unique identifier for the category options
 #'
 #' @export
 #'
 #' @examplesIf khis_has_cred()
-#' # Fetch the data element metadata for particular element id
-#' elements <- get_data_elements_metadata(element_ids = c('htFuvGJRW1X'))
-#' elements
 #'
-#' # Fetch all the data elements
-#' elements <- get_data_elements_metadata()
+#' # Fetch the data element metadata for particular element id
+#' elements <- get_data_elements_metadata('htFuvGJRW1X')
 #' elements
 
-get_data_elements_metadata <-function(element_ids = NULL, ...) {
+get_data_elements_metadata <-function(element_ids) {
 
-  x = name = filter = NULL # due to NSE notes in R CMD check
+  name = categoryCombo = categoryOptionCombos = co = co_name = co_id = NULL # due to NSE notes in R CMD check
 
-  if (!is.null(element_ids) && length(element_ids) > 0) {
-    filter <- str_c(element_ids, collapse = ',')
-    filter <- str_c('id:in:[', filter, ']')
+  check_string_vector(element_ids)
+
+  filter <- splice(list2(filter = NULL))
+  if (!is.null(element_ids)) {
+    filter <- id %.in% element_ids
   }
 
-  data <- .api_get('dataElements',
-                   fields='id,name',
-                   filter=filter,
-                   ...)
+  data <- get_data_elements(filter,
+                            fields = c('id','name','categoryCombo[categoryOptionCombos[id,name]]'))
 
-  if (is_empty(data$dataElements)) {
-    cancerscreening_bullets(
-      c(
-        "!" = "Empty data elements returned",
-        "!" = "The KHIS server did not return any data elements."
-      )
-    )
-
-    return(tibble(
-      element_id = character(),
-      element = character()
-    ))
+  if (is_empty(data)) {
+    return(NULL)
   }
 
-  data <- tibble(x = data$dataElements) %>%
-    unnest_wider(x) %>%
+  data <- data  %>%
+    hoist(categoryCombo, 'categoryOptionCombos') %>%
+    unnest_longer(categoryOptionCombos, values_to = 'co') %>%
+    unnest_wider(co, names_sep = '_') %>%
     rename(
       element_id = id,
-      element = name
+      element = name,
+      category = co_name,
+      category_id = co_id
     )
 
   return(data)

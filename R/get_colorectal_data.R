@@ -1,13 +1,13 @@
 #' Retrieve and Format Colorectal Cancer Screening Data
 #'
 #' `.get_colorectal_data()` retrieves colorectal cancer screening data for a specified period
-#' from the KHIS API server using [get_analytics()].
+#' from the KHIS API server.
 #'
-#' @inheritParams get_analytics
+#' @inheritParams get_analytics_formatted
 #'
 #' @return A tibble containing colorectal cancer screening data with the following columns:
 #'
-#' * kenya      - Optional if the level is Kenya.
+#' * country    - Name of the country.
 #' * county     - Name of the county. Optional if the level is `county`, `subcounty`, `ward` or `facility`.
 #' * subcounty  - Name of the subcounty. Optional if the level is `subcounty`, `ward` or `facility`.
 #' * ward       - Name of the ward. Optional if the level is `ward` or `facility`.
@@ -20,9 +20,6 @@
 #' * category2  - Additional category if available.
 #' * element    - The data element.
 #' * value      - The number reported.
-#'
-#' @seealso
-#' * [get_analytics()] for retrieving data from KHIS
 #'
 #' @examplesIf khis_has_cred()
 #'
@@ -39,20 +36,18 @@
 .get_colorectal_data <- function(element_ids,
                             start_date,
                             end_date = NULL,
-                            level =c('kenya', 'county', 'subcounty', 'ward', 'facility'),
+                            level =c('country', 'county', 'subcounty', 'ward', 'facility'),
                             organisations = NULL,
-                            categories = NULL,
-                            elements = NULL,
                             ...) {
 
-  data <- get_analytics(element_ids,
-                        start_date = start_date,
-                        end_date = end_date,
-                        level = level,
-                        organisations = organisations,
-                        categories = categories,
-                        elements = elements,
-                        ...) %>%
+  category = NULL # due to NSE notes in R CMD check
+
+  data <- get_analytics_formatted(element_ids,
+                                  start_date = start_date,
+                                  end_date = end_date,
+                                  level = level,
+                                  organisations = organisations,
+                                  ...) %>%
     mutate(
       category = case_when(
         str_detect(category, '45-54') ~ '45-54',
@@ -60,7 +55,10 @@
         str_detect(category, '65-75') ~ '65-75',
         .default = NA,
         .ptype = factor(levels = c('45-54', '55-64', '65-75'))
-      )
-    )
+      ),
+      source = 'MOH 745'
+    ) %>%
+    rename(age_group = category)
+
   return(data)
 }

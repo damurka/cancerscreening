@@ -4,26 +4,29 @@
 \alias{get_organisation_units_metadata}
 \title{Get Organisation Units Metadata}
 \usage{
-get_organisation_units_metadata(...)
+get_organisation_units_metadata(
+  org_ids = NULL,
+  level = c("country", "county", "subcounty", "ward", "facility")
+)
 }
 \arguments{
-\item{...}{Options that can be passed onto KHIS API.}
+\item{org_ids}{The organisation identifiers whose details being retrieved}
+
+\item{level}{The desired data granularity: \code{"country"} (the default), \code{"county"}, \code{"subcounty"}, \code{"ward"}, or \code{"facility"}.}
 }
 \value{
 A tibble containing the following columns:
 \itemize{
-\item facility_id   - Organisation identifier that uniquely identifies the health facility.
-\item ward_id       - Organisation identifier that uniquely identifies the ward.
-\item subcounty_id  - Organisation identifier that uniquely identifies the subcounty.
-\item county_id     - Organisation identifier that uniquely identifies the county.
-\item facility      - Name of the health facility.
+\item id            - Organisation identifier that uniquely identifies the organisation by level
+\item country       - Name of the country
 \item county        - Name of the county.
 \item subcounty     - Name of the subcounty.
 \item ward          - Name of the ward.
+\item facility      - Name of the health facility.
 }
 }
 \description{
-\code{\link[=get_organisation_units_metadata]{get_organisation_units_metadata()}} fetches organisation units metadata from the
+\code{get_organisation_units_metadata()} fetches organisation units metadata from the
 KHIS API server.
 }
 \examples{

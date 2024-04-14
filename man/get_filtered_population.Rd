@@ -9,7 +9,7 @@ get_filtered_population(
   min_age,
   max_age,
   modifier = 1,
-  level = c("kenya", "county", "subcounty"),
+  level = c("country", "county", "subcounty"),
   pop_sex = c("female", "male", "both"),
   rate = 0.022
 )
@@ -24,7 +24,7 @@ get_filtered_population(
 \item{modifier}{A multiplier that affect the population projection. Default 1}
 
 \item{level}{The desired level of the organization unit hierarchy to retrieve
-data for: \code{"kenya"}, \code{"county"} or \code{"subcounty"}.}
+data for: \code{"country"}, \code{"county"} or \code{"subcounty"}.}
 
 \item{pop_sex}{The desired population sex: \code{"male"}, \code{"female"} (default), \code{"both"}}
 

@@ -28,8 +28,13 @@ reference:
       Download metadata information related to the organisation units, categories and data elements
     contents:
       - get_organisation_units_metadata
-      - get_category_options_metadata
       - get_data_elements_metadata
+  - title: "KHIS Formatted Data"
+    desc: >
+      Download formatted data using the analytics endpoint
+    contents:
+      - get_analytics_formatted
+      - get_data_sets_formatted
   - title: "Cervical cancer screening"
     desc: >
       Downloading data related to cervical cancer screening
@@ -51,6 +56,15 @@ reference:
     contents:
       - get_colorectal_fobt
       - get_colorectal_colonoscopy
+  - title: "Download laboratory diagnostic data"
+    desc: >
+      Download laboratory diagnostics data
+    contents:
+      - get_lab_fluid_cytology
+      - get_lab_tissue_histology
+      - get_lab_bone_marrow
+      - get_lab_fna
+      - get_lab_smears
   - title: "Authorization Credentials"
     desc: >
       Take and securely store the KHIS authorization credentials
@@ -68,8 +82,3 @@ reference:
       - get_breast_cbe_target_population
       - get_breast_mammogram_target_population
       - get_filtered_population
-  - title: "KHIS Analytics"
-    desc: >
-      Download data from KHIS analytics table
-    contents:
-      - get_analytics

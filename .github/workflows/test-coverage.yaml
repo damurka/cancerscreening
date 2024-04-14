@@ -20,7 +20,7 @@ jobs:
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      CANCERSCREENING_KEY: ${{ secrets.CANCERSCREENING_KEY }}
+      KHIS_KEY: ${{ secrets.KHIS_KEY }}
 
     steps:
       - uses: actions/checkout@v3

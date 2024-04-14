@@ -9,25 +9,25 @@ vignette: >
 
 ```{r setup, include = FALSE}
 auth_success <- tryCatch(
-  cancerscreening:::khis_cred_docs(),
-  cancerscreening_cred_internal_error = function(e) e
+  khisr:::khis_cred_docs(),
+  khis_cred_internal_error = function(e) e
 )
 
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   error = TRUE,
-  purl = cancerscreening::khis_has_cred(),
-  eval = cancerscreening::khis_has_cred()
+  purl = khisr::khis_has_cred(),
+  eval = khisr::khis_has_cred()
 )
 ```
 
-```{r eval = !cancerscreening::khis_has_cred(), echo = FALSE, comment = NA}
+```{r eval = !khisr::khis_has_cred(), echo = FALSE, comment = NA}
 cancerscreening:::cancerscreening_bullets(c(
   "Code chunks will not be evaluated, because:",
   strsplit(auth_success$message, split = "\n")[[1]]
 ))
-cancerscreening::khis_cred_clear()
+khisr::khis_cred_clear()
 ```
 
 ```{r, include = FALSE}
@@ -41,14 +41,12 @@ Remember to see [the articles](https://cancerscreening.damurka.com/articles/inde
 
 ## Key Functions for Data Download:
 
-These functions directly call the KHIS server to download the data using the `get_analytics()`
-function and require the setting of KHIS credentials. See [setting the credentials](https://cancerscreening.damurka.com/articles/set-your-credentials.html) for more information.
+These functions directly call the KHIS server to download the data require the setting of KHIS credentials. See [setting the credentials](https://cancerscreening.damurka.com/articles/set-your-credentials.html) for more information.
 The get analytics call is supported by three metadata functions that help make the data complete and these 
-include the `get_organisation_units_metadata()` to show where the data is from, `get_category_options_metadata()`
-to group the data into various categories and `get_data_elements_metadata()` to show what the data is about.
+include the `get_organisation_units_metadata()` to show where the data is from and `get_data_elements_metadata()` to show what the data is about and group the data into various categories.
 
-There are three cancer screening that are being tracked breast cancer, cervical cancer and
-colorectal cancer.
+The cancer screening data that are being tracked breast cancer, cervical cancer,
+colorectal cancer and laboratory diagnostic data.
 
 ### Cervical Cancer:
 
@@ -66,6 +64,13 @@ colorectal cancer.
 
 * `get_colorectal_fobt()`: Retrieves data on individuals who receive FOBT for colorectal cancer screening tests.
 * `get_colorectal_colonoscopy()`: Retrieves data on individuals who receive colonoscopy for colorectal cancer screening tests.
+
+### Laboratory Data
+* `get_lab_fluid_cytology()`: Retrieve data on fluid cytology done in the lab. They include Ascitic fluid, cerebral spinal fluid, pleural fluid and urine.
+* `get_lab_tissue_histology()`: Retrieve data on tissue histology done in the lab. They include Breast, colorectal, oesphageal, head & neck, hepatobiliary, lymph nodes, oral, ovary, prostate, skin and uterine tissues;
+* `get_lab_bone_marrow()`: Retrieve data on bone marrow done in the lab.
+* `get_lab_fna()`: Retrieve data on fine-needle aspiration done in the lab. They include breast, liver, lymph node and thyroid.
+* `get_lab_smears()`Retrieve data on smears done in the lab. They include pap smear, tissue impressions, and touch preparation.
 
 To get the data the following calls can be made
 
