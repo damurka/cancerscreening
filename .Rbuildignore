@@ -14,5 +14,6 @@
 ^CRAN-SUBMISSION$
 ^codecov\.yml$
 ^secret\.json$
+^revdep$
 ^doc$
 ^Meta$
