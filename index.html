@@ -91,7 +91,7 @@
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p>cancerscreening provides an R interface to <a href="https://hiskenya.org" class="external-link">Kenya Health Information System (KHIS)</a> via the <a href="https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/introduction.html" class="external-link">DHIS 2 API</a>. The goal of <code>cancerscreening</code> is to provide a easy way to download cancer screening data from the KHIS using the (khisr package)[<a href="https://khisr.damurka.com" class="external-link uri">https://khisr.damurka.com</a>].</p>
+<p>cancerscreening provides an R interface to <a href="https://hiskenya.org" class="external-link">Kenya Health Information System (KHIS)</a> via the <a href="https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/introduction.html" class="external-link">DHIS 2 API</a>. The goal of <code>cancerscreening</code> is to provide a easy way to download cancer screening data from the KHIS using the <a href="https://khisr.damurka.com" class="external-link">khisr package</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -243,6 +243,28 @@
 <span><span class="co">#&gt;  9     0 Bunyore… Nort… Emuhaya   Vihiga Asciti… Maligna… 2021-10-01 Octo…  2021</span></span>
 <span><span class="co">#&gt; 10     0 Derkale… Derk… Banissa   Mande… CSF     Maligna… 2021-12-01 Dece…  2021</span></span>
 <span><span class="co">#&gt; # ℹ 2,423 more rows</span></span>
+<span><span class="co">#&gt; # ℹ 2 more variables: fiscal_year &lt;fct&gt;, source &lt;chr&gt;</span></span>
+<span></span>
+<span><span class="co"># Download histology data for Embu county (id PFu8alU2KWG)</span></span>
+<span><span class="va">histology</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_lab_tissue_histology.html">get_lab_tissue_histology</a></span><span class="op">(</span><span class="st">'2021-07-01'</span>,</span>
+<span>                                      end_date <span class="op">=</span> <span class="st">'2021-12-31'</span>,</span>
+<span>                                      level <span class="op">=</span> <span class="st">'facility'</span>,</span>
+<span>                                      organisations <span class="op">=</span> <span class="st">'PFu8alU2KWG'</span><span class="op">)</span></span>
+<span><span class="va">histology</span></span>
+<span><span class="co">#&gt; # A tibble: 65 × 12</span></span>
+<span><span class="co">#&gt;    value facility ward  subcounty county element category period     month  year</span></span>
+<span><span class="co">#&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;fct&gt;   &lt;fct&gt;    &lt;date&gt;     &lt;ord&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1     1 Aga Kha… Kiri… Manyatta  Embu   Skin    Total E… 2021-12-01 Dece…  2021</span></span>
+<span><span class="co">#&gt;  2     1 Imara M… Kiri… Manyatta  Embu   Ovary   Total E… 2021-07-01 July   2021</span></span>
+<span><span class="co">#&gt;  3     1 Outspan… Kiri… Manyatta  Embu   Oral    Total E… 2021-07-01 July   2021</span></span>
+<span><span class="co">#&gt;  4     1 Aga Kha… Kiri… Manyatta  Embu   Skin    Maligna… 2021-12-01 Dece…  2021</span></span>
+<span><span class="co">#&gt;  5     2 Aga Kha… Kiri… Manyatta  Embu   Breast… Maligna… 2021-11-01 Nove…  2021</span></span>
+<span><span class="co">#&gt;  6     1 Focus C… Kiri… Manyatta  Embu   Ovary   Total E… 2021-07-01 July   2021</span></span>
+<span><span class="co">#&gt;  7     1 Aga Kha… Kiri… Manyatta  Embu   Breast… Maligna… 2021-12-01 Dece…  2021</span></span>
+<span><span class="co">#&gt;  8     1 Aga Kha… Kiri… Manyatta  Embu   Soft t… Total E… 2021-10-01 Octo…  2021</span></span>
+<span><span class="co">#&gt;  9     1 Outspan… Kiri… Manyatta  Embu   Breast… Total E… 2021-10-01 Octo…  2021</span></span>
+<span><span class="co">#&gt; 10    13 Outspan… Kiri… Manyatta  Embu   Colore… Total E… 2021-09-01 Sept…  2021</span></span>
+<span><span class="co">#&gt; # ℹ 55 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 2 more variables: fiscal_year &lt;fct&gt;, source &lt;chr&gt;</span></span></code></pre></div>
 </div>
 </div>
