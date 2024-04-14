@@ -18,7 +18,7 @@ jobs:
     concurrency:
       group: pkgdown-${{ github.event_name != 'pull_request' || github.run_id }}
     env:
-      KHIS_KEY: ${{ secrets.CANCERSCREENING_KEY }}
+      CANCERSCREENING_KEY: ${{ secrets.CANCERSCREENING_KEY }}
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     permissions:
       contents: write
