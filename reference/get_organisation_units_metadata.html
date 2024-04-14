@@ -12,7 +12,7 @@ KHIS API server."><meta property="og:image" content="https://cancerscreening.dam
     
     <a class="navbar-brand me-2" href="../index.html">cancerscreening</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,27 +67,32 @@ KHIS API server.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_organisation_units_metadata</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_organisation_units_metadata</span><span class="op">(</span></span>
+<span>  org_ids <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  level <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"country"</span>, <span class="st">"county"</span>, <span class="st">"subcounty"</span>, <span class="st">"ward"</span>, <span class="st">"facility"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>...</dt>
-<dd><p>Options that can be passed onto KHIS API.</p></dd>
+    <dl><dt>org_ids</dt>
+<dd><p>The organisation identifiers whose details being retrieved</p></dd>
+
+
+<dt>level</dt>
+<dd><p>The desired data granularity: <code>"country"</code> (the default), <code>"county"</code>, <code>"subcounty"</code>, <code>"ward"</code>, or <code>"facility"</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>A tibble containing the following columns:</p><ul><li><p>facility_id   - Organisation identifier that uniquely identifies the health facility.</p></li>
-<li><p>ward_id       - Organisation identifier that uniquely identifies the ward.</p></li>
-<li><p>subcounty_id  - Organisation identifier that uniquely identifies the subcounty.</p></li>
-<li><p>county_id     - Organisation identifier that uniquely identifies the county.</p></li>
-<li><p>facility      - Name of the health facility.</p></li>
+<p>A tibble containing the following columns:</p><ul><li><p>id            - Organisation identifier that uniquely identifies the organisation by level</p></li>
+<li><p>country       - Name of the country</p></li>
 <li><p>county        - Name of the county.</p></li>
 <li><p>subcounty     - Name of the subcounty.</p></li>
 <li><p>ward          - Name of the ward.</p></li>
+<li><p>facility      - Name of the health facility.</p></li>
 </ul></div>
 
     <div class="section level2">

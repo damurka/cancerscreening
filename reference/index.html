@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">cancerscreening</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,14 +74,30 @@
         <dd>Get Organisation Units Metadata</dd>
       </dl><dl><dt>
           
-          <code><a href="get_category_options_metadata.html">get_category_options_metadata()</a></code> 
-        </dt>
-        <dd>Get Category Options Metadata</dd>
-      </dl><dl><dt>
-          
           <code><a href="get_data_elements_metadata.html">get_data_elements_metadata()</a></code> 
         </dt>
         <dd>Get Data Elements Metadata</dd>
+      </dl></div><div class="section level2">
+      <h2 id="khis-formatted-data">KHIS Formatted Data<a class="anchor" aria-label="anchor" href="#khis-formatted-data"></a></h2>
+      
+      <p class="section-desc"></p><p>Download formatted data using the analytics endpoint</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="get_analytics_formatted.html">get_analytics_formatted()</a></code> 
+        </dt>
+        <dd>Retrieves Analytics Table Data from KHIS</dd>
+      </dl><dl><dt>
+          
+          <code><a href="get_data_sets_formatted.html">get_data_sets_formatted()</a></code> 
+        </dt>
+        <dd>Retrieves Data Set Reporting Rate Metrics</dd>
       </dl></div><div class="section level2">
       <h2 id="cervical-cancer-screening">Cervical cancer screening<a class="anchor" aria-label="anchor" href="#cervical-cancer-screening"></a></h2>
       
@@ -161,6 +177,42 @@
         </dt>
         <dd>Retrieves Data for Colorectal Screening using Colonoscopy</dd>
       </dl></div><div class="section level2">
+      <h2 id="download-laboratory-diagnostic-data">Download laboratory diagnostic data<a class="anchor" aria-label="anchor" href="#download-laboratory-diagnostic-data"></a></h2>
+      
+      <p class="section-desc"></p><p>Download laboratory diagnostics data</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="get_lab_fluid_cytology.html">get_lab_fluid_cytology()</a></code> 
+        </dt>
+        <dd>Retrieves the Fluid Cytology Data</dd>
+      </dl><dl><dt>
+          
+          <code><a href="get_lab_tissue_histology.html">get_lab_tissue_histology()</a></code> 
+        </dt>
+        <dd>Retrieves the Tissue Histology Laboratory Data</dd>
+      </dl><dl><dt>
+          
+          <code><a href="get_lab_bone_marrow.html">get_lab_bone_marrow()</a></code> 
+        </dt>
+        <dd>Retrieves the Bone Marrow Laboratory Data</dd>
+      </dl><dl><dt>
+          
+          <code><a href="get_lab_fna.html">get_lab_fna()</a></code> 
+        </dt>
+        <dd>Retrieves the Fine-Needle Aspiration Laboratory Data</dd>
+      </dl><dl><dt>
+          
+          <code><a href="get_lab_smears.html">get_lab_smears()</a></code> 
+        </dt>
+        <dd>Retrieves the Cytology Smears Laboratory Data</dd>
+      </dl></div><div class="section level2">
       <h2 id="authorization-credentials">Authorization Credentials<a class="anchor" aria-label="anchor" href="#authorization-credentials"></a></h2>
       
       <p class="section-desc"></p><p>Take and securely store the KHIS authorization credentials</p>
@@ -173,24 +225,9 @@
 
       <dl><dt>
           
-          <code><a href="khis_cred.html">khis_cred()</a></code> 
+          <code><a href="reexports.html">reexports</a></code> <code><a href="reexports.html">khis_cred</a></code> <code><a href="reexports.html">khis_has_cred</a></code> <code><a href="reexports.html">khis_cred_clear</a></code> <code><a href="reexports.html">khis_username</a></code> <code><a href="reexports.html">khis_base_url</a></code> <code><a href="reexports.html">%&gt;%</a></code> 
         </dt>
-        <dd>Sets the KHIS Credentials</dd>
-      </dl><dl><dt>
-          
-          <code><a href="khis_has_cred.html">khis_has_cred()</a></code> 
-        </dt>
-        <dd>Are There Credentials on Hand?</dd>
-      </dl><dl><dt>
-          
-          <code><a href="khis_cred_clear.html">khis_cred_clear()</a></code> 
-        </dt>
-        <dd>Clear the Credentials from Memory</dd>
-      </dl><dl><dt>
-          
-          <code><a href="khis_username.html">khis_username()</a></code> 
-        </dt>
-        <dd>Produces the Configured Username</dd>
+        <dd>Objects exported from other packages</dd>
       </dl><dl><dt>
           
           <code><a href="cancerscreening-configuration.html">with_cancerscreening_quiet()</a></code> <code><a href="cancerscreening-configuration.html">local_cancerscreening_quiet()</a></code> 
@@ -217,22 +254,6 @@
           <code><a href="get_filtered_population.html">get_filtered_population()</a></code> 
         </dt>
         <dd>Filters the Population</dd>
-      </dl></div><div class="section level2">
-      <h2 id="khis-analytics">KHIS Analytics<a class="anchor" aria-label="anchor" href="#khis-analytics"></a></h2>
-      
-      <p class="section-desc"></p><p>Download data from KHIS analytics table</p>
-
-      
-    </div><div id="" class="section level2">
-      
-      
-      
-
-      <dl><dt>
-          
-          <code><a href="get_analytics.html">get_analytics()</a></code> 
-        </dt>
-        <dd>Retrieves Analytics Table Data from KHIS</dd>
       </dl></div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>

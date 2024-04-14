@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">cancerscreening</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,21 +64,24 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_cervical_target_population</span><span class="op">(</span><span class="va">year</span>, level <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"kenya"</span>, <span class="st">"county"</span>, <span class="st">"subcounty"</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_cervical_target_population</span><span class="op">(</span></span>
+<span>  <span class="va">year</span>,</span>
+<span>  level <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"country"</span>, <span class="st">"county"</span>, <span class="st">"subcounty"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">get_breast_cbe_target_population</span><span class="op">(</span></span>
 <span>  <span class="va">year</span>,</span>
-<span>  level <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"kenya"</span>, <span class="st">"county"</span>, <span class="st">"subcounty"</span><span class="op">)</span></span>
+<span>  level <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"country"</span>, <span class="st">"county"</span>, <span class="st">"subcounty"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">get_breast_mammogram_target_population</span><span class="op">(</span></span>
 <span>  <span class="va">year</span>,</span>
-<span>  level <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"kenya"</span>, <span class="st">"county"</span>, <span class="st">"subcounty"</span><span class="op">)</span></span>
+<span>  level <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"country"</span>, <span class="st">"county"</span>, <span class="st">"subcounty"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">get_colorectal_target_population</span><span class="op">(</span></span>
 <span>  <span class="va">year</span>,</span>
-<span>  level <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"kenya"</span>, <span class="st">"county"</span>, <span class="st">"subcounty"</span><span class="op">)</span></span>
+<span>  level <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"country"</span>, <span class="st">"county"</span>, <span class="st">"subcounty"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -90,7 +93,7 @@
 
 <dt>level</dt>
 <dd><p>The desired level of the organization unit hierarchy to retrieve
-data for: <code>"kenya"</code> (default) , <code>"county"</code> or <code>"subcounty"</code>.</p></dd>
+data for: <code>"country"</code> (default) , <code>"county"</code> or <code>"subcounty"</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -132,62 +135,64 @@ cervical cancer prevention programs: A manual for managers.'</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Get the country projection for cervical cancer screening for the year 2024</span></span></span>
 <span class="r-in"><span><span class="va">target_population</span> <span class="op">&lt;-</span> <span class="fu">get_cervical_target_population</span><span class="op">(</span><span class="fl">2024</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">target_population</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 1</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     target</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 1<span style="text-decoration: underline;">112</span>735.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 2</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   country   target</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Kenya   1<span style="text-decoration: underline;">112</span>735.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the projection for cervical cancer screening for 2022 by county</span></span></span>
 <span class="r-in"><span><span class="va">target_population</span> <span class="op">&lt;-</span> <span class="fu">get_cervical_target_population</span><span class="op">(</span><span class="fl">2022</span>, level <span class="op">=</span> <span class="st">'county'</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">target_population</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 47 × 2</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    county          target</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Baringo         <span style="text-decoration: underline;">12</span>705.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Bomet           <span style="text-decoration: underline;">18</span>680.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Bungoma         <span style="text-decoration: underline;">33</span>151.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Busia           <span style="text-decoration: underline;">18</span>221.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Elgeyo Marakwet  <span style="text-decoration: underline;">9</span>093.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Embu            <span style="text-decoration: underline;">15</span>342.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Garissa         <span style="text-decoration: underline;">15</span>238.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Homa Bay        <span style="text-decoration: underline;">23</span>316.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Isiolo           <span style="text-decoration: underline;">5</span>062.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Kajiado         <span style="text-decoration: underline;">29</span>055.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 47 × 3</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Groups:   country [1]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    country county          target</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Kenya   Baringo         <span style="text-decoration: underline;">12</span>705.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Kenya   Bomet           <span style="text-decoration: underline;">18</span>680.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Kenya   Bungoma         <span style="text-decoration: underline;">33</span>151.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Kenya   Busia           <span style="text-decoration: underline;">18</span>221.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Kenya   Elgeyo Marakwet  <span style="text-decoration: underline;">9</span>093.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Kenya   Embu            <span style="text-decoration: underline;">15</span>342.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Kenya   Garissa         <span style="text-decoration: underline;">15</span>238.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Kenya   Homa Bay        <span style="text-decoration: underline;">23</span>316.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Kenya   Isiolo           <span style="text-decoration: underline;">5</span>062.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Kenya   Kajiado         <span style="text-decoration: underline;">29</span>055.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 37 more rows</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the projection for CBE for 2022 by county</span></span></span>
 <span class="r-in"><span><span class="va">target_population</span> <span class="op">&lt;-</span> <span class="fu">get_breast_cbe_target_population</span><span class="op">(</span><span class="fl">2022</span>, level <span class="op">=</span> <span class="st">'county'</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">target_population</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 47 × 2</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    county          target</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Baringo          <span style="text-decoration: underline;">9</span>206.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Bomet           <span style="text-decoration: underline;">13</span>021.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Bungoma         <span style="text-decoration: underline;">24</span>429.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Busia           <span style="text-decoration: underline;">13</span>914.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Elgeyo Marakwet  <span style="text-decoration: underline;">6</span>599.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Embu            <span style="text-decoration: underline;">11</span>919.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Garissa          <span style="text-decoration: underline;">9</span>730.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Homa Bay        <span style="text-decoration: underline;">17</span>383.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Isiolo           <span style="text-decoration: underline;">3</span>476.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Kajiado         <span style="text-decoration: underline;">18</span>656.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 47 × 3</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Groups:   country [1]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    country county          target</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Kenya   Baringo          <span style="text-decoration: underline;">9</span>206.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Kenya   Bomet           <span style="text-decoration: underline;">13</span>021.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Kenya   Bungoma         <span style="text-decoration: underline;">24</span>429.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Kenya   Busia           <span style="text-decoration: underline;">13</span>914.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Kenya   Elgeyo Marakwet  <span style="text-decoration: underline;">6</span>599.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Kenya   Embu            <span style="text-decoration: underline;">11</span>919.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Kenya   Garissa          <span style="text-decoration: underline;">9</span>730.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Kenya   Homa Bay        <span style="text-decoration: underline;">17</span>383.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Kenya   Isiolo           <span style="text-decoration: underline;">3</span>476.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Kenya   Kajiado         <span style="text-decoration: underline;">18</span>656.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 37 more rows</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the country projection of women to perform mammogram for the year 2024</span></span></span>
 <span class="r-in"><span><span class="va">target_population</span> <span class="op">&lt;-</span> <span class="fu">get_breast_mammogram_target_population</span><span class="op">(</span><span class="fl">2024</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">target_population</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 1</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    target</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> <span style="text-decoration: underline;">697</span>245.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 2</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   country  target</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Kenya   <span style="text-decoration: underline;">697</span>245.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get the country projection colorectal cancer screening for the year 2024</span></span></span>
 <span class="r-in"><span><span class="va">target_population</span> <span class="op">&lt;-</span> <span class="fu">get_colorectal_target_population</span><span class="op">(</span><span class="fl">2024</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">target_population</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 1</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     target</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 1<span style="text-decoration: underline;">022</span>777.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 2</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   country   target</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Kenya   1<span style="text-decoration: underline;">022</span>777.</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

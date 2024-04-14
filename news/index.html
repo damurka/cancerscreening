@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">cancerscreening</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,10 +58,39 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.1.0" id="cancerscreening-110">cancerscreening 1.1.0<a class="anchor" aria-label="anchor" href="#cancerscreening-110"></a></h2>
+<div class="section level4">
+<h4 id="improved-data-retrieval-efficiency-1-1-0">Improved data retrieval efficiency<a class="anchor" aria-label="anchor" href="#improved-data-retrieval-efficiency-1-1-0"></a></h4>
+<ul><li><p>Updated <code><a href="../reference/get_data_elements_metadata.html">get_data_elements_metadata()</a></code> and <code><a href="../reference/get_organisation_units_metadata.html">get_organisation_units_metadata()</a></code> to retrieve only necessary data, enhancing performance.</p></li>
+<li><p>Introduced levels (<code>country</code>, <code>county</code>, <code>subcounty</code>, <code>ward</code>, <code>facility</code>) to functions, allowing users to specify the scope of data retrieval.</p></li>
+</ul></div>
+<div class="section level4">
+<h4 id="enhanced-functionality-1-1-0">Enhanced functionality:<a class="anchor" aria-label="anchor" href="#enhanced-functionality-1-1-0"></a></h4>
+<ul><li><p>Upgraded the package to utilize the <code>khisr</code> package for data retrieval.</p></li>
+<li><p>Renamed <code>get_analytics()</code> to <code><a href="../reference/get_analytics_formatted.html">get_analytics_formatted()</a></code> to avoid conflicts with <code>khisr</code>.</p></li>
+<li><p>Added <code><a href="../reference/get_data_sets_formatted.html">get_data_sets_formatted()</a></code> for data set reporting metrics retrieval.</p></li>
+<li><p>Consolidated functionalities in <code><a href="../reference/get_data_elements_metadata.html">get_data_elements_metadata()</a></code>: retrieves data elements, categories, and removes the need for <code>get_category_options_metadata()</code>.</p></li>
+<li>
+<p>Implemented functions to retrieve laboratory diagnostics data:</p>
+<ul><li><code><a href="../reference/get_lab_fluid_cytology.html">get_lab_fluid_cytology()</a></code></li>
+<li><code><a href="../reference/get_lab_tissue_histology.html">get_lab_tissue_histology()</a></code></li>
+<li><code><a href="../reference/get_lab_bone_marrow.html">get_lab_bone_marrow()</a></code></li>
+<li><code><a href="../reference/get_lab_fna.html">get_lab_fna()</a></code></li>
+<li><code><a href="../reference/get_lab_smears.html">get_lab_smears()</a></code></li>
+</ul></li>
+</ul></div>
+<div class="section level4">
+<h4 id="streamlined-api-1-1-0">Streamlined API:<a class="anchor" aria-label="anchor" href="#streamlined-api-1-1-0"></a></h4>
+<ul><li><p>Removed unnecessary <code>elements</code> and <code>categories</code> parameters from functions due to optimized data retrieval.</p></li>
+<li><p>Repurposed <code>organizations</code> parameter to control the retrieved organizations using organization IDs.</p></li>
+</ul></div>
+</div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.0.2" id="cancerscreening-102">cancerscreening 1.0.2<a class="anchor" aria-label="anchor" href="#cancerscreening-102"></a></h2><p class="text-muted">CRAN release: 2024-01-09</p>
 <ul><li>Initial CRAN submission.</li>
 </ul></div>
-  </main></div>
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">

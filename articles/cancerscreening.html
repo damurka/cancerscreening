@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">cancerscreening</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -103,17 +103,15 @@ more.</p>
 <h2 id="key-functions-for-data-download">Key Functions for Data Download:<a class="anchor" aria-label="anchor" href="#key-functions-for-data-download"></a>
 </h2>
 <p>These functions directly call the KHIS server to download the data
-using the <code><a href="../reference/get_analytics.html">get_analytics()</a></code> function and require the setting
-of KHIS credentials. See <a href="https://cancerscreening.damurka.com/articles/set-your-credentials.html">setting
+require the setting of KHIS credentials. See <a href="https://cancerscreening.damurka.com/articles/set-your-credentials.html">setting
 the credentials</a> for more information. The get analytics call is
 supported by three metadata functions that help make the data complete
 and these include the <code><a href="../reference/get_organisation_units_metadata.html">get_organisation_units_metadata()</a></code> to
-show where the data is from,
-<code><a href="../reference/get_category_options_metadata.html">get_category_options_metadata()</a></code> to group the data into
-various categories and <code><a href="../reference/get_data_elements_metadata.html">get_data_elements_metadata()</a></code> to show
-what the data is about.</p>
-<p>There are three cancer screening that are being tracked breast
-cancer, cervical cancer and colorectal cancer.</p>
+show where the data is from and
+<code><a href="../reference/get_data_elements_metadata.html">get_data_elements_metadata()</a></code> to show what the data is about
+and group the data into various categories.</p>
+<p>The cancer screening data that are being tracked breast cancer,
+cervical cancer, colorectal cancer and laboratory diagnostic data.</p>
 <div class="section level3">
 <h3 id="cervical-cancer">Cervical Cancer:<a class="anchor" aria-label="anchor" href="#cervical-cancer"></a>
 </h3>
@@ -156,79 +154,97 @@ who receive FOBT for colorectal cancer screening tests.</li>
 individuals who receive colonoscopy for colorectal cancer screening
 tests.</li>
 </ul>
+</div>
+<div class="section level3">
+<h3 id="laboratory-data">Laboratory Data<a class="anchor" aria-label="anchor" href="#laboratory-data"></a>
+</h3>
+<ul>
+<li>
+<code><a href="../reference/get_lab_fluid_cytology.html">get_lab_fluid_cytology()</a></code>: Retrieve data on fluid
+cytology done in the lab. They include Ascitic fluid, cerebral spinal
+fluid, pleural fluid and urine.</li>
+<li>
+<code><a href="../reference/get_lab_tissue_histology.html">get_lab_tissue_histology()</a></code>: Retrieve data on tissue
+histology done in the lab. They include Breast, colorectal, oesphageal,
+head &amp; neck, hepatobiliary, lymph nodes, oral, ovary, prostate, skin
+and uterine tissues;</li>
+<li>
+<code><a href="../reference/get_lab_bone_marrow.html">get_lab_bone_marrow()</a></code>: Retrieve data on bone marrow
+done in the lab.</li>
+<li>
+<code><a href="../reference/get_lab_fna.html">get_lab_fna()</a></code>: Retrieve data on fine-needle aspiration
+done in the lab. They include breast, liver, lymph node and
+thyroid.</li>
+<li>
+<code><a href="../reference/get_lab_smears.html">get_lab_smears()</a></code>Retrieve data on smears done in the
+lab. They include pap smear, tissue impressions, and touch
+preparation.</li>
+</ul>
 <p>To get the data the following calls can be made</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Get data for those screening for cervical cancer</span></span>
 <span><span class="va">cervical_screened</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_cervical_screened.html">get_cervical_screened</a></span><span class="op">(</span><span class="st">'2022-01-01'</span>, end_date <span class="op">=</span> <span class="st">'2022-06-30'</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Downloading organisation units</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Downloading category options</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Downloading data elements</span></span>
 <span><span class="va">cervical_screened</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 192 × 10</span></span></span>
-<span><span class="co">#&gt;    period     value kenya category category2     element month  year fiscal_year</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 2022-01-01   261 Kenya 50+      Initial Scre… HPV     Janu…  <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 2022-02-01    88 Kenya 50+      Initial Scre… HPV     Febr…  <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 2022-03-01    27 Kenya 50+      Initial Scre… HPV     March  <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 2022-06-01    21 Kenya &lt;25      Routine Scre… HPV     June   <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 2022-05-01     2 Kenya &lt;25      Post-treatme… VIA     May    <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 2022-06-01    19 Kenya &lt;25      Post-treatme… VIA     June   <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 2022-02-01     8 Kenya &lt;25      Routine Scre… HPV     Febr…  <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 2022-03-01     3 Kenya &lt;25      Post-treatme… VIA     March  <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 2022-06-01   274 Kenya 50+      Initial Scre… Pap Sm… June   <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 2022-04-01     9 Kenya &lt;25      Post-treatme… VIA     April  <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt;    value country element   category period     month  year fiscal_year age_group</span></span>
+<span><span class="co">#&gt;  <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>    99 Kenya   Pap Smear Initial… 2022-01-01 Janu…  <span style="text-decoration: underline;">2</span>022 2021/2022   50+      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     4 Kenya   HPV       Routine… 2022-01-01 Janu…  <span style="text-decoration: underline;">2</span>022 2021/2022   &lt;25      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>   133 Kenya   Pap Smear Initial… 2022-04-01 April  <span style="text-decoration: underline;">2</span>022 2021/2022   50+      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>    19 Kenya   VIA       Post-tr… 2022-06-01 June   <span style="text-decoration: underline;">2</span>022 2021/2022   &lt;25      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>   127 Kenya   HPV       <span style="color: #BB0000;">NA</span>       2022-03-01 March  <span style="text-decoration: underline;">2</span>022 2021/2022   50+      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>   231 Kenya   Pap Smear Initial… 2022-05-01 May    <span style="text-decoration: underline;">2</span>022 2021/2022   50+      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     1 Kenya   HPV       Routine… 2022-05-01 May    <span style="text-decoration: underline;">2</span>022 2021/2022   &lt;25      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>    27 Kenya   HPV       Initial… 2022-03-01 March  <span style="text-decoration: underline;">2</span>022 2021/2022   50+      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>   274 Kenya   Pap Smear Initial… 2022-06-01 June   <span style="text-decoration: underline;">2</span>022 2021/2022   50+      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>   444 Kenya   HPV       <span style="color: #BB0000;">NA</span>       2022-01-01 Janu…  <span style="text-decoration: underline;">2</span>022 2021/2022   50+      </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 182 more rows</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 1 more variable: source &lt;fct&gt;</span></span></span>
 <span></span>
 <span><span class="co"># Get data for those screening for colorectal cancer using FOBT</span></span>
 <span><span class="va">colorectal_screened</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_colorectal_fobt.html">get_colorectal_fobt</a></span><span class="op">(</span><span class="st">'2022-01-01'</span>, end_date <span class="op">=</span> <span class="st">'2022-06-30'</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Downloading organisation units</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Downloading category options</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Downloading data elements</span></span>
 <span><span class="va">colorectal_screened</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 29 × 9</span></span></span>
-<span><span class="co">#&gt;    period     value kenya category category2 element  month     year fiscal_year</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 2022-02-01     8 Kenya 65-75    <span style="color: #BB0000;">NA</span>        Negative February  <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 2022-04-01     5 Kenya 65-75    <span style="color: #BB0000;">NA</span>        Positive April     <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 2022-03-01     9 Kenya 65-75    <span style="color: #BB0000;">NA</span>        Positive March     <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 2022-06-01    14 Kenya 65-75    <span style="color: #BB0000;">NA</span>        Positive June      <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 2022-05-01     4 Kenya 65-75    <span style="color: #BB0000;">NA</span>        Positive May       <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 2022-06-01     1 Kenya 65-75    <span style="color: #BB0000;">NA</span>        Negative June      <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 2022-05-01     4 Kenya 65-75    <span style="color: #BB0000;">NA</span>        Negative May       <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 2022-02-01     4 Kenya 65-75    <span style="color: #BB0000;">NA</span>        Positive February  <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 2022-03-01    18 Kenya 65-75    <span style="color: #BB0000;">NA</span>        Negative March     <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 2022-04-01     5 Kenya 55-64    <span style="color: #BB0000;">NA</span>        Negative April     <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
+<span><span class="co">#&gt;    value country element  age_group period     month     year fiscal_year source</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>     4 Kenya   Positive 65-75     2022-02-01 February  <span style="text-decoration: underline;">2</span>022 2021/2022   MOH 7…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     5 Kenya   Positive 65-75     2022-04-01 April     <span style="text-decoration: underline;">2</span>022 2021/2022   MOH 7…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     9 Kenya   Positive 65-75     2022-03-01 March     <span style="text-decoration: underline;">2</span>022 2021/2022   MOH 7…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>    13 Kenya   Negative 45-54     2022-03-01 March     <span style="text-decoration: underline;">2</span>022 2021/2022   MOH 7…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     2 Kenya   Positive 45-54     2022-02-01 February  <span style="text-decoration: underline;">2</span>022 2021/2022   MOH 7…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>    24 Kenya   Negative 55-64     2022-03-01 March     <span style="text-decoration: underline;">2</span>022 2021/2022   MOH 7…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     5 Kenya   Negative 55-64     2022-04-01 April     <span style="text-decoration: underline;">2</span>022 2021/2022   MOH 7…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     5 Kenya   Negative 45-54     2022-02-01 February  <span style="text-decoration: underline;">2</span>022 2021/2022   MOH 7…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>    44 Kenya   Negative 45-54     2022-04-01 April     <span style="text-decoration: underline;">2</span>022 2021/2022   MOH 7…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>    39 Kenya   Positive 55-64     2022-04-01 April     <span style="text-decoration: underline;">2</span>022 2021/2022   MOH 7…</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 19 more rows</span></span></span>
 <span></span>
 <span><span class="co"># Get data for those screening for breast cancer using mammogram</span></span>
 <span><span class="va">breast_screened</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_breast_mammogram.html">get_breast_mammogram</a></span><span class="op">(</span><span class="st">'2022-01-01'</span>, end_date <span class="op">=</span> <span class="st">'2022-06-30'</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Downloading organisation units</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Downloading category options</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Downloading data elements</span></span>
 <span><span class="va">breast_screened</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 19 × 9</span></span></span>
-<span><span class="co">#&gt;    period     value kenya category category2 element    month   year fiscal_year</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 2022-02-01    11 Kenya 40-55    Normal    BIRADS 0-3 Febru…  <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 2022-03-01    11 Kenya 40-55    Normal    BIRADS 0-3 March   <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 2022-04-01     1 Kenya 40-55    Normal    BIRADS 0-3 April   <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 2022-05-01     3 Kenya 40-55    Normal    BIRADS 0-3 May     <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 2022-03-01     2 Kenya 25-34    Normal    BIRADS 0-3 March   <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 2022-04-01    11 Kenya 35-39    Normal    BIRADS 0-3 April   <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 2022-06-01     2 Kenya 40-55    Normal    BIRADS 0-3 June    <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 2022-02-01     2 Kenya 35-39    Normal    BIRADS 0-3 Febru…  <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 2022-04-01     1 Kenya 56-74    Abnormal  BIRADS 5   April   <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 2022-03-01     3 Kenya 35-39    Normal    BIRADS 0-3 March   <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> 2022-06-01     6 Kenya 35-39    Abnormal  BIRADS 6   June    <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> 2022-04-01     1 Kenya 40-55    Abnormal  BIRADS 4   April   <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> 2022-05-01     1 Kenya 25-34    Normal    BIRADS 0-3 May     <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> 2022-03-01     1 Kenya 40-55    Abnormal  BIRADS 4   March   <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> 2022-06-01     6 Kenya 35-39    Abnormal  BIRADS 5   June    <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> 2022-06-01     1 Kenya 56-74    Normal    BIRADS 0-3 June    <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> 2022-05-01     2 Kenya 56-74    Normal    BIRADS 0-3 May     <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">18</span> 2022-03-01    16 Kenya 56-74    Normal    BIRADS 0-3 March   <span style="text-decoration: underline;">2</span>022 2021/2022  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">19</span> 2022-02-01     7 Kenya 56-74    Normal    BIRADS 0-3 Febru…  <span style="text-decoration: underline;">2</span>022 2021/2022</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 19 × 10</span></span></span>
+<span><span class="co">#&gt;    value country element    age_group period     month   year fiscal_year source</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;ord&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>    11 Kenya   BIRADS 0-3 35-39     2022-04-01 April   <span style="text-decoration: underline;">2</span>022 2021/2022   MOH 7…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     7 Kenya   BIRADS 0-3 56-74     2022-02-01 Febru…  <span style="text-decoration: underline;">2</span>022 2021/2022   MOH 7…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     3 Kenya   BIRADS 0-3 35-39     2022-03-01 March   <span style="text-decoration: underline;">2</span>022 2021/2022   MOH 7…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     1 Kenya   BIRADS 5   56-74     2022-04-01 April   <span style="text-decoration: underline;">2</span>022 2021/2022   MOH 7…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>    16 Kenya   BIRADS 0-3 56-74     2022-03-01 March   <span style="text-decoration: underline;">2</span>022 2021/2022   MOH 7…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     1 Kenya   BIRADS 0-3 25-34     2022-05-01 May     <span style="text-decoration: underline;">2</span>022 2021/2022   MOH 7…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     3 Kenya   BIRADS 0-3 40-55     2022-05-01 May     <span style="text-decoration: underline;">2</span>022 2021/2022   MOH 7…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     6 Kenya   BIRADS 6   35-39     2022-06-01 June    <span style="text-decoration: underline;">2</span>022 2021/2022   MOH 7…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     2 Kenya   BIRADS 0-3 40-55     2022-06-01 June    <span style="text-decoration: underline;">2</span>022 2021/2022   MOH 7…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>     1 Kenya   BIRADS 0-3 40-55     2022-04-01 April   <span style="text-decoration: underline;">2</span>022 2021/2022   MOH 7…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span>     2 Kenya   BIRADS 0-3 25-34     2022-03-01 March   <span style="text-decoration: underline;">2</span>022 2021/2022   MOH 7…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span>     1 Kenya   BIRADS 4   40-55     2022-03-01 March   <span style="text-decoration: underline;">2</span>022 2021/2022   MOH 7…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span>    11 Kenya   BIRADS 0-3 40-55     2022-02-01 Febru…  <span style="text-decoration: underline;">2</span>022 2021/2022   MOH 7…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span>     2 Kenya   BIRADS 0-3 35-39     2022-02-01 Febru…  <span style="text-decoration: underline;">2</span>022 2021/2022   MOH 7…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span>     1 Kenya   BIRADS 4   40-55     2022-04-01 April   <span style="text-decoration: underline;">2</span>022 2021/2022   MOH 7…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span>     1 Kenya   BIRADS 0-3 56-74     2022-06-01 June    <span style="text-decoration: underline;">2</span>022 2021/2022   MOH 7…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span>    11 Kenya   BIRADS 0-3 40-55     2022-03-01 March   <span style="text-decoration: underline;">2</span>022 2021/2022   MOH 7…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">18</span>     6 Kenya   BIRADS 5   35-39     2022-06-01 June    <span style="text-decoration: underline;">2</span>022 2021/2022   MOH 7…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">19</span>     2 Kenya   BIRADS 0-3 56-74     2022-05-01 May     <span style="text-decoration: underline;">2</span>022 2021/2022   MOH 7…</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 1 more variable: category &lt;fct&gt;</span></span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -248,36 +264,37 @@ population using the <code><a href="../reference/get_filtered_population.html">g
 <code class="sourceCode R"><span><span class="co"># Get the cervical screening target population for 2022</span></span>
 <span><span class="va">cervical_target_population</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/target_population.html">get_cervical_target_population</a></span><span class="op">(</span><span class="fl">2022</span><span class="op">)</span></span>
 <span><span class="va">cervical_target_population</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 1</span></span></span>
-<span><span class="co">#&gt;     target</span></span>
-<span><span class="co">#&gt;      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 1<span style="text-decoration: underline;">112</span>735.</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 2</span></span></span>
+<span><span class="co">#&gt;   country   target</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Kenya   1<span style="text-decoration: underline;">112</span>735.</span></span>
 <span></span>
 <span><span class="co"># Get the colorectal cancer screening target population for 20223 by county</span></span>
 <span><span class="va">colorectal_target_population</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/target_population.html">get_colorectal_target_population</a></span><span class="op">(</span><span class="fl">2023</span>, level <span class="op">=</span> <span class="st">'county'</span><span class="op">)</span></span>
 <span><span class="va">colorectal_target_population</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 47 × 2</span></span></span>
-<span><span class="co">#&gt;    county          target</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Baringo          <span style="text-decoration: underline;">8</span>277.</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Bomet           <span style="text-decoration: underline;">10</span>887.</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Bungoma         <span style="text-decoration: underline;">21</span>427.</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Busia           <span style="text-decoration: underline;">12</span>263.</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Elgeyo Marakwet  <span style="text-decoration: underline;">6</span>050.</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Embu            <span style="text-decoration: underline;">12</span>288.</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Garissa          <span style="text-decoration: underline;">6</span>872.</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Homa Bay        <span style="text-decoration: underline;">14</span>163.</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Isiolo           <span style="text-decoration: underline;">2</span>848.</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Kajiado         <span style="text-decoration: underline;">12</span>606.</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 47 × 3</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Groups:   country [1]</span></span></span>
+<span><span class="co">#&gt;    country county          target</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Kenya   Baringo          <span style="text-decoration: underline;">8</span>277.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Kenya   Bomet           <span style="text-decoration: underline;">10</span>887.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Kenya   Bungoma         <span style="text-decoration: underline;">21</span>427.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Kenya   Busia           <span style="text-decoration: underline;">12</span>263.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Kenya   Elgeyo Marakwet  <span style="text-decoration: underline;">6</span>050.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Kenya   Embu            <span style="text-decoration: underline;">12</span>288.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Kenya   Garissa          <span style="text-decoration: underline;">6</span>872.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Kenya   Homa Bay        <span style="text-decoration: underline;">14</span>163.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Kenya   Isiolo           <span style="text-decoration: underline;">2</span>848.</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Kenya   Kajiado         <span style="text-decoration: underline;">12</span>606.</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 37 more rows</span></span></span>
 <span></span>
 <span><span class="co"># Get the population of women 15-49 year for the year 2024</span></span>
 <span><span class="va">wra_pop</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_filtered_population.html">get_filtered_population</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2024</span>, min_age <span class="op">=</span> <span class="fl">15</span>, max_age <span class="op">=</span> <span class="fl">49</span>, pop_sex <span class="op">=</span> <span class="st">'female'</span><span class="op">)</span></span>
 <span><span class="va">wra_pop</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 1</span></span></span>
-<span><span class="co">#&gt;      target</span></span>
-<span><span class="co">#&gt;       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 13<span style="text-decoration: underline;">023</span>053.</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 2</span></span></span>
+<span><span class="co">#&gt;   country    target</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Kenya   13<span style="text-decoration: underline;">023</span>053.</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
