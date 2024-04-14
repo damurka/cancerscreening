@@ -3,7 +3,7 @@
 #' `get_data_sets_formatted()` fetches the data set reporting metrics. The metric
 #' can be REPORTING_RATE, REPORTING_RATE_ON_TIME, ACTUAL_REPORTS, ACTUAL_REPORTS_ON_TIME, EXPECTED_REPORTS.
 #'
-#' @param datasets_ids A vector of data sets IDs for which to retrieve data. Required.
+#' @param dataset_ids A vector of data sets IDs for which to retrieve data. Required.
 #' @param start_date The start date to retrieve data. It is required and in the format `YYYY-MM-dd`.
 #' @param end_date The ending date for data retrieval (default is the current date).
 #' @param level The desired data granularity: `"country"` (the default), `"county"`, `"subcounty"`, `"ward"`, or `"facility"`.
@@ -35,9 +35,10 @@ get_data_sets_formatted <- function(dataset_ids,
                                     start_date,
                                     end_date = NULL,
                                     level = c('country', 'county', 'subcounty', 'ward', 'facility'),
-                                    organisations = NULL) {
+                                    organisations = NULL,
+                                    ...) {
 
-  dx = pe = ou = element = value = NULL # due to NSE notes in R CMD check
+  dx = period = pe = ou = element = value = NULL # due to NSE notes in R CMD check
 
   check_string_vector(dataset_ids)
   check_date(start_date)
@@ -71,7 +72,8 @@ get_data_sets_formatted <- function(dataset_ids,
   data <- get_analytics(
     dx %.d% dataset_ids_str,
     pe %.d% periods,
-    ou %.d% c(ou_level, ou)
+    ou %.d% c(ou_level, ou),
+    ...
   )
 
   organisations <- get_organisation_units_metadata(data$ou, level = level)

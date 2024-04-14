@@ -9,10 +9,13 @@ get_data_sets_formatted(
   start_date,
   end_date = NULL,
   level = c("country", "county", "subcounty", "ward", "facility"),
-  organisations = NULL
+  organisations = NULL,
+  ...
 )
 }
 \arguments{
+\item{dataset_ids}{A vector of data sets IDs for which to retrieve data. Required.}
+
 \item{start_date}{The start date to retrieve data. It is required and in the format \code{YYYY-MM-dd}.}
 
 \item{end_date}{The ending date for data retrieval (default is the current date).}
@@ -20,8 +23,6 @@ get_data_sets_formatted(
 \item{level}{The desired data granularity: \code{"country"} (the default), \code{"county"}, \code{"subcounty"}, \code{"ward"}, or \code{"facility"}.}
 
 \item{organisations}{A list of organization units ids to be filtered.}
-
-\item{datasets_ids}{A vector of data sets IDs for which to retrieve data. Required.}
 
 \item{...}{Other options that can be passed onto KHIS API.}
 }
