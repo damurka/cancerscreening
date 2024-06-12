@@ -13,6 +13,8 @@ check_numeric <- function(number, arg = caller_arg(number), error_call = caller_
 
 strip_organisation_suffix <- function(.data, level) {
 
+  kenya = county = sub_county = subcounty = county_assembly_ward = ward = health_facility = NULL
+
   if (level >= 1) {
     .data <- .data %>%
       rename(country = kenya)
@@ -44,6 +46,8 @@ strip_organisation_suffix <- function(.data, level) {
 }
 
 add_fiscal_year <- function(.data, fiscal_start = 7) {
+
+  period = NULL
 
   check_numeric(fiscal_start)
 
