@@ -1,6 +1,6 @@
 Package: cancerscreening
 Title: Streamline Access to Cancer Screening Data
-Version: 1.1.0.9000
+Version: 1.1.1.9000
 Authors@R: 
     person("David", "Kariuki", , "hello@damurka.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0009-0003-6159-1107"))
