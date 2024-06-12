@@ -65,12 +65,5 @@ get_cervical_positive <- function(start_date,
       )
     )
 
-  return(
-    structure(
-      data,
-      class = c("cacx_positive", "tbl_df", "tbl", "data.frame"),
-      data_level = level,
-      data_type = 'Cervical Cancer Screen Positive Data'
-    )
-  )
+  return(data)
 }

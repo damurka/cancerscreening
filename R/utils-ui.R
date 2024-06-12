@@ -70,13 +70,17 @@ cancerscreening_quiet <- function() {
 #' @param code Code to execute quietly
 #' @return No return value, called for side effects
 #' @examples
-#' # message: "The credentials have been set."
-#' khis_cred(username = 'username', password = 'password')
 #'
-#' # suppress messages for a small amount of code
-#' with_cancerscreening_quiet(
+#' \dontrun{
+#'   # message: "The credentials have been set."
 #'   khis_cred(username = 'username', password = 'password')
-#' )
+#'
+#'   # suppress messages for a small amount of code
+#'   with_cancerscreening_quiet(
+#'     khis_cred(username = 'username', password = 'password')
+#'   )
+#' }
+
 with_cancerscreening_quiet <- function(code) {
   withr::with_options(list(cancerscreening_quiet = TRUE), code = code)
 }
@@ -86,17 +90,20 @@ with_cancerscreening_quiet <- function(code) {
 #' @param env The environment to use for scoping
 #' @return No return value, called for side effects
 #' @examples
-#' # message: "The credentials have been set."
-#' khis_cred(username = 'username', password = 'password')
 #'
-#' # suppress messages for a in a specific scope
-#' local_cancerscreening_quiet()
+#' \dontrun{
+#'   # message: "The credentials have been set."
+#'   khis_cred(username = 'username', password = 'password')
 #'
-#' # no message
-#' khis_cred(username = 'username', password = 'password')
+#'   # suppress messages for a in a specific scope
+#'   local_cancerscreening_quiet()
 #'
-#' # clear credentials
-#' khis_cred_clear()
+#'   # no message
+#'   khis_cred(username = 'username', password = 'password')
+#'
+#'   # clear credentials
+#'   khis_cred_clear()
+#' }
 
 local_cancerscreening_quiet <- function(env = parent.frame()) {
   withr::local_options(list(cancerscreening_quiet = TRUE), .local_envir = env)

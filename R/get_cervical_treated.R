@@ -62,12 +62,5 @@ get_cervical_treated <- function(start_date,
       )
     )
 
-  return(
-    structure(
-      data,
-      class = c("cacx_treated", "tbl_df", "tbl", "data.frame"),
-      data_level = level,
-      data_type = 'Cervical Cancer Precancerous Treatment Data'
-    )
-  )
+  return(data)
 }

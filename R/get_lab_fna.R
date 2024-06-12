@@ -44,7 +44,7 @@ get_lab_fna <- function(start_date,
                                   organisations = organisations,
                                   ...) %>%
     mutate(
-      element = str_remove(element, 'MOH 706_ '),
+      element = str_remove(element, 'MOH 706_'),
       element = factor(element),
       category = factor(category),
       source = 'MOH 706'

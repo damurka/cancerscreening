@@ -1,5 +1,17 @@
 # cancerscreening (development version)
 
+* This release streamlines the `khisr` package by focusing on its core functionality: 
+  retrieving screening data for the MOH 745 screening tool.
+
+* **Refactored Functionality:** Previously available functions for retrieving data 
+  element metadata, organization unit metadata, and formatted datasets have been 
+  migrated to the dedicated `khisr` package. This enhances code organization and 
+  avoids redundancy.
+  
+* **New Function:** We've introduced the `get_screening_reporting_analytics()`
+  function to retrieve reporting metrics associated with the MOH 745 screening 
+  tool.
+
 # cancerscreening 1.1.0
 
 ### Improved data retrieval efficiency

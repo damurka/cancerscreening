@@ -62,12 +62,5 @@ get_cervical_screened <- function(start_date,
       )
     )
 
-  return(
-    structure(
-      data,
-      class = c("cacx_screened", "tbl_df", "tbl", "data.frame"),
-      data_level = level,
-      data_type = 'Cervical Cancer Screening Data'
-    )
-  )
+  return(data)
 }
