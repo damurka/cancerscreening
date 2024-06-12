@@ -70,7 +70,7 @@ colorectal cancer and laboratory diagnostic data.
 
 To get the data the following calls can be made
 
-```{r}
+```{r eval = khisr::khis_has_cred()}
 # Get data for those screening for cervical cancer
 cervical_screened <- get_cervical_screened('2022-01-01', end_date = '2022-06-30')
 cervical_screened
@@ -96,7 +96,7 @@ and `get_breast_mammogram_target_population()`.
 
 If these function do not meet your criteria you can make your target population using the `get_filtered_population()`.
 
-```{r}
+```{r eval = khisr::khis_has_cred()}
 # Get the cervical screening target population for 2022
 cervical_target_population <- get_cervical_target_population(2022)
 cervical_target_population

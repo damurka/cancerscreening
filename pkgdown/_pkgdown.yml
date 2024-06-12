@@ -70,8 +70,9 @@ reference:
       - get_breast_cbe_target_population
       - get_breast_mammogram_target_population
       - get_filtered_population
-  - title: "Screening Reporting Metrics"
+  - title: "Analytics table data"
     desc: >
-      Functions for retrieving information on reporting rate
+      Functions for retrieving information from the analytics table
     contents:
       - get_screening_reporting_analytics
+      - get_analytics_formatted
