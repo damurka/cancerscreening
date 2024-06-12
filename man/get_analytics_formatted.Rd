@@ -37,8 +37,8 @@ A tibble with detailed information, including:
 }
 }
 \description{
-\code{get_analytics_formatted()} fetches data from the KHIS analytics data tables for a
-given period and data element(s), without performing any aggregation.
+\code{get_analytics_formatted()} fetches data from the KHIS analytics data tables
+for a given period and data element(s), without performing any aggregation.
 }
 \details{
 \itemize{
@@ -55,14 +55,8 @@ given period and data element(s), without performing any aggregation.
 element_id = c('cXe64Yk0QMY', 'XEX93uLsAm2')
 
 # Download data from February 2023 to current date
-data <- get_analytics(element_ids = element_id,
-                      start_date = '2023-02-01')
+data <- get_analytics_formatted(element_ids = element_id,
+                                start_date = '2023-02-01')
 data
 \dontshow{\}) # examplesIf}
-}
-\seealso{
-\itemize{
-\item \code{\link[=get_organisation_units_metadata]{get_organisation_units_metadata()}} for getting the organisations units
-\item \code{\link[=get_data_elements_metadata]{get_data_elements_metadata()}} for retrieving the data elements
-}
 }

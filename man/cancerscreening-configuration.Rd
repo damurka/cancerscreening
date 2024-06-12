@@ -47,22 +47,28 @@ of the withr package (\url{https://withr.r-lib.org}).
 }
 
 \examples{
-# message: "The credentials have been set."
-khis_cred(username = 'username', password = 'password')
 
-# suppress messages for a small amount of code
-with_cancerscreening_quiet(
+\dontrun{
+  # message: "The credentials have been set."
   khis_cred(username = 'username', password = 'password')
-)
-# message: "The credentials have been set."
-khis_cred(username = 'username', password = 'password')
 
-# suppress messages for a in a specific scope
-local_cancerscreening_quiet()
+  # suppress messages for a small amount of code
+  with_cancerscreening_quiet(
+    khis_cred(username = 'username', password = 'password')
+  )
+}
 
-# no message
-khis_cred(username = 'username', password = 'password')
+\dontrun{
+  # message: "The credentials have been set."
+  khis_cred(username = 'username', password = 'password')
 
-# clear credentials
-khis_cred_clear()
+  # suppress messages for a in a specific scope
+  local_cancerscreening_quiet()
+
+  # no message
+  khis_cred(username = 'username', password = 'password')
+
+  # clear credentials
+  khis_cred_clear()
+}
 }

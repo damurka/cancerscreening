@@ -41,11 +41,7 @@ Remember to see [the articles](https://cancerscreening.damurka.com/articles/inde
 
 ## Key Functions for Data Download:
 
-These functions directly call the KHIS server to download the data require the setting of KHIS credentials. See [setting the credentials](https://cancerscreening.damurka.com/articles/set-your-credentials.html) for more information.
-The get analytics call is supported by three metadata functions that help make the data complete and these 
-include the `get_organisation_units_metadata()` to show where the data is from and `get_data_elements_metadata()` to show what the data is about and group the data into various categories.
-
-The cancer screening data that are being tracked breast cancer, cervical cancer,
+These functions directly call the KHIS server to download the data require the setting of KHIS credentials. See [setting the credentials](https://cancerscreening.damurka.com/articles/set-your-credentials.html) for more information. The cancer screening data that are being tracked breast cancer, cervical cancer,
 colorectal cancer and laboratory diagnostic data.
 
 ### Cervical Cancer:

@@ -25,21 +25,11 @@
 "_PACKAGE"
 
 ## usethis namespace: start
-#' @importFrom lubridate %--%
-#' @importFrom lubridate month
 #' @importFrom lubridate quarter
-#' @importFrom lubridate today
-#' @importFrom lubridate year
-#' @importFrom lubridate ym
-#' @importFrom lubridate ymd
-#' @importFrom pillar tbl_sum
-#' @importFrom purrr map
 #' @importFrom stringr str_c
 #' @importFrom stringr str_detect
 #' @importFrom stringr str_glue
 #' @importFrom stringr str_remove
-#' @importFrom vctrs df_list
-#' @importFrom vctrs new_data_frame
 ## usethis namespace: end
 NULL
 

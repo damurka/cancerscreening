@@ -60,5 +60,6 @@
       source = 'MOH 745'
     ) %>%
     rename(age_group = category)
+
   return(data)
 }

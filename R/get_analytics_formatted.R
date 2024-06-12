@@ -1,7 +1,7 @@
 #' Retrieves Analytics Table Data from KHIS
 #'
-#' `get_analytics_formatted()` fetches data from the KHIS analytics data tables for a
-#'   given period and data element(s), without performing any aggregation.
+#' `get_analytics_formatted()` fetches data from the KHIS analytics data tables
+#'   for a given period and data element(s), without performing any aggregation.
 #'
 #' @param element_ids A vector of data element IDs for which to retrieve data. Required.
 #' @param start_date The start date to retrieve data. It is required and in the format `YYYY-MM-dd`.
@@ -25,10 +25,6 @@
 #'
 #' @export
 #'
-#' @seealso
-#' * [get_organisation_units_metadata()] for getting the organisations units
-#' * [get_data_elements_metadata()] for retrieving the data elements
-#'
 #' @examplesIf khis_has_cred()
 #' # Clinical Breast Examination data elements
 #' # XEX93uLsAm2 = CBE Abnormal
@@ -36,69 +32,36 @@
 #' element_id = c('cXe64Yk0QMY', 'XEX93uLsAm2')
 #'
 #' # Download data from February 2023 to current date
-#' data <- get_analytics(element_ids = element_id,
-#'                       start_date = '2023-02-01')
+#' data <- get_analytics_formatted(element_ids = element_id,
+#'                                 start_date = '2023-02-01')
 #' data
 
 get_analytics_formatted <- function(element_ids,
-                          start_date,
-                          end_date = NULL,
-                          level = c('country', 'county', 'subcounty', 'ward', 'facility'),
-                          organisations = NULL,
-                          ...) {
+                                    start_date,
+                                    end_date = NULL,
+                                    level = c('country', 'county', 'subcounty', 'ward', 'facility'),
+                                    organisations = NULL,
+                                    ...) {
 
-  dx = co = ou = pe = value = period = NULL # due to NSE notes in R CMD check
-
-  check_string_vector(element_ids)
-  check_date(start_date)
-  check_date(end_date, can_be_null = TRUE)
+  period = NULL # due to NSE notes in R CMD check
 
   level <- arg_match(level)
 
   ou_level <- switch (level,
-                   kenya = 'LEVEL-1',
-                   county = 'LEVEL-2',
-                   subcounty = 'LEVEL-3',
-                   ward = 'LEVEL-4',
-                   facility = 'LEVEL-5')
+                      country = 1,
+                      county = 2,
+                      subcounty = 3,
+                      ward = 4,
+                      facility = 5)
 
-  if (is.null(end_date)) {
-    end_date = today()
-  }
+  data <- get_analytics_by_level(element_ids = element_ids,
+                                 start_date = start_date,
+                                 end_date = end_date,
+                                 level = ou_level,
+                                 org_ids = organisations,
+                                 ...)
 
-
-  ou <- 'HfVjCurKxh2' # Kenya
-  if (!is.null(organisations)) {
-    ou <- organisations
-  }
-
-  data <- get_analytics(
-    dx %.d% element_ids,
-    pe %.d% 'all',
-    ou %.d% c(ou_level, ou),
-    co %.d% 'all',
-    startDate = start_date,
-    endDate = end_date
-  )
-
-  if (is_empty(data)) {
-    return(NULL)
-  }
-
-  organisations <- get_organisation_units_metadata(data$ou, level = level)
-  elements <- get_data_elements_metadata(element_ids)
-
-  data <- data %>%
-    left_join(organisations, by=c('ou' = 'id')) %>%
-    left_join(elements, by=c('dx'='element_id', 'co'='category_id')) %>%
-    mutate(
-      period = ym(pe),
-      month = month(period, label = TRUE, abbr = FALSE),
-      year = year(period),
-      fiscal_year = as.integer(quarter(period, fiscal_start = 7, type='year.quarter')),
-      fiscal_year = factor(str_glue('{fiscal_year-1}/{fiscal_year}'))
-    ) %>%
-    select(-ou, -co, -dx, -pe)
-
-  return(data)
+  data %>%
+    strip_organisation_suffix(ou_level) %>%
+    add_fiscal_year()
 }

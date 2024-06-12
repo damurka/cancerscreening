@@ -165,12 +165,12 @@ get_colorectal_target_population <- function(year, level = c('country', 'county'
 #' filtered_population
 
 get_filtered_population <- function(year,
-                                     min_age,
-                                     max_age,
-                                     modifier = 1,
-                                     level = c('country', 'county', 'subcounty'),
-                                     pop_sex = c('female', 'male', 'both'),
-                                     rate = 0.022) {
+                                    min_age,
+                                    max_age,
+                                    modifier = 1,
+                                    level = c('country', 'county', 'subcounty'),
+                                    pop_sex = c('female', 'male', 'both'),
+                                    rate = 0.022) {
   age = sex = NULL # due to NSE notes in R CMD check
 
   check_numeric(year)

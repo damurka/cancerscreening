@@ -49,7 +49,8 @@ get_colorectal_fobt <- function(start_date,
     mutate(
       element = case_when(
         str_detect(element, 'Negative') ~ 'Negative',
-        str_detect(element, 'Positive') ~ 'Positive'
+        str_detect(element, 'Positive') ~ 'Positive',
+        .ptype = factor(levels = c('Positive', 'Negative'))
       )
     )
 
