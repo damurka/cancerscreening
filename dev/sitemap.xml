@@ -67,12 +67,6 @@
     <loc>https://cancerscreening.damurka.com/dev/reference/get_colorectal_fobt.html</loc>
   </url>
   <url>
-    <loc>https://cancerscreening.damurka.com/dev/reference/get_data_elements_metadata.html</loc>
-  </url>
-  <url>
-    <loc>https://cancerscreening.damurka.com/dev/reference/get_data_sets_formatted.html</loc>
-  </url>
-  <url>
     <loc>https://cancerscreening.damurka.com/dev/reference/get_filtered_population.html</loc>
   </url>
   <url>
@@ -91,7 +85,7 @@
     <loc>https://cancerscreening.damurka.com/dev/reference/get_lab_tissue_histology.html</loc>
   </url>
   <url>
-    <loc>https://cancerscreening.damurka.com/dev/reference/get_organisation_units_metadata.html</loc>
+    <loc>https://cancerscreening.damurka.com/dev/reference/get_screening_reporting_analytics.html</loc>
   </url>
   <url>
     <loc>https://cancerscreening.damurka.com/dev/reference/index.html</loc>
